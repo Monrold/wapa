@@ -1,0 +1,192 @@
+---
+import wapa from "../images/logotipo.png";
+import wapablack from "../images/logotipo-black.png";
+
+export interface Props {
+    lightColor?: boolean;
+}
+---
+
+<script>
+    window.addEventListener("DOMContentLoaded", function () {
+        const burgerButton = document.getElementById("burgerButton");
+        const closeButton = document.getElementById("closeButton");
+        const button = document.getElementById("buttonBurger");
+        const contenedor = document.getElementById("contenedor");
+
+        function toggleMenu() {
+            if (!contenedor.classList.contains("view")) {
+                contenedor.classList.add("view");
+                closeButton.classList.add("view");
+                burgerButton.classList.remove("view");
+                burgerButton.style.display = "none";
+                closeButton.style.display = "block";
+            } else {
+                contenedor.classList.remove("view");
+                closeButton.classList.remove("view");
+                burgerButton.classList.add("view");
+                burgerButton.style.display = "block";
+                closeButton.style.display = "none";
+            }
+        }
+
+        button.addEventListener("click", toggleMenu);
+    });
+</script>
+<style>
+    #closeButton {
+        display: none;
+    }
+
+    #contenedor {
+        height: 25vh;
+        display: none;
+        opacity: 0;
+        transition: all ease-in-out 300ms !important;
+    }
+    .view {
+        display: flex !important;
+        opacity: 1 !important;
+    }
+</style>
+
+<nav
+    class="md:flex hidden justify-between px-4 md:px-8 lg:px-20 my-4 absolute w-full"
+>
+    <div>
+        <a href="/">
+            <img
+                class="w-40"
+                src={Astro.props.lightColor ? wapablack.src : wapa.src}
+                alt="Logotipo de wapa"
+            />
+        </a>
+    </div>
+    <div
+        class:list={[
+            "flex space-x-8",
+            Astro.props.lightColor ? "text-black" : "text-white",
+        ]}
+    >
+        <a
+            class:list={[
+                Astro.props.lightColor
+                    ? "hover:text-slate-800"
+                    : "hover:text-slate-200",
+            ]}
+            href="/lista-de-precios"
+        >
+            <h3>Lista de precios</h3>
+        </a>
+        <a
+            class:list={[
+                "hidden",
+                Astro.props.lightColor
+                    ? "hover:text-slate-800"
+                    : "hover:text-slate-200",
+            ]}
+            href=""
+        >
+            <h3>Blog</h3>
+        </a>
+        <a
+            class:list={[
+                Astro.props.lightColor
+                    ? "hover:text-slate-800"
+                    : "hover:text-slate-200",
+            ]}
+            id="Setmore_button_iframe"
+            href="https://booking.setmore.com/scheduleappointment/31f06619-faa8-4eab-9f6c-bf5421c51ca3"
+        >
+            <h3>Agendar cita</h3>
+        </a>
+    </div>
+</nav>
+
+<nav
+    class="md:hidden flex justify-between px-4 md:px-8 absolute lg:px-20 my-4 w-full"
+>
+    <div class="relative flex justify-between w-full">
+        <div>
+            <a href="/">
+                <img
+                    class="w-40"
+                    src={Astro.props.lightColor ? wapablack.src : wapa.src}
+                    alt="Logotipo de wapa"
+                />
+            </a>
+        </div>
+        <div class="flex flex-col my-auto text-white">
+            <button class="flex flex-col items-end" id="buttonBurger">
+                <svg
+                    class:list={[
+                        "w-5",
+                        Astro.props.lightColor ? "fill-black" : "fill-white",
+                    ]}
+                    id="burgerButton"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 448 512"
+                    ><path
+                        d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"
+                    ></path></svg
+                >
+                <svg
+                    class:list={[
+                        "w-5",
+                        Astro.props.lightColor ? "fill-black" : "fill-white",
+                    ]}
+                    id="closeButton"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 384 512"
+                    ><path
+                        d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+                    ></path></svg
+                >
+            </button>
+            <div
+                class="absolute inset-0 top-16 flex items-center justify-center w-full bg-[#fef8f2]/30 backdrop-blur-sm"
+                id="contenedor"
+            >
+                <div
+                    class="wrapper flex flex-col justify-center space-y-6 items-center w-full p-4 text-black"
+                    id="wrapper"
+                >
+                    <a
+                        class="hover:text-slate-700 text-center text-xl"
+                        id="Setmore_button_iframe"
+                        href="https://booking.setmore.com/scheduleappointment/31f06619-faa8-4eab-9f6c-bf5421c51ca3"
+                    >
+                        <div class="flex space-x-2">
+                            <svg
+                                class="fill-slate-900 w-3.5"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 448 512"
+                                ><path
+                                    d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z"
+                                ></path></svg
+                            >
+                            <h3>Agendar cita</h3>
+                        </div>
+                    </a>
+                    <a
+                        class="hover:text-slate-700 text-center text-xl"
+                        href="/lista-de-precios"
+                    >
+                        <h3>Lista de precios</h3>
+                    </a>
+                    <a
+                        class="hover:text-slate-700 text-center text-xl hidden"
+                        href=""
+                    >
+                        <h3>Blog</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<script
+    id="setmore_script"
+    type="text/javascript"
+    src="https://storage.googleapis.com/fullintegration-live/webComponentAppListing/Container/setmoreIframeLive.js"
+></script>

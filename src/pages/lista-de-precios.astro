@@ -1,0 +1,151 @@
+---
+import Layout from "../layouts/Layout.astro";
+import blur from "../images/precios/blur.jpg";
+import hands from "../images/precios/hands.jpg";
+---
+
+<style
+    define:vars={{ blur: `url("${blur.src}")`, hands: `url("${hands.src}")` }}
+>
+    .bg {
+        background-image: var(--blur);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+<Layout
+    title="Lista de precios"
+    description="Descubre los mejores servicios en wapa studio"
+    lightColor={true}
+>
+    <section class="bg pt-28 pb-20 lg:py-0 lg:h-screen flex justify-center items-center">
+        <div class="mx-4 md:mx-8">
+            <div
+                class="bg-[#877363] text-white mx-auto flex flex-col lg:flex lg:flex-row max-w-screen-lg"
+            >
+                <div class="h-auto w-full overflow-hidden imgwrapper">
+                    <img
+                        class="object-cover h-full w-full"
+                        src={hands.src}
+                        alt=""
+                    />
+                </div>
+                <div class="w-full lg:w-[40vw] p-4">
+                    <div class="px-4 box-border">
+                        <div>
+                            <h3 class="text-4xl whitespace-nowrap">
+                                Lista de precios
+                            </h3>
+                            <ul>
+                                <li>
+                                    <div
+                                        class="mt-4 pb-4 border-b border-white"
+                                    >
+                                        <h3 class="font-bold">Alaciado</h3>
+                                        <ul class="w-full">
+                                            <li>
+                                                <div
+                                                    class="flex justify-between"
+                                                >
+                                                    <p>
+                                                        De hombros a media
+                                                        espalda
+                                                    </p>
+                                                    <p>$1,200</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div
+                                                    class="flex justify-between"
+                                                >
+                                                    <p>Hasta cintura</p>
+                                                    <p>$1,400</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div
+                                                    class="flex justify-between"
+                                                >
+                                                    <p>Extra largo</p>
+                                                    <p>$1,600</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div
+                                        class="mt-4 pb-4 border-b border-white"
+                                    >
+                                        <h3 class="font-bold">Botox capilar</h3>
+                                        <ul class="w-full">
+                                            <li>
+                                                <div
+                                                    class="flex justify-between"
+                                                >
+                                                    <p>
+                                                        De hombros a media
+                                                        espalda
+                                                    </p>
+                                                    <p>$1,200</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div
+                                                    class="flex justify-between"
+                                                >
+                                                    <p>Hasta cintura</p>
+                                                    <p>$1,400</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div
+                                                    class="flex justify-between"
+                                                >
+                                                    <p>Extra largo</p>
+                                                    <p>$1,600</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <li>
+                                        <div
+                                            class="mt-4 pb-4 flex justify-between border-b border-white"
+                                        >
+                                            <h3 class="font-bold">
+                                                Lash botox
+                                            </h3><p>$400</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div
+                                            class="mt-4 pb-4 flex justify-between border-b border-white"
+                                        >
+                                            <h3 class="font-bold">
+                                                Lamibrow
+                                            </h3><p>$200</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div
+                                            class="mt-4 pb-4 flex justify-between items-center"
+                                        >
+                                        <div>
+                                            <h3 class="font-bold">
+                                                Natural combo
+                                            </h3>
+                                            <p class="text-xs">Lash botox + Lamibrow</p>
+                                        </div>
+                                            <p>$500</p>
+                                        </div>
+                                    </li>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
