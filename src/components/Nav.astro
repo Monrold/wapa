@@ -9,7 +9,7 @@ export interface Props {
 
 <script>
     window.addEventListener("DOMContentLoaded", function () {
-        if (this.window.innerWidth <= 767) {
+
             const burgerButton = document.getElementById("burgerButton");
             const closeButton = document.getElementById("closeButton");
             const button = document.getElementById("buttonBurger");
@@ -32,7 +32,7 @@ export interface Props {
             }
 
             button.addEventListener("click", toggleMenu);
-        }
+        
     });
 </script>
 <style>
