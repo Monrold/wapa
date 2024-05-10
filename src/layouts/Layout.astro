@@ -1,6 +1,6 @@
 ---
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
 import og from "../images/og-image.jpg";
 
 interface Props {
@@ -16,7 +16,7 @@ const { title, description } = Astro.props;
 <html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content={description}/>
+		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta property="og:image" content={og.src} />
@@ -24,8 +24,8 @@ const { title, description } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body class="relative">
-		<Nav lightColor={Astro.props.lightColor}/>
+		<Nav lightColor={Astro.props.lightColor} />
 		<slot />
-		<Footer/>
+		<Footer />
 	</body>
 </html>
