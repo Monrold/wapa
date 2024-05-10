@@ -9,28 +9,30 @@ export interface Props {
 
 <script>
     window.addEventListener("DOMContentLoaded", function () {
-        const burgerButton = document.getElementById("burgerButton");
-        const closeButton = document.getElementById("closeButton");
-        const button = document.getElementById("buttonBurger");
-        const contenedor = document.getElementById("contenedor");
+        if (this.window.innerWidth <= 767) {
+            const burgerButton = document.getElementById("burgerButton");
+            const closeButton = document.getElementById("closeButton");
+            const button = document.getElementById("buttonBurger");
+            const contenedor = document.getElementById("contenedor");
 
-        function toggleMenu() {
-            if (!contenedor.classList.contains("view")) {
-                contenedor.classList.add("view");
-                closeButton.classList.add("view");
-                burgerButton.classList.remove("view");
-                burgerButton.style.display = "none";
-                closeButton.style.display = "block";
-            } else {
-                contenedor.classList.remove("view");
-                closeButton.classList.remove("view");
-                burgerButton.classList.add("view");
-                burgerButton.style.display = "block";
-                closeButton.style.display = "none";
+            function toggleMenu() {
+                if (!contenedor.classList.contains("view")) {
+                    contenedor.classList.add("view");
+                    closeButton.classList.add("view");
+                    burgerButton.classList.remove("view");
+                    burgerButton.style.display = "none";
+                    closeButton.style.display = "block";
+                } else {
+                    contenedor.classList.remove("view");
+                    closeButton.classList.remove("view");
+                    burgerButton.classList.add("view");
+                    burgerButton.style.display = "block";
+                    closeButton.style.display = "none";
+                }
             }
-        }
 
-        button.addEventListener("click", toggleMenu);
+            button.addEventListener("click", toggleMenu);
+        }
     });
 </script>
 <style>
@@ -119,7 +121,7 @@ export interface Props {
             </a>
         </div>
         <div class="flex flex-col my-auto text-white">
-            <button class="flex flex-col items-end"  id="buttonBurger">
+            <button class="flex flex-col items-end" id="buttonBurger">
                 <svg
                     aria-label="Abrir menú"
                     class:list={[
