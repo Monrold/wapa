@@ -1,0 +1,47 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Lista de precios"
+  description="Descubre los mejores servicios en wapa studio"
+  lightColor={true}
+>
+<main class="py-20 bg-[#eeefeb] min-h-screen flex justify-center items-center">
+  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-4">Registrarse</h1>
+    <p class="text-center text-gray-600 mb-6">
+      ¿Ya tienes una cuenta? <a href="/signin" class="text-blue-500 hover:underline">Iniciar sesión</a>
+    </p>
+    <form action="/api/auth/register" method="post" class="space-y-6">
+      <div class="space-y-2">
+        <label for="email" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
+      </div>
+      <div class="space-y-2">
+        <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        class="w-full p-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition-colors"
+      >
+        Registrarse
+      </button>
+    </form>
+  </div>
+</main>
+
+</Layout>

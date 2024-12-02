@@ -1,0 +1,53 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const { cookies, redirect } = Astro;
+
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (accessToken && refreshToken) {
+  return redirect("/dashboard");
+}
+---
+
+<Layout title="Lista de precios"
+description="Descubre los mejores servicios en wapa studio">
+<main class="py-20 bg-[#eeefeb] min-h-screen flex justify-center items-center">
+  <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <h1 class="text-2xl font-semibold text-center mb-4">Iniciar sesión</h1>
+    <p class="text-center text-sm mb-6">
+      ¿Nuevo aquí? <a href="/register" class="text-blue-600 hover:underline">Crea una cuenta</a>
+    </p>
+    <form action="/api/auth/signin" method="post" class="space-y-6">
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          class="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+          required
+        />
+      </div>
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none"
+      >
+        Iniciar sesión
+      </button>
+    </form>
+  </div>
+</main>
+
+</Layout>
