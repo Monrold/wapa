@@ -18,6 +18,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   });
 
   if (error) {
+    console.error("Error en signUp:", error);
     return new Response(error.message, { status: 500 });
   }
 
