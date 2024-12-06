@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { supabase } from "../lib/supabase";
+import Calisados from '../components/curso-alisado.astro'
 
 const { cookies, redirect } = Astro;
 
@@ -42,5 +43,5 @@ const email = data?.user?.email;
       </form>
     </div>
   </section>
-  
+  <Calisados/>
 </Layout>

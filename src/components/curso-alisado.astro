@@ -1,0 +1,39 @@
+---
+// Importa la librería de Supabase
+import { supabase } from '../lib/supabase';
+
+// Obtén el usuario desde el contexto o desde cookies (en un entorno de servidor).
+const { data: { user }, error } = await supabase.auth.getUser();
+
+// Obtén el ID del curso desde los parámetros de la URL
+const { cursoId } = Astro.params;
+
+// Verifica si el usuario tiene acceso al curso
+let tieneAcceso = false;
+if (user) {
+  // Consulta si el usuario está inscrito en el curso
+  const { data, error } = await supabase
+    .from('usuarios_cursos')
+    .select('*')
+    .eq('usuario_id', user.id)  // Aquí se accede a `user.id` correctamente
+    .eq('curso_id', cursoId)
+    .single();
+
+  if (data) {
+    tieneAcceso = true;
+  }
+}
+
+---
+
+{tieneAcceso ? (
+  <div class="curso-contenido">
+    <h2>Contenido del Curso</h2>
+    <p>Aquí puedes ver el contenido del curso.</p>
+    {/* Aquí puedes agregar más detalles sobre el curso */}
+  </div>
+) : (
+  <div class="acceso-denegado">
+    <p>No tienes acceso a este curso. Por favor, inscríbete para continuar.</p>
+  </div>
+)}
