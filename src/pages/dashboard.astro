@@ -29,19 +29,42 @@ if (error) {
 }
 
 const email = data?.user?.email;
+const name = data?.user?.user_metadata?.full_name;
+
+
+// Verificar si el usuario tiene cursos vinculados
+let cursoVinculado = false;
+
+const { data: cursosVinculados, error: cursosError } = await supabase
+  .from("usuarios_cursos")
+  .select("curso_id")
+  .eq("usuario_id", data?.user?.id);
+
+if (cursosError) {
+  console.error("Error al verificar los cursos del usuario:", cursosError.message);
+} else {
+  // Si el usuario tiene cursos vinculados, marcamos como true
+  cursoVinculado = cursosVinculados && cursosVinculados.length > 0;
+}
 ---
-<Layout title="panel de control" description="este es el dashboard">
-  <section class="flex justify-center items-center h-screen">
+<Layout title="Panel de Control" description="Este es el dashboard" lightColor={true}>
+  <section class="flex justify-center items-center h-[50vh]">
     <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-center">
-      <h1 class="text-2xl font-bold text-gray-800">Bienvenido, <span class="text-blue-600">{email}</span>!</h1>
+      <h1 class="text-2xl font-bold text-gray-800">Bienvenida, <span class="text-blue-600">{name}</span>!</h1>
       <p class="text-gray-600 mt-2">Estamos felices de verte aquí</p>
-      <p>Tu curso pronto s emoestrara aquí</p>
+      <p>
+        {cursoVinculado 
+          ? "¡Has adquirido el mejor curso para alisado! Ahora puedes ver tu contenido."
+          : "Tu curso pronto se mostrará aquí."
+        }
+      </p>
       <form action="/api/auth/signout" class="mt-6">
         <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300">
           Cerrar sesión
         </button>
       </form>
     </div>
+    <a href="/profile">Perfil</a>
   </section>
   <Calisados/>
 </Layout>

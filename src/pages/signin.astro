@@ -9,6 +9,8 @@ const refreshToken = cookies.get("sb-refresh-token");
 if (accessToken && refreshToken) {
   return redirect("/dashboard");
 }
+
+
 ---
 
 <Layout title="Lista de precios"

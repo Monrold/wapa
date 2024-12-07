@@ -1,39 +1,42 @@
 ---
-// Importa la librería de Supabase
 import { supabase } from '../lib/supabase';
 
-// Obtén el usuario desde el contexto o desde cookies (en un entorno de servidor).
-const { data: { user }, error } = await supabase.auth.getUser();
+// Obtén al usuario autenticado
+const {
+  data: { user },
+  error: userError,
+} = await supabase.auth.getUser();
 
-// Obtén el ID del curso desde los parámetros de la URL
-const { cursoId } = Astro.params;
+let cursosVinculados = [];
 
-// Verifica si el usuario tiene acceso al curso
-let tieneAcceso = false;
 if (user) {
-  // Consulta si el usuario está inscrito en el curso
-  const { data, error } = await supabase
+  // Consulta los cursos vinculados al usuario
+  const { data: cursos, error: cursosError } = await supabase
     .from('usuarios_cursos')
-    .select('*')
-    .eq('usuario_id', user.id)  // Aquí se accede a `user.id` correctamente
-    .eq('curso_id', cursoId)
-    .single();
+    .select('curso_id, cursos(title, id, description)')
+    .eq('usuario_id', user.id)
+    .order('curso_id', { ascending: true });
 
-  if (data) {
-    tieneAcceso = true;
+  if (cursosError) {
+    console.error('Error al obtener los cursos vinculados:', cursosError.message);
+  } else {
+    cursosVinculados = cursos.map((relacion) => relacion.cursos);
   }
-}
-
+} 
 ---
 
-{tieneAcceso ? (
-  <div class="curso-contenido">
-    <h2>Contenido del Curso</h2>
-    <p>Aquí puedes ver el contenido del curso.</p>
-    {/* Aquí puedes agregar más detalles sobre el curso */}
-  </div>
-) : (
-  <div class="acceso-denegado">
-    <p>No tienes acceso a este curso. Por favor, inscríbete para continuar.</p>
-  </div>
-)}
+<h1 class="flex justify-center items-center">Tu Curso</h1>
+<ul>
+    {cursosVinculados?.map((curso) => (
+      <li class="flex justify-center items-center">
+        <a class="text-black cursor-pointer" href={`/cursos/alisados`}>
+        <p>{curso.title}</p>
+        <p>{curso.description}</p>
+        <div>
+            <img src='https://media.wapastudio.com/mail-brand.webp' alt="">
+        </div>
+        </a>
+      </li>
+    ))}
+  </ul>
+  

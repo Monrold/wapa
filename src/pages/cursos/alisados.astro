@@ -1,0 +1,51 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Curso de Ejemplo" description="Descripción del curso de ejemplo" lightColor={true}>
+    <section class="h-screen flex justify-center items-center">
+        <div class="container mx-auto py-8 px-4">
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <div class="p-6">
+                    <!-- Título del curso -->
+                    <h1 class="text-4xl font-semibold text-gray-800">
+                        Curso de Programación Web
+                    </h1>
+
+                    <!-- Descripción del curso -->
+                    <p class="text-lg text-gray-600 mt-2">
+                        Aprende a crear sitios web interactivos y funcionales
+                        con HTML, CSS y JavaScript.
+                    </p>
+
+                    <!-- Sección de video -->
+                    <section class="mt-6">
+                        <h2 class="text-2xl font-semibold text-gray-800">
+                            Lección 1: Introducción a la Programación Web
+                        </h2>
+                        <div class="mt-4">
+                            <!-- Video -->
+                            <video controls class="w-full h-64 bg-black">
+                                <source
+                                    src=""
+                                    type="video/mp4"
+                                />
+                                Tu navegador no soporta el formato de video.
+                            </video>
+                        </div>
+                    </section>
+
+                    <!-- Información adicional -->
+                    <section class="mt-6">
+                        <p class="text-md font-medium text-gray-700">
+                            <strong>Duración:</strong> 2 horas
+                        </p>
+                        <p class="text-md font-medium text-gray-700 mt-2">
+                            <strong>Precio:</strong> Gratis
+                        </p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
