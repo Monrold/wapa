@@ -53,7 +53,7 @@ export interface Props {
 </style>
 
 <nav
-    class="md:flex hidden justify-between px-4 md:px-8 lg:px-20 my-4 absolute w-full"
+    class="md:flex hidden justify-between px-4 md:px-8 lg:px-20 absolute w-full"
 >
     <div>
         <a href="/">
@@ -66,7 +66,7 @@ export interface Props {
     </div>
     <div
         class:list={[
-            "flex space-x-8",
+            "flex space-x-8 my-4",
             Astro.props.lightColor ? "text-black" : "text-white",
         ]}
     >
@@ -108,7 +108,7 @@ export interface Props {
 </nav>
 
 <nav
-    class="md:hidden flex justify-between px-4 md:px-8 absolute lg:px-20 my-4 w-full"
+    class="md:hidden flex justify-between px-4 md:px-8 absolute lg:px-20 w-full"
 >
     <div class="relative flex justify-between w-full">
         <div>

@@ -7,53 +7,79 @@ import Layout from "../layouts/Layout.astro";
   description="Descubre los mejores servicios en wapa studio"
   lightColor={true}
 >
-<main class="py-20 bg-[#eeefeb] min-h-screen flex justify-center items-center">
-  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-    <h1 class="text-3xl font-bold text-center text-gray-800 mb-4">Registrarse</h1>
-    <p class="text-center text-gray-600 mb-6">
-      ¿Ya tienes una cuenta? <a href="/signin" class="text-blue-500 hover:underline">Iniciar sesión</a>
-    </p>
-    <form action="/api/auth/register" method="post" class="space-y-6">
-      <div class="space-y-2">
-        <label for="email" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        />
+  <main
+    class="py-20 bg-[#eeefeb] min-h-screen flex justify-center items-center"
+  >
+    <div
+      class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl flex flex-col lg:flex-row items-center lg:items-stretch"
+    >
+      <!-- Formulario -->
+      <div class="w-full lg:w-1/2 p-8">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-4">
+          Registrarse
+        </h1>
+        <p class="text-center text-gray-600 mb-6">
+          ¿Ya tienes una cuenta? <a
+            href="/signin"
+            class="text-[#917763] hover:underline">Iniciar sesión</a
+          >
+        </p>
+        <form action="/api/auth/register" method="post" class="space-y-6">
+          <div class="space-y-2">
+            <label for="email" class="block text-sm font-medium text-gray-700"
+              >Correo electrónico</label
+            >
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6A5341]"
+              required
+            />
+          </div>
+          <div class="space-y-2">
+            <label
+              for="full_name"
+              class="block text-sm font-medium text-gray-700"
+              >Nombre completo</label
+            >
+            <input
+              type="text"
+              name="full_name"
+              id="full_name"
+              class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6A5341]"
+              required
+            />
+          </div>
+          <div class="space-y-2">
+            <label
+              for="password"
+              class="block text-sm font-medium text-gray-700">Contraseña</label
+            >
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6A5341]"
+              required
+            />
+          </div>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAA1qFrAJc99AgS9n">
+          </div>
+          <button
+            type="submit"
+            class="w-full p-3 bg-[#917763] text-white font-semibold rounded-md hover:bg-[#6A5341] transition-colors"
+          >
+            Registrarse
+          </button>
+        </form>
       </div>
-      <div class="space-y-2">
-        <label for="full_name" class="block text-sm font-medium text-gray-700">Nombre completo</label>
-        <input
-          type="text"
-          name="full_name"
-          id="full_name"
-          class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        />
-      </div>
-      <div class="space-y-2">
-        <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        />
-      </div>
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAAA1qFrAJc99AgS9n"></div>
-      <button
-        type="submit"
-        class="w-full p-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition-colors"
-      >
-        Registrarse
-      </button>
-    </form>
-  </div>
-</main>
-
-
+       <!-- Imagen -->
+       <div
+       class="w-full lg:w-1/2 h-48 lg:h-auto bg-cover bg-center rounded-t-lg lg:rounded-l-lg lg:rounded-t-none"
+       style="background-image: url('/ruta/a/tu-imagen.jpg');"
+     >
+     </div>
+    </div>
+  </main>
 </Layout>
