@@ -8,24 +8,22 @@ import Layout from "../layouts/Layout.astro";
   lightColor={true}
 >
   <main
-    class="py-20 bg-[#eeefeb] min-h-screen flex justify-center items-center px-4"
+    class="py-20 bg-white md:bg-[#eeefeb] min-h-screen flex justify-center items-center"
   >
     <div
-      class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl flex flex-col lg:flex-row items-center lg:items-stretch"
+      class="bg-white mt-10 md:mt-0 p-8 rounded-lg md:shadow-md w-full max-w-md lg:max-w-4xl flex flex-col lg:flex-row"
     >
       <!-- Formulario -->
-      <div class="w-full lg:w-1/2 p-8">
-        <h1 class="text-3xl font-bold text-center text-gray-800 mb-4">
-          Registrarse
-        </h1>
-        <p class="text-center text-gray-600 mb-6">
-          ¿Ya tienes una cuenta? <a
-            href="/signin"
-            class="text-[#917763] hover:underline">Iniciar sesión</a
+      <div class="w-full lg:w-1/2 md:p-8">
+        <h1 class="text-2xl font-semibold text-center mb-4">Registrarse</h1>
+        <p class="text-center text-sm mb-6">
+          ¿Ya tienes una cuenta?
+          <a href="/signin" class="text-[#917763] hover:underline"
+            >Iniciar sesión</a
           >
         </p>
         <form action="/api/auth/register" method="post" class="space-y-6">
-          <div class="space-y-2">
+          <div>
             <label for="email" class="block text-sm font-medium text-gray-700"
               >Correo electrónico</label
             >
@@ -33,11 +31,11 @@ import Layout from "../layouts/Layout.astro";
               type="email"
               name="email"
               id="email"
-              class="w-full p-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6A5341]"
+              class="w-full p-2 border border-gray-300 rounded-md focus:ring-[#6A5341]"
               required
             />
           </div>
-          <div class="space-y-2">
+          <div>
             <label
               for="full_name"
               class="block text-sm font-medium text-gray-700"
@@ -47,11 +45,11 @@ import Layout from "../layouts/Layout.astro";
               type="text"
               name="full_name"
               id="full_name"
-              class="w-full p-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6A5341]"
+              class="w-full p-2 border border-gray-300 rounded-md focus:ring-[#6A5341]"
               required
             />
           </div>
-          <div class="space-y-2">
+          <div>
             <label
               for="password"
               class="block text-sm font-medium text-gray-700">Contraseña</label
@@ -60,7 +58,7 @@ import Layout from "../layouts/Layout.astro";
               type="password"
               name="password"
               id="password"
-              class="w-full p-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6A5341]"
+              class="w-full p-2 border border-gray-300 rounded-md focus:ring-[#6A5341]"
               required
             />
           </div>
@@ -68,18 +66,18 @@ import Layout from "../layouts/Layout.astro";
           </div>
           <button
             type="submit"
-            class="w-full p-1 bg-[#917763] text-white font-semibold rounded-md hover:bg-[#6A5341] transition-colors"
+            class="w-full bg-[#917763] text-white py-2 rounded-md hover:bg-[#6A5341] focus:outline-none"
           >
             Registrarse
           </button>
         </form>
       </div>
-       <!-- Imagen -->
-       <div
-       class="w-full lg:w-1/2 h-72 lg:h-auto bg-cover bg-center rounded-t-lg lg:rounded-l-lg lg:rounded-t-none"
-       style="background-image: url('https://media.wapastudio.com/register-wapa-form.webp');"
-     >
-     </div>
+      <!-- Imagen -->
+      <div
+        class="hidden lg:block w-full lg:w-1/2 bg-cover bg-center rounded-t-lg lg:rounded-l-lg lg:rounded-t-none"
+        style="background-image: url('https://media.wapastudio.com/register-wapa-form.webp');"
+      >
+      </div>
     </div>
   </main>
 </Layout>
