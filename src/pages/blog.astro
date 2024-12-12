@@ -41,8 +41,8 @@ const sortedPosts = allPosts.sort(
                     >Cejas</a
                 >
                 <a href="/blog" class="text-gray-800 hover:text-[#917763]"
-                >Todo</a
-            >
+                    >Todo</a
+                >
             </div>
         </div>
         <div
@@ -72,7 +72,17 @@ const sortedPosts = allPosts.sort(
                                         <div class="container mx-auto mb-2">
                                             <p class="text-sm font-medium inline-block text-gray-800 rounded-full">
                                                 <span
-                                                    class={`border rounded-full px-4 ${post.frontmatter.tags === "alisados" ? "border-indigo-500" : post.frontmatter.tags === "lifting" ? "border-black" : "border-[#917763]"}`}
+                                                    class={`border rounded-full px-4 ${
+                                                        post.frontmatter.tags.includes(
+                                                            "alisados",
+                                                        )
+                                                            ? "border-indigo-500"
+                                                            : post.frontmatter.tags.includes(
+                                                                    "lifting",
+                                                                )
+                                                              ? "border-black"
+                                                              : "border-[#917763]"
+                                                    }`}
                                                 >
                                                     {post.frontmatter.tags}
                                                 </span>
@@ -108,7 +118,17 @@ const sortedPosts = allPosts.sort(
                                         <div class="container mx-auto mb-2">
                                             <p class="text-sm font-medium inline-block text-gray-800 rounded-full">
                                                 <span
-                                                    class={`border rounded-full px-4 ${post.frontmatter.tags === "alisados" ? "border-indigo-500" : post.frontmatter.tags === "lifting" ? "border-black" : "border-[#917763]"}`}
+                                                    class={`border rounded-full px-4 ${
+                                                        post.frontmatter.tags.includes(
+                                                            "alisados",
+                                                        )
+                                                            ? "border-indigo-500"
+                                                            : post.frontmatter.tags.includes(
+                                                                    "lifting",
+                                                                )
+                                                              ? "border-black"
+                                                              : "border-[#917763]"
+                                                    }`}
                                                 >
                                                     {post.frontmatter.tags}
                                                 </span>
