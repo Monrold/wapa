@@ -1,0 +1,23 @@
+---
+import BaseLayout from "./Layout.astro";
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout title={frontmatter.title} description="">
+  <div class="lg:max-w-screen-md m-auto px-2  lg:my-10">
+    <a class="flex flex-wrap items-center" href="../../blog">
+   
+      <p class="text-[#929191] hover:text-[#2AA0D9]"><span>&larr;</span> ir atrás</p>
+    </a>
+
+    <h1 class="text-4xl my-5 font-semibold">{frontmatter.title}</h1>
+    <img src={frontmatter.image.url} class="w-full rounded-xl" alt={frontmatter.image.alt} />
+    <div class="my-5 ml-2 flex flex-wrap">
+      <p class="py-2">Escrito por: {frontmatter.author}</p>
+      <p class="py-2 sm:mx-5">Publicado el: {frontmatter.pubDate}</p>
+      <p class="bg-[#2AA0D9] p-2 rounded-lg">{frontmatter.tags.join(", ")}</p>
+    </div>
+    <slot />
+  </div>
+</BaseLayout>
+

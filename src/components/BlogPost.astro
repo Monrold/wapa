@@ -1,0 +1,10 @@
+---
+// Recibe las props desde la llamada en el archivo principal
+const { url, title } = Astro.props;
+---
+<ul class="h-[80vh] flex justify-center items-center">
+  <li>
+    <a href={url} class="text-blue-600 hover:underline">{title}</a>
+  </li>
+</ul>
+

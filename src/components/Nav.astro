@@ -5,34 +5,35 @@ import wapablack from "../images/logotipo-black.png";
 export interface Props {
     lightColor?: boolean;
 }
+
+const homePages = ["/", "/lista-de-precios"];
+const isHomePage = homePages.includes(Astro.url.pathname);
 ---
 
 <script>
     window.addEventListener("DOMContentLoaded", function () {
+        const burgerButton = document.getElementById("burgerButton");
+        const closeButton = document.getElementById("closeButton");
+        const button = document.getElementById("buttonBurger");
+        const contenedor = document.getElementById("contenedor");
 
-            const burgerButton = document.getElementById("burgerButton");
-            const closeButton = document.getElementById("closeButton");
-            const button = document.getElementById("buttonBurger");
-            const contenedor = document.getElementById("contenedor");
-
-            function toggleMenu() {
-                if (!contenedor.classList.contains("view")) {
-                    contenedor.classList.add("view");
-                    closeButton.classList.add("view");
-                    burgerButton.classList.remove("view");
-                    burgerButton.style.display = "none";
-                    closeButton.style.display = "block";
-                } else {
-                    contenedor.classList.remove("view");
-                    closeButton.classList.remove("view");
-                    burgerButton.classList.add("view");
-                    burgerButton.style.display = "block";
-                    closeButton.style.display = "none";
-                }
+        function toggleMenu() {
+            if (!contenedor.classList.contains("view")) {
+                contenedor.classList.add("view");
+                closeButton.classList.add("view");
+                burgerButton.classList.remove("view");
+                burgerButton.style.display = "none";
+                closeButton.style.display = "block";
+            } else {
+                contenedor.classList.remove("view");
+                closeButton.classList.remove("view");
+                burgerButton.classList.add("view");
+                burgerButton.style.display = "block";
+                closeButton.style.display = "none";
             }
+        }
 
-            button.addEventListener("click", toggleMenu);
-        
+        button.addEventListener("click", toggleMenu);
     });
 </script>
 <style>
@@ -53,8 +54,13 @@ export interface Props {
 </style>
 
 <nav
-    class="md:flex hidden justify-between px-4 md:px-8 lg:px-20 absolute w-full"
+    class={`md:flex hidden md:justify-between md:items-center md:px-8 lg:px-20 w-full ${
+        isHomePage
+            ? "mx-auto absolute"
+            : "bg-transparent backdrop-blur-md"
+    }`}
 >
+    
     <div>
         <a href="/">
             <img
@@ -108,7 +114,8 @@ export interface Props {
 </nav>
 
 <nav
-    class="md:hidden flex justify-between px-4 md:px-8 absolute lg:px-20 w-full"
+    class={`"flex justify-between px-4 "
+    ${isHomePage ? "mx-auto absolute md:hidden w-full":"reltive md:hidden bg-transparent"}`}
 >
     <div class="relative flex justify-between w-full">
         <div>

@@ -1,0 +1,44 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import BlogPost from '../../components/BlogPost.astro';
+export const prerender = true;
+export async function getStaticPaths() {
+    const allPosts = await Astro.glob("../posts/*.md");
+    const uniqueTags = [
+        ...new Set(allPosts.map((post) => post.frontmatter.tags).flat()),
+    ];
+    return uniqueTags.map((tag) => {
+        const filteredPosts = allPosts.filter((post) =>
+            post.frontmatter.tags.includes(tag),
+        );
+        return {
+            params: { tag },
+            props: { posts: filteredPosts },
+        };
+    });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+// Definir descripciones personalizadas para cada etiqueta
+const tagDescriptions = {
+    alisados:
+        "Conoce todo sobre los alisados: beneficios, cuidados y resultados sorprendentes.",
+    lifting:
+        "Descubre cómo el lifting puede realzar tu mirada de forma natural y duradera.",
+    cejas: "Todo sobre cejas: tendencias, tratamientos y técnicas para lucir unas cejas perfectas.",
+    "corte bordado":
+        "Aprende sobre el corte bordado, la solución ideal para eliminar puntas abiertas sin sacrificar el largo.",
+};
+
+// Usar una descripción por defecto si no hay una asociada
+const description =
+    tagDescriptions[tag] || "Explora contenido relacionado con esta etiqueta.";
+---
+
+<Layout title={tag} description={description}>
+    <p class="">Entradas etiquetadas con {tag}</p>
+    <ul>
+        {posts.map((post) => <BlogPost url={post.url} title={post.frontmatter.title}/>)}
+    </ul>
+</Layout>
