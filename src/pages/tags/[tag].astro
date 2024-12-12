@@ -1,6 +1,5 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import BlogPost from '../../components/BlogPost.astro';
 export const prerender = true;
 export async function getStaticPaths() {
     const allPosts = await Astro.glob("../posts/*.md");
@@ -20,7 +19,8 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
-// Definir descripciones personalizadas para cada etiqueta
+
+// Descripciones personalizadas para cada etiqueta
 const tagDescriptions = {
     alisados:
         "Conoce todo sobre los alisados: beneficios, cuidados y resultados sorprendentes.",
@@ -31,14 +31,95 @@ const tagDescriptions = {
         "Aprende sobre el corte bordado, la solución ideal para eliminar puntas abiertas sin sacrificar el largo.",
 };
 
-// Usar una descripción por defecto si no hay una asociada
 const description =
     tagDescriptions[tag] || "Explora contenido relacionado con esta etiqueta.";
 ---
 
-<Layout title={tag} description={description}>
-    <p class="">Entradas etiquetadas con {tag}</p>
-    <ul>
-        {posts.map((post) => <BlogPost url={post.url} title={post.frontmatter.title}/>)}
-    </ul>
+<Layout title={tag} description={description} lightColor={true}>
+    <section class="bg-white py-12">
+        <!-- Encabezado con botones y título -->
+        <div
+            class="flex flex-col md:flex-row max-w-screen-lg md:mx-auto md:items-center md:justify-between px-6 py-6"
+        >
+            <!-- Título -->
+            <h1
+                class="text-2xl font-semibold md:text-base md:font-medium text-gray-800 max-w-2xl mb-4 md:mb-0"
+            >
+                Encuentra consejos, técnicas y recomendaciones.
+            </h1>
+            <!-- Botones de navegación -->
+            <div class="flex space-x-6 font-medium">
+                <a
+                    href="/tags/alisados"
+                    class="text-gray-800 hover:text-[#917763]">Alisados</a
+                >
+                <a
+                    href="/tags/lifting"
+                    class="text-gray-800 hover:text-[#917763]">Lifting</a
+                >
+                <a href="/tags/cejas" class="text-gray-800 hover:text-[#917763]"
+                    >Cejas</a
+                >
+                <a href="/blog" class="text-gray-800 hover:text-[#917763]"
+                >Todo</a>
+            </div>
+        </div>
+
+        <div class="max-w-screen-lg mx-auto px-2">
+            <div class="w-full h-px bg-gray-200 my-4"></div>
+            <div class="grid gap-4 grid-cols-1 md:grid-cols-2">
+                {posts.map((post, index) => (
+                    <>
+                        <div
+                            class={`bg-white bg-opacity-40 hover:shadow-xl transition-shadow duration-300 rounded-xl ${
+                                index === 0 ? "md:col-span-2" : ""
+                            }`}
+                        >
+                            <a href={post.url} class={`flex flex-col ${index === 0 ? "md:flex-row" : ""}`}>
+                                <img
+                                    src={post.frontmatter.image.url}
+                                    alt={post.frontmatter.image.alt}
+                                    class={`object-cover rounded-t-xl ${
+                                        index === 0
+                                            ? "h-72 md:h-96 w-full md:w-1/2 rounded-none md:rounded-l-xl"
+                                            : "h-56 w-full"
+                                    }`}
+                                />
+                                <div class="p-6 flex flex-col justify-center">
+                                    <p class="text-sm font-medium text-gray-800 mb-2">
+                                        <span
+                                            class={`border rounded-full px-4 py-1 ${
+                                                tag === "alisados"
+                                                    ? "border-indigo-500"
+                                                    : tag === "lifting"
+                                                    ? "border-black"
+                                                    : "border-[#917763]"
+                                            }`}
+                                        >
+                                            {tag}
+                                        </span>
+                                    </p>
+                                    <h2
+                                        class={`${
+                                            index === 0 ? "text-4xl" : "text-2xl"
+                                        } font-semibold text-gray-900 my-2`}
+                                    >
+                                        {post.frontmatter.title}
+                                    </h2>
+                                    <p class="text-sm text-gray-500">
+                                        {post.frontmatter.description}
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+
+                        {/* Línea divisora (solo después del primer artículo) */}
+                        {index === 0 && (
+                            <div class="w-full h-px bg-gray-200 my-5 md:col-span-2" />
+                        )}
+                    </>
+                ))}
+            </div>
+        </div>
+    </section>
 </Layout>
