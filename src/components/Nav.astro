@@ -116,7 +116,7 @@ const isHomePage = homePages.includes(Astro.url.pathname);
 
 <nav
     class={`"flex justify-between px-4"
-    ${isHomePage ? "mx-auto absolute md:hidden w-full":"reltive md:hidden bg-transparent px-3 py-3"}`}
+    ${isHomePage ? "md:mx-auto absolute md:hidden w-full px-3 py-3":"reltive md:hidden bg-transparent px-3 py-3"}`}
 >
     <div class="relative flex justify-between w-full">
         <div>
