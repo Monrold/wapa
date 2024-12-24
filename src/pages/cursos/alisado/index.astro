@@ -1,0 +1,301 @@
+---
+import { supabase } from "../../../lib/supabase.js";
+const { cookies, redirect } = Astro;
+import Layout from "../../../layouts/Layout.astro";
+import List from '../../../components/SubIndexList.astro';
+import Button from '../../../components/CompleteButton.astro';
+
+// Define interfaces para la estructura de las etapas y subíndices
+interface SubIndex {
+    id: string;
+    title: string;
+    description: string;
+    stage_id: string;
+}
+
+interface Stage {
+    id: string;
+    title: string;
+    description: string;
+    order: number;
+}
+
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (!accessToken || !refreshToken) {
+    return redirect("/signin");
+}
+
+const { data: session, error: sessionError } = await supabase.auth.setSession({
+    refresh_token: refreshToken.value,
+    access_token: accessToken.value,
+});
+
+if (sessionError) {
+    cookies.delete("sb-access-token", { path: "/" });
+    cookies.delete("sb-refresh-token", { path: "/" });
+    return redirect("/signin");
+}
+
+const userId = session?.user?.id;
+const { data: curso, error: cursoError } = await supabase
+    .from("cursos")
+    .select("id, title, description, img")
+    .eq("title", "Alaciado")
+    .single();
+
+if (cursoError || !curso) {
+    console.error(
+        "Error al buscar el curso 'Alaciado':",
+        cursoError?.message || "Curso no encontrado",
+    );
+}
+
+let detallesCurso = null;
+if (curso) {
+    const { data: cursoVinculado, error: vinculoError } = await supabase
+        .from("usuarios_cursos")
+        .select("curso_id")
+        .eq("usuario_id", userId)
+        .eq("curso_id", curso.id);
+
+    if (vinculoError) {
+        console.error(
+            "Error al verificar el acceso al curso:",
+            vinculoError.message,
+        );
+    } else if (cursoVinculado?.length > 0) {
+        detallesCurso = {
+            title: curso.title,
+            description: curso.description,
+            img: curso.img,
+        };
+    }
+}
+
+const { data: etapas, error: etapasConSubindicesError } = await supabase
+    .from("stages")
+    .select("id, title, description, order")
+    .eq("course_id", curso.id)
+    .order("order");
+
+if (etapasConSubindicesError) {
+    console.error(
+        "Error al cargar las etapas:",
+        etapasConSubindicesError.message,
+    );
+}
+
+// Obtener los subíndices
+const { data: subindices, error: subindicesError } = await supabase
+    .from("subindice")
+    .select("id, title, description, stage_id");
+
+if (subindicesError) {
+    console.error("Error al cargar los subíndices:", subindicesError.message);
+}
+
+const { data: progreso, error: progresoError } = await supabase
+    .from("progress")
+    .select("stage_id, sub_index_id, completed")
+    .eq("user_id", userId);
+
+let progresoMap = {};
+if (progreso && progreso.length > 0) {
+    progreso.forEach((p) => {
+        progresoMap[`${p.stage_id}-${p.sub_index_id}`] = p.completed;
+    });
+}
+---
+
+<Layout
+    title="Curso: Alaciado"
+    description="Detalles del curso Alaciado"
+    lightColor={true}
+>
+    <section
+        class="max-w-screen-lg mx-auto grid grid-cols-1 md:grid-cols-3 gap-8"
+    >
+        {
+            detallesCurso?.img && (
+                <div class="md:col-span-1 sticky top-16 h-[75vh] flex items-center justify-center">
+                    <img
+                        src={detallesCurso.img}
+                        alt={detallesCurso.description}
+                        class="rounded-lg object-cover w-full h-full max-h-[75vh] shadow-lg"
+                    />
+                </div>
+            )
+        }
+
+        <div class="md:col-span-2">
+            {
+                detallesCurso ? (
+                    <div>
+                        <h1 class="text-3xl md:text-4xl font-bold text-gray-800">
+                            {detallesCurso.title}
+                        </h1>
+                        <p class="text-lg text-black mt-4">
+                            {detallesCurso.description}
+                        </p>
+
+                        <div class="mt-8 space-y-4">
+                            {Array.isArray(etapas) && etapas.length > 0 ? (
+                                etapas.map((etapa) => (
+                                    <details class="group bg-gray-100 p-4 rounded-lg">
+                                        <summary class="flex items-center justify-between cursor-pointer">
+                                            <span class="text-lg font-medium text-gray-700">
+                                                {etapa.title}
+                                            </span>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 320 512"
+                                                class="w-4 h-4 fill-gray-700 group-open:rotate-90 transition-transform"
+                                            >
+                                                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
+                                            </svg>
+                                        </summary>
+
+                                        <div class="mt-2 text-gray-600">
+                                            <p>{etapa.description}</p>
+
+                                            {subindices?.length > 0 ? (
+                                                <ul class="mt-4 list-inside">
+                                                    {subindices
+                                                        .filter(
+                                                            (subindice) =>
+                                                                subindice.stage_id ===
+                                                                etapa.id,
+                                                        )
+                                                        .map((subindice) => {
+                                                            const key = `${etapa.id}-${subindice.id}`;
+                                                            const isCompleted =
+                                                                progresoMap[
+                                                                    key
+                                                                ] || false;
+
+                                                            return (
+                                                                <li class="mb-2">
+                                                                    <span class="relative pl-5">
+                                                                        <span class="absolute left-0 top-1/2 transform -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-blue-500" />
+                                                                        {
+                                                                            subindice.title
+                                                                        }
+
+                                                                        <button
+                                                                            id={`btn-complete-${etapa.id}-${subindice.id}`}
+                                                                            data-user-id={
+                                                                                session
+                                                                                    ?.user
+                                                                                    ?.id
+                                                                            }
+                                                                            data-stage-id={
+                                                                                etapa.id
+                                                                            }
+                                                                            data-sub-index-id={
+                                                                                subindice.id
+                                                                            }
+                                                                            class={`ml-2 ${isCompleted ? "text-green-500" : "text-gray-500"}`}
+                                                                        >
+                                                                            {isCompleted ? (
+                                                                                <svg
+                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                    viewBox="0 0 448 512"
+                                                                                    class="w-5 h-5 fill-green-500"
+                                                                                >
+                                                                                    <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                                                                                </svg>
+                                                                            ) : (
+                                                                                "Marcar como completado"
+                                                                            )}
+                                                                        </button>
+                                                                    </span>
+                                                                </li>
+                                                            );
+                                                        })}
+                                                </ul>
+                                            ) : (
+                                                <p class="text-gray-500">
+                                                    No hay subíndices
+                                                    disponibles.
+                                                </p>
+                                            )}
+                                        </div>
+                                    </details>
+                                ))
+                            ) : (
+                                <p class="text-gray-500">
+                                    No hay etapas disponibles para este curso.
+                                </p>
+                            )}
+                        </div>
+                    </div>
+                ) : (
+                    <p class="text-gray-600">
+                        No tienes acceso al curso "Alaciado".
+                    </p>
+                )
+            }
+             <List subIndexId="" stageId=""/>
+        </div>
+    </section>
+   
+
+</Layout>
+
+<script>
+  document
+    .querySelectorAll('button[id^="btn-complete"]')
+    .forEach((button) => {
+        button.addEventListener("click", async (event) => {
+            // Aserción de tipo para especificar que event.target es un HTMLElement
+            const target = event.currentTarget as HTMLElement;
+
+            const userId = target.getAttribute("data-user-id");
+            const stageId = target.getAttribute("data-stage-id");
+            const subIndexId = target.getAttribute("data-sub-index-id");
+
+            if (!userId || !stageId || !subIndexId) {
+                console.error("Error: Faltan parámetros requeridos");
+                return;
+            }
+
+            try {
+                const response = await fetch("/api/update-progress", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        user_id: userId,
+                        stage_id: stageId,
+                        sub_index_id: subIndexId,
+                        completed: true,
+                    }),
+                });
+
+                const responseData = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(
+                        responseData.error || "Error desconocido"
+                    );
+                }
+
+                // Actualizar el estado local del progreso
+                target.classList.remove("text-gray-500");
+                target.classList.add("text-green-500");
+                target.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-5 h-5 fill-green-500">
+                        <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+                    </svg>
+                    Completado
+                `;
+            } catch (error) {
+                console.error("Error al actualizar progreso:", error);
+            }
+        });
+    });
+
+</script>

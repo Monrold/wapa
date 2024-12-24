@@ -1,0 +1,128 @@
+---
+import CourseLayout from "../../../../layouts/CourseLayout.astro";
+import Layout from "../../../../layouts/Layout.astro";
+import { supabase } from "../../../../lib/supabase";
+const { cookies, redirect } = Astro;
+import Button from '../../../../components/CompleteButton.astro';
+
+
+
+const stage = {
+  currentStep: 1,
+  totalSteps: 5,
+  title: "intreoducción",
+  description:
+    "En esta etapa, aprenderás los conceptos básicos sobre alisados.",
+  videoUrl: "https://your-video-url.com/video.mp4",
+};
+
+const { data: curso, error: cursoError } = await supabase
+    .from("cursos")
+    .select("id, title, description, img")
+    .eq("title", "Alaciado")
+    .single();
+
+if (cursoError || !curso) {
+    console.error(
+        "Error al buscar el curso 'Alaciado':",
+        cursoError?.message || "Curso no encontrado",
+    );
+}
+
+// Cargar las etapas (stages) del curso
+const { data: etapas, error: etapasError } = await supabase
+    .from("stages")
+    .select("id, title, description, order")
+    .eq("course_id", curso.id) // Usamos el prop 'curso' aquí
+    .order("order");
+
+// Cargar los subíndices
+const { data: subindices, error: subindicesError } = await supabase
+    .from("subindice")
+    .select("id, title, description, stage_id, url");
+
+
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (!accessToken || !refreshToken) {
+  return redirect("/signin");
+}
+
+const { data: session, error: sessionError } = await supabase.auth.setSession({
+  refresh_token: refreshToken.value,
+  access_token: accessToken.value,
+});
+
+if (sessionError) {
+  cookies.delete("sb-access-token", { path: "/" });
+  cookies.delete("sb-refresh-token", { path: "/" });
+  return redirect("/signin");
+}
+
+const userId = session?.user?.id;
+console.log(subindices[1].id)
+console.log(etapas[0].id)
+---
+
+<Layout title="" description="" lightColor={true}>
+  <CourseLayout
+    title={etapas[0].title}
+    description={etapas[0].description}
+    currentStep={stage.currentStep}
+    totalSteps={stage.totalSteps}
+  >
+    <section class="container max-w-screen-lg mx-auto py-8 px-4">
+      <h1 class="text-3xl font-bold text-gray-800">{subindices[1].title}</h1>
+      <p class="text-gray-600 mt-2">{subindices[1].description}</p>
+
+      <!-- Video -->
+      <div class="mt-6">
+        <h2 class="text-xl font-semibold text-gray-800">Video de la Etapa</h2>
+        <video controls class="w-full h-64 bg-black mt-4">
+          <source src={stage.videoUrl} type="video/mp4" />
+          Tu navegador no soporta el formato de video.
+        </video>
+      </div>
+      <Button subIndexId={subindices[1].id} stageId={etapas[0].id} />
+      <!-- Botón para avanzar -->
+      <div class="mt-6 text-right">
+        <a href={`/cursos/alisado/etapa-${stage.currentStep + 1}`}>
+          <button
+            id="nextStepBtn"
+            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+            data-user-id={userId}
+            data-stage-id={stage.currentStep}
+            onclick="nextStep(event)"
+          >
+            Siguiente paso →
+          </button>
+          <script>
+            function nextStep(event) {
+              const button = event.target;
+              const userId = button.getAttribute("data-user-id");
+              const stageId = button.getAttribute("data-stage-id");
+          
+              // Lógica para actualizar el progreso
+              fetch("/api/updateProgress", {
+                method: "POST",
+                body: JSON.stringify({
+                  user_id: userId,
+                  stage_id: stageId,
+                  completed: true,
+                }),
+              })
+                .then((response) => response.json())
+                .then((data) => {
+                  if (data.error) {
+                    console.error("Error al actualizar el progreso:", data.error);
+                  }
+                });
+            }
+          </script>
+          
+        </a>
+      </div>
+    </section>
+  </CourseLayout>
+</Layout>
