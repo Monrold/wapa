@@ -87,6 +87,7 @@ console.log(etapas[0].id)
       </div>
 
       <!-- Botón para avanzar -->
+      <Button subIndexId={subindices[0].id} stageId={etapas[0].id} redirectUrl="/cursos/alisado/etapa-1/1"/>
       <div class="mt-6 text-right">
         <a href={`/cursos/alisado/etapa-${stage.currentStep + 1}`}>
           <button
@@ -98,7 +99,7 @@ console.log(etapas[0].id)
           >
             Siguiente paso →
           </button>
-          <Button subIndexId={subindices[0].id} stageId={etapas[0].id} />
+          
           <script>
             function nextStep(event) {
               const button = event.target;

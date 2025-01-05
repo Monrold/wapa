@@ -4,10 +4,11 @@ import { supabase } from "../lib/supabase.js";
 interface Props {
   subIndexId: string;
   stageId: string;
+  redirectUrl: string;
 }
 
-const { subIndexId, stageId } = Astro.props;
-
+const { subIndexId, stageId, redirectUrl } = Astro.props;
+console.log('redirectUrl:', redirectUrl);
 // Obtener el acceso al token desde las cookies
 const { cookies } = Astro;
 const accessToken = cookies.get("sb-access-token");
@@ -61,14 +62,14 @@ const { data: subindices, error: subindicesError } = await supabase
 
 <button 
   id={`btn-complete-${stageId}-${subIndexId}`} 
-  class="ml-2 text-gray-500"
+  class="ml-2 text-gray-500 flex"
   data-stage-id={stageId}
   data-sub-index-id={subIndexId}
   data-user-id={userId} 
   data-subindice-title={subindices.url}
-
+  data-redirect-url={redirectUrl} 
 >
-  Marcar como completado
+  Siguiente <p class="pl-2">&rarr;</p>
 </button>
 {progreso.completed === true ? (
     <p>por completar</p>
@@ -83,6 +84,8 @@ document
           const stageId = target.getAttribute("data-stage-id");
           const subIndexId = target.getAttribute("data-sub-index-id");
           const userId = target.getAttribute("data-user-id"); // Obtener el userId dinámico
+
+          const nextLandingPage = target.getAttribute("data-redirect-url") || target.dataset.subindiceUrl;
 
     
           const subindiceUrl = target.dataset.subindiceUrl; 
@@ -125,8 +128,7 @@ document
               target.classList.add("text-green-500");
               target.innerHTML = "Completado"; // Cambia el texto cuando se complete
 
-              const nextLandingPage = `/cursos/${subindiceUrl}`; 
-              window.location.href = nextLandingPage; // Realiza la redirección
+              window.location.href = nextLandingPage; // Redirige a la URL proporcionada como prop
 
           } catch (error) {
               console.error("Error al actualizar progreso:", error);
