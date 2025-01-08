@@ -15,6 +15,7 @@ interface Stage {
     title: string;
     description: string;
     order: number;
+    todosCompletados?: boolean; // Agregar la propiedad 'todosCompletados' de tipo boolean
 }
 
 const { data: curso, error: cursoError } = await supabase
@@ -35,7 +36,7 @@ const { data: etapas, error: etapasError } = await supabase
     .from("stages")
     .select("id, title, description, order")
     .eq("course_id", curso.id) // Usamos el prop 'curso' aquí
-    .order("order");
+    .order("order") as { data: Stage[]; error: any };
 
 // Cargar los subíndices
 const { data: subindices, error: subindicesError } = await supabase
