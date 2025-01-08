@@ -2,8 +2,8 @@
 import { supabase } from "../../../lib/supabase.js";
 const { cookies, redirect } = Astro;
 import Layout from "../../../layouts/Layout.astro";
-import List from '../../../components/SubIndexList.astro';
-import Button from '../../../components/CompleteButton.astro';
+import List from "../../../components/SubIndexList.astro";
+import Button from "../../../components/CompleteButton.astro";
 
 // Define interfaces para la estructura de las etapas y subíndices
 interface SubIndex {
@@ -92,8 +92,10 @@ const { data: subindices, error: subindicesError } = await supabase
     .from("subindice")
     .select("id, title, description, stage_id");
 
-if (subindicesError) {
+    if (subindicesError) {
     console.error("Error al cargar los subíndices:", subindicesError.message);
+} else {
+    console.log("Subíndices obtenidos:", subindices);
 }
 
 const { data: progreso, error: progresoError } = await supabase
@@ -237,65 +239,57 @@ if (progreso && progreso.length > 0) {
                     </p>
                 )
             }
-             <List subIndexId="" stageId=""/>
+            <List subIndexId="" stageId="" />
         </div>
     </section>
-   
-
 </Layout>
 
 <script>
-  document
-    .querySelectorAll('button[id^="btn-complete"]')
-    .forEach((button) => {
-        button.addEventListener("click", async (event) => {
-            // Aserción de tipo para especificar que event.target es un HTMLElement
-            const target = event.currentTarget as HTMLElement;
+  document.addEventListener("click", async (event) => {
+    const target = (event.target as HTMLElement).closest('button[id^="btn-complete"]');
+    if (!target) return; // Ignorar si no es un botón relevante
 
-            const userId = target.getAttribute("data-user-id");
-            const stageId = target.getAttribute("data-stage-id");
-            const subIndexId = target.getAttribute("data-sub-index-id");
+    // Obtener atributos necesarios
+    const userId = target.getAttribute("data-user-id");
+    const stageId = target.getAttribute("data-stage-id");
+    const subIndexId = target.getAttribute("data-sub-index-id");
 
-            if (!userId || !stageId || !subIndexId) {
-                console.error("Error: Faltan parámetros requeridos");
-                return;
-            }
+    if (!userId || !stageId || !subIndexId) {
+        console.error("Error: Faltan parámetros requeridos");
+        return;
+    }
 
-            try {
-                const response = await fetch("/api/update-progress", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        user_id: userId,
-                        stage_id: stageId,
-                        sub_index_id: subIndexId,
-                        completed: true,
-                    }),
-                });
-
-                const responseData = await response.json();
-
-                if (!response.ok) {
-                    throw new Error(
-                        responseData.error || "Error desconocido"
-                    );
-                }
-
-                // Actualizar el estado local del progreso
-                target.classList.remove("text-gray-500");
-                target.classList.add("text-green-500");
-                target.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-5 h-5 fill-green-500">
-                        <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
-                    </svg>
-                    Completado
-                `;
-            } catch (error) {
-                console.error("Error al actualizar progreso:", error);
-            }
+    try {
+        const response = await fetch("/api/update-progress", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                stage_id: stageId,
+                sub_index_id: subIndexId,
+                completed: true,
+            }),
         });
-    });
 
+        const responseData = await response.json();
+
+        if (!response.ok) {
+            throw new Error(responseData.error || "Error desconocido");
+        }
+
+        // Cambiar estilo del botón
+        target.classList.remove("text-gray-500");
+        target.classList.add("text-green-500");
+        target.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-5 h-5 fill-green-500">
+                <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+            </svg>
+            Completado
+        `;
+    } catch (error) {
+        console.error("Error al actualizar progreso:", error);
+    }
+});
 </script>
