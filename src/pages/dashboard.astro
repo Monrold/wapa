@@ -80,7 +80,7 @@ if (cursosError) {
   <section>
     <div class=""></div>
     <!-- Sub Navbar -->
-    <section class="bg-[#F2F2F2] py-4 px-6">
+    <section class="bg-[#F8FAFC] py-4 px-6">
       <div class="flex space-x-4 items-center max-w-5xl mx-auto">
         <!-- Link de perfil con círculo -->
         <a
@@ -124,10 +124,10 @@ if (cursosError) {
       <div
         class="py-8 border-b-2 px-4 lg:px-0 max-w-5xl mx-4 md:mx-auto pb-8"
       >
-        <h1 class="text-2xl lg:text-3xl font-bold">
+        <h1 class="text-2xl lg:text-3xl font-medium">
           Bienvenid@, {name} 👋
         </h1>
-        <p class="text-lg text-gray-600 mt-4 opacity-80">
+        <p class="text-lg text-gray-600 mt-4 opacity-80 font-thin">
           Aquí comienza tu camino hacia el dominio de los alisados
           profesionales. En Wapa Academy creemos que la excelencia está en los
           detalles, por eso te ofrecemos cursos diseñados para convertirte en
@@ -138,19 +138,19 @@ if (cursosError) {
 
       <!-- Cursos -->
       <div class="max-w-5xl mx-auto my-8 px-4 md:px-0">
-        <h2 class="text-2xl font-bold px-4 text-gray-800 mb-6">Tus cursos</h2>
+        <h2 class="text-2xl font-medium px-4 text-gray-800 mb-6">Tus cursos</h2>
         {
           cursosVinculados.length > 0 ? (
             cursosVinculados.map((curso, index) => (
-              <div class="flex flex-col md:flex-row items-center bg-[#F2F2F2] rounded-lg p-6 mb-6">
+              <div class="flex flex-col md:flex-row items-center bg-[#F8FAFC] rounded-lg p-6 mb-6">
                 <div class="w-full md:w-1/2 text-left">
-                  <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                  <h3 class="text-xl font-medium text-gray-800 mb-2">
                     {curso.title}
                   </h3>
-                  <p class="text-gray-600">{curso.description}</p>
+                  <p class="text-gray-600 font-thin">{curso.description}</p>
                   <a
                     href={curso.url}
-                    class="inline-block mt-4 px-4 py-2 bg-black text-white font-semibold rounded-md hover:bg-black transition-colors"
+                    class="inline-block mt-4 px-4 py-2  border-gray-600 rounded-md border text-gray-600 text-base  hover:bg-gray-600/10 transition-colors"
                   >
                     Acceder al curso
                   </a>
@@ -178,10 +178,10 @@ if (cursosError) {
       <!--Ir al blog -->
       <div class="border-t-2 max-w-5xl lg:mx-auto mx-4 mb-4 mt-4 pt-4">
         <div
-          class="bg-zinc-900 p-8 lg:flex lg:items-center lg:justify-between w-full text-white rounded-md"
+          class="bg-zinc-900  p-8 lg:flex lg:items-center lg:justify-between w-full text-white rounded-md"
         >
           <div>
-            <p class="text-center lg:text-left lg:text-2xl">
+            <p class="text-center font-normal lg:text-left lg:text-2xl">
               Encuentra consejos, técnicas y recomendaciones.
             </p>
           </div>
@@ -189,7 +189,7 @@ if (cursosError) {
           <div class="flex justify-center items-center w-full lg:w-auto">
             <a
               href="/blog"
-              class="inline-block mt-4 px-10 py-2 bg-[#917763] text-white font-semibold rounded-md hover:bg-[#6A5341] transition-colors"
+              class="inline-block mt-4 px-10 py-2 text-white border border-white font-medium rounded-md hover:bg-white/20 transition-colors"
             >
               Ir al Blog
             </a>
@@ -219,26 +219,26 @@ if (cursosError) {
           <div class="flex w-[300vw] lg:w-full">
             <!-- Banner 1 -->
             <div class="snap-center w-1/3 px-4 lg:px-1">
-              <div class="bg-black rounded-lg shadow-md overflow-hidden">
+              <div class="bg-[#F8FAFC] rounded-lg overflow-hidden">
                 <img
                   src="https://media.wapastudio.com/banner-blog-dahsboard-wapa.webp"
                   alt="Tips para alisados"
                   class="h-40 w-full object-cover"
                 />
                 <div class="p-4">
-                  <p class="text-gray-200 mt-1 text-xs opacity-50">
-                    Oferta disponible por <span id="countdown" class="font-bold"
+                  <p class=" mt-1 text-xs opacity-50">
+                    Oferta disponible por: <span class="font-thin" id="countdown" class="font-bold"
                     ></span>.
                   </p>
-                  <h2 class="text-xl font-bold text-white">
+                  <h2 class="text-xl font-medium">
                     Descubre tu próximo curso
                   </h2>
-                  <p id="discount-text" class="text-gray-300 mt-2">
+                  <p class="font-thin" id="discount-text" class=" mt-2">
                     🔥 Sólo para ti 10% off por ser nuestra alumna.
                   </p>
                   <a
                     href="/cursos-descuento"
-                    class="inline-block mt-4 px-4 py-2 bg-[#917763] text-white font-semibold rounded-md hover:bg-[#6A5341] transition-colors"
+                    class="inline-block mt-4 px-4 py-2  border border-zinc-800 rounded-md hover:bg-zinc-800/10 transition-colors"
                   >
                     Ver cursos
                   </a>
@@ -292,23 +292,24 @@ if (cursosError) {
 
             <!-- Banner 2 -->
             <div class="snap-center w-1/3 px-4 lg:px-1">
-              <div class="bg-[#917763] rounded-lg shadow-md overflow-hidden">
+              <div class="bg-[#917763] rounded-lg  overflow-hidden">
                 <img
                   src="https://media.wapastudio.com/keratina-dashboard-tienda.webp"
                   alt="Compra tu queratina"
                   class="h-40 w-full object-cover"
                 />
                 <div class="p-4">
-                  <h2 class="text-xl font-bold text-white">
+                  <h2 class="text-xl  font-medium text-white">
                     Compra ahora tu queratina
                   </h2>
-                  <p class="text-gray-200 mt-2">
+                  <p class="text-gray-200 mt-2 font-thin">
                     Aprovecha el descuento especial que hemos preparado para ti
                     como alumna de nuestra academia para Alaciado y Botox.
                   </p>
                   <a
                     href="/tienda"
-                    class="inline-block mt-4 px-4 py-2 bg-zinc-700 text-white font-semibold rounded-md hover:bg-black transition-colors"
+                    class="inline-block mt-4 px-4 py-2 border text-white border-white rounded-md hover:bg-white/20 transition-colors"
+
                   >
                     Comprar ahora
                   </a>
@@ -318,23 +319,23 @@ if (cursosError) {
 
             <!-- Banner 3 -->
             <div class="snap-center w-1/3 px-4 lg:px-1">
-              <div class="bg-[#EEEFEB] rounded-lg shadow-md overflow-hidden">
+              <div class="bg-[#F8FAFC] rounded-lg overflow-hidden">
                 <img
                   src="https://media.wapastudio.com/call-wapa-dashboard.webp"
                   alt="Agenda una llamada"
                   class="h-40 w-full object-cover"
                 />
                 <div class="p-4">
-                  <h2 class="text-xl font-bold text-black">
+                  <h2 class="text-xl font-medium text-black">
                     Agenda una llamada
                   </h2>
-                  <p class="text-zinc-700 mt-2">
+                  <p class="text-zinc-700 mt-2 font-thin">
                     Agenda una llamada con nuestra maestra certificada para
                     respuestas personalizadas.
                   </p>
                   <a
                     href="/agendar-llamada"
-                    class="inline-block mt-4 px-4 py-2 bg-zinc-700 text-white font-semibold rounded-md hover:bg-black transition-colors"
+                    class="inline-block mt-4 px-4 py-2 border border-zinc-800 rounded-md hover:bg-zinc-800/10  transition-colors"
                   >
                     Agendar ahora
                   </a>
