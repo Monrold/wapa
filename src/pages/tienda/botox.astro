@@ -192,7 +192,10 @@ import encerado from "../../images/encerado.jpg";
                                 <ul class="list-disc pl-5 text-gray-700">
                                     <li>Lavado en 24 hrs</li>
                                     <li>No apto para cabello sobreprocesado</li>
-                                    <li>Incluye 1/4 de neutralizador (Rinde para 1 litro)</li>
+                                    <li>
+                                        Incluye 1/4 de neutralizador (Rinde para
+                                        1 litro)
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -322,14 +325,14 @@ import encerado from "../../images/encerado.jpg";
                     <div
                         class="relative w-full h-full overflow-hidden rounded-lg"
                     >
-                        <!-- Imagen del "Después" (Debajo, completamente visible) -->
+                        <!-- Imagen del "Después" -->
                         <img
                             src={alaciado.src}
                             alt="Después"
                             class="absolute top-0 left-0 w-full h-full object-cover"
                         />
 
-                        <!-- Imagen del "Antes" (Encima, recortada con clip-path) -->
+                        <!-- Imagen del "Antes" -->
                         <img
                             src={botox.src}
                             alt="Antes"
@@ -338,66 +341,78 @@ import encerado from "../../images/encerado.jpg";
                             style="clip-path: inset(0 50% 0 0);"
                         />
 
-                        <!-- Línea divisoria (Deslizador) -->
+                        <!-- Línea divisoria -->
                         <div
                             id="slider"
                             class="absolute top-0 left-1/2 transform -translate-x-1/2 w-1 h-full bg-white cursor-ew-resize"
                             style="z-index: 10;"
                         >
+                            <!-- Botón circular para mejor control -->
+                            <div
+                                id="sliderButton"
+                                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-white border-2 border-white-500 rounded-full"
+                            >
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <script>
                 const slider = document.getElementById("slider");
+                const sliderButton = document.getElementById("sliderButton");
                 const beforeImage = document.getElementById("beforeImage");
                 const container = slider.parentElement;
 
                 let isDragging = false;
 
-                // Inicia el arrastre (mouse o touch)
+                // Iniciar el arrastre
                 const startDrag = (e) => {
                     isDragging = true;
                     moveSlider(e);
+                    document.body.style.userSelect = "none"; // Evitar selección de texto accidental
                 };
 
-                // Termina el arrastre
-                const endDrag = () => (isDragging = false);
+                // Terminar el arrastre
+                const endDrag = () => {
+                    isDragging = false;
+                    document.body.style.userSelect = "auto"; // Restaurar selección de texto
+                };
 
-                // Mueve el deslizador (mouse o touch)
+                // Mover el slider
                 const moveSlider = (e) => {
                     if (!isDragging) return;
 
                     const rect = container.getBoundingClientRect();
-                    let offsetX;
+                    let offsetX = e.touches
+                        ? e.touches[0].clientX - rect.left
+                        : e.clientX - rect.left;
 
-                    // Detectar si es touch o mouse
-                    if (e.touches) {
-                        offsetX = e.touches[0].clientX - rect.left;
-                    } else {
-                        offsetX = e.clientX - rect.left;
-                    }
+                    // Limitar el movimiento dentro del contenedor
+                    offsetX = Math.max(0, Math.min(offsetX, rect.width));
 
-                    // Limitar el movimiento del slider entre los bordes del contenedor
-                    if (offsetX < 0) offsetX = 0;
-                    if (offsetX > rect.width) offsetX = rect.width;
-
-                    // Actualizar posición del slider
+                    // Mover el slider y la imagen
                     slider.style.left = `${offsetX}px`;
-
-                    // Usar clip-path para recortar la imagen superior
                     beforeImage.style.clipPath = `inset(0 ${rect.width - offsetX}px 0 0)`;
                 };
 
                 // Eventos para mouse
                 slider.addEventListener("mousedown", startDrag);
+                sliderButton.addEventListener("mousedown", startDrag);
                 window.addEventListener("mouseup", endDrag);
                 window.addEventListener("mousemove", moveSlider);
 
                 // Eventos para touch
-                slider.addEventListener("touchstart", startDrag);
+                slider.addEventListener("touchstart", startDrag, {
+                    passive: true,
+                });
+                sliderButton.addEventListener("touchstart", startDrag, {
+                    passive: true,
+                });
                 window.addEventListener("touchend", endDrag);
-                window.addEventListener("touchmove", moveSlider);
+                window.addEventListener("touchmove", moveSlider, {
+                    passive: false,
+                });
             </script>
         </div>
         <!-- Otros productos -->
@@ -413,16 +428,16 @@ import encerado from "../../images/encerado.jpg";
                 >
                     <img
                         src="https://media.wapastudio.com/keratina-dashboard-tienda.webp"
-                        alt="Semi Permanente"
+                        alt="Ultra Gold"
                         class="w-full h-40 object-cover rounded-t-xl"
                     />
                     <div class="p-6">
                         <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                            Semi Permanente
+                            Ultra Gold
                         </h3>
                         <p class="text-sm text-gray-600 mb-4">
-                            Tratamiento de alisado semi permanente para un
-                            cabello suave y brillante.
+                            Consigue un lacio increíble en cabello con ondas
+                            marcadas y rebeldes Apto para cabello chino.
                         </p>
                         <a
                             href="#"
@@ -446,11 +461,12 @@ import encerado from "../../images/encerado.jpg";
                     />
                     <div class="p-6">
                         <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                            Semi Permanente
+                            Efecto Espejo
                         </h3>
                         <p class="text-sm text-gray-600 mb-4">
-                            Tratamiento de alisado semi permanente para un
-                            cabello suave y brillante.
+                            Nuestro producto estrella te ayudará a obtener
+                            lacios increíbles, incluso en cabello con
+                            decoloración sana.
                         </p>
                         <a
                             href="#"
@@ -474,11 +490,11 @@ import encerado from "../../images/encerado.jpg";
                     />
                     <div class="p-6">
                         <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                            Semi Permanente
+                            Neutralizador
                         </h3>
                         <p class="text-sm text-gray-600 mb-4">
-                            Tratamiento de alisado semi permanente para un
-                            cabello suave y brillante.
+                            Neutraliza olores de la keratina, brindando una
+                            experiencia más agradable y cómoda para la clienta.
                         </p>
                         <a
                             href="#"
@@ -502,11 +518,11 @@ import encerado from "../../images/encerado.jpg";
                     />
                     <div class="p-6">
                         <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                            Semi Permanente
+                            Shampoo de limpieza profunda
                         </h3>
                         <p class="text-sm text-gray-600 mb-4">
-                            Tratamiento de alisado semi permanente para un
-                            cabello suave y brillante.
+                            Elimina residuos e impurezas, dejando el cabello
+                            limpio, fresco, ligero y preparado.
                         </p>
                         <a
                             href="#"
