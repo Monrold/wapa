@@ -82,7 +82,7 @@ import Layout from "../layouts/Layout.astro";
         event.preventDefault();
     });
 
-    // Bloquear combinaciones de teclas para inspeccionar elementos
+    // Bloquear combinaciones de teclas para inspeccionar elementos y copiar contenido
     document.addEventListener("keydown", function (event) {
         if (
             (event.ctrlKey && event.key === "u") || // Ctrl + U (Ver código fuente)
@@ -99,9 +99,15 @@ import Layout from "../layouts/Layout.astro";
         }
     });
 
-    // Bloquear selección de texto
-    document.addEventListener("selectstart", function (event) {
+    // Bloquear selección de texto en dispositivos móviles
+    document.addEventListener("touchstart", function (event) {
         event.preventDefault();
+    }, { passive: false });
+
+    // Bloquear el menú de copiar en móviles
+    document.addEventListener("copy", function (event) {
+        event.preventDefault();
+        alert("Copiar contenido está bloqueado en este sitio.");
     });
 
     // Detección de herramientas de desarrollador abiertas
@@ -114,4 +120,42 @@ import Layout from "../layouts/Layout.astro";
         }
     });
     console.log("%c", element);
+
+    // Bloquear capturas de pantalla en iPhone/iPad mostrando un overlay negro
+    window.addEventListener("focusout", function () {
+        document.body.classList.add("screenshot-blocked");
+        setTimeout(() => {
+            document.body.classList.remove("screenshot-blocked");
+        }, 1000);
+    });
 </script>
+
+<style>
+    /* Evitar selección de texto */
+    body, p, h1, h2, h3, h4, h5, h6, span, div {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    /* Bloquear capturas de pantalla en iPhone/iPad con un overlay negro */
+    @media screen and (max-width: 1024px) {
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: black;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        body.screenshot-blocked::after {
+            opacity: 1;
+        }
+    }
+</style>
