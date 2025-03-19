@@ -99,12 +99,7 @@ import Layout from "../layouts/Layout.astro";
         }
     });
 
-    // Bloquear selección de texto en dispositivos móviles
-    document.addEventListener("touchstart", function (event) {
-        event.preventDefault();
-    }, { passive: false });
-
-    // Bloquear el menú de copiar en móviles
+    // Bloquear la función de copiar y pegar en móviles
     document.addEventListener("copy", function (event) {
         event.preventDefault();
         alert("Copiar contenido está bloqueado en este sitio.");
@@ -131,8 +126,8 @@ import Layout from "../layouts/Layout.astro";
 </script>
 
 <style>
-    /* Evitar selección de texto */
-    body, p, h1, h2, h3, h4, h5, h6, span, div {
+    /* Evitar selección de texto sin bloquear el scroll */
+    p, h1, h2, h3, h4, h5, h6, span, div {
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
@@ -159,3 +154,4 @@ import Layout from "../layouts/Layout.astro";
         }
     }
 </style>
+
