@@ -69,54 +69,38 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 
 <script>
-    // Bloquear la tecla PrintScreen
+    // Bloquear la tecla PrintScreen en computadoras
     document.addEventListener("keydown", function (event) {
         if (event.key === "PrintScreen") {
             event.preventDefault();
             alert("Las capturas de pantalla están deshabilitadas en esta página.");
+            document.body.classList.add("screenshot-blocked"); // Activar fondo blanco
+            setTimeout(() => {
+                document.body.classList.remove("screenshot-blocked"); // Restaurar vista
+            }, 1000);
         }
     });
 
-    // Bloquear clic derecho (menú contextual)
-    document.addEventListener("contextmenu", function (event) {
-        event.preventDefault();
-    });
-
-    // Bloquear combinaciones de teclas para inspeccionar elementos y copiar contenido
+    // Bloquear combinaciones de teclas para copiar o inspeccionar
     document.addEventListener("keydown", function (event) {
         if (
             (event.ctrlKey && event.key === "u") || // Ctrl + U (Ver código fuente)
-            (event.ctrlKey && event.shiftKey && event.key === "i") || // Ctrl + Shift + I (DevTools)
-            (event.ctrlKey && event.shiftKey && event.key === "c") || // Ctrl + Shift + C (Inspeccionar)
-            (event.ctrlKey && event.shiftKey && event.key === "j") || // Ctrl + Shift + J (Consola)
-            (event.ctrlKey && event.key === "s") || // Ctrl + S (Guardar página)
-            (event.ctrlKey && event.key === "c") || // Ctrl + C (Copiar)
-            (event.ctrlKey && event.key === "x") || // Ctrl + X (Cortar)
-            (event.ctrlKey && event.key === "a")    // Ctrl + A (Seleccionar todo)
+            (event.ctrlKey && event.shiftKey && event.key === "i") || // DevTools
+            (event.ctrlKey && event.key === "s") || // Ctrl + S (Guardar)
+            (event.ctrlKey && event.key === "c") // Ctrl + C (Copiar)
         ) {
             event.preventDefault();
             alert("Esta acción está deshabilitada en esta página.");
         }
     });
 
-    // Bloquear la función de copiar y pegar en móviles
+    // Bloquear copiar y pegar
     document.addEventListener("copy", function (event) {
         event.preventDefault();
         alert("Copiar contenido está bloqueado en este sitio.");
     });
 
-    // Detección de herramientas de desarrollador abiertas
-    let devToolsOpen = false;
-    const element = new Image();
-    Object.defineProperty(element, "id", {
-        get: function () {
-            devToolsOpen = true;
-            document.body.innerHTML = "<h1 style='text-align: center; margin-top: 20%;'>Acceso Restringido</h1>";
-        }
-    });
-    console.log("%c", element);
-
-    // Bloquear capturas de pantalla en iPhone/iPad mostrando un overlay negro
+    // Bloquear capturas de pantalla en móviles con una capa blanca
     window.addEventListener("focusout", function () {
         document.body.classList.add("screenshot-blocked");
         setTimeout(() => {
@@ -126,7 +110,7 @@ import Layout from "../layouts/Layout.astro";
 </script>
 
 <style>
-    /* Evitar selección de texto sin bloquear el scroll */
+    /* Evitar selección de texto */
     p, h1, h2, h3, h4, h5, h6, span, div {
         -webkit-user-select: none;
         -moz-user-select: none;
@@ -134,24 +118,23 @@ import Layout from "../layouts/Layout.astro";
         user-select: none;
     }
 
-    /* Bloquear capturas de pantalla en iPhone/iPad con un overlay negro */
-    @media screen and (max-width: 1024px) {
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: black;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 9999;
-        }
+    /* Capa blanca para bloquear capturas */
+    body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: white;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transition: opacity 0.3s ease-in-out;
+    }
 
-        body.screenshot-blocked::after {
-            opacity: 1;
-        }
+    body.screenshot-blocked::after {
+        opacity: 1;
     }
 </style>
 
