@@ -2,36 +2,73 @@
 
 import Layout from "../layouts/Layout.astro";
 import Image from "../images/precios/hands.webp"
+import portada from "../images/manual-portada-wapa.webp";
+import tricologia from "../images/tricologia.jpg";
 ---
 
 <Layout title="" description="" lightColor={true}>
+  <section class="">
+    <img class="object-cover h-[50vh] w-full" src={portada.src} alt="">
+  </section>
   <section class="bg-primary text-black font-sans min-h-screen p-8 max-w-screen-xl mx-auto">
     <!-- Portada -->
-    <div class="text-center mb-12">
-      <h1 class="text-4xl font-bold text-accent mb-4 animate-fadeInDown">
+    <div class="md:text-center md:mb-8">
+      <h1 class="text-4xl font-bold text-accent mb-0
+       animate-fadeInDown">
         Manual de Estudio: Alisados y Tricología
       </h1>
-      <p class="text-lg max-w-3xl mx-auto">
+      <p class="md:text-lg max-w-3xl mx-auto">
         Aprende los fundamentos del alisado capilar, su historia y la ciencia detrás de la fibra capilar.
       </p>
     </div>
 
     <!-- Índice -->
-    <nav class="bg-white p-6 rounded-lg shadow-md mb-12">
-      <h2 class="text-2xl font-semibold text-accent mb-4">Índice</h2>
-      <ul class="list-decimal pl-6 text-gray-700 space-y-2">
-        <li><a href="#alisado" class="text-accent hover:underline">¿Qué es un alisado?</a></li>
-        <li><a href="#origen" class="text-accent hover:underline">El origen de los alisados</a></li>
-        <li><a href="#tricologia" class="text-accent hover:underline">Etapa I: Tricología</a></li>
-        <li><a href="#estructura" class="text-accent hover:underline">Estructura del cabello</a></li>
-        <li><a href="#composicion" class="text-accent hover:underline">¿Cómo se conforma nuestro cabello?</a></li>
+    <div class="bg-white p-6 rounded-2xl hidden mb-12 border border-gray-100">
+      <h2 class="text-3xl font-bold text-accent mb-6 relative">
+        <span class="before:absolute before:-left-3 before:top-1/2 before:-translate-y-1/2 before:w-2 before:h-2 before:bg-accent before:rounded-full"></span>
+        Índice
+      </h2>
+      <ul class="space-y-4">
+        <li>
+          <a href="#alisado" class="group flex items-start gap-3 transition-all duration-300 hover:translate-x-1">
+            <span class="mt-1 w-2 h-2 bg-accent rounded-full shrink-0 transition-transform duration-300 group-hover:scale-125"></span>
+            <span class="text-gray-800 group-hover:text-accent font-medium text-lg">¿Qué es un alisado?</span>
+          </a>
+        </li>
+        <li>
+          <a href="#origen" class="group flex items-start gap-3 transition-all duration-300 hover:translate-x-1">
+            <span class="mt-1 w-2 h-2 bg-accent rounded-full shrink-0 transition-transform duration-300 group-hover:scale-125"></span>
+            <span class="text-gray-800 group-hover:text-accent font-medium text-lg">El origen de los alisados</span>
+          </a>
+        </li>
+        <li>
+          <a href="#tricologia" class="group flex items-start gap-3 transition-all duration-300 hover:translate-x-1">
+            <span class="mt-1 w-2 h-2 bg-accent rounded-full shrink-0 transition-transform duration-300 group-hover:scale-125"></span>
+            <span class="text-gray-800 group-hover:text-accent font-medium text-lg">Etapa I: Tricología</span>
+          </a>
+        </li>
+        <li>
+          <a href="#estructura" class="group flex items-start gap-3 transition-all duration-300 hover:translate-x-1">
+            <span class="mt-1 w-2 h-2 bg-accent rounded-full shrink-0 transition-transform duration-300 group-hover:scale-125"></span>
+            <span class="text-gray-800 group-hover:text-accent font-medium text-lg">Estructura del cabello</span>
+          </a>
+        </li>
+        <li>
+          <a href="#composicion" class="group flex items-start gap-3 transition-all duration-300 hover:translate-x-1">
+            <span class="mt-1 w-2 h-2 bg-accent rounded-full shrink-0 transition-transform duration-300 group-hover:scale-125"></span>
+            <span class="text-gray-800 group-hover:text-accent font-medium text-lg">¿Cómo se conforma nuestro cabello?</span>
+          </a>
+        </li>
       </ul>
-    </nav>
+    </div>
+    
 
     <!-- Contenido -->
     <div class="space-y-12">
+
+      <div class="flex flex-col md:flex-row md:items-center border-b border-gray-300 pb-10">
       <!-- Sección: ¿Qué es un alisado? -->
-      <article id="alisado" class="bg-white shadow-md p-6 rounded-lg">
+      <article class="bg-white  p-2 py-6 rounded-lg basis-1/2">
         <h2 class="text-2xl font-semibold text-accent mb-2">¿Qué es un alisado?</h2>
         <p class="text-gray-700">
           Un alisado es un tratamiento que se realiza al cabello con el objetivo de hacerlo más liso, suave y sin frizz. 
@@ -40,18 +77,19 @@ import Image from "../images/precios/hands.webp"
       </article>
 
       <!-- Sección: El origen de los alisados -->
-      <article id="origen" class="bg-white shadow-md p-6 rounded-lg">
-        <h2 class="text-2xl font-semibold text-accent mb-2">El origen de los alisados</h2>
-        <p class="text-gray-700">
+      <article  class="bg-black p-6 py-6 rounded-lg basis-1/2">
+        <h2 class="text-2xl font-semibold text-accent mb-2 text-white">El origen de los alisados</h2>
+        <p class="text-white">
           En algunas culturas antiguas, como en el Antiguo Egipto, las personas ya utilizaban herramientas rudimentarias para alisar el cabello. 
           En esos tiempos se usaban hierbas y aceites naturales para intentar suavizar y controlar el cabello, especialmente entre la clase alta, 
           que se preocupaba por mantener un estilo de vida estético.
         </p>
       </article>
-
+    </div>
       <!-- Sección: Etapa I - Tricología -->
-      <article id="tricologia" class="bg-white shadow-md p-6 rounded-lg">
-        <h2 class="text-2xl font-semibold text-accent mb-2">Etapa I: Tricología</h2>
+       <div class="flex flex-col md:flex-row md:items-center  rounded-md">
+      <article id="tricologia" class="bg-white  p-2 rounded-lg basis-1/2">
+        <h2 class="text-3xl font-semibold text-accent mb-2">Etapa I: Tricología</h2>
         <p class="text-gray-700">
           <strong>¿Qué es la tricología?</strong> <br>
           La tricología cosmética se encarga del cuidado y la belleza del cabello, mejorando su apariencia, textura y salud mediante tratamientos y productos específicos.
@@ -61,6 +99,10 @@ import Image from "../images/precios/hands.webp"
           sus propiedades y los puntos más importantes para lograr alisados sanos y exitosos.
         </p>
       </article>
+      <div class="basis-1/2">
+        <img class=" rounded-md" src={tricologia.src} alt="">
+      </div>
+    </div>
 
       <!-- Sección: Estructura del cabello -->
       <article id="estructura" class="bg-white shadow-md p-6 rounded-lg">
