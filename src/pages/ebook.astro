@@ -250,7 +250,7 @@ import cuticula from "../images/ebook/cuticula.jpg";
               <!-- Dropdown 1: Médula -->
               <details class="group border rounded-lg p-4">
                 <summary
-                  class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center"
+                  class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center marker:content-none"
                 >
                   Médula
                   <span class="transition-transform group-open:rotate-180"
@@ -267,7 +267,7 @@ import cuticula from "../images/ebook/cuticula.jpg";
               <!-- Dropdown 2: Córtex -->
               <details class="group border rounded-lg p-4">
                 <summary
-                  class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center"
+                  class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center marker:content-none"
                 >
                   Córtex
                   <span class="transition-transform group-open:rotate-180"
@@ -293,80 +293,103 @@ import cuticula from "../images/ebook/cuticula.jpg";
                     químicas que mantienen la forma, fuerza y elasticidad de la
                     fibra capilar. Hay tres tipos principales:
                   </p>
-
-                  <!-- Sub-dropdown 1: Puentes de hidrógeno -->
-                  <details class="group border rounded-md p-3">
-                    <summary
-                      class="cursor-pointer font-medium text-gray-800 flex justify-between items-center"
-                    >
-                      1. Puentes de hidrógeno
-                      <span class="transition-transform group-open:rotate-180"
-                        >⌄</span
+                  <div id="dropdown-container-3" class="space-y-4">
+                    <!-- Sub-dropdown 1: Puentes de hidrógeno -->
+                    <details class="group border rounded-md p-3">
+                      <summary
+                        class="cursor-pointer font-medium text-gray-800 flex justify-between items-center marker:content-none"
                       >
-                    </summary>
-                    <div class="mt-2 text-gray-600 space-y-2">
-                      <p>
-                        <strong>Cómo funcionan:</strong> Se forman y rompen fácilmente
-                        con la humedad. Por ejemplo, cuando mojas el cabello estos
-                        enlaces se rompen. Una vez seco, los enlaces se forman de
-                        nuevo, volviendo el cabello a su estado natural.
-                      </p>
-                      <p>
-                        <strong>Importante:</strong> Son los más débiles, pero hay
-                        muchos, lo que contribuye a la estructura general del cabello.
-                      </p>
-                    </div>
-                  </details>
+                        1. Puentes de hidrógeno
+                        <span class="transition-transform group-open:rotate-180"
+                          >⌄</span
+                        >
+                      </summary>
+                      <div class="mt-2 text-gray-600 space-y-2">
+                        <p>
+                          <strong>Cómo funcionan:</strong> Se forman y rompen fácilmente
+                          con la humedad. Por ejemplo, cuando mojas el cabello estos
+                          enlaces se rompen. Una vez seco, los enlaces se forman
+                          de nuevo, volviendo el cabello a su estado natural.
+                        </p>
+                        <p>
+                          <strong>Importante:</strong> Son los más débiles, pero
+                          hay muchos, lo que contribuye a la estructura general del
+                          cabello.
+                        </p>
+                      </div>
+                    </details>
 
-                  <!-- Sub-dropdown 2: Puentes salinos -->
-                  <details class="group border rounded-md p-3">
-                    <summary
-                      class="cursor-pointer font-medium text-gray-800 flex justify-between items-center"
-                    >
-                      2. Puentes salinos o iónicos
-                      <span class="transition-transform group-open:rotate-180"
-                        >⌄</span
+                    <!-- Sub-dropdown 2: Puentes salinos -->
+                    <details class="group border rounded-md p-3">
+                      <summary
+                        class="cursor-pointer font-medium text-gray-800 flex justify-between items-center marker:content-none"
                       >
-                    </summary>
-                    <div class="mt-2 text-gray-600 space-y-2">
-                      <p>
-                        <strong>Cómo funcionan:</strong> Estos se rompen con calor
-                        como cuando pasas la plancha. El cabello durará liso hasta
-                        que lo laves de nuevo.
-                      </p>
-                      <p>
-                        <strong>Importante:</strong> Son más fuertes que los puentes
-                        de hidrógeno, pero más débiles que los disulfuro.
-                      </p>
-                    </div>
-                  </details>
+                        2. Puentes salinos o iónicos
+                        <span class="transition-transform group-open:rotate-180"
+                          >⌄</span
+                        >
+                      </summary>
+                      <div class="mt-2 text-gray-600 space-y-2">
+                        <p>
+                          <strong>Cómo funcionan:</strong> Estos se rompen con calor
+                          como cuando pasas la plancha. El cabello durará liso hasta
+                          que lo laves de nuevo.
+                        </p>
+                        <p>
+                          <strong>Importante:</strong> Son más fuertes que los puentes
+                          de hidrógeno, pero más débiles que los disulfuro.
+                        </p>
+                      </div>
+                    </details>
 
-                  <!-- Sub-dropdown 3: Puentes de disulfuro -->
-                  <details class="group border rounded-md p-3">
-                    <summary
-                      class="cursor-pointer font-medium text-gray-800 flex justify-between items-center"
-                    >
-                      3. Puentes de disulfuro
-                      <span class="transition-transform group-open:rotate-180"
-                        >⌄</span
+                    <!-- Sub-dropdown 3: Puentes de disulfuro -->
+                    <details class="group border rounded-md p-3">
+                      <summary
+                        class="cursor-pointer font-medium text-gray-800 flex justify-between items-center marker:content-none"
                       >
-                    </summary>
-                    <div class="mt-2 text-gray-600 space-y-2">
-                      <p>
-                        <strong>Cómo funcionan:</strong> Son responsables de la fuerza
-                        y forma permanente del cabello (liso, ondulado o rizado).
-                        Estos enlaces solo pueden romperse con productos químicos
-                        fuertes, como tintes, permanentes o alisados químicos. Al
-                        romperlos, se puede cambiar la estructura del cabello de
-                        forma duradera.
-                      </p>
-                      <p>
-                        <strong>Importante:</strong> Son los más fuertes y cruciales
-                        para la salud del cabello. Si se dañan, el cabello se debilita
-                        significativamente.
-                      </p>
-                    </div>
-                  </details>
+                        3. Puentes de disulfuro
+                        <span class="transition-transform group-open:rotate-180"
+                          >⌄</span
+                        >
+                      </summary>
+                      <div class="mt-2 text-gray-600 space-y-2">
+                        <p>
+                          <strong>Cómo funcionan:</strong> Son responsables de la
+                          fuerza y forma permanente del cabello (liso, ondulado o
+                          rizado). Estos enlaces solo pueden romperse con productos
+                          químicos fuertes, como tintes, permanentes o alisados químicos.
+                          Al romperlos, se puede cambiar la estructura del cabello
+                          de forma duradera.
+                        </p>
+                        <p>
+                          <strong>Importante:</strong> Son los más fuertes y cruciales
+                          para la salud del cabello. Si se dañan, el cabello se debilita
+                          significativamente.
+                        </p>
+                      </div>
+                    </details>
+                  </div>
+                  <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                      const dropdowns = document.querySelectorAll(
+                        "#dropdown-container-3 > details",
+                      );
+
+                      dropdowns.forEach((dropdown) => {
+                        const detail = dropdown as HTMLDetailsElement;
+
+                        detail.addEventListener("toggle", () => {
+                          if (detail.open) {
+                            dropdowns.forEach((other) => {
+                              const otherDetail = other as HTMLDetailsElement;
+                              if (otherDetail !== detail)
+                                otherDetail.open = false;
+                            });
+                          }
+                        });
+                      });
+                    });
+                  </script>
 
                   <!-- Explicación final -->
                   <p class="pt-2">
@@ -382,7 +405,7 @@ import cuticula from "../images/ebook/cuticula.jpg";
               <!-- Dropdown 3: Cutícula -->
               <details class="group border rounded-lg p-4">
                 <summary
-                  class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center"
+                  class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center marker:content-none"
                 >
                   Cutícula
                   <span class="transition-transform group-open:rotate-180"
@@ -450,6 +473,10 @@ import cuticula from "../images/ebook/cuticula.jpg";
                 });
               });
             </script>
+
+            <p class="text-sm text-gray-500 italic">
+              En conjunto, estas tres capas trabajan para mantener el cabello fuerte, flexible y protegido. Por eso, es fundamental cuidar especialmente la cutícula, ya que una cutícula en buen estado no solo mejora la apariencia del cabello, sino que también protege su interior y ayuda a conservar su salud.
+            </p>
           </div>
         </div>
       </div>
