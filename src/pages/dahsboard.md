@@ -1,6 +1,75 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { supabase } from "../lib/supabase";
+import Calisados from "../components/curso-alisado.astro";
 
+const { cookies, redirect } = Astro;
+
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (!accessToken || !refreshToken) {
+  return redirect("/signin");
+}
+
+const { data, error } = await supabase.auth.setSession({
+  refresh_token: refreshToken.value,
+  access_token: accessToken.value,
+});
+
+if (error) {
+  cookies.delete("sb-access-token", {
+    path: "/",
+  });
+  cookies.delete("sb-refresh-token", {
+    path: "/",
+  });
+
+  return redirect("/signin");
+}
+
+const email = data?.user?.email;
+const name = data?.user?.user_metadata?.full_name;
+
+// Verificar si el usuario tiene cursos vinculados
+let cursosVinculados = [];
+
+const { data: cursosIds, error: cursosError } = await supabase
+  .from("usuarios_cursos")
+  .select("curso_id")
+  .eq("usuario_id", data?.user?.id);
+
+if (cursosError) {
+  console.error(
+    "Error al verificar los cursos del usuario:",
+    cursosError.message,
+  );
+} else {
+  console.log("Cursos vinculados (IDs obtenidos):", cursosIds);
+}
+
+if (cursosError) {
+  console.error(
+    "Error al verificar los cursos del usuario:",
+    cursosError.message,
+  );
+} else if (cursosIds && cursosIds.length > 0) {
+  const ids = cursosIds.map((curso) => curso.curso_id);
+
+  const { data: cursos, error: detallesError } = await supabase
+    .from("cursos")
+    .select("*")
+    .in("id", ids);
+
+  if (detallesError) {
+    console.error(
+      "Error al obtener los detalles de los cursos:",
+      detallesError.message,
+    );
+  } else {
+    cursosVinculados = cursos;
+  }
+}
 ---
 
 <Layout
