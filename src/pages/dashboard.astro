@@ -1,7 +1,37 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Image from "../images/precios/hands.webp";
+import portada from "../images/portada-manual.svg";
+import tricologia from "../images/tricologia.jpg";
+import Indice from "../components/indice.astro";
+import estructura from "../images/ebook/estructura.webp";
+import tallo from "../images/ebook/tallo.jpg";
+import cuticula from "../images/ebook/cuticula.jpg";
+import phimage from "../images/ebook/ph.png";
+import porocidad from "../images/ebook/porocidad-1.jpg";
+import porocidadBaja from "../images/ebook/porocidad-baja.jpg";
+import porocidadMedia from "../images/ebook/porocidad-media.jpg";
+import porocidadAlta from "../images/ebook/porocidad-alta.jpg";
+import tipoDeDano from "../images/ebook/tipo-de-dano.jpg";
+import danoMecanico from "../images/ebook/dano-mecanico.jpg";
+import danoTermico from "../images/ebook/dano-termico.webp";
+import danoQuimico from "../images/ebook/dano-quimico.jpg";
+import danoAmbiental from "../images/ebook/dano-ambiental.jpg";
+import danoAcumulativo from "../images/ebook/dano-acumulativo.jpg";
+import diagnostico from "../images/ebook/diagnostico.png";
+import grosorTextura from "../images/ebook/grosor-y-textura.png";
+import formas from "../images/ebook/formas.png";
+import cabelloLiso from "../images/ebook/cabello-liso.jpg";
+import cabelloOndulado from "../images/ebook/cabello-ondulado.jpg";
+import cabelloRizado from "../images/ebook/cabello-rizado.jpg";
+import cabelloAfro from "../images/ebook/cabello-afro.jpg";
+import permanentes from "../images/ebook/permanentes.jpg";
+import alisadoPermanente from "../images/ebook/alisado-permanente.jpg";
+import selena from "../images/ebook/selena.webp";
+import activosAlisantes from "../images/ebook/activo-alisantes.jpg";
+
+
 import { supabase } from "../lib/supabase";
-import Calisados from "../components/curso-alisado.astro";
 
 const { cookies, redirect } = Astro;
 
@@ -72,279 +102,2515 @@ if (cursosError) {
 }
 ---
 
-<Layout
-  title="Panel de Control"
-  description="Este es el dashboard"
-  lightColor={true}
->
-  <section>
-    <div class=""></div>
-    <!-- Sub Navbar -->
-    <section class="bg-[#F8FAFC] py-4 px-6">
-      <div class="flex space-x-4 items-center max-w-5xl mx-auto">
-        <!-- Link de perfil con círculo -->
-        <a
-          href="/profile"
-          class="flex items-center text-black font-medium text-lg space-x-2 hover:opacity-70"
-        >
-          <!-- Círculo con ícono -->
-          <div
-            class="w-8 h-8 bg-black rounded-full flex items-center justify-center"
-          >
-            <!-- Ícono SVG de usuario -->
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-3 h-3 fill-white text-gray-700"
-              viewBox="0 0 448 512"
-              ><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-              <path
-                d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"
-              ></path></svg
-            >
-          </div>
-        </a>
-        <!-- Link de blog -->
-        <p class="px-2 lg:px-4">|</p>
-        <a href="/blog" class="text-black font-medium text-lg hover:opacity-70">
-          Blog
-        </a>
-        <!-- Link de blog -->
-        <p class="px-2 lg:px-4">|</p>
-        <a
-          href="/tienda"
-          class="text-black font-medium text-lg hover:opacity-70"
-        >
-          Tienda
-        </a>
-        
-      </div>
-    </section>
-    <section class="bg-white">
-      <!-- Bienvenida -->
-      <div
-        class="py-8 border-b-2 px-4 lg:px-0 max-w-5xl mx-4 md:mx-auto pb-8"
+<Layout title="" description="" lightColor={true}>
+  <section class="">
+    <img
+      class="object-cover h-[40vh] md:h-[60vh] w-full"
+      src={portada.src}
+      alt=""
+    />
+  </section>
+  <section
+    class="bg-primary text-black font-sans min-h-screen p-8 max-w-screen-lg mx-auto"
+  >
+    <div class="sticky top-0 z-10 rounded-xl">
+      <Indice />
+    </div>
+    <!-- Portada -->
+    <section class="p-2 md:mb-8 mt-4 md:mt-10">
+      <h1
+        class="text-2xl lg:text-4xl font-bold text-accent mb-0
+       animate-fadeInDown"
       >
-        <h1 class="text-2xl lg:text-3xl font-medium">
-          Bienvenid@, {name} 👋
-        </h1>
-        <p class="text-lg text-gray-600 mt-4 opacity-80 font-thin">
-          Aquí comienza tu camino hacia el dominio de los alisados
-          profesionales. En Wapa Academy creemos que la excelencia está en los
-          detalles, por eso te ofrecemos cursos diseñados para convertirte en
-          una experta en técnicas avanzadas, utilizando productos de la más alta
-          calidad.
-        </p>
-      </div>
+        Manual de Estudio: Alisados y Tricología
+      </h1>
+      <p class="md:text-lg max-w-3xl">
+        Aprende los fundamentos del alisado capilar, su historia y la ciencia
+        detrás de la fibra capilar.
+      </p>
 
-      <!-- Cursos -->
-      <div class="max-w-5xl mx-auto my-8 px-4 md:px-0">
-        <h2 class="text-2xl font-medium px-4 text-gray-800 mb-6">Tus cursos</h2>
-        {
-          cursosVinculados.length > 0 ? (
-            cursosVinculados.map((curso, index) => (
-              <div class="flex flex-col md:flex-row items-center bg-[#F8FAFC] rounded-lg p-6 mb-6">
-                <div class="w-full md:w-1/2 text-left">
-                  <h3 class="text-xl font-medium text-gray-800 mb-2">
-                    {curso.title}
-                  </h3>
-                  <p class="text-gray-600 font-thin">{curso.description}</p>
-                  <a
-                    href={curso.url}
-                    class="inline-block mt-4 px-4 py-2  border-gray-600 rounded-md border text-gray-600 text-base  hover:bg-gray-600/10 transition-colors"
+      <!-- Contenido -->
+      <div class="space-y-12 mt-10">
+        <div
+          class="flex flex-col md:flex-row md:items-center border-b border-gray-300 pb-10"
+        >
+          <!-- Sección: ¿Qué es un alisado? -->
+          <article class="bg-white p-2 py-6 rounded-lg basis-1/2">
+            <h2 class="text-2xl font-semibold text-accent mb-2">
+              ¿Qué es un alisado?
+            </h2>
+            <p class="text-gray-700">
+              Un alisado es un tratamiento que se realiza al cabello con el
+              objetivo de hacerlo más liso, suave y sin frizz. En lugar de tener
+              el cabello rizado o con ondas, el alisado lo deja más lacio y
+              manejable.
+            </p>
+          </article>
+
+          <!-- Sección: El origen de los alisados -->
+          <article class="bg-black p-6 py-6 rounded-lg basis-1/2">
+            <h2 class="text-2xl font-semibold text-accent mb-2 text-white">
+              El origen de los alisados
+            </h2>
+            <p class="text-white">
+              En algunas culturas antiguas, como en el Antiguo Egipto, las
+              personas ya utilizaban herramientas rudimentarias para alisar el
+              cabello. En esos tiempos se usaban hierbas y aceites naturales
+              para intentar suavizar y controlar el cabello, especialmente entre
+              la clase alta, que se preocupaba por mantener un estilo de vida
+              estético.
+            </p>
+          </article>
+        </div>
+
+        <!-- Sección: Etapa I - Tricología -->
+        <div class="space-y-14">
+          <div class="flex flex-col md:flex-row md:items-center rounded-md">
+            <article
+              id="tricologia"
+              class="bg-white p-2 md:pl-4 rounded-lg basis-1/2 md:order-2"
+            >
+              <h2 class="text-3xl font-semibold text-accent mb-2">
+                Etapa I: Tricología
+              </h2>
+              <p class="text-gray-700">
+                <strong>¿Qué es la tricología?</strong>
+                <br />
+                La tricología cosmética se encarga del cuidado y la belleza del cabello,
+                mejorando su apariencia, textura y salud mediante tratamientos y
+                productos específicos.
+              </p>
+              <p class="text-gray-700 mt-4">
+                Antes de comenzar a trabajar en el cabello, debemos conocer cómo
+                está conformada la fibra capilar, sus propiedades y los puntos
+                más importantes para lograr alisados sanos y exitosos.
+              </p>
+            </article>
+            <div class="basis-1/2 md:order-1">
+              <img class="rounded-md" src={tricologia.src} alt="" />
+            </div>
+          </div>
+
+          <!-- Sección: Estructura del cabello -->
+          <article id="estructura" class="bg-white rounded-lg">
+            <h2 class="text-2xl font-semibold text-accent mb-2">
+              Estructura del cabello
+            </h2>
+            <p class="text-gray-700">
+              Nuestro cabello no tiene vida; es una fibra carente de torrentes
+              sanguíneos y fibras nerviosas. Por esta razón, no sentimos dolor
+              al cortarlo, plancharlo o decolorarlo. Sin embargo, cualquier daño
+              que sufra la fibra capilar se considera daño acumulativo, ya que
+              el cabello no tiene la capacidad de regenerarse por sí mismo.
+            </p>
+          </article>
+
+          <!-- Sección: ¿Cómo se conforma nuestro cabello? -->
+          <article id="composicion" class="bg-white rounded-lg">
+            <h2 class="text-2xl font-semibold text-accent mb-2">
+              ¿Cómo se conforma nuestro cabello?
+            </h2>
+            <p class="text-gray-700">
+              Ahora bien, para que comprendas cómo repercuten los daños en el
+              cabello, debemos entender su composición.
+            </p>
+          </article>
+
+          <!--el foliculo piloso -->
+          <div class="space-y-6 md:flex py-3 lg:py-5">
+            <div class="basis-1/2 space-y-4">
+              <!-- Título principal -->
+              <h1 class="text-2xl font-bold text-gray-800">
+                1. El Folículo Piloso (Raíz del Cabello)
+              </h1>
+
+              <!-- Párrafo introductorio -->
+              <p class="text-gray-600">
+                El folículo piloso es la estructura en la piel donde el cabello
+                comienza a crecer. Está ubicado dentro de la dermis, la capa
+                intermedia de la piel, y es responsable de la formación del
+                cabello. El folículo piloso también contiene células
+                especializadas que producen queratina, la proteína principal del
+                cabello.
+              </p>
+              <img class="block md:hidden" src={estructura.src} alt="" />
+
+              <div id="dropdown-container-1" class="space-y-4">
+                <!-- Dropdown 1: Bulbo Piloso -->
+                <details class="group border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center"
                   >
-                    Acceder al curso
-                  </a>
-                </div>
-                <div class="w-full pt-4 md:pt-0 md:w-1/2 h-64 md:h-64">
-                  <div class="h-full w-full">
+                    Bulbo piloso
+                    <span
+                      class="transition-transform group-open:rotate-180 hidden lg:block"
+                      >⌄</span
+                    >
+                  </summary>
+                  <p class="mt-2 text-gray-600">
+                    En la base del folículo se encuentra el bulbo piloso, que es
+                    donde se forma el cabello.
+                  </p>
+                </details>
+
+                <!-- Dropdown 2: Papila dérmica -->
+                <details class="group border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center"
+                  >
+                    Papila dérmica
+                    <span
+                      class="transition-transform group-open:rotate-180 hidden lg:block"
+                      >⌄</span
+                    >
+                  </summary>
+                  <p class="mt-2 text-gray-600">
+                    Es una pequeña estructura en la base del folículo que está
+                    formada por tejido conectivo y vasos sanguíneos. La papila
+                    dérmica nutre el cabello en crecimiento al proporcionar
+                    nutrientes y oxígeno.
+                  </p>
+                </details>
+
+                <!-- Dropdown 3: Glándulas sebáceas -->
+                <details class="group border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center"
+                  >
+                    Glándulas sebáceas
+                    <span
+                      class="transition-transform group-open:rotate-180 hidden lg:block"
+                      >⌄</span
+                    >
+                  </summary>
+                  <p class="mt-2 text-gray-600">
+                    Estas glándulas están ubicadas cerca de los folículos y
+                    secretan sebo, una sustancia oleosa que lubrica y protege el
+                    cabello.
+                  </p>
+                </details>
+              </div>
+              <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  const dropdowns = document.querySelectorAll(
+                    "#dropdown-container-1 > details",
+                  );
+
+                  dropdowns.forEach((dropdown) => {
+                    const detail = dropdown as HTMLDetailsElement;
+
+                    detail.addEventListener("toggle", () => {
+                      if (detail.open) {
+                        dropdowns.forEach((other) => {
+                          const otherDetail = other as HTMLDetailsElement;
+                          if (otherDetail !== detail) otherDetail.open = false;
+                        });
+                      }
+                    });
+                  });
+                });
+              </script>
+
+              <!-- Nota final -->
+              <p class="text-sm text-gray-500 italic">
+                El folículo piloso es la única parte con vida, el tallo del
+                cabello no tiene terminaciones nerviosas, por lo que el daño que
+                se genera en este no desaparece; todo es acumulativo.
+              </p>
+            </div>
+            <div
+              class="basis-1/2 hidden md:block md:sticky md:top-40 self-start"
+            >
+              <img src={estructura.src} alt="" />
+            </div>
+          </div>
+
+          <!--2. Adentrémonos en el tallo del cabello: -->
+          <div class="md:flex relative py-3 lg:py-5">
+            <div
+              class="basis-1/2 md:sticky md:top-40 hidden md:block self-start"
+            >
+              <img src={tallo.src} alt="" />
+            </div>
+            <div class="basis-1/2 space-y-4">
+              <!-- Título principal -->
+              <h2 class="text-2xl font-bold text-gray-800">
+                2. Adentrémonos en el tallo del cabello:
+              </h2>
+
+              <!-- Párrafo introductorio -->
+              <p class="text-gray-600">
+                El tallo del cabello está compuesto por tres capas principales:
+                la <strong>médula</strong>, el <strong>córtex</strong> y la <strong
+                  >cutícula</strong
+                >, y cada una cumple una función esencial para su estructura,
+                fortaleza y apariencia.
+              </p>
+              <img class="block md:hidden" src={tallo.src} alt="" />
+              <div id="dropdown-container-2" class="space-y-4">
+                <!-- Dropdown 1: Médula -->
+                <details class="group border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center marker:content-none"
+                  >
+                    Médula
+                    <span
+                      class="transition-transform group-open:rotate-180 hidden lg:block"
+                      >⌄</span
+                    >
+                  </summary>
+                  <p class="mt-2 text-gray-600">
+                    Es la capa más interna del cabello. Está formada por células
+                    suaves y queratina, es por ello que la mayoría de productos
+                    alisantes contienen queratina.
+                  </p>
+                </details>
+
+                <!-- Dropdown 2: Córtex -->
+                <details class="group border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center marker:content-none"
+                  >
+                    Córtex
+                    <span
+                      class="transition-transform group-open:rotate-180 hidden lg:block"
+                      >⌄</span
+                    >
+                  </summary>
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <p>
+                      Es la capa central y más importante, ya que representa la
+                      mayor parte del cabello. Está compuesto por fibras de
+                      queratina, responsables de su fuerza, elasticidad y
+                      flexibilidad. Aquí se encuentra la <strong
+                        >melanina</strong
+                      >, que determina el color natural del cabello. Además, el
+                      córtex es clave en la resistencia del cabello y es la capa
+                      donde se realizan cambios con tratamientos químicos, como
+                      tintes o alisados, ya que aquí se encuentran los puentes
+                      estructurales.
+                    </p>
+
+                    <p class="font-semibold">¿Qué son estos puentes?</p>
+                    <p>
+                      Los puentes estructurales del cabello son las uniones
+                      químicas que mantienen la forma, fuerza y elasticidad de
+                      la fibra capilar. Hay tres tipos principales:
+                    </p>
+                    <div id="dropdown-container-3" class="space-y-4">
+                      <!-- Sub-dropdown 1: Puentes de hidrógeno -->
+                      <details class="group border rounded-md p-3">
+                        <summary
+                          class="cursor-pointer font-medium text-gray-800 flex justify-between items-center marker:content-none"
+                        >
+                          1. Puentes de hidrógeno
+                          <span
+                            class="transition-transform group-open:rotate-180 hidden lg:block"
+                            >⌄</span
+                          >
+                        </summary>
+                        <div class="mt-2 text-gray-600 space-y-2">
+                          <p>
+                            <strong>Cómo funcionan:</strong> Se forman y rompen fácilmente
+                            con la humedad. Por ejemplo, cuando mojas el cabello
+                            estos enlaces se rompen. Una vez seco, los enlaces se
+                            forman de nuevo, volviendo el cabello a su estado natural.
+                          </p>
+                          <p>
+                            <strong>Importante:</strong> Son los más débiles, pero
+                            hay muchos, lo que contribuye a la estructura general
+                            del cabello.
+                          </p>
+                        </div>
+                      </details>
+
+                      <!-- Sub-dropdown 2: Puentes salinos -->
+                      <details class="group border rounded-md p-3">
+                        <summary
+                          class="cursor-pointer font-medium text-gray-800 flex justify-between items-center marker:content-none"
+                        >
+                          2. Puentes salinos o iónicos
+                          <span
+                            class="transition-transform group-open:rotate-180 hidden lg:block"
+                            >⌄</span
+                          >
+                        </summary>
+                        <div class="mt-2 text-gray-600 space-y-2">
+                          <p>
+                            <strong>Cómo funcionan:</strong> Estos se rompen con
+                            calor como cuando pasas la plancha. El cabello durará
+                            liso hasta que lo laves de nuevo.
+                          </p>
+                          <p>
+                            <strong>Importante:</strong> Son más fuertes que los
+                            puentes de hidrógeno, pero más débiles que los disulfuro.
+                          </p>
+                        </div>
+                      </details>
+
+                      <!-- Sub-dropdown 3: Puentes de disulfuro -->
+                      <details class="group border rounded-md p-3">
+                        <summary
+                          class="cursor-pointer font-medium text-gray-800 flex justify-between items-center marker:content-none"
+                        >
+                          3. Puentes de disulfuro
+                          <span
+                            class="transition-transform group-open:rotate-180 hidden lg:block"
+                            >⌄</span
+                          >
+                        </summary>
+                        <div class="mt-2 text-gray-600 space-y-2">
+                          <p>
+                            <strong>Cómo funcionan:</strong> Son responsables de
+                            la fuerza y forma permanente del cabello (liso, ondulado
+                            o rizado). Estos enlaces solo pueden romperse con productos
+                            químicos fuertes, como tintes, permanentes o alisados
+                            químicos. Al romperlos, se puede cambiar la estructura
+                            del cabello de forma duradera.
+                          </p>
+                          <p>
+                            <strong>Importante:</strong> Son los más fuertes y cruciales
+                            para la salud del cabello. Si se dañan, el cabello se
+                            debilita significativamente.
+                          </p>
+                        </div>
+                      </details>
+                    </div>
+                    <script>
+                      document.addEventListener("DOMContentLoaded", () => {
+                        const dropdowns = document.querySelectorAll(
+                          "#dropdown-container-3 > details",
+                        );
+
+                        dropdowns.forEach((dropdown) => {
+                          const detail = dropdown as HTMLDetailsElement;
+
+                          detail.addEventListener("toggle", () => {
+                            if (detail.open) {
+                              dropdowns.forEach((other) => {
+                                const otherDetail = other as HTMLDetailsElement;
+                                if (otherDetail !== detail)
+                                  otherDetail.open = false;
+                              });
+                            }
+                          });
+                        });
+                      });
+                    </script>
+
+                    <!-- Explicación final -->
+                    <p class="pt-2">
+                      <strong>¿Cómo se modifican?</strong><br />
+                      Estos enlaces se alteran mediante procesos químicos como la
+                      decoloración o los alisados alcalinos (alisados permanentes).
+                      En contraste, los alisados ácidos (alisados progresivos) no
+                      rompen los enlaces de disulfuro, sino que los transforman.
+                    </p>
+                  </div>
+                </details>
+
+                <!-- Dropdown 3: Cutícula -->
+                <details class="group border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center marker:content-none"
+                  >
+                    Cutícula
+                    <span
+                      class="transition-transform group-open:rotate-180 hidden lg:block"
+                      >⌄</span
+                    >
+                  </summary>
+                  <div class="mt-2 text-gray-600 space-y-3">
+                    <p>
+                      Es la capa externa del cabello y está formada por células
+                      planas, escamosas y transparentes que se superponen unas
+                      sobre otras como las tejas de un techo.
+                    </p>
+                    <img src={cuticula.src} alt="" />
+                    <p>
+                      Su principal función es proteger las capas internas del
+                      cabello. La cutícula es la que da brillo al cabello y,
+                      cuando está sana, refleja la luz. Si las células de la
+                      cutícula están bien alineadas y no están dañadas, el
+                      cabello se ve suave y brillante.
+                    </p>
+                    <p>
+                      <strong>Daño a la cutícula:</strong> Si la cutícula se daña,
+                      las células se levantan, lo que puede hacer que el cabello
+                      se vea opaco, áspero o incluso quebradizo. El daño puede ser
+                      causado por el uso excesivo de calor, productos químicos, peinado
+                      agresivo, entre otros.
+                    </p>
+                    <p>
+                      Cuando se realiza un alisado, el producto necesita llegar
+                      al córtex (la capa interna del cabello) para modificar su
+                      estructura. Para que esto ocurra, el producto debe
+                      penetrar la cutícula, que es la capa externa del cabello.
+                      Si la cutícula está levantada (cabello con porosidad
+                      alta), el producto puede entrar más fácilmente en el
+                      córtex, pero el alisado tendrá menor duración.
+                    </p>
+                    <p>
+                      Por otro lado, si la cutícula está cerrada o sellada, será
+                      más difícil que el producto entre en el córtex. Sin
+                      embargo, esto no significa que sea imposible. Solo
+                      necesitamos preparar el cabello adecuadamente para que el
+                      producto pueda penetrar y lograr un buen resultado.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <!-- Script para que solo un dropdown se abra a la vez -->
+              <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  const dropdowns = document.querySelectorAll(
+                    "#dropdown-container-2 > details",
+                  );
+
+                  dropdowns.forEach((dropdown) => {
+                    const detail = dropdown as HTMLDetailsElement;
+
+                    detail.addEventListener("toggle", () => {
+                      if (detail.open) {
+                        dropdowns.forEach((other) => {
+                          const otherDetail = other as HTMLDetailsElement;
+                          if (otherDetail !== detail) otherDetail.open = false;
+                        });
+                      }
+                    });
+                  });
+                });
+              </script>
+
+              <p class="text-sm text-gray-500 italic">
+                En conjunto, estas tres capas trabajan para mantener el cabello
+                fuerte, flexible y protegido. Por eso, es fundamental cuidar
+                especialmente la cutícula, ya que una cutícula en buen estado no
+                solo mejora la apariencia del cabello, sino que también protege
+                su interior y ayuda a conservar su salud.
+              </p>
+            </div>
+          </div>
+
+          <!--PH -->
+          <div class="md:flex relative py-3 lg:py-5">
+            <div class="basis-1/2 space-y-4">
+              <!-- Título principal -->
+              <h2 class="text-2xl font-bold text-gray-800">
+                Potencial Hidrógeno (pH) del Cabello
+              </h2>
+
+              <!-- Párrafo introductorio -->
+              <p class="text-gray-600">
+                El pH del cabello es un concepto que se refiere a la acidez o
+                alcalinidad del cabello y el cuero cabelludo. Para entenderlo
+                mejor, veamos qué significa esto y por qué es tan importante:
+              </p>
+
+              <img class="px-5 block md:hidden" src={phimage.src} alt="" />
+              <!-- Dropdown 1: ¿Qué es el pH? -->
+              <div id="dropdown-container-4" class="space-y-4">
+                <details class="group border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center marker:content-none"
+                  >
+                    ¿Qué es el pH?
+                    <span
+                      class="transition-transform group-open:rotate-180 hidden lg:block"
+                      >⌄</span
+                    >
+                  </summary>
+                  <p class="mt-2 text-gray-600">
+                    El pH es una medida que indica cuán ácido o alcalino es un
+                    compuesto. Se mide en una escala de 0 a 14:
+                    <ul class="list-disc pl-5">
+                      <li>0 a 6: Ácido</li>
+                      <li>7: Neutro</li>
+                      <li>8 a 14: Alcalino</li>
+                    </ul>
+                  </p>
+                  <p class="mt-2 text-gray-600">
+                    Un pH equilibrado es muy importante para la salud de tu
+                    cabello.
+                  </p>
+                </details>
+
+                <!-- Dropdown 2: El pH Natural del Cabello -->
+                <details class="group border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center marker:content-none"
+                  >
+                    El pH Natural del Cabello
+                    <span
+                      class="transition-transform group-open:rotate-180 hidden lg:block"
+                      >⌄</span
+                    >
+                  </summary>
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <p>
+                      El pH natural del cabello y el cuero cabelludo está entre
+                      4.5 y 5.5, lo que significa que es ligeramente ácido. Este
+                      pH ácido tiene varias funciones importantes para mantener
+                      el cabello saludable:
+                    </p>
+                    <ul class="list-disc pl-5">
+                      <li>
+                        <strong>Cierra la cutícula:</strong> La cutícula es la capa
+                        externa del cabello, formada por pequeñas escamas. Cuando
+                        el pH es ácido, estas escamas se mantienen cerradas, lo que
+                        hace que el cabello sea más suave, brillante y menos propenso
+                        a la rotura.
+                      </li>
+                      <li>
+                        <strong>Mantiene el equilibrio de humedad:</strong> Un pH
+                        ácido ayuda a mantener la hidratación dentro del cabello,
+                        evitando que se seque y se vuelva quebradizo.
+                      </li>
+                    </ul>
+                    <p class="">
+                      Si los productos cosméticos para el cabello tienen un pH
+                      incorrecto (ya sea muy ácido o muy alcalino), pueden
+                      alterar este equilibrio, afectando la salud y apariencia
+                      del cabello.
+                    </p>
+                    <p class="">
+                      Productos con pH alto (alcalinos): Los productos con un pH
+                      por encima de 7, como algunos shampoos y tintes, son
+                      alcalinos. Los productos alcalinos abren la cutícula del
+                      cabello, lo que facilita que los productos penetren, pero
+                      también puede dejar el cabello más poroso y vulnerable.
+                      Por ejemplo, los tintes y tratamientos de alisado
+                      permanentes abren la cutícula para que el color o el
+                      tratamiento puedan ingresar al cabello, pero si no se
+                      equilibra el pH después, el cabello puede quedar seco y
+                      dañado.
+                    </p>
+                    <p class="">
+                      <strong>Productos con pH bajo (ácidos):</strong> Los productos
+                      con un pH ácido, como algunos acondicionadores, mascarillas
+                      son útiles para mantener el cabello suave y brillante , ya
+                      que contraen la cutícula.
+                    </p>
+                    <p class="">
+                      Además, los productos ácidos ayudan a restaurar el pH
+                      natural del cabello después de que ha sido alterado por un
+                      tratamiento químico o por el uso de un shampoo fuerte.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  const dropdowns = document.querySelectorAll(
+                    "#dropdown-container-4 > details",
+                  );
+
+                  dropdowns.forEach((dropdown) => {
+                    const detail = dropdown as HTMLDetailsElement;
+
+                    detail.addEventListener("toggle", () => {
+                      if (detail.open) {
+                        dropdowns.forEach((other) => {
+                          const otherDetail = other as HTMLDetailsElement;
+                          if (otherDetail !== detail) otherDetail.open = false;
+                        });
+                      }
+                    });
+                  });
+                });
+              </script>
+            </div>
+            <div
+              class="basis-1/2 md:sticky md:top-40 hidden md:block self-start"
+            >
+              <img class="px-5" src={phimage.src} alt="" />
+            </div>
+          </div>
+
+          <!--Porocidad -->
+          <div class="md:flex relative py-3 lg:py-3">
+            <div
+              class="basis-1/2 md:sticky md:top-40 hidden md:block self-start rounded-lg px-5"
+            >
+              <img
+                class="rounded-xl"
+                src={porocidad.src}
+                alt="Imagen de la porosidad del cabello"
+              />
+            </div>
+            <div class="basis-1/2 space-y-4">
+              <!-- Título principal -->
+              <h2 class="text-2xl font-bold text-gray-800">
+                Conozcamos la porosidad del cabello
+              </h2>
+
+              <!-- Párrafo introductorio -->
+              <p class="text-gray-600">
+                La porosidad del cabello se refiere a la capacidad que tiene la
+                fibra capilar para absorber y retener humedad o productos. Está
+                determinada por el estado de la cutícula, la capa más externa
+                del cabello, que funciona como una barrera protectora. Esta
+                característica puede influir en cómo el cabello responde a los
+                tratamientos, productos y al medio ambiente.
+              </p>
+              <p class="text-gray-600">
+                Piensa en tu cabello como una esponja: algunas esponjas absorben
+                rápido y sueltan el agua igual de rápido, mientras que otras
+                tardan más en absorber y retener el agua. Así funciona el
+                cabello con la humedad y los productos.
+              </p>
+              <img
+                class="rounded-md block md:hidden"
+                src={porocidad.src}
+                alt="Imagen de la porosidad del cabello"
+              />
+              <div id="dropdown-container-5" class="space-y-4">
+                <!-- Dropdown 1: Porosidad Baja -->
+                <details class="group border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center marker:content-none"
+                  >
+                    Porosidad Baja
+                    <span
+                      class="transition-transform group-open:rotate-180 hidden lg:block"
+                      >⌄</span
+                    >
+                  </summary>
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <p>
+                      La cutícula está compacta y bien cerrada. Imagina que tu
+                      cabello tiene una capa exterior muy apretada, como si
+                      fuera un impermeable.
+                    </p>
+                    <p>
+                      Por lo que el cabello es menos propenso a absorber
+                      productos o humedad, lo que puede hacer que se acumule
+                      producto en su superficie.
+                    </p>
+                    <p>
+                      Suelen ser necesarios productos livianos para ayudar a que
+                      la hidratación penetre.
+                    </p>
+
+                    <h3 class="font-semibold mt-4">
+                      Características visuales y táctiles:
+                    </h3>
+                    <ul class="list-disc pl-5">
+                      <li>
+                        <strong>Brillante y suave:</strong> La cutícula del cabello
+                        está cerrada y lisa, lo que refleja más luz.
+                      </li>
+                      <li>
+                        <strong>Pesado o rígido:</strong> Puede verse "pesado" porque
+                        la humedad no penetra fácilmente.
+                      </li>
+                      <li>
+                        <strong>Ralentiza el secado:</strong> Tarda más en secarse
+                        ya que el agua no penetra bien.
+                      </li>
+                      <li>
+                        <strong>Repele el agua:</strong> Al mojarlo, el agua resbala
+                        en lugar de absorberse rápidamente.
+                      </li>
+                    </ul>
+                    <h3 class="font-semibold mt-4">Cómo se siente:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>
+                        <strong>Suave al tacto:</strong> El cabello se siente liso
+                        y uniforme.
+                      </li>
+                      <li>
+                        <strong>Dificultad para absorber productos:</strong> Los
+                        productos tienden a quedarse en la superficie.
+                      </li>
+                    </ul>
+
+                    <h3 class="font-semibold mt-4">Ejemplo práctico:</h3>
+                    <p>
+                      Imagina una hoja de papel encerada. Si pones agua sobre
+                      ella, se desliza en lugar de empaparse. Eso es lo que pasa
+                      con el cabello de porosidad baja.
+                    </p>
+                    <img class="rounded-md" src={porocidadBaja.src} alt="" />
+                  </div>
+                </details>
+
+                <!-- Dropdown 2: Porosidad Media (Normal) -->
+                <details class="group border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center marker:content-none"
+                  >
+                    Porosidad Media (Normal)
+                    <span
+                      class="transition-transform group-open:rotate-180 hidden lg:block"
+                      >⌄</span
+                    >
+                  </summary>
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <p>
+                      La cutícula está ligeramente abierta, permitiendo un
+                      equilibrio adecuado entre la absorción y la retención de
+                      humedad. Este tipo de cabello es saludable y manejable, y
+                      responde bien a los productos y tratamientos.
+                    </p>
+
+                    <h3 class="font-semibold mt-4">
+                      Características visuales y táctiles:
+                    </h3>
+                    <ul class="list-disc pl-5">
+                      <li>
+                        <strong>Brillo natural:</strong> Refleja la luz de manera
+                        uniforme.
+                      </li>
+                      <li>
+                        <strong>Buena definición:</strong> Los rizos o ondas mantienen
+                        su forma.
+                      </li>
+                      <li>
+                        <strong>Volumen moderado:</strong> No es ni demasiado plano
+                        ni esponjoso.
+                      </li>
+                      <li>
+                        <strong>Secado promedio:</strong> Se seca en un tiempo razonable.
+                      </li>
+                    </ul>
+
+                    <h3 class="font-semibold mt-4">Cómo se siente:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>
+                        <strong>Suave y flexible:</strong> Se siente hidratado y
+                        saludable.
+                      </li>
+                      <li>
+                        <strong>Absorbe productos equilibradamente:</strong> No se
+                        satura ni deja residuos.
+                      </li>
+                    </ul>
+
+                    <h3 class="font-semibold mt-4">Ejemplo práctico:</h3>
+                    <p>
+                      Pensando en una esponja de buena calidad: absorbe agua y
+                      productos equilibradamente y los retiene sin derramarlos.
+                    </p>
+                    <img class="rounded-md" src={porocidadMedia.src} alt="" />
+                  </div>
+                </details>
+
+                <!-- Dropdown 3: Porosidad Alta -->
+                <details class="group border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center marker:content-none"
+                  >
+                    Porosidad Alta
+                    <span
+                      class="transition-transform group-open:rotate-180 hidden lg:block"
+                      >⌄</span
+                    >
+                  </summary>
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <p>
+                      Un cabello con porosidad alta tiene la cutícula muy
+                      abierta o dañada, lo que hace que el cabello sea más
+                      propenso al frizz, la sequedad y daños por tratamientos
+                      químicos o herramientas térmicas.
+                    </p>
+
+                    <h3 class="font-semibold mt-4">
+                      Características visuales y táctiles:
+                    </h3>
+                    <ul class="list-disc pl-5">
+                      <li>
+                        <strong>Seco o apagado:</strong> No refleja bien la luz.
+                      </li>
+                      <li>
+                        <strong>Frizz evidente:</strong> Más propenso al frizz debido
+                        a la absorción de humedad.
+                      </li>
+                      <li>
+                        <strong>Puntas abiertas y cabello quebradizo:</strong> Más
+                        frágil, con mayor riesgo de rotura.
+                      </li>
+                      <li>
+                        <strong>Secado rápido:</strong> Se seca rápido pero pierde
+                        humedad rápidamente.
+                      </li>
+                      <li>
+                        <strong>Rizos menos definidos:</strong> Los rizos pueden
+                        verse más sueltos y desordenados.
+                      </li>
+                    </ul>
+
+                    <h3 class="font-semibold mt-4">Cómo se siente:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>
+                        <strong>Áspero y seco al tacto:</strong> La cutícula abierta
+                        lo hace sentir rugoso.
+                      </li>
+                      <li>
+                        <strong>Frágil y propenso a romperse:</strong> Se puede romper
+                        o enredar fácilmente.
+                      </li>
+                    </ul>
+
+                    <h3 class="font-semibold mt-4">Ejemplo práctico:</h3>
+                    <p>
+                      Imagina una esponja vieja que pierde agua rápidamente por
+                      sus agujeros grandes. Así es el cabello con porosidad
+                      alta.
+                    </p>
+                    <img class="rounded-md" src={porocidadAlta.src} alt="" />
+                  </div>
+                </details>
+              </div>
+              <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  const dropdowns = document.querySelectorAll(
+                    "#dropdown-container-5 > details",
+                  );
+
+                  dropdowns.forEach((dropdown) => {
+                    const detail = dropdown as HTMLDetailsElement;
+
+                    detail.addEventListener("toggle", () => {
+                      if (detail.open) {
+                        dropdowns.forEach((other) => {
+                          const otherDetail = other as HTMLDetailsElement;
+                          if (otherDetail !== detail) otherDetail.open = false;
+                        });
+                      }
+                    });
+                  });
+                });
+              </script>
+            </div>
+          </div>
+
+          <!--Tipos de daño del cabello -->
+          <div class="md:flex relative py-3 lg:py-3">
+            <div class="basis-1/2 space-y-4">
+              <h2 class="text-2xl font-bold text-gray-800">
+                Tipos de daño en el cabello
+              </h2>
+              <p class="text-gray-600">
+                El cabello puede dañarse de muchas maneras debido a factores
+                internos (como la falta de nutrientes) y externos (como el uso
+                de herramientas de calor o productos químicos). A continuación,
+                te explico de manera sencilla los tipos más comunes de daño en
+                el cabello y cómo identificarlos con ejemplos cotidianos.
+              </p>
+              <img
+                class="rounded-md block md:hidden"
+                src={tipoDeDano.src}
+                alt="Tipos de daño en el cabello"
+              />
+
+              <div id="dropdown-container-6" class="space-y-4">
+                <!-- Dropdown 1 -->
+                <details class="group border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center marker:content-none"
+                  >
+                    Daño mecánico
+                    <span
+                      class="transition-transform group-open:rotate-180 hidden lg:block"
+                      >⌄</span
+                    >
+                  </summary>
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <h3 class="font-semibold">Causas:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>Cepillar el cabello con demasiada fuerza.</li>
+                      <li>Usar peines o cepillos inadecuados.</li>
+                      <li>Peinados muy apretados como trenzas o coletas.</li>
+                    </ul>
+                    <h3 class="font-semibold">Cómo se ve:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>Puntas abiertas o cabello quebradizo.</li>
+                      <li>
+                        Cabello que se enreda con facilidad y se rompe al
+                        desenredarlo.
+                      </li>
+                    </ul>
+                    <h3 class="font-semibold">Ejemplo:</h3>
+                    <p>
+                      Imagina que desenredas el cabello mojado con un cepillo de
+                      dientes gruesos y jalas demasiado. Esto puede hacer que el
+                      cabello se quiebre.
+                    </p>
                     <img
-                      src={curso.img}
-                      alt={curso.description}
-                      class="rounded-lg object-cover w-full h-full"
+                      class="rounded-md"
+                      src={danoMecanico.src}
+                      alt="Tipos de daño en el cabello"
                     />
                   </div>
-                </div>
-              </div>
-            ))
-          ) : (
-            <p class="text-gray-600 px-6">
-              Aún no tienes cursos vinculados. Explora más en nuestra
-              plataforma.
-            </p>
-          )
-        }
-      </div>
+                </details>
 
-      <!--Ir al blog -->
-      <div class="border-t-2 max-w-5xl lg:mx-auto mx-4 mb-4 mt-4 pt-4">
-        <div
-          class="bg-zinc-900  p-8 lg:flex lg:items-center lg:justify-between w-full text-white rounded-md"
-        >
-          <div>
-            <p class="text-center font-normal lg:text-left lg:text-2xl">
-              Encuentra consejos, técnicas y recomendaciones.
-            </p>
-          </div>
-          <!-- Contenedor del botón centrado verticalmente -->
-          <div class="flex justify-center items-center w-full lg:w-auto">
-            <a
-              href="/blog"
-              class="inline-block mt-4 px-10 py-2 text-white border border-white font-medium rounded-md hover:bg-white/20 transition-colors"
+                <!-- Dropdown 2 -->
+                <details class="group border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center marker:content-none"
+                  >
+                    Daño térmico
+                    <span
+                      class="transition-transform group-open:rotate-180 hidden lg:block"
+                      >⌄</span
+                    >
+                  </summary>
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <h3 class="font-semibold">Causas:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>
+                        Planchar el cabello sin usar protectores de calor.
+                      </li>
+                      <li>
+                        Secar el cabello con una secadora a alta temperatura
+                        constantemente.
+                      </li>
+                      <li>Usar tenazas o rizadores de manera frecuente.</li>
+                    </ul>
+                    <h3 class="font-semibold">Cómo se ve:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>Cabello seco, sin brillo y con textura áspera.</li>
+                      <li>Puntas abiertas y apariencia "quemada".</li>
+                    </ul>
+                    <h3 class="font-semibold">Ejemplo:</h3>
+                    <p>
+                      Es como cuando tocas una plancha de ropa caliente y
+                      sientes que quema. Si no proteges tu cabello al
+                      plancharlo, el calor lo daña de manera similar.
+                    </p>
+                    <img
+                      class="rounded-md"
+                      src={danoTermico.src}
+                      alt="Tipos de daño en el cabello"
+                    />
+                  </div>
+                </details>
+
+                <!-- Dropdown 3 -->
+                <details class="group border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center marker:content-none"
+                  >
+                    Daño químico
+                    <span
+                      class="transition-transform group-open:rotate-180 hidden lg:block"
+                      >⌄</span
+                    >
+                  </summary>
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <h3 class="font-semibold">Causas:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>Tintes, decoloraciones y permanentes.</li>
+                      <li>Alisados químicos o progresivos mal realizados.</li>
+                      <li>
+                        Uso excesivo de productos con alcohol o sulfatos
+                        fuertes.
+                      </li>
+                    </ul>
+                    <h3 class="font-semibold">Cómo se ve:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>Cabello quebradizo y que pierde elasticidad.</li>
+                      <li>Pérdida de color o un aspecto opaco y frágil.</li>
+                    </ul>
+                    <h3 class="font-semibold">Ejemplo:</h3>
+                    <p>
+                      Piensa en cómo una tela puede desgastarse si la tiñes
+                      repetidamente con químicos fuertes; algo similar le ocurre
+                      al cabello al teñirlo o decolorarlo demasiado.
+                    </p>
+                    <img
+                      class="rounded-md"
+                      src={danoQuimico.src}
+                      alt="Tipos de daño en el cabello"
+                    />
+                  </div>
+                </details>
+
+                <!-- Dropdown 4 -->
+                <details class="group border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center marker:content-none"
+                  >
+                    Daño ambiental
+                    <span
+                      class="transition-transform group-open:rotate-180 hidden lg:block"
+                      >⌄</span
+                    >
+                  </summary>
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <h3 class="font-semibold">Causas:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>Exposición prolongada al sol.</li>
+                      <li>Agua salada del mar o cloro en piscinas.</li>
+                      <li>Contaminación o cambios extremos de temperatura.</li>
+                    </ul>
+                    <h3 class="font-semibold">Cómo se ve:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>
+                        Cabello reseco, frizz constante y puntas abiertas.
+                      </li>
+                      <li>
+                        Cambios de textura o color, como cuando el cabello se
+                        aclara por el sol.
+                      </li>
+                    </ul>
+                    <h3 class="font-semibold">Ejemplo:</h3>
+                    <p>
+                      Si pasas un día en la playa sin cubrir tu cabello, puede
+                      quedar seco y áspero debido al sol y al agua salada.
+                    </p>
+                    <img
+                      class="rounded-md"
+                      src={danoAmbiental.src}
+                      alt="Tipos de daño en el cabello"
+                    />
+                  </div>
+                </details>
+
+                <!-- Dropdown 5 -->
+                <details class="group border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center marker:content-none"
+                  >
+                    Daño acumulativo
+                    <span
+                      class="transition-transform group-open:rotate-180 hidden lg:block"
+                      >⌄</span
+                    >
+                  </summary>
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <h3 class="font-semibold">Causas:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>Usar productos inadecuados constantemente.</li>
+                      <li>Acumular residuos de productos en el cabello.</li>
+                      <li>No cuidar el cabello regularmente.</li>
+                    </ul>
+                    <h3 class="font-semibold">Cómo se ve:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>Cabello que pierde vitalidad de forma progresiva.</li>
+                      <li>
+                        Es más difícil de peinar y parece menos manejable con el
+                        tiempo.
+                      </li>
+                    </ul>
+                    <h3 class="font-semibold">Ejemplo:</h3>
+                    <p>
+                      Es como usar una prenda de ropa favorita todos los días y
+                      no lavarla ni cuidarla bien; con el tiempo se desgasta,
+                      pierde color y se vuelve frágil.
+                    </p>
+                    <img
+                      class="rounded-md"
+                      src={danoAcumulativo.src}
+                      alt="Tipos de daño en el cabello"
+                    />
+                  </div>
+                </details>
+              </div>
+
+              <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  const dropdowns = document.querySelectorAll(
+                    "#dropdown-container-6 > details",
+                  );
+
+                  dropdowns.forEach((dropdown) => {
+                    const detail = dropdown as HTMLDetailsElement;
+
+                    detail.addEventListener("toggle", () => {
+                      if (detail.open) {
+                        dropdowns.forEach((other) => {
+                          const otherDetail = other as HTMLDetailsElement;
+                          if (otherDetail !== detail) otherDetail.open = false;
+                        });
+                      }
+                    });
+                  });
+                });
+              </script>
+            </div>
+            <div
+              class="basis-1/2 md:sticky md:top-40 hidden md:block self-start rounded-lg px-5"
             >
-              Ir al Blog
-            </a>
+              <img
+                class="rounded-xl"
+                src={tipoDeDano.src}
+                alt="Tipos de daño en el cabello"
+              />
+            </div>
           </div>
-        </div>
-      </div>
 
-      <!-- Banner -->
-      <div class="py-2 md:py-6 max-w-5xl lg:mx-auto">
-        <div class="flex px-4 items-center lg:hidden mb-4">
-          <div>
-            <svg
-              class="w-4 h-4 rotate-12"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 384 512"
-              ><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-              <path
-                d="M32 32C32 14.3 46.3 0 64 0S96 14.3 96 32l0 208-64 0L32 32zM224 192c0-17.7 14.3-32 32-32s32 14.3 32 32l0 64c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-64zm-64-64c17.7 0 32 14.3 32 32l0 48c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-48c0-17.7 14.3-32 32-32zm160 96c0-17.7 14.3-32 32-32s32 14.3 32 32l0 64c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-64zm-96 88l0-.6c9.4 5.4 20.3 8.6 32 8.6c13.2 0 25.4-4 35.6-10.8c8.7 24.9 32.5 42.8 60.4 42.8c11.7 0 22.6-3.1 32-8.6l0 8.6c0 88.4-71.6 160-160 160l-61.7 0c-42.4 0-83.1-16.9-113.1-46.9L37.5 453.5C13.5 429.5 0 396.9 0 363l0-27c0-35.3 28.7-64 64-64l88 0c22.1 0 40 17.9 40 40s-17.9 40-40 40l-56 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l56 0c39.8 0 72-32.2 72-72z"
-              ></path></svg
+          <!--Diagnostico -->
+          <div class="md:flex relative py-3 lg:py-5">
+            <div
+              class="basis-1/2 md:sticky md:top-40 hidden md:block self-start rounded-lg px-5"
             >
-          </div><span class="px-2">|</span> Desliza hacia la derecha
-        </div>
-        <!-- Contenedor del scroll -->
-        <div
-          class="overflow-x-scroll lg:overflow-hidden snap-mandatory snap-x lg:mx-0"
-        >
-          <div class="flex w-[300vw] lg:w-full">
-            <!-- Banner 1 -->
-            <div class="snap-center w-1/3 px-4 lg:px-1">
-              <div class="bg-[#F8FAFC] rounded-lg overflow-hidden">
-                <img
-                  src="https://media.wapastudio.com/banner-blog-dahsboard-wapa.webp"
-                  alt="Tips para alisados"
-                  class="h-40 w-full object-cover"
-                />
-                <div class="p-4">
-                  <p class=" mt-1 text-xs opacity-50">
-                    Oferta disponible por: <span class="font-thin" id="countdown" class="font-bold"
-                    ></span>.
-                  </p>
-                  <h2 class="text-xl font-medium">
-                    Descubre tu próximo curso
-                  </h2>
-                  <p class="font-thin" id="discount-text" class=" mt-2">
-                    🔥 Sólo para ti 10% off por ser nuestra alumna.
-                  </p>
-                  <a
-                    href="/cursos-descuento"
-                    class="inline-block mt-4 px-4 py-2  border border-zinc-800 rounded-md hover:bg-zinc-800/10 transition-colors"
+              <img
+                class="rounded-md hidden md:block"
+                src={diagnostico.src}
+                alt=""
+              />
+            </div>
+            <div class="basis-1/2 space-y-4">
+              <h2 class="text-2xl font-bold text-gray-800">
+                Diagnóstico Capilar
+              </h2>
+
+              <p class="text-gray-600">
+                El diagnóstico capilar para alisados es una evaluación detallada
+                que se realiza antes de aplicar un tratamiento de alisado
+                progresivo o permanente en el cabello. Su objetivo es
+                identificar las condiciones específicas del cabello y del cuero
+                cabelludo para garantizar que el tratamiento sea seguro,
+                efectivo y no cause daños adicionales. Es como una "revisión
+                previa" donde analizamos si el cabello está listo para el
+                proceso de alisado y qué ajustes o cuidados especiales necesita.
+              </p>
+
+              <img
+                class="rounded-md block md:hidden"
+                src={diagnostico.src}
+                alt=""
+              />
+              <div class="space-y-4" id="dropdown-container-7">
+                <!-- Detalles 1 -->
+                <details class="border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
                   >
-                    Ver cursos
-                  </a>
-                </div>
+                    ¿Por qué es importante un diagnóstico capilar antes de un
+                    alisado?
+                    <span class="transition-transform transform">⌄</span>
+                  </summary>
+                  <div class="mt-2 text-gray-600">
+                    <ul class="list-disc pl-5 space-y-2">
+                      <li>
+                        <strong>Evita daños graves:</strong> Si el cabello ya está
+                        débil o dañado, un alisado podría empeorar su estado.
+                      </li>
+                      <li>
+                        <strong>Personaliza el tratamiento:</strong> Cada tipo de
+                        cabello reacciona diferente al alisado, dependiendo de su
+                        grosor, textura y estado.
+                      </li>
+                      <li>
+                        <strong>Asegura mejores resultados:</strong> Con un diagnóstico
+                        correcto, el cabello quedará más suave, brillante y saludable
+                        después del tratamiento.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+
+                <!-- Detalles 2 -->
+                <details class="border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                  >
+                    ¿Qué se evalúa en un diagnóstico capilar para alisados?
+                    <span class="transition-transform transform">⌄</span>
+                  </summary>
+                  <div class="mt-2 text-gray-600 space-y-2">
+                    <p><strong>Estado del cabello</strong></p>
+                    <ul class="list-disc pl-5">
+                      <li>
+                        Si el cabello está sano, dañado, seco o quebradizo,
+                        quemado.
+                      </li>
+                      <li>Presencia de puntas abiertas, frizz o quiebre.</li>
+                    </ul>
+                    <p>
+                      <em>Ejemplo práctico:</em> “Si el cabello está muy seco o dañado
+                      por decoloraciones, puede ser necesario aplicar una fórmula
+                      más suave para el cuidado de este.”
+                    </p>
+                  </div>
+                </details>
+
+                <!-- Detalles 3 -->
+                <details class="border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                  >
+                    Porosidad del cabello
+                    <span class="transition-transform transform">⌄</span>
+                  </summary>
+                  <div class="mt-2 text-gray-600 space-y-3">
+                    <p>
+                      <strong>¿Qué es?</strong> La capacidad del cabello para absorber
+                      y retener la humedad.
+                    </p>
+                    <p><strong>¿Por qué importa?</strong></p>
+                    <ul class="list-disc pl-5 space-y-2">
+                      <li>
+                        Un cabello con porosidad alta absorberá más producto, se
+                        seca muy rápido y puede requerir reaplicaciones. La
+                        plancha debe usarse con más cuidado.
+                      </li>
+                      <li>
+                        Un cabello con porosidad baja necesita lavar de 2 a 3
+                        veces con shampoo de limpieza profunda y mayor tiempo de
+                        exposición (60 min en vez de 45).
+                      </li>
+                    </ul>
+                    <p>
+                      <em>Ejemplo práctico:</em> “Si el cabello tiene porosidad baja,
+                      se tarda más en absorber el tratamiento y puede requerir más
+                      tiempo de exposición.”
+                    </p>
+                  </div>
+                </details>
+
+                <!-- Detalles 4 -->
+                <details class="border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                  >
+                    Elasticidad del cabello
+                    <span class="transition-transform transform">⌄</span>
+                  </summary>
+                  <div class="mt-2 text-gray-600 space-y-2">
+                    <p>
+                      <strong>¿Qué es?</strong> La capacidad del cabello de estirarse
+                      y volver a su forma original sin romperse.
+                    </p>
+                    <p>
+                      <strong>¿Por qué importa?</strong> Si el cabello tiene elasticidad
+                      baja, es más frágil y puede romperse durante el tratamiento.
+                    </p>
+                    <p>
+                      <em>Ejemplo práctico:</em> “Si al estirar un mechón el cabello
+                      se rompe fácilmente, es necesario fortalecerlo antes de aplicar
+                      un alisado.”
+                    </p>
+                  </div>
+                </details>
+
+                <!-- Detalles 5 -->
+                <details class="border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                  >
+                    Grosor y textura
+                    <span class="transition-transform transform">⌄</span>
+                  </summary>
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <p>
+                      <strong>¿Qué se revisa?</strong> Si el cabello es fino, mediano
+                      o grueso, y si es liso, ondulado, rizado o afro.
+                    </p>
+                    <img class="rounded-md" src={grosorTextura.src} alt="" />
+                    <p>
+                      <strong>¿Por qué importa?</strong> Cabellos gruesos o muy rizados
+                      necesitan productos más potentes o tiempos de exposición más
+                      largos.
+                    </p>
+                    <p>
+                      <em>Ejemplo práctico:</em> “Un cabello fino requiere menos
+                      producto y menos tiempo de planchado para evitar quemaduras.”
+                    </p>
+
+                    <h3 class="font-semibold text-gray-800">
+                      Tipos de grosor del cabello
+                    </h3>
+                    <div class="space-y-2">
+                      <p><strong>Cabello fino</strong></p>
+                      <ul class="list-disc pl-5">
+                        <li>Diámetro delgado, suave y frágil.</li>
+                        <li>
+                          No soporta productos pesados ni químicos agresivos.
+                        </li>
+                        <li>
+                          <em>Ejemplo:</em> se aplasta fácilmente con aceites gruesos.
+                        </li>
+                      </ul>
+
+                      <p><strong>Cabello mediano</strong></p>
+                      <ul class="list-disc pl-5">
+                        <li>Diámetro intermedio, resistente pero sensible.</li>
+                        <li>Versátil, tolera mejor químicos y calor.</li>
+                        <li>
+                          <em>Ejemplo:</em> se adapta bien a la mayoría de tratamientos.
+                        </li>
+                      </ul>
+
+                      <p><strong>Cabello grueso</strong></p>
+                      <ul class="list-disc pl-5">
+                        <li>
+                          Diámetro grande, más resistente pero difícil de
+                          manejar.
+                        </li>
+                        <li>
+                          Requiere fórmulas potentes y más tiempo de exposición.
+                        </li>
+                        <li>
+                          <em>Ejemplo:</em> necesita hidratación constante y planchado
+                          más prolongado.
+                        </li>
+                      </ul>
+                    </div>
+
+                    <h3 class="font-semibold text-gray-800">
+                      Cómo identificar el grosor del cabello
+                    </h3>
+                    <ul class="list-disc pl-5">
+                      <li>
+                        <strong>Método del tacto:</strong> Si casi no lo sientes,
+                        es fino. Si lo sientes firme, es grueso. Intermedio, es mediano.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+
+                <!-- Detalles 6 -->
+                <details class="border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                  >
+                    Formas del cabello
+                    <span class="transition-transform transform">⌄</span>
+                  </summary>
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <p>
+                      En este punto examinaremos la tabla de André Walker sobre
+                      la forma del cabello.
+                    </p>
+                    <img class="rounded-md" src={formas.src} alt="" />
+                    <p>
+                      La tabla de André Walker clasifica los tipos de cabello en
+                      función de su textura y patrón de rizos, lo que es clave
+                      para realizar un diagnóstico capilar previo a los alisados
+                      progresivos. Este sistema permite entender cómo cada tipo
+                      de cabello puede reaccionar a los productos químicos, al
+                      calor y al proceso del alisado.
+                    </p>
+                    <div id="dropdown-container-8" class="space-y-4">
+                      <!-- Detalles Tipo 1 -->
+                      <details class="border rounded-lg p-4">
+                        <summary
+                          class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                        >
+                          Cabello tipo 1: Liso
+                          <span class="transition-transform transform">⌄</span>
+                        </summary>
+                        <div class="mt-2 text-gray-600 space-y-2">
+                          <p><strong>Características:</strong></p>
+                          <ul class="list-disc pl-5">
+                            <li>Sin ondas, rizos ni curvas.</li>
+                            <li>
+                              Suele ser brillante porque los aceites naturales
+                              del cuero cabelludo se distribuyen fácilmente por
+                              todo el cabello.
+                            </li>
+                          </ul>
+                          <p><strong>Subcategorías:</strong></p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              <strong>1A:</strong> Liso totalmente plano, fino y
+                              suave.
+                            </li>
+                            <li>
+                              <strong>1B:</strong> Liso con algo más de volumen y
+                              grosor.
+                            </li>
+                            <li>
+                              <strong>1C:</strong> Liso con textura más gruesa y
+                              resistente.
+                            </li>
+                          </ul>
+                          <p>
+                            <strong>Ejemplo:</strong> Cabellos como el de las modelos
+                            asiáticas suelen ser tipo 1.
+                          </p>
+                          <img
+                            class="rounded-md"
+                            src={cabelloLiso.src}
+                            alt=""
+                          />
+                        </div>
+                      </details>
+
+                      <!-- Detalles Tipo 2 -->
+                      <details class="border rounded-lg p-4">
+                        <summary
+                          class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                        >
+                          Cabello tipo 2: Ondulado
+                          <span class="transition-transform transform">⌄</span>
+                        </summary>
+                        <div class="mt-2 text-gray-600 space-y-2">
+                          <p><strong>Características:</strong></p>
+                          <ul class="list-disc pl-5">
+                            <li>Forma de "S" en las ondas.</li>
+                            <li>
+                              Puede ser fino o grueso, y tiene menos brillo que
+                              el cabello liso.
+                            </li>
+                          </ul>
+                          <p><strong>Subcategorías:</strong></p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              <strong>2A:</strong> Ondas suaves, casi lisas, con
+                              poco volumen.
+                            </li>
+                            <li>
+                              <strong>2B:</strong> Ondas más definidas y con algo
+                              de frizz.
+                            </li>
+                            <li>
+                              <strong>2C:</strong> Ondas gruesas y muy marcadas,
+                              con tendencia al encrespamiento.
+                            </li>
+                          </ul>
+                          <p>
+                            <strong>Ejemplo:</strong> El cabello de playa natural
+                            o con ondas suaves.
+                          </p>
+                          <img
+                            class="rounded-md"
+                            src={cabelloOndulado.src}
+                            alt=""
+                          />
+                        </div>
+                      </details>
+
+                      <!-- Detalles Tipo 3 -->
+                      <details class="border rounded-lg p-4">
+                        <summary
+                          class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                        >
+                          Cabello tipo 3: Rizado
+                          <span class="transition-transform transform">⌄</span>
+                        </summary>
+                        <div class="mt-2 text-gray-600 space-y-2">
+                          <p><strong>Características:</strong></p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              Rizos definidos en forma de espirales o bucles.
+                            </li>
+                            <li>
+                              Tiende a ser más seco porque los aceites no llegan
+                              fácilmente a las puntas.
+                            </li>
+                          </ul>
+                          <p><strong>Subcategorías:</strong></p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              <strong>3A:</strong> Rizos grandes y sueltos, parecidos
+                              a resortes.
+                            </li>
+                            <li>
+                              <strong>3B:</strong> Rizos medianos, más apretados
+                              y con algo de frizz.
+                            </li>
+                          </ul>
+                          <p>
+                            <strong>Ejemplo:</strong> El cabello rizado natural que
+                            tiene mucho volumen y rebote.
+                          </p>
+                          <img
+                            class="rounded-md"
+                            src={cabelloRizado.src}
+                            alt=""
+                          />
+                        </div>
+                      </details>
+
+                      <!-- Detalles Tipo 4 -->
+                      <details class="border rounded-lg p-4">
+                        <summary
+                          class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                        >
+                          Cabello tipo 4: Afro o muy rizado
+                          <span class="transition-transform transform">⌄</span>
+                        </summary>
+                        <div class="mt-2 text-gray-600 space-y-2">
+                          <p><strong>Características:</strong></p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              Rizos muy pequeños, apretados o en forma de "Z".
+                            </li>
+                            <li>
+                              Es frágil y suele ser el más seco debido a la
+                              forma del cabello.
+                            </li>
+                          </ul>
+                          <p><strong>Subcategorías:</strong></p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              <strong>4A:</strong> Rizos muy apretados, pero con
+                              forma de espiral definida.
+                            </li>
+                            <li>
+                              <strong>4B:</strong> Rizos menos definidos, con forma
+                              más angular (como "Z").
+                            </li>
+                          </ul>
+                          <p>
+                            <strong>Ejemplo:</strong> El cabello afro natural.
+                          </p>
+                          <img
+                            class="rounded-md"
+                            src={cabelloAfro.src}
+                            alt=""
+                          />
+                        </div>
+                      </details>
+                      <script>
+                        document.addEventListener("DOMContentLoaded", () => {
+                          const dropdowns = document.querySelectorAll(
+                            "#dropdown-container-8 > details",
+                          );
+
+                          dropdowns.forEach((dropdown) => {
+                            const detail = dropdown as HTMLDetailsElement;
+
+                            detail.addEventListener("toggle", () => {
+                              if (detail.open) {
+                                dropdowns.forEach((other) => {
+                                  const otherDetail =
+                                    other as HTMLDetailsElement;
+                                  if (otherDetail !== detail)
+                                    otherDetail.open = false;
+                                });
+                              }
+                            });
+                          });
+                        });
+                      </script>
+                    </div>
+                  </div>
+                </details>
+
+                <!-- Detalles 7 -->
+                <!-- Detalles Procesos Químicos -->
+                <details class="border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                  >
+                    Procesos Químicos
+                    <span class="transition-transform transform">⌄</span>
+                  </summary>
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <p>
+                      Uno de los aspectos más importantes es identificar si el
+                      cabello del cliente ha pasado por procesos químicos
+                      previos. Estos procesos afectan directamente la estructura
+                      del cabello, su resistencia y su capacidad para tolerar
+                      nuevos tratamientos.
+                    </p>
+                    <p>
+                      Conocer esta información ayuda a:
+                      <ul class="list-disc pl-5">
+                        <li>
+                          <strong>Prevenir daños:</strong> Algunos procesos químicos
+                          dejan el cabello más frágil o incompatible con los productos
+                          del alisado.
+                        </li>
+                        <li>
+                          <strong>Seleccionar el producto adecuado:</strong> No todos
+                          los alisados funcionan igual en cabellos tratados químicamente.
+                        </li>
+                        <li>
+                          <strong>Planificar el tratamiento:</strong> Permite ajustar
+                          la técnica, la temperatura y el tiempo de exposición para
+                          evitar daños irreparables.
+                        </li>
+                      </ul>
+                    </p>
+                    <div class="space-y-4" id="dropdown-container-9">
+                      <!-- Detalles Decoloraciones y Tintes -->
+                      <details class="border rounded-lg p-4">
+                        <summary
+                          class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                        >
+                          Decoloraciones y Tintes
+                          <span class="transition-transform transform">⌄</span>
+                        </summary>
+                        <div class="mt-2 text-gray-600 space-y-2">
+                          <p><strong>Efecto en el cabello:</strong></p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              La decoloración elimina pigmentos del cabello y lo
+                              debilita, dejándolo más seco y quebradizo.
+                            </li>
+                            <li>
+                              Los tintes también alteran la estructura interna
+                              del cabello, así como suelen deshidratar el
+                              cabello.
+                            </li>
+                          </ul>
+                          <p><strong>Precauciones para alisados:</strong></p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              Evitar alisados fuertes inmediatamente después de
+                              una decoloración, ya que el cabello suele
+                              deshidratarse por completo, la porosidad aumenta,
+                              el cabello se vuelve frágil y no es recomendable
+                              realizar un alisado en seguida, lo mejor es
+                              esperar de 2 a 3 meses.
+                            </li>
+                            <li>
+                              En cuestión de los tintes es mejor realizar
+                              primero el alisado y posteriormente el tinte, ya
+                              que el calor de la plancha oxida el color y este
+                              baja unos tonos.
+                            </li>
+                            <li>
+                              Realizar pruebas de elasticidad para verificar la
+                              resistencia del cabello (si este se troza, está
+                              elástico a niveles altos, así como se vuelve tipo
+                              “spaguetti” NO es recomendable aplicar alisado).
+                            </li>
+                          </ul>
+                        </div>
+                      </details>
+
+                      <!-- Detalles Permanentes o Rizos Permanentes -->
+                      <details class="border rounded-lg p-4">
+                        <summary
+                          class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                        >
+                          Permanentes o Rizos Permanentes
+                          <span class="transition-transform transform">⌄</span>
+                        </summary>
+                        <div class="mt-2 text-gray-600 space-y-2">
+                          <p><strong>Efecto en el cabello:</strong></p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              Cambian la forma del cabello (de liso a rizado)
+                              utilizando químicos que rompen los enlaces
+                              internos del cabello.
+                            </li>
+                            <li>
+                              Suele dejar el cabello más seco y menos
+                              resistente.
+                            </li>
+                          </ul>
+                          <img
+                            class="rounded-md"
+                            src={permanentes.src}
+                            alt=""
+                          />
+                          <p><strong>Precauciones para alisados:</strong></p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              No es recomendable aplicar una fórmula alisante,
+                              el cabello debe esperar por lo menos un año para
+                              poder someterse a otro tratamiento de alisado, al
+                              igual que, que se debe comenzar con fórmulas
+                              suaves como nuestro BOTOX.
+                            </li>
+                          </ul>
+                        </div>
+                      </details>
+
+                      <!-- Detalles Alisados Alcalinos Previos -->
+                      <details class="border rounded-lg p-4">
+                        <summary
+                          class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                        >
+                          Alisados Alcalinos Previos
+                          <span class="transition-transform transform">⌄</span>
+                        </summary>
+                        <div class="mt-2 text-gray-600 space-y-2">
+                          <p><strong>Efecto en el cabello:</strong></p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              Alisados alcalinos alteran los enlaces internos
+                              del cabello para mantenerlo liso y el cabello
+                              puede volverse muy débil.
+                            </li>
+                          </ul>
+                          <img
+                            class="rounded-md"
+                            src={alisadoPermanente.src}
+                            alt=""
+                          />
+                          <p><strong>Precauciones para alisados:</strong></p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              Es importante conocer el producto usado
+                              previamente, ya que algunos no son compatibles con
+                              los alisados progresivos.
+                            </li>
+                          </ul>
+                        </div>
+                      </details>
+
+                      <!-- Detalles Preguntas clave para identificar procesos químicos previos -->
+                      <details class="border rounded-lg p-4">
+                        <summary
+                          class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                        >
+                          Preguntas clave para identificar procesos químicos
+                          previos
+                          <span class="transition-transform transform">⌄</span>
+                        </summary>
+                        <div class="mt-2 text-gray-600 space-y-2">
+                          <p>
+                            <strong
+                              >1. ¿Has teñido o decolorado tu cabello?</strong
+                            >
+                          </p>
+                          <ul class="list-disc pl-5">
+                            <li>¿Hace cuánto tiempo lo hiciste?</li>
+                            <li>
+                              ¿Qué tipo de producto usaron? (tinte permanente o
+                              decoloración).
+                            </li>
+                          </ul>
+
+                          <p>
+                            <strong
+                              >2. ¿Te has hecho algún tratamiento de alisado
+                              antes?</strong
+                            >
+                          </p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              ¿Qué tipo de alisado fue? (alisado progresivo o
+                              permanente).
+                            </li>
+                            <li>
+                              ¿Cuánto tiempo ha pasado desde que te lo hiciste?
+                            </li>
+                          </ul>
+
+                          <p>
+                            <strong
+                              >3. ¿Te has hecho una permanente o rizos químicos?</strong
+                            >
+                          </p>
+                          <ul class="list-disc pl-5">
+                            <li>¿Hace cuánto tiempo?</li>
+                          </ul>
+
+                          <p>
+                            <strong
+                              >4. ¿Tienes el cabello tratado con mechas o
+                              highlights?</strong
+                            >
+                          </p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              Si es así, pregunta si estas están cerca de las
+                              raíces o solo en las puntas.
+                            </li>
+                          </ul>
+                        </div>
+                      </details>
+                    </div>
+                    <script>
+                      document.addEventListener("DOMContentLoaded", () => {
+                        const dropdowns = document.querySelectorAll(
+                          "#dropdown-container-9 > details",
+                        );
+
+                        dropdowns.forEach((dropdown) => {
+                          const detail = dropdown as HTMLDetailsElement;
+
+                          detail.addEventListener("toggle", () => {
+                            if (detail.open) {
+                              dropdowns.forEach((other) => {
+                                const otherDetail = other as HTMLDetailsElement;
+                                if (otherDetail !== detail)
+                                  otherDetail.open = false;
+                              });
+                            }
+                          });
+                        });
+                      });
+                    </script>
+                  </div>
+                </details>
+
+                <!-- Detalles 8 -->
+                <details class="border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                  >
+                    Método de diagnóstico capilar breve y conciso
+                    <span class="transition-transform transform">⌄</span>
+                  </summary>
+                  <div
+                    class="mt-2 text-gray-600 space-y-4"
+                    id="dropdown-container-diagnostico"
+                  >
+                    <!-- Observación Visual -->
+                    <details class="border rounded-lg p-4">
+                      <summary
+                        class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                      >
+                        Observación Visual (Estado del Cabello)
+                        <span class="transition-transform transform">⌄</span>
+                      </summary>
+                      <div class="mt-2 text-gray-600 space-y-2">
+                        <p><strong>Qué observar:</strong></p>
+                        <ul class="list-disc pl-5">
+                          <li>
+                            Cabello saludable, opaco, seco, con frizz o puntas
+                            abiertas.
+                          </li>
+                          <li>
+                            Signos de daño como rotura, encrespamiento o cambio
+                            de color.
+                          </li>
+                        </ul>
+                        <p><strong>Ejemplo práctico:</strong></p>
+                        <ul class="list-disc pl-5">
+                          <li>
+                            Brillante y uniforme → Probablemente en buen estado.
+                          </li>
+                          <li>Opaco y con puntas abiertas → Cabello dañado.</li>
+                        </ul>
+                        <p>
+                          <strong>Herramienta:</strong> Luz natural para mayor precisión.
+                        </p>
+                      </div>
+                    </details>
+
+                    <!-- Estado y porosidad -->
+                    <details class="border rounded-lg p-4">
+                      <summary
+                        class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                      >
+                        Estado y porosidad del cabello
+                        <span class="transition-transform transform">⌄</span>
+                      </summary>
+                      <div class="mt-2 text-gray-600 space-y-2">
+                        <p>
+                          <strong>Prueba rápida:</strong> Desliza los dedos desde
+                          las puntas hacia la raíz.
+                        </p>
+                        <ul class="list-disc pl-5">
+                          <li>Normal: Sin daños visibles, manejable.</li>
+                          <li>Seco: Sin brillo, áspero al tacto.</li>
+                          <li>Graso: Aceitoso incluso después del lavado.</li>
+                          <li>
+                            Dañado: Frágil, quebradizo, puntas abiertas o
+                            deshidratado.
+                          </li>
+                        </ul>
+                        <p><strong>Porosidad:</strong></p>
+                        <ul class="list-disc pl-5">
+                          <li>Muy áspero → Porosidad alta.</li>
+                          <li>Suave y uniforme → Porosidad baja o media.</li>
+                        </ul>
+                      </div>
+                    </details>
+
+                    <!-- Elasticidad -->
+                    <details class="border rounded-lg p-4">
+                      <summary
+                        class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                      >
+                        Elasticidad del Cabello
+                        <span class="transition-transform transform">⌄</span>
+                      </summary>
+                      <div class="mt-2 text-gray-600 space-y-2">
+                        <p>
+                          <strong>Prueba rápida:</strong> Estira un cabello húmedo
+                          suavemente.
+                        </p>
+                        <ul class="list-disc pl-5">
+                          <li>
+                            Regresa a su forma sin romperse → Elasticidad buena.
+                          </li>
+                          <li>Se rompe fácilmente → Elasticidad baja.</li>
+                        </ul>
+                        <p>
+                          <strong>Importancia:</strong> Indica si el cabello puede
+                          resistir procesos químicos.
+                        </p>
+                      </div>
+                    </details>
+
+                    <!-- Grosor -->
+                    <details class="border rounded-lg p-4">
+                      <summary
+                        class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                      >
+                        Grosor del Cabello
+                        <span class="transition-transform transform">⌄</span>
+                      </summary>
+                      <div class="mt-2 text-gray-600 space-y-2">
+                        <p><strong>Cómo identificar:</strong></p>
+                        <ul class="list-disc pl-5">
+                          <li>Fino: Apenas se siente al tacto.</li>
+                          <li>Mediano: Se siente ligeramente.</li>
+                          <li>Grueso: Fácil de detectar al tacto.</li>
+                        </ul>
+                        <p>
+                          <strong>Importancia:</strong> Afecta la cantidad de producto
+                          y temperatura del tratamiento.
+                        </p>
+                      </div>
+                    </details>
+
+                    <!-- Textura y Tipo -->
+                    <details class="border rounded-lg p-4">
+                      <summary
+                        class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                      >
+                        Textura y Tipo de Cabello (Tabla de André Walker)
+                        <span class="transition-transform transform">⌄</span>
+                      </summary>
+                      <div class="mt-2 text-gray-600 space-y-2">
+                        <p>
+                          <strong
+                            >Identifica el tipo según la forma del cabello:</strong
+                          >
+                        </p>
+                        <ul class="list-disc pl-5">
+                          <li>Liso (Tipo 1): Sin ondas ni rizos.</li>
+                          <li>Ondulado (Tipo 2): Ondas en forma de "S".</li>
+                          <li>Rizado (Tipo 3): Rizos definidos y elásticos.</li>
+                          <li>
+                            Afro (Tipo 4): Rizos muy cerrados o en zigzag.
+                          </li>
+                        </ul>
+                        <p>
+                          <strong>Importancia:</strong> Cada tipo reacciona distinto
+                          a productos y herramientas.
+                        </p>
+                      </div>
+                    </details>
+
+                    <!-- Procesos Químicos -->
+                    <details class="border rounded-lg p-4">
+                      <summary
+                        class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                      >
+                        Procesos Químicos Previos
+                        <span class="transition-transform transform">⌄</span>
+                      </summary>
+                      <div class="mt-2 text-gray-600 space-y-2">
+                        <p><strong>Preguntas clave al cliente:</strong></p>
+                        <ul class="list-disc pl-5">
+                          <li>
+                            ¿Te has hecho alisados, tintes, decoloraciones,
+                            permanentes?
+                          </li>
+                          <li>
+                            ¿Con qué frecuencia usas herramientas de calor?
+                          </li>
+                          <li>¿Qué productos utilizas en casa?</li>
+                        </ul>
+                        <p>
+                          <strong>Importancia:</strong> Ayuda a conocer el daño acumulado
+                          y elegir el tratamiento adecuado.
+                        </p>
+                      </div>
+                    </details>
+                  </div>
+
+                  <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                      const dropdowns = document.querySelectorAll(
+                        "#dropdown-container-diagnostico > details",
+                      );
+
+                      dropdowns.forEach((dropdown) => {
+                        const detail = dropdown as HTMLDetailsElement;
+
+                        detail.addEventListener("toggle", () => {
+                          if (detail.open) {
+                            dropdowns.forEach((other) => {
+                              const otherDetail = other as HTMLDetailsElement;
+                              if (otherDetail !== detail)
+                                otherDetail.open = false;
+                            });
+                          }
+                        });
+                      });
+                    });
+                  </script>
+                </details>
+
+                <!-- Detalles 9  -->
+                <details class="border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                  >
+                    Ejemplo sencillo de diagnóstico capilar: Selena Gómez
+                    <span class="transition-transform transform">⌄</span>
+                  </summary>
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <img class="rounded-md" src={selena.src} alt="" />
+                    <p>
+                      Supongamos que Selena Gómez llega al salón interesada en
+                      hacerse un alisado progresivo. Ella tiene cabello natural,
+                      sin decoloración, pero lo estiliza frecuentemente con
+                      calor.
+                    </p>
+
+                    <div id="dropdown-container-10" class="space-y-4">
+                      <!-- Observación visual -->
+                      <details class="border rounded-lg p-4">
+                        <summary
+                          class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                        >
+                          Observación visual
+                          <span class="transition-transform transform">⌄</span>
+                        </summary>
+                        <div class="mt-2 text-gray-600 space-y-2">
+                          <p><strong>Estado general del cabello:</strong></p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              Su cabello luce liso con ondas naturales. Se ve
+                              bien cuidado, pero las puntas están un poco secas
+                              por el uso de herramientas de calor.
+                            </li>
+                            <li>
+                              No se observan signos de daño químico previo, como
+                              cambios drásticos en el color.
+                            </li>
+                          </ul>
+                          <p>
+                            <strong
+                              >Tipo de cabello según la tabla de André Walker:</strong
+                            >
+                          </p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              Selena tiene un cabello tipo 2B, con ondas más
+                              definidas que tienden al frizz.
+                            </li>
+                            <li>
+                              Esto significa que su cabello puede beneficiarse
+                              de un alisado progresivo para controlar las ondas
+                              y el frizz.
+                            </li>
+                          </ul>
+                          <p><strong>Brillo y apariencia:</strong></p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              Tiene un brillo saludable en casi toda la melena,
+                              aunque en las puntas se nota un poco más opaco.
+                            </li>
+                          </ul>
+                        </div>
+                      </details>
+
+                      <!-- Evaluación de grosor -->
+                      <details class="border rounded-lg p-4">
+                        <summary
+                          class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                        >
+                          Evaluación de grosor
+                          <span class="transition-transform transform">⌄</span>
+                        </summary>
+                        <div class="mt-2 text-gray-600 space-y-2">
+                          <p><strong>Tipo de grosor:</strong></p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              El cabello de Selena es fino, lo que significa que
+                              requiere cuidado adicional para no sobrecargarlo
+                              con productos ni usar temperaturas demasiado altas
+                              durante el alisado.
+                            </li>
+                          </ul>
+                        </div>
+                      </details>
+
+                      <!-- Porosidad del cabello -->
+                      <details class="border rounded-lg p-4">
+                        <summary
+                          class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                        >
+                          Porosidad del cabello
+                          <span class="transition-transform transform">⌄</span>
+                        </summary>
+                        <div class="mt-2 text-gray-600 space-y-2">
+                          <p><strong>Zonas con porosidad media:</strong></p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              La mayoría de su cabello tiene porosidad media, lo
+                              que significa que absorbe y retiene productos de
+                              manera equilibrada.
+                            </li>
+                          </ul>
+                          <p><strong>Zonas con porosidad baja:</strong></p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              Las raíces tienen porosidad baja, ya que no han
+                              sido expuestas a procesos químicos ni al calor
+                              directo con tanta frecuencia.
+                            </li>
+                          </ul>
+                        </div>
+                      </details>
+
+                      <!-- Procesos químicos previos -->
+                      <details class="border rounded-lg p-4">
+                        <summary
+                          class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between w-full"
+                        >
+                          Procesos químicos previos
+                          <span class="transition-transform transform">⌄</span>
+                        </summary>
+                        <div class="mt-2 text-gray-600 space-y-2">
+                          <ul class="list-disc pl-5">
+                            <li>
+                              Nunca se ha teñido el cabello ni lo ha decolorado.
+                            </li>
+                            <li>
+                              No ha usado relajantes ni alisados permanentes.
+                            </li>
+                            <li>
+                              Usa herramientas de calor (planchas o secadoras)
+                              unas 3 o 4 veces por semana para estilizar su
+                              cabello.
+                            </li>
+                          </ul>
+                        </div>
+                      </details>
+                    </div>
+                    <p class="text-sm text-gray-500 italic">
+                      Comienza a realizar diagnósticos capilares a diferentes
+                      personas y poco a poco lograras perfeccionar esta técnica.
+                    </p>
+                  </div>
+                </details>
+
+                <script>
+                  document.addEventListener("DOMContentLoaded", () => {
+                    const dropdowns = document.querySelectorAll(
+                      "#dropdown-container-10 > details",
+                    );
+
+                    dropdowns.forEach((dropdown) => {
+                      const detail = dropdown as HTMLDetailsElement;
+
+                      detail.addEventListener("toggle", () => {
+                        if (detail.open) {
+                          dropdowns.forEach((other) => {
+                            const otherDetail = other as HTMLDetailsElement;
+                            if (otherDetail !== detail)
+                              otherDetail.open = false;
+                          });
+                        }
+                      });
+                    });
+                  });
+                </script>
+              </div>
+              <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  const dropdowns = document.querySelectorAll(
+                    "#dropdown-container-7 > details",
+                  );
+
+                  dropdowns.forEach((dropdown) => {
+                    const detail = dropdown as HTMLDetailsElement;
+
+                    detail.addEventListener("toggle", () => {
+                      if (detail.open) {
+                        dropdowns.forEach((other) => {
+                          const otherDetail = other as HTMLDetailsElement;
+                          if (otherDetail !== detail) otherDetail.open = false;
+                        });
+                      }
+                    });
+                  });
+                });
+              </script>
+            </div>
+          </div>
+
+          <!--Tipos de activos alisantes  -->
+          <div class="md:flex relative py-3 lg:py-3">
+            <div class="basis-1/2 space-y-4">
+              <h2 class="text-2xl font-bold text-gray-800">
+                Tipos de activos alisantes
+              </h2>
+              <p class="text-gray-600">
+                Los activos alisantes en las keratinas son los ingredientes
+                responsables de modificar temporalmente la estructura del
+                cabello para lograr un efecto liso y reducir el frizz. Existen
+                diferentes tipos de activos alisantes según su composición
+                química y su efecto en la fibra capilar.
+              </p>
+
+              <img class="rounded block md:hidden" src={activosAlisantes.src} alt="">
+
+              <div class="space-y-4" id="dropdown-container-11">
+                <!-- Dropdown Principal 1 -->
+                <details class="group border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center"
+                  >
+                    1. Alisantes a base de formaldehído y sus derivados
+                    <span
+                      class="transition-transform group-open:rotate-180 hidden lg:block"
+                      >⌄</span
+                    >
+                  </summary>
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <p>
+                      El formol (formaldehído y sus derivados, como el metileno
+                      glicol) es uno de los activos más utilizados en
+                      tratamientos de alisado, ya que ofrece resultados
+                      duraderos, efectivos y una transformación visible del
+                      cabello.
+                    </p>
+                    <p>Efectos inmediatos después del tratamiento:</p>
+                    <ul class="list-disc pl-5">
+                      <li>
+                        Cabello extremadamente liso: Se consigue un alisado
+                        intenso desde la primera aplicación.
+                      </li>
+                      <li>
+                        Brillo y suavidad: La cutícula se sella, lo que da un
+                        aspecto brillante y sedoso.
+                      </li>
+                      <li>
+                        Reducción del frizz: El cabello queda manejable, sin
+                        encrespamiento incluso en climas húmedos.
+                      </li>
+                      <li>
+                        Menor volumen: Se elimina el exceso de volumen, lo que
+                        facilita el peinado diario.
+                      </li>
+                    </ul>
+                  </div>
+                </details>
+
+                <!-- Dropdown Principal 2 -->
+
+                <details class="group border rounded-lg p-4">
+                  <summary
+                    class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center"
+                  >
+                    2. Duración del alisado con formol
+                    <span
+                      class="transition-transform group-open:rotate-180 hidden lg:block"
+                      >⌄</span
+                    >
+                  </summary>
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <p>
+                      ⏳ Aproximadamente de 4 a 6 meses. Con cuidados
+                      posteriores adecuados, como lo son el uso de un shampoo
+                      libre de sulfatos y parabenos.
+                    </p>
+                    <div class="space-y-4" id="dropdown-container-12">
+                      <!-- Sub-dropdown 1 -->
+                      <details class="group border rounded-lg p-4">
+                        <summary
+                          class="cursor-pointer font-semibold text-base text-gray-800 flex justify-between items-center"
+                        >
+                          1. Los sulfatos eliminan el alisado más rápido
+                          <span
+                            class="transition-transform group-open:rotate-180"
+                            >⌄</span
+                          >
+                        </summary>
+                        <div class="mt-2 text-gray-600 space-y-4">
+                          <p>
+                            🔹 <strong
+                              >Ejemplo de sulfatos comunes en shampoos
+                              comerciales:</strong
+                            >
+                          </p>
+                          <ul class="list-disc pl-5">
+                            <li>Lauril sulfato de sodio (SLS)</li>
+                            <li>Laureth sulfato de sodio (SLES)</li>
+                          </ul>
+                          <p>🚨 <strong>¿Por qué son un problema?</strong></p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              ✔️ Son agentes limpiadores fuertes que eliminan la
+                              suciedad, pero también arrastran la keratina y
+                              otros activos del alisado, haciendo que el efecto
+                              dure menos.
+                            </li>
+                            <li>
+                              ✔️ Abren la cutícula del cabello, lo que aumenta
+                              el frizz y la resequedad.
+                            </li>
+                            <li>
+                              ✔️ Si el cabello ya está tratado químicamente,
+                              pueden hacerlo más propenso al quiebre.
+                            </li>
+                          </ul>
+                          <p>
+                            💡 <strong>Conclusión:</strong> Usar un shampoo sin sulfatos
+                            ayuda a mantener el alisado por más tiempo y protege
+                            la fibra capilar.
+                          </p>
+                        </div>
+                      </details>
+
+                      <!-- Sub-dropdown 2 -->
+                      <details class="group border rounded-lg p-4">
+                        <summary
+                          class="cursor-pointer font-semibold text-base text-gray-800 flex justify-between items-center"
+                        >
+                          2. Los parabenos pueden afectar la salud del cabello
+                          <span
+                            class="transition-transform group-open:rotate-180"
+                            >⌄</span
+                          >
+                        </summary>
+                        <div class="mt-2 text-gray-600 space-y-4">
+                          <p>
+                            🔹 <strong>Ejemplo de parabenos comunes:</strong>
+                          </p>
+                          <ul class="list-disc pl-5">
+                            <li>Metilparabeno</li>
+                            <li>Propilparabeno</li>
+                          </ul>
+                          <p>🚨 <strong>¿Por qué evitarlos?</strong></p>
+                          <ul class="list-disc pl-5">
+                            <li>
+                              ✔️ Son conservantes, pero pueden acumularse en el
+                              cabello y cuero cabelludo, generando irritaciones.
+                            </li>
+                            <li>
+                              ✔️ Pueden debilitar la fibra capilar a largo plazo
+                              y hacer que el cabello pierda su brillo y
+                              suavidad.
+                            </li>
+                          </ul>
+                          <p>
+                            💡 <strong>Conclusión:</strong> No afectan directamente
+                            el alisado, pero pueden contribuir a la resequedad y
+                            sensibilización del cabello tratado químicamente.
+                          </p>
+                        </div>
+                      </details>
+
+                      <!-- Sub-dropdown 3 -->
+                      <details class="group border rounded-lg p-4">
+                        <summary
+                          class="cursor-pointer font-semibold text-base text-gray-800 flex justify-between items-center"
+                        >
+                          3. Beneficios de un shampoo sin sulfatos ni parabenos
+                          <span
+                            class="transition-transform group-open:rotate-180"
+                            >⌄</span
+                          >
+                        </summary>
+                        <div class="mt-2 text-gray-600 space-y-4">
+                          <ul class="list-disc pl-5">
+                            <li>✅ Prolonga la duración del alisado.</li>
+                            <li>
+                              ✅ Mantiene la cutícula sellada, evitando el
+                              frizz.
+                            </li>
+                            <li>
+                              ✅ No reseca el cabello, dejándolo más hidratado.
+                            </li>
+                            <li>✅ Protege el color en cabellos teñidos.</li>
+                            <li>
+                              ✅ Cuida el cuero cabelludo y evita irritaciones.
+                            </li>
+                          </ul>
+                        </div>
+                      </details>
+
+                      <!-- Sub-dropdown 4 -->
+                      <details class="group border rounded-lg p-4">
+                        <summary
+                          class="cursor-pointer font-semibold text-base text-gray-800 flex justify-between items-center"
+                        >
+                          4. ¿Qué ingredientes buscar en un shampoo para cabello
+                          alisado?
+                          <span
+                            class="transition-transform group-open:rotate-180"
+                            >⌄</span
+                          >
+                        </summary>
+                        <div class="mt-2 text-gray-600 space-y-4">
+                          <ul class="list-disc pl-5">
+                            <li>
+                              🔹 <strong>Sustitutos suaves de sulfatos:</strong>
+                              Cocamidopropyl betaine, Sodium Lauroyl Sarcosinate.
+                            </li>
+                            <li>
+                              🔹 <strong>Ingredientes hidratantes:</strong> Aceite
+                              de argán, keratina, colágeno, pantenol.
+                            </li>
+                            <li>
+                              🔹 <strong>Proteínas y aminoácidos:</strong> Fortalecen
+                              la fibra capilar y prolongan el alisado.
+                            </li>
+                          </ul>
+                        </div>
+                      </details>
+                    </div>
+                    <script>
+                      document.addEventListener("DOMContentLoaded", () => {
+                        const dropdowns = document.querySelectorAll(
+                          "#dropdown-container-12 > details",
+                        );
+
+                        dropdowns.forEach((dropdown) => {
+                          const detail = dropdown as HTMLDetailsElement;
+
+                          detail.addEventListener("toggle", () => {
+                            if (detail.open) {
+                              dropdowns.forEach((other) => {
+                                const otherDetail = other as HTMLDetailsElement;
+                                if (otherDetail !== detail)
+                                  otherDetail.open = false;
+                              });
+                            }
+                          });
+                        });
+                      });
+                    </script>
+                  </div>
+                </details>
+
+                <script>
+                  document.addEventListener("DOMContentLoaded", () => {
+                    const dropdowns = document.querySelectorAll(
+                      "#dropdown-container-11 > details",
+                    );
+
+                    dropdowns.forEach((dropdown) => {
+                      const detail = dropdown as HTMLDetailsElement;
+
+                      detail.addEventListener("toggle", () => {
+                        if (detail.open) {
+                          dropdowns.forEach((other) => {
+                            const otherDetail = other as HTMLDetailsElement;
+                            if (otherDetail !== detail)
+                              otherDetail.open = false;
+                          });
+                        }
+                      });
+                    });
+                  });
+                </script>
               </div>
             </div>
-
-            <script>
-              // Asegurarse de que la fecha de registro es un objeto Date
-              const userRegisteredAt = new Date("2024-12-01T12:00:00Z");
-
-              const countdownElement = document.getElementById("countdown");
-              const discountTextElement =
-                document.getElementById("discount-text");
-
-              function updateCountdown() {
-                const now = new Date();
-                // Asegúrese de que la fecha de caducidad se calcula correctamente
-                const expiryDate = new Date(
-                  userRegisteredAt.getTime() + 30 * 24 * 60 * 60 * 1000,
-                ); // Sumar 30 días
-
-                const timeLeft = expiryDate.getTime() - now.getTime(); // Usa getTime() para obtener milisegundos
-
-                if (timeLeft <= 0) {
-                  countdownElement.textContent = "¡Oferta expirada!";
-                  // Cambiar el texto cuando el tiempo haya expirado
-                  discountTextElement.textContent =
-                    "Expande tus conocimientos de Alaciado, Botox capilar y Lifting.";
-                  return;
-                }
-
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24)); // Días restantes
-                const hours = Math.floor(
-                  (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-                ); // Horas restantes
-                const minutes = Math.floor(
-                  (timeLeft % (1000 * 60 * 60)) / (1000 * 60),
-                ); // Minutos restantes
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000); // Segundos restantes
-
-                countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-              }
-
-              // Actualizar la cuenta regresiva cada segundo
-              setInterval(updateCountdown, 1000);
-
-              // Inicializar la cuenta regresiva
-              updateCountdown();
-            </script>
-
-            <!-- Banner 2 -->
-            <div class="snap-center w-1/3 px-4 lg:px-1">
-              <div class="bg-[#917763] rounded-lg  overflow-hidden">
-                <img
-                  src="https://media.wapastudio.com/keratina-dashboard-tienda.webp"
-                  alt="Compra tu queratina"
-                  class="h-40 w-full object-cover"
-                />
-                <div class="p-4">
-                  <h2 class="text-xl  font-medium text-white">
-                    Compra ahora tu queratina
-                  </h2>
-                  <p class="text-gray-200 mt-2 font-thin">
-                    Aprovecha el descuento especial que hemos preparado para ti
-                    como alumna de nuestra academia para Alaciado y Botox.
-                  </p>
-                  <a
-                    href="/tienda"
-                    class="inline-block mt-4 px-4 py-2 border text-white border-white rounded-md hover:bg-white/20 transition-colors"
-
-                  >
-                    Comprar ahora
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Banner 3 -->
-            <div class="snap-center w-1/3 px-4 lg:px-1">
-              <div class="bg-[#F8FAFC] rounded-lg overflow-hidden">
-                <img
-                  src="https://media.wapastudio.com/call-wapa-dashboard.webp"
-                  alt="Agenda una llamada"
-                  class="h-40 w-full object-cover"
-                />
-                <div class="p-4">
-                  <h2 class="text-xl font-medium text-black">
-                    Agenda una llamada
-                  </h2>
-                  <p class="text-zinc-700 mt-2 font-thin">
-                    Agenda una llamada con nuestra maestra certificada para
-                    respuestas personalizadas.
-                  </p>
-                  <a
-                    href="/agendar-llamada"
-                    class="inline-block mt-4 px-4 py-2 border border-zinc-800 rounded-md hover:bg-zinc-800/10  transition-colors"
-                  >
-                    Agendar ahora
-                  </a>
-                </div>
-              </div>
-            </div>
+            <div class="basis-1/2 hidden md:block md:sticky md:top-40 self-start px-5">
+            <img class="rounded " src={activosAlisantes.src} alt=""></div>
           </div>
         </div>
       </div>
     </section>
-  </section>
-</Layout>
+
+    <!-- Animación para el título -->
+    <style>
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translate3d(0, -20px, 0);
+        }
+        to {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      .animate-fadeInDown {
+        animation: fadeInDown 1s ease-out;
+      }
+    </style>
+  </section></Layout
+>

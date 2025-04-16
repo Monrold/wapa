@@ -1,0 +1,350 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { supabase } from "../lib/supabase";
+import Calisados from "../components/curso-alisado.astro";
+
+const { cookies, redirect } = Astro;
+
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (!accessToken || !refreshToken) {
+  return redirect("/signin");
+}
+
+const { data, error } = await supabase.auth.setSession({
+  refresh_token: refreshToken.value,
+  access_token: accessToken.value,
+});
+
+if (error) {
+  cookies.delete("sb-access-token", {
+    path: "/",
+  });
+  cookies.delete("sb-refresh-token", {
+    path: "/",
+  });
+
+  return redirect("/signin");
+}
+
+const email = data?.user?.email;
+const name = data?.user?.user_metadata?.full_name;
+
+// Verificar si el usuario tiene cursos vinculados
+let cursosVinculados = [];
+
+const { data: cursosIds, error: cursosError } = await supabase
+  .from("usuarios_cursos")
+  .select("curso_id")
+  .eq("usuario_id", data?.user?.id);
+
+if (cursosError) {
+  console.error(
+    "Error al verificar los cursos del usuario:",
+    cursosError.message,
+  );
+} else {
+  console.log("Cursos vinculados (IDs obtenidos):", cursosIds);
+}
+
+if (cursosError) {
+  console.error(
+    "Error al verificar los cursos del usuario:",
+    cursosError.message,
+  );
+} else if (cursosIds && cursosIds.length > 0) {
+  const ids = cursosIds.map((curso) => curso.curso_id);
+
+  const { data: cursos, error: detallesError } = await supabase
+    .from("cursos")
+    .select("*")
+    .in("id", ids);
+
+  if (detallesError) {
+    console.error(
+      "Error al obtener los detalles de los cursos:",
+      detallesError.message,
+    );
+  } else {
+    cursosVinculados = cursos;
+  }
+}
+---
+
+<Layout
+  title="Panel de Control"
+  description="Este es el dashboard"
+  lightColor={true}
+>
+  <section>
+    <div class=""></div>
+    <!-- Sub Navbar -->
+    <section class="bg-[#F8FAFC] py-4 px-6">
+      <div class="flex space-x-4 items-center max-w-5xl mx-auto">
+        <!-- Link de perfil con círculo -->
+        <a
+          href="/profile"
+          class="flex items-center text-black font-medium text-lg space-x-2 hover:opacity-70"
+        >
+          <!-- Círculo con ícono -->
+          <div
+            class="w-8 h-8 bg-black rounded-full flex items-center justify-center"
+          >
+            <!-- Ícono SVG de usuario -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-3 h-3 fill-white text-gray-700"
+              viewBox="0 0 448 512"
+              ><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+              <path
+                d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"
+              ></path></svg
+            >
+          </div>
+        </a>
+        <!-- Link de blog -->
+        <p class="px-2 lg:px-4">|</p>
+        <a href="/blog" class="text-black font-medium text-lg hover:opacity-70">
+          Blog
+        </a>
+        <!-- Link de blog -->
+        <p class="px-2 lg:px-4">|</p>
+        <a
+          href="/tienda"
+          class="text-black font-medium text-lg hover:opacity-70"
+        >
+          Tienda
+        </a>
+        
+      </div>
+    </section>
+    <section class="bg-white">
+      <!-- Bienvenida -->
+      <div
+        class="py-8 border-b-2 px-4 lg:px-0 max-w-5xl mx-4 md:mx-auto pb-8"
+      >
+        <h1 class="text-2xl lg:text-3xl font-medium">
+          Bienvenid@, {name} 👋
+        </h1>
+        <p class="text-lg text-gray-600 mt-4 opacity-80 font-thin">
+          Aquí comienza tu camino hacia el dominio de los alisados
+          profesionales. En Wapa Academy creemos que la excelencia está en los
+          detalles, por eso te ofrecemos cursos diseñados para convertirte en
+          una experta en técnicas avanzadas, utilizando productos de la más alta
+          calidad.
+        </p>
+      </div>
+
+      <!-- Cursos -->
+      <div class="max-w-5xl mx-auto my-8 px-4 md:px-0">
+        <h2 class="text-2xl font-medium px-4 text-gray-800 mb-6">Tus cursos</h2>
+        {
+          cursosVinculados.length > 0 ? (
+            cursosVinculados.map((curso, index) => (
+              <div class="flex flex-col md:flex-row items-center bg-[#F8FAFC] rounded-lg p-6 mb-6">
+                <div class="w-full md:w-1/2 text-left">
+                  <h3 class="text-xl font-medium text-gray-800 mb-2">
+                    {curso.title}
+                  </h3>
+                  <p class="text-gray-600 font-thin">{curso.description}</p>
+                  <a
+                    href={curso.url}
+                    class="inline-block mt-4 px-4 py-2  border-gray-600 rounded-md border text-gray-600 text-base  hover:bg-gray-600/10 transition-colors"
+                  >
+                    Acceder al curso
+                  </a>
+                </div>
+                <div class="w-full pt-4 md:pt-0 md:w-1/2 h-64 md:h-64">
+                  <div class="h-full w-full">
+                    <img
+                      src={curso.img}
+                      alt={curso.description}
+                      class="rounded-lg object-cover w-full h-full"
+                    />
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p class="text-gray-600 px-6">
+              Aún no tienes cursos vinculados. Explora más en nuestra
+              plataforma.
+            </p>
+          )
+        }
+      </div>
+
+      <!--Ir al blog -->
+      <div class="border-t-2 max-w-5xl lg:mx-auto mx-4 mb-4 mt-4 pt-4">
+        <div
+          class="bg-zinc-900  p-8 lg:flex lg:items-center lg:justify-between w-full text-white rounded-md"
+        >
+          <div>
+            <p class="text-center font-normal lg:text-left lg:text-2xl">
+              Encuentra consejos, técnicas y recomendaciones.
+            </p>
+          </div>
+          <!-- Contenedor del botón centrado verticalmente -->
+          <div class="flex justify-center items-center w-full lg:w-auto">
+            <a
+              href="/blog"
+              class="inline-block mt-4 px-10 py-2 text-white border border-white font-medium rounded-md hover:bg-white/20 transition-colors"
+            >
+              Ir al Blog
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Banner -->
+      <div class="py-2 md:py-6 max-w-5xl lg:mx-auto">
+        <div class="flex px-4 items-center lg:hidden mb-4">
+          <div>
+            <svg
+              class="w-4 h-4 rotate-12"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 384 512"
+              ><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+              <path
+                d="M32 32C32 14.3 46.3 0 64 0S96 14.3 96 32l0 208-64 0L32 32zM224 192c0-17.7 14.3-32 32-32s32 14.3 32 32l0 64c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-64zm-64-64c17.7 0 32 14.3 32 32l0 48c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-48c0-17.7 14.3-32 32-32zm160 96c0-17.7 14.3-32 32-32s32 14.3 32 32l0 64c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-64zm-96 88l0-.6c9.4 5.4 20.3 8.6 32 8.6c13.2 0 25.4-4 35.6-10.8c8.7 24.9 32.5 42.8 60.4 42.8c11.7 0 22.6-3.1 32-8.6l0 8.6c0 88.4-71.6 160-160 160l-61.7 0c-42.4 0-83.1-16.9-113.1-46.9L37.5 453.5C13.5 429.5 0 396.9 0 363l0-27c0-35.3 28.7-64 64-64l88 0c22.1 0 40 17.9 40 40s-17.9 40-40 40l-56 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l56 0c39.8 0 72-32.2 72-72z"
+              ></path></svg
+            >
+          </div><span class="px-2">|</span> Desliza hacia la derecha
+        </div>
+        <!-- Contenedor del scroll -->
+        <div
+          class="overflow-x-scroll lg:overflow-hidden snap-mandatory snap-x lg:mx-0"
+        >
+          <div class="flex w-[300vw] lg:w-full">
+            <!-- Banner 1 -->
+            <div class="snap-center w-1/3 px-4 lg:px-1">
+              <div class="bg-[#F8FAFC] rounded-lg overflow-hidden">
+                <img
+                  src="https://media.wapastudio.com/banner-blog-dahsboard-wapa.webp"
+                  alt="Tips para alisados"
+                  class="h-40 w-full object-cover"
+                />
+                <div class="p-4">
+                  <p class=" mt-1 text-xs opacity-50">
+                    Oferta disponible por: <span class="font-thin" id="countdown" class="font-bold"
+                    ></span>.
+                  </p>
+                  <h2 class="text-xl font-medium">
+                    Descubre tu próximo curso
+                  </h2>
+                  <p class="font-thin" id="discount-text" class=" mt-2">
+                    🔥 Sólo para ti 10% off por ser nuestra alumna.
+                  </p>
+                  <a
+                    href="/cursos-descuento"
+                    class="inline-block mt-4 px-4 py-2  border border-zinc-800 rounded-md hover:bg-zinc-800/10 transition-colors"
+                  >
+                    Ver cursos
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <script>
+              // Asegurarse de que la fecha de registro es un objeto Date
+              const userRegisteredAt = new Date("2024-12-01T12:00:00Z");
+
+              const countdownElement = document.getElementById("countdown");
+              const discountTextElement =
+                document.getElementById("discount-text");
+
+              function updateCountdown() {
+                const now = new Date();
+                // Asegúrese de que la fecha de caducidad se calcula correctamente
+                const expiryDate = new Date(
+                  userRegisteredAt.getTime() + 30 * 24 * 60 * 60 * 1000,
+                ); // Sumar 30 días
+
+                const timeLeft = expiryDate.getTime() - now.getTime(); // Usa getTime() para obtener milisegundos
+
+                if (timeLeft <= 0) {
+                  countdownElement.textContent = "¡Oferta expirada!";
+                  // Cambiar el texto cuando el tiempo haya expirado
+                  discountTextElement.textContent =
+                    "Expande tus conocimientos de Alaciado, Botox capilar y Lifting.";
+                  return;
+                }
+
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24)); // Días restantes
+                const hours = Math.floor(
+                  (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+                ); // Horas restantes
+                const minutes = Math.floor(
+                  (timeLeft % (1000 * 60 * 60)) / (1000 * 60),
+                ); // Minutos restantes
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000); // Segundos restantes
+
+                countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+              }
+
+              // Actualizar la cuenta regresiva cada segundo
+              setInterval(updateCountdown, 1000);
+
+              // Inicializar la cuenta regresiva
+              updateCountdown();
+            </script>
+
+            <!-- Banner 2 -->
+            <div class="snap-center w-1/3 px-4 lg:px-1">
+              <div class="bg-[#917763] rounded-lg  overflow-hidden">
+                <img
+                  src="https://media.wapastudio.com/keratina-dashboard-tienda.webp"
+                  alt="Compra tu queratina"
+                  class="h-40 w-full object-cover"
+                />
+                <div class="p-4">
+                  <h2 class="text-xl  font-medium text-white">
+                    Compra ahora tu queratina
+                  </h2>
+                  <p class="text-gray-200 mt-2 font-thin">
+                    Aprovecha el descuento especial que hemos preparado para ti
+                    como alumna de nuestra academia para Alaciado y Botox.
+                  </p>
+                  <a
+                    href="/tienda"
+                    class="inline-block mt-4 px-4 py-2 border text-white border-white rounded-md hover:bg-white/20 transition-colors"
+
+                  >
+                    Comprar ahora
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Banner 3 -->
+            <div class="snap-center w-1/3 px-4 lg:px-1">
+              <div class="bg-[#F8FAFC] rounded-lg overflow-hidden">
+                <img
+                  src="https://media.wapastudio.com/call-wapa-dashboard.webp"
+                  alt="Agenda una llamada"
+                  class="h-40 w-full object-cover"
+                />
+                <div class="p-4">
+                  <h2 class="text-xl font-medium text-black">
+                    Agenda una llamada
+                  </h2>
+                  <p class="text-zinc-700 mt-2 font-thin">
+                    Agenda una llamada con nuestra maestra certificada para
+                    respuestas personalizadas.
+                  </p>
+                  <a
+                    href="/agendar-llamada"
+                    class="inline-block mt-4 px-4 py-2 border border-zinc-800 rounded-md hover:bg-zinc-800/10  transition-colors"
+                  >
+                    Agendar ahora
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+</Layout>
