@@ -1,147 +1,475 @@
 ---
-
 import Layout from "../layouts/Layout.astro";
-import Image from "../images/precios/hands.webp"
-import portada from "../images/manual-portada-wapa.webp";
+import Image from "../images/precios/hands.webp";
+import portada from "../images/portada-manual.svg";
 import tricologia from "../images/tricologia.jpg";
+import Indice from "../components/indice.astro";
+import estructura from "../images/ebook/estructura.webp";
+import tallo from "../images/ebook/tallo.jpg";
+import cuticula from "../images/ebook/cuticula.jpg";
 ---
 
 <Layout title="" description="" lightColor={true}>
   <section class="">
-    <img class="object-cover h-[50vh] w-full" src={portada.src} alt="">
+    <img
+      class="object-cover h-[40vh] md:h-[60vh] w-full"
+      src={portada.src}
+      alt=""
+    />
   </section>
-  <section class="bg-primary text-black font-sans min-h-screen p-8 max-w-screen-xl mx-auto">
+  <section
+    class="bg-primary text-black font-sans min-h-screen p-8 max-w-screen-lg mx-auto"
+  >
+    <div class="sticky top-0 z-10 rounded-xl">
+      <Indice />
+    </div>
     <!-- Portada -->
-    <div class="md:text-center md:mb-8">
-      <h1 class="text-4xl font-bold text-accent mb-0
-       animate-fadeInDown">
+    <section class="p-2 md:mb-8 mt-4 md:mt-10">
+      <h1
+        class="text-2xl lg:text-4xl font-bold text-accent mb-0
+       animate-fadeInDown"
+      >
         Manual de Estudio: Alisados y Tricología
       </h1>
-      <p class="md:text-lg max-w-3xl mx-auto">
-        Aprende los fundamentos del alisado capilar, su historia y la ciencia detrás de la fibra capilar.
+      <p class="md:text-lg max-w-3xl">
+        Aprende los fundamentos del alisado capilar, su historia y la ciencia
+        detrás de la fibra capilar.
       </p>
-    </div>
 
-    <!-- Índice -->
-    <div class="bg-white p-6 rounded-2xl hidden mb-12 border border-gray-100">
-      <h2 class="text-3xl font-bold text-accent mb-6 relative">
-        <span class="before:absolute before:-left-3 before:top-1/2 before:-translate-y-1/2 before:w-2 before:h-2 before:bg-accent before:rounded-full"></span>
-        Índice
-      </h2>
-      <ul class="space-y-4">
-        <li>
-          <a href="#alisado" class="group flex items-start gap-3 transition-all duration-300 hover:translate-x-1">
-            <span class="mt-1 w-2 h-2 bg-accent rounded-full shrink-0 transition-transform duration-300 group-hover:scale-125"></span>
-            <span class="text-gray-800 group-hover:text-accent font-medium text-lg">¿Qué es un alisado?</span>
-          </a>
-        </li>
-        <li>
-          <a href="#origen" class="group flex items-start gap-3 transition-all duration-300 hover:translate-x-1">
-            <span class="mt-1 w-2 h-2 bg-accent rounded-full shrink-0 transition-transform duration-300 group-hover:scale-125"></span>
-            <span class="text-gray-800 group-hover:text-accent font-medium text-lg">El origen de los alisados</span>
-          </a>
-        </li>
-        <li>
-          <a href="#tricologia" class="group flex items-start gap-3 transition-all duration-300 hover:translate-x-1">
-            <span class="mt-1 w-2 h-2 bg-accent rounded-full shrink-0 transition-transform duration-300 group-hover:scale-125"></span>
-            <span class="text-gray-800 group-hover:text-accent font-medium text-lg">Etapa I: Tricología</span>
-          </a>
-        </li>
-        <li>
-          <a href="#estructura" class="group flex items-start gap-3 transition-all duration-300 hover:translate-x-1">
-            <span class="mt-1 w-2 h-2 bg-accent rounded-full shrink-0 transition-transform duration-300 group-hover:scale-125"></span>
-            <span class="text-gray-800 group-hover:text-accent font-medium text-lg">Estructura del cabello</span>
-          </a>
-        </li>
-        <li>
-          <a href="#composicion" class="group flex items-start gap-3 transition-all duration-300 hover:translate-x-1">
-            <span class="mt-1 w-2 h-2 bg-accent rounded-full shrink-0 transition-transform duration-300 group-hover:scale-125"></span>
-            <span class="text-gray-800 group-hover:text-accent font-medium text-lg">¿Cómo se conforma nuestro cabello?</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-    
+      <!-- Contenido -->
+      <div class="space-y-12 mt-10">
+        <div
+          class="flex flex-col md:flex-row md:items-center border-b border-gray-300 pb-10"
+        >
+          <!-- Sección: ¿Qué es un alisado? -->
+          <article class="bg-white p-2 py-6 rounded-lg basis-1/2">
+            <h2 class="text-2xl font-semibold text-accent mb-2">
+              ¿Qué es un alisado?
+            </h2>
+            <p class="text-gray-700">
+              Un alisado es un tratamiento que se realiza al cabello con el
+              objetivo de hacerlo más liso, suave y sin frizz. En lugar de tener
+              el cabello rizado o con ondas, el alisado lo deja más lacio y
+              manejable.
+            </p>
+          </article>
 
-    <!-- Contenido -->
-    <div class="space-y-12">
+          <!-- Sección: El origen de los alisados -->
+          <article class="bg-black p-6 py-6 rounded-lg basis-1/2">
+            <h2 class="text-2xl font-semibold text-accent mb-2 text-white">
+              El origen de los alisados
+            </h2>
+            <p class="text-white">
+              En algunas culturas antiguas, como en el Antiguo Egipto, las
+              personas ya utilizaban herramientas rudimentarias para alisar el
+              cabello. En esos tiempos se usaban hierbas y aceites naturales
+              para intentar suavizar y controlar el cabello, especialmente entre
+              la clase alta, que se preocupaba por mantener un estilo de vida
+              estético.
+            </p>
+          </article>
+        </div>
 
-      <div class="flex flex-col md:flex-row md:items-center border-b border-gray-300 pb-10">
-      <!-- Sección: ¿Qué es un alisado? -->
-      <article class="bg-white  p-2 py-6 rounded-lg basis-1/2">
-        <h2 class="text-2xl font-semibold text-accent mb-2">¿Qué es un alisado?</h2>
-        <p class="text-gray-700">
-          Un alisado es un tratamiento que se realiza al cabello con el objetivo de hacerlo más liso, suave y sin frizz. 
-          En lugar de tener el cabello rizado o con ondas, el alisado lo deja más lacio y manejable.
-        </p>
-      </article>
+        <!-- Sección: Etapa I - Tricología -->
+        <div class="flex flex-col md:flex-row md:items-center rounded-md">
+          <article
+            id="tricologia"
+            class="bg-white p-2 md:pl-4 rounded-lg basis-1/2 md:order-2"
+          >
+            <h2 class="text-3xl font-semibold text-accent mb-2">
+              Etapa I: Tricología
+            </h2>
+            <p class="text-gray-700">
+              <strong>¿Qué es la tricología?</strong>
+              <br />
+              La tricología cosmética se encarga del cuidado y la belleza del cabello,
+              mejorando su apariencia, textura y salud mediante tratamientos y productos
+              específicos.
+            </p>
+            <p class="text-gray-700 mt-4">
+              Antes de comenzar a trabajar en el cabello, debemos conocer cómo
+              está conformada la fibra capilar, sus propiedades y los puntos más
+              importantes para lograr alisados sanos y exitosos.
+            </p>
+          </article>
+          <div class="basis-1/2 md:order-1">
+            <img class="rounded-md" src={tricologia.src} alt="" />
+          </div>
+        </div>
 
-      <!-- Sección: El origen de los alisados -->
-      <article  class="bg-black p-6 py-6 rounded-lg basis-1/2">
-        <h2 class="text-2xl font-semibold text-accent mb-2 text-white">El origen de los alisados</h2>
-        <p class="text-white">
-          En algunas culturas antiguas, como en el Antiguo Egipto, las personas ya utilizaban herramientas rudimentarias para alisar el cabello. 
-          En esos tiempos se usaban hierbas y aceites naturales para intentar suavizar y controlar el cabello, especialmente entre la clase alta, 
-          que se preocupaba por mantener un estilo de vida estético.
-        </p>
-      </article>
-    </div>
-      <!-- Sección: Etapa I - Tricología -->
-       <div class="flex flex-col md:flex-row md:items-center  rounded-md">
-      <article id="tricologia" class="bg-white  p-2 rounded-lg basis-1/2">
-        <h2 class="text-3xl font-semibold text-accent mb-2">Etapa I: Tricología</h2>
-        <p class="text-gray-700">
-          <strong>¿Qué es la tricología?</strong> <br>
-          La tricología cosmética se encarga del cuidado y la belleza del cabello, mejorando su apariencia, textura y salud mediante tratamientos y productos específicos.
-        </p>
-        <p class="text-gray-700 mt-4">
-          Antes de comenzar a trabajar en el cabello, debemos conocer cómo está conformada la fibra capilar, 
-          sus propiedades y los puntos más importantes para lograr alisados sanos y exitosos.
-        </p>
-      </article>
-      <div class="basis-1/2">
-        <img class=" rounded-md" src={tricologia.src} alt="">
+        <!-- Sección: Estructura del cabello -->
+        <article id="estructura" class="bg-white rounded-lg">
+          <h2 class="text-2xl font-semibold text-accent mb-2">
+            Estructura del cabello
+          </h2>
+          <p class="text-gray-700">
+            Nuestro cabello no tiene vida; es una fibra carente de torrentes
+            sanguíneos y fibras nerviosas. Por esta razón, no sentimos dolor al
+            cortarlo, plancharlo o decolorarlo. Sin embargo, cualquier daño que
+            sufra la fibra capilar se considera daño acumulativo, ya que el
+            cabello no tiene la capacidad de regenerarse por sí mismo.
+          </p>
+        </article>
+
+        <!-- Sección: ¿Cómo se conforma nuestro cabello? -->
+        <article id="composicion" class="bg-white rounded-lg">
+          <h2 class="text-2xl font-semibold text-accent mb-2">
+            ¿Cómo se conforma nuestro cabello?
+          </h2>
+          <p class="text-gray-700">
+            Ahora bien, para que comprendas cómo repercuten los daños en el
+            cabello, debemos entender su composición.
+          </p>
+        </article>
+
+        <!--el foliculo piloso -->
+        <div class="space-y-6 md:flex">
+          <div class="basis-1/2 space-y-4">
+            <!-- Título principal -->
+            <h1 class="text-2xl font-bold text-gray-800">
+              1. El Folículo Piloso (Raíz del Cabello)
+            </h1>
+
+            <!-- Párrafo introductorio -->
+            <p class="text-gray-600">
+              El folículo piloso es la estructura en la piel donde el cabello
+              comienza a crecer. Está ubicado dentro de la dermis, la capa
+              intermedia de la piel, y es responsable de la formación del
+              cabello. El folículo piloso también contiene células
+              especializadas que producen queratina, la proteína principal del
+              cabello.
+            </p>
+            <img class="block md:hidden" src={estructura.src} alt="" />
+
+            <div id="dropdown-container-1" class="space-y-4">
+              <!-- Dropdown 1: Bulbo Piloso -->
+              <details class="group border rounded-lg p-4">
+                <summary
+                  class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center"
+                >
+                  Bulbo piloso
+                  <span class="transition-transform group-open:rotate-180"
+                    >⌄</span
+                  >
+                </summary>
+                <p class="mt-2 text-gray-600">
+                  En la base del folículo se encuentra el bulbo piloso, que es
+                  donde se forma el cabello.
+                </p>
+              </details>
+
+              <!-- Dropdown 2: Papila dérmica -->
+              <details class="group border rounded-lg p-4">
+                <summary
+                  class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center"
+                >
+                  Papila dérmica
+                  <span class="transition-transform group-open:rotate-180"
+                    >⌄</span
+                  >
+                </summary>
+                <p class="mt-2 text-gray-600">
+                  Es una pequeña estructura en la base del folículo que está
+                  formada por tejido conectivo y vasos sanguíneos. La papila
+                  dérmica nutre el cabello en crecimiento al proporcionar
+                  nutrientes y oxígeno.
+                </p>
+              </details>
+
+              <!-- Dropdown 3: Glándulas sebáceas -->
+              <details class="group border rounded-lg p-4">
+                <summary
+                  class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center"
+                >
+                  Glándulas sebáceas
+                  <span class="transition-transform group-open:rotate-180"
+                    >⌄</span
+                  >
+                </summary>
+                <p class="mt-2 text-gray-600">
+                  Estas glándulas están ubicadas cerca de los folículos y
+                  secretan sebo, una sustancia oleosa que lubrica y protege el
+                  cabello.
+                </p>
+              </details>
+            </div>
+            <script>
+              document.addEventListener("DOMContentLoaded", () => {
+                const dropdowns = document.querySelectorAll(
+                  "#dropdown-container-1 > details",
+                );
+
+                dropdowns.forEach((dropdown) => {
+                  const detail = dropdown as HTMLDetailsElement;
+
+                  detail.addEventListener("toggle", () => {
+                    if (detail.open) {
+                      dropdowns.forEach((other) => {
+                        const otherDetail = other as HTMLDetailsElement;
+                        if (otherDetail !== detail) otherDetail.open = false;
+                      });
+                    }
+                  });
+                });
+              });
+            </script>
+
+            <!-- Nota final -->
+            <p class="text-sm text-gray-500 italic">
+              El folículo piloso es la única parte con vida, el tallo del
+              cabello no tiene terminaciones nerviosas, por lo que el daño que
+              se genera en este no desaparece; todo es acumulativo.
+            </p>
+          </div>
+          <div class="basis-1/2 hidden md:block md:sticky md:top-40 self-start">
+            <img src={estructura.src} alt="" />
+          </div>
+        </div>
+
+        <!--2. Adentrémonos en el tallo del cabello: -->
+        <div class="md:flex relative">
+          <div class="basis-1/2 md:sticky md:top-40 hidden md:block self-start">
+            <img src={tallo.src} alt="" />
+          </div>
+          <div class="basis-1/2 space-y-4">
+            <!-- Título principal -->
+            <h2 class="text-2xl font-bold text-gray-800">
+              2. Adentrémonos en el tallo del cabello:
+            </h2>
+
+            <!-- Párrafo introductorio -->
+            <p class="text-gray-600">
+              El tallo del cabello está compuesto por tres capas principales: la <strong
+                >médula</strong
+              >, el <strong>córtex</strong> y la <strong>cutícula</strong>, y
+              cada una cumple una función esencial para su estructura, fortaleza
+              y apariencia.
+            </p>
+            <img class="block md:hidden" src={tallo.src} alt="" />
+            <div id="dropdown-container-2" class="space-y-4">
+              <!-- Dropdown 1: Médula -->
+              <details class="group border rounded-lg p-4">
+                <summary
+                  class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center"
+                >
+                  Médula
+                  <span class="transition-transform group-open:rotate-180"
+                    >⌄</span
+                  >
+                </summary>
+                <p class="mt-2 text-gray-600">
+                  Es la capa más interna del cabello. Está formada por células
+                  suaves y queratina, es por ello que la mayoría de productos
+                  alisantes contienen queratina.
+                </p>
+              </details>
+
+              <!-- Dropdown 2: Córtex -->
+              <details class="group border rounded-lg p-4">
+                <summary
+                  class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center"
+                >
+                  Córtex
+                  <span class="transition-transform group-open:rotate-180"
+                    >⌄</span
+                  >
+                </summary>
+                <div class="mt-2 text-gray-600 space-y-4">
+                  <p>
+                    Es la capa central y más importante, ya que representa la
+                    mayor parte del cabello. Está compuesto por fibras de
+                    queratina, responsables de su fuerza, elasticidad y
+                    flexibilidad. Aquí se encuentra la <strong>melanina</strong
+                    >, que determina el color natural del cabello. Además, el
+                    córtex es clave en la resistencia del cabello y es la capa
+                    donde se realizan cambios con tratamientos químicos, como
+                    tintes o alisados, ya que aquí se encuentran los puentes
+                    estructurales.
+                  </p>
+
+                  <p class="font-semibold">¿Qué son estos puentes?</p>
+                  <p>
+                    Los puentes estructurales del cabello son las uniones
+                    químicas que mantienen la forma, fuerza y elasticidad de la
+                    fibra capilar. Hay tres tipos principales:
+                  </p>
+
+                  <!-- Sub-dropdown 1: Puentes de hidrógeno -->
+                  <details class="group border rounded-md p-3">
+                    <summary
+                      class="cursor-pointer font-medium text-gray-800 flex justify-between items-center"
+                    >
+                      1. Puentes de hidrógeno
+                      <span class="transition-transform group-open:rotate-180"
+                        >⌄</span
+                      >
+                    </summary>
+                    <div class="mt-2 text-gray-600 space-y-2">
+                      <p>
+                        <strong>Cómo funcionan:</strong> Se forman y rompen fácilmente
+                        con la humedad. Por ejemplo, cuando mojas el cabello estos
+                        enlaces se rompen. Una vez seco, los enlaces se forman de
+                        nuevo, volviendo el cabello a su estado natural.
+                      </p>
+                      <p>
+                        <strong>Importante:</strong> Son los más débiles, pero hay
+                        muchos, lo que contribuye a la estructura general del cabello.
+                      </p>
+                    </div>
+                  </details>
+
+                  <!-- Sub-dropdown 2: Puentes salinos -->
+                  <details class="group border rounded-md p-3">
+                    <summary
+                      class="cursor-pointer font-medium text-gray-800 flex justify-between items-center"
+                    >
+                      2. Puentes salinos o iónicos
+                      <span class="transition-transform group-open:rotate-180"
+                        >⌄</span
+                      >
+                    </summary>
+                    <div class="mt-2 text-gray-600 space-y-2">
+                      <p>
+                        <strong>Cómo funcionan:</strong> Estos se rompen con calor
+                        como cuando pasas la plancha. El cabello durará liso hasta
+                        que lo laves de nuevo.
+                      </p>
+                      <p>
+                        <strong>Importante:</strong> Son más fuertes que los puentes
+                        de hidrógeno, pero más débiles que los disulfuro.
+                      </p>
+                    </div>
+                  </details>
+
+                  <!-- Sub-dropdown 3: Puentes de disulfuro -->
+                  <details class="group border rounded-md p-3">
+                    <summary
+                      class="cursor-pointer font-medium text-gray-800 flex justify-between items-center"
+                    >
+                      3. Puentes de disulfuro
+                      <span class="transition-transform group-open:rotate-180"
+                        >⌄</span
+                      >
+                    </summary>
+                    <div class="mt-2 text-gray-600 space-y-2">
+                      <p>
+                        <strong>Cómo funcionan:</strong> Son responsables de la fuerza
+                        y forma permanente del cabello (liso, ondulado o rizado).
+                        Estos enlaces solo pueden romperse con productos químicos
+                        fuertes, como tintes, permanentes o alisados químicos. Al
+                        romperlos, se puede cambiar la estructura del cabello de
+                        forma duradera.
+                      </p>
+                      <p>
+                        <strong>Importante:</strong> Son los más fuertes y cruciales
+                        para la salud del cabello. Si se dañan, el cabello se debilita
+                        significativamente.
+                      </p>
+                    </div>
+                  </details>
+
+                  <!-- Explicación final -->
+                  <p class="pt-2">
+                    <strong>¿Cómo se modifican?</strong><br />
+                    Estos enlaces se alteran mediante procesos químicos como la decoloración
+                    o los alisados alcalinos (alisados permanentes). En contraste,
+                    los alisados ácidos (alisados progresivos) no rompen los enlaces
+                    de disulfuro, sino que los transforman.
+                  </p>
+                </div>
+              </details>
+
+              <!-- Dropdown 3: Cutícula -->
+              <details class="group border rounded-lg p-4">
+                <summary
+                  class="cursor-pointer font-semibold text-lg text-gray-800 flex justify-between items-center"
+                >
+                  Cutícula
+                  <span class="transition-transform group-open:rotate-180"
+                    >⌄</span
+                  >
+                </summary>
+                <div class="mt-2 text-gray-600 space-y-3">
+                  <p>
+                    Es la capa externa del cabello y está formada por células
+                    planas, escamosas y transparentes que se superponen unas
+                    sobre otras como las tejas de un techo.
+                  </p>
+                  <img src={cuticula.src} alt="" />
+                  <p>
+                    Su principal función es proteger las capas internas del
+                    cabello. La cutícula es la que da brillo al cabello y,
+                    cuando está sana, refleja la luz. Si las células de la
+                    cutícula están bien alineadas y no están dañadas, el cabello
+                    se ve suave y brillante.
+                  </p>
+                  <p>
+                    <strong>Daño a la cutícula:</strong> Si la cutícula se daña,
+                    las células se levantan, lo que puede hacer que el cabello se
+                    vea opaco, áspero o incluso quebradizo. El daño puede ser causado
+                    por el uso excesivo de calor, productos químicos, peinado agresivo,
+                    entre otros.
+                  </p>
+                  <p>
+                    Cuando se realiza un alisado, el producto necesita llegar al
+                    córtex (la capa interna del cabello) para modificar su
+                    estructura. Para que esto ocurra, el producto debe penetrar
+                    la cutícula, que es la capa externa del cabello. Si la
+                    cutícula está levantada (cabello con porosidad alta), el
+                    producto puede entrar más fácilmente en el córtex, pero el
+                    alisado tendrá menor duración.
+                  </p>
+                  <p>
+                    Por otro lado, si la cutícula está cerrada o sellada, será
+                    más difícil que el producto entre en el córtex. Sin embargo,
+                    esto no significa que sea imposible. Solo necesitamos
+                    preparar el cabello adecuadamente para que el producto pueda
+                    penetrar y lograr un buen resultado.
+                  </p>
+                </div>
+              </details>
+            </div>
+            <!-- Script para que solo un dropdown se abra a la vez -->
+            <script>
+              document.addEventListener("DOMContentLoaded", () => {
+                const dropdowns = document.querySelectorAll(
+                  "#dropdown-container-2 > details",
+                );
+
+                dropdowns.forEach((dropdown) => {
+                  const detail = dropdown as HTMLDetailsElement;
+
+                  detail.addEventListener("toggle", () => {
+                    if (detail.open) {
+                      dropdowns.forEach((other) => {
+                        const otherDetail = other as HTMLDetailsElement;
+                        if (otherDetail !== detail) otherDetail.open = false;
+                      });
+                    }
+                  });
+                });
+              });
+            </script>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
-      <!-- Sección: Estructura del cabello -->
-      <article id="estructura" class="bg-white shadow-md p-6 rounded-lg">
-        <h2 class="text-2xl font-semibold text-accent mb-2">Estructura del cabello</h2>
-        <p class="text-gray-700">
-          Nuestro cabello no tiene vida; es una fibra carente de torrentes sanguíneos y fibras nerviosas. 
-          Por esta razón, no sentimos dolor al cortarlo, plancharlo o decolorarlo. 
-          Sin embargo, cualquier daño que sufra la fibra capilar se considera daño acumulativo, ya que el cabello no tiene la capacidad de regenerarse por sí mismo.
-        </p>
-      </article>
-
-      <!-- Sección: ¿Cómo se conforma nuestro cabello? -->
-      <article id="composicion" class="bg-white shadow-md p-6 rounded-lg">
-        <h2 class="text-2xl font-semibold text-accent mb-2">¿Cómo se conforma nuestro cabello?</h2>
-        <p class="text-gray-700">
-          Ahora bien, para que comprendas cómo repercuten los daños en el cabello, debemos entender su composición.
-        </p>
-      </article>
-
-      <!-- Imagen Referencial -->
-      <div class="flex justify-center mt-8">
-        <img src={Image.src} alt="">
-    </div>
-  </section>
-
-  <!-- Animación para el título -->
-  <style >
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translate3d(0, -20px, 0);
+    <!-- Animación para el título -->
+    <style>
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translate3d(0, -20px, 0);
+        }
+        to {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
       }
-      to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
+      .animate-fadeInDown {
+        animation: fadeInDown 1s ease-out;
       }
-    }
-    .animate-fadeInDown {
-      animation: fadeInDown 1s ease-out;
-    }
-  </style>
-</Layout>
+    </style>
+  </section></Layout
+>
