@@ -1,259 +1,365 @@
-<section class="max-w-lg relative">
-    <!-- Dropdown Principal -->
-    <details class="dropdown p-6 rounded-lg bg-white/95" id="main-dropdown">
-        <summary
-            class="flex items-center justify-between cursor-pointer text-xl font-semibold select-none border-b border-gray-300 pb-4 marker:content-none"
+<!-- Minimalista Índice JS -->
+<nav class="sm:w-1/2 mx-auto" id="custom-indice">
+    <!-- Dropdown principal -->
+    <div class="custom-dropdown">
+        <div
+            class="shadow-inner custom-summary flex items-center justify-between cursor-pointer text-[1.25rem] font-bold py-3 text-[#222] transition-colors duration-200 outline-none rounded-full select-none focus:text-yellow-600 focus:bg-[#fefaf3] hover:text-yellow-600 hover:bg-[#fefaf3] px-8 md:px-10 bg-white"
+            tabindex="0"
         >
-            <span class="text-start">Ver índice</span>
+            <span>Índice</span>
             <svg
-                class="w-5 h-5 transform transition-transform duration-300 hidden lg:block"
-                id="main-angle"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
+                class="custom-angle w-5 h-5 stroke-yellow-500 stroke-[2.5] flex-shrink-0 transition-transform duration-300"
                 viewBox="0 0 24 24"
+                fill="none"
             >
-                <path d="M19 9l-7 7-7-7"></path>
+                <path
+                    d="M8 5l8 7-8 7"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
             </svg>
-        </summary>
-
-        <!-- Contenido del índice -->
-        <div class="absolute left-0 right-0 sm:left-0 sm:right-0 bg-white p-6 rounded-lg space-y-4">
-            <!-- ¿Qué son los alisados? -->
-            <ul class=" list-none text-gray-800 space-y-2 ">
-                <li>
-                    <a
-                        href="#que-son-los-alisados"
-                        class="hover:underline text-gray-500 border-b border-gray-300 pb-2 w-full block"
-                        >¿Qué son los alisados?</a>
-                </li>
-                <li>
-                    <a
-                        href="#origen-de-los-alisados"
-                        class="hover:underline text-gray-500 "
-                        >Origen de los alisados</a>
-                </li>
-            </ul>
-
-            <!-- Sub-dropdown: Tema 1 - Tricología cosmética -->
-            <details class="dropdown" id="dropdown-1">
-                <summary
-                    class="flex items-center justify-start lg:justify-between cursor-pointer font-medium text-lg marker:content-none"
-                >
-                    <span>1 - Tricología cosmética</span>
-                    <svg
-                        class="w-4 h-4 transition-transform duration-300 hidden lg:block"
-                        id="angle-1"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        viewBox="0 0 24 24"
-                    >
-                        <path d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </summary>
-                <ul class="pl-6 mt-4 list-none text-gray-700 space-y-3 text-sm">
-                    <li>
-                        <a
-                            href="#estructura-del-cabello"
-                            class="hover:underline  text-gray-500 border-b border-gray-300 pb-3 w-full block"
-                            >Estructura del cabello</a>
-                    </li>
-                    <li>
-                        <a
-                            href="#puentes-estructurales"
-                            class="hover:underline  text-gray-500 border-b border-gray-300 pb-3 w-full block"
-                            >Puentes estructurales</a>
-                    </li>
-                    <li>
-                        <a
-                            href="#modificacion-de-los-puentes"
-                            class="hover:underline text-gray-500 border-b border-gray-300 pb-3 w-full block"
-                            >¿Cómo se modifican los puentes?</a>
-                    </li>
-                    <li>
-                        <a
-                            href="#danio-a-la-cuticula"
-                            class="hover:underline text-gray-500 border-b border-gray-300 pb-3 w-full block"
-                            >Daño a la cutícula</a>
-                    </li>
-                    <li>
-                        <a
-                            href="#potencial-hidrogeno"
-                            class="hover:underline text-gray-500 border-b border-gray-300 pb-3 w-full block"
-                            >Potencial de hidrógeno (pH)</a>
-                    </li>
-                    <li>
-                        <a
-                            href="#porosidad-del-cabello"
-                            class="hover:underline text-gray-500 border-b border-gray-300 pb-3 w-full block"
-                            >Porosidad del cabello</a>
-                    </li>
-                    <li>
-                        <a
-                            href="#tipo-de-dano"
-                            class="hover:underline text-gray-500 pb-2 w-full block"
-                            >Tipo de daño en el cabello</a>
-                    </li>
-                </ul>
-            </details>
-
-            <!-- Sub-dropdown: Tema 2 - Diagnóstico capilar -->
-            <details class="dropdown" id="dropdown-2">
-                <summary
-                    class="flex items-center justify-start lg:justify-between cursor-pointer font-medium text-lg "
-                >
-                    <span>2 - Diagnóstico capilar</span>
-                    <svg
-                        class="w-4 h-4 transition-transform duration-300 hidden lg:block"
-                        id="angle-2"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        viewBox="0 0 24 24"
-                    >
-                        <path d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </summary>
-                <ul class="pl-6 mt-4 list-none text-gray-700 space-y-3 text-sm">
-                    <li>
-                        <a
-                            href="#estado-del-cabello"
-                            class="hover:underline text-gray-500 border-b border-gray-300 pb-3 w-full block"
-                            >Estado del cabello</a>
-                    </li>
-                    <li>
-                        <a
-                            href="#porosidad"
-                            class="hover:underline text-gray-500 border-b border-gray-300 pb-3 w-full block">Porosidad</a>
-                    </li>
-                    <li>
-                        <a
-                            href="#elasticidad-del-cabello"
-                            class="hover:underline text-gray-500 border-b border-gray-300 pb-3 w-full block"
-                            >Elasticidad del cabello</a>
-                    </li>
-                    <li>
-                        <a
-                            href="#grosor-textura"
-                            class="hover:underline text-gray-500 border-b border-gray-300 pb-3 w-full block"
-                            >Grosor y textura</a>
-                    </li>
-                    <li>
-                        <a
-                            href="#tipos-de-cabello"
-                            class="hover:underline text-gray-500 border-b border-gray-300 pb-3 w-full block"
-                            >Tipos de cabello y sus categorías</a>
-                    </li>
-                    <li>
-                        <a
-                            href="#procesos-quimicos"
-                            class="hover:underline text-gray-500 border-b border-gray-300 pb-3 w-full block"
-                            >Procesos químicos</a>
-                    </li>
-                </ul>
-            </details>
-
-            <!-- Sub-dropdown: Tema 3 - Alisados -->
-            <details class="dropdown" id="dropdown-3">
-                <summary
-                    class="flex items-center justify-start lg:justify-between cursor-pointer font-medium text-lg"
-                >
-                    <span>3 - Alisados</span>
-                    <svg
-                        class="w-4 h-4 transition-transform duration-300 hidden lg:block"
-                        id="angle-3"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        viewBox="0 0 24 24"
-                    >
-                        <path d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </summary>
-                <ul class="pl-6 mt-4 list-none text-gray-700 space-y-3">
-                    <li>
-                        <a
-                            href="#tipos-de-activos"
-                            class="hover:underline text-gray-500 border-b border-gray-300 pb-3 w-full block"
-                            >Tipos de activos alisantes</a>
-                    </li>
-                    <li>
-                        <a
-                            href="#productos-cotidianos"
-                            class="hover:underline text-gray-500 border-b border-gray-300 pb-3 w-full block"
-                            >Productos de uso cotidiano para el alisado</a>
-                    </li>
-                    <li>
-                        <a
-                            href="#herramientas-necesarias"
-                            class="hover:underline text-gray-500 border-b border-gray-300 pb-3 w-full block"
-                            >Herramientas necesarias</a>
-                    </li>
-                    <li>
-                        <a
-                            href="#paso-a-paso"
-                            class="hover:underline text-gray-500 border-b border-gray-300 pb-3 w-full block"
-                            >Paso a paso de un alisado</a>
-                    </li>
-                    <li>
-                        <a
-                            href="#cuidados-posteriores"
-                            class="hover:underline text-gray-500 border-b border-gray-300 pb-3 w-full block"
-                            >Cuidados posteriores</a>
-                    </li>
-                    <li>
-                        <a
-                            href="#ficha-tecnica"
-                            class="hover:underline text-gray-500 border-b border-gray-300 pb-3 w-full block"
-                            >Ficha técnica del cliente</a>
-                    </li>
-                    <li>
-                        <a
-                            href="#conoce-nuestros-productos"
-                            class="hover:underline text-gray-500 border-b border-gray-300 pb-3 w-full block"
-                            >Conoce nuestros productos</a>
-                    </li>
-                    <li>
-                        <a
-                            href="#precio-recomendado"
-                            class="hover:underline text-gray-500 pb-3 w-full block"
-                            >Precio recomendado</a>
-                    </li>
-                </ul>
-            </details>
         </div>
-    </details>
-</section>
+        <ul class="custom-list ml-0 pl-0 p-2 mt-1 sm:p-4 list-none bg-white rounded-md shadow-xl" style="display: none;">
+            <li>
+                <!-- Aquí van los 4 dropdowns actuales -->
+                <div class="px-4 sm:px-10">
+                    <div class="custom-dropdown">
+                        <div
+                            class="px-4 custom-summary flex items-center justify-between cursor-pointer text-[1.15rem] font-semibold py-3 text-[#222] transition-colors duration-200 outline-none rounded-lg select-none focus:text-yellow-600 focus:bg-[#fefaf3] hover:text-yellow-600 hover:bg-[#fefaf3]"
+                            tabindex="0"
+                        >
+                            <span class="text-base">¿Qué son los alisados?</span>
+                            <svg
+                                class="custom-angle w-5 h-5 stroke-yellow-500 stroke-[2.5] flex-shrink-0 transition-transform duration-300"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                            >
+                                <path
+                                    d="M8 5l8 7-8 7"
+                                    stroke="currentColor"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                            </svg>
+                        </div>
+                        <ul
+                            class="custom-list my-2 ml-6 pl-0 list-none text-slate-600 text-base leading-7 border-l-2 border-slate-200"
+                            style="display: none;"
+                        >
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#que-son-los-alisados"
+                                    >¿Qué son los alisados?</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#origen-de-los-alisados"
+                                    >Origen de los alisados</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="custom-dropdown">
+                        <div
+                            class="px-4 custom-summary flex items-center justify-between cursor-pointer text-[1.15rem] font-semibold py-3 text-[#222] transition-colors duration-200 outline-none rounded-lg select-none focus:text-yellow-600 focus:bg-[#fefaf3] hover:text-yellow-600 hover:bg-[#fefaf3]"
+                            tabindex="0"
+                        >
+                            <span class="text-base">1 - Tricología </span>
+                            <svg
+                                class="custom-angle w-5 h-5 stroke-yellow-500 stroke-[2.5] flex-shrink-0 transition-transform duration-300"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                            >
+                                <path
+                                    d="M8 5l8 7-8 7"
+                                    stroke="currentColor"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                            </svg>
+                        </div>
+                        <ul
+                            class="custom-list ml-6 pl-0  list-none text-slate-600 text-base leading-7 border-l-2 border-slate-200"
+                            style="display: none;"
+                        >
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#estructura-del-cabello"
+                                    >Estructura del cabello</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#puentes-estructurales"
+                                    >Puentes estructurales</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#modificacion-de-los-puentes"
+                                    >¿Cómo se modifican los puentes?</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#danio-a-la-cuticula"
+                                    >Daño a la cutícula</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#potencial-hidrogeno"
+                                    >Potencial de hidrógeno (pH)</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#porosidad-del-cabello"
+                                    >Porosidad del cabello</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#tipo-de-dano"
+                                    >Tipo de daño en el cabello</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="custom-dropdown">
+                        <div
+                            class="px-4 custom-summary flex items-center justify-between cursor-pointer text-[1.15rem] font-semibold py-3 text-[#222] transition-colors duration-200 outline-none rounded-lg select-none focus:text-yellow-600 focus:bg-[#fefaf3] hover:text-yellow-600 hover:bg-[#fefaf3]"
+                            tabindex="0"
+                        >
+                            <span class="text-base">2 - Diagnóstico capilar</span>
+                            <svg
+                                class="custom-angle w-5 h-5 stroke-yellow-500 stroke-[2.5] flex-shrink-0 transition-transform duration-300"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                            >
+                                <path
+                                    d="M8 5l8 7-8 7"
+                                    stroke="currentColor"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                            </svg>
+                        </div>
+                        <ul
+                            class="custom-list my-2 ml-6 pl-0  list-none text-slate-600 text-base leading-7 border-l-2 border-slate-200"
+                            style="display: none;"
+                        >
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#estado-del-cabello"
+                                    >Estado del cabello</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#porosidad">Porosidad</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#elasticidad-del-cabello"
+                                    >Elasticidad del cabello</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#grosor-textura">Grosor y textura</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#tipos-de-cabello"
+                                    >Tipos de cabello y sus categorías</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#procesos-quimicos"
+                                    >Procesos químicos</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="custom-dropdown">
+                        <div
+                            class="px-4 custom-summary flex items-center justify-between cursor-pointer text-[1.15rem] font-semibold py-3 text-[#222] transition-colors duration-200 outline-none rounded-lg select-none focus:text-yellow-600 focus:bg-[#fefaf3] hover:text-yellow-600 hover:bg-[#fefaf3]"
+                            tabindex="0"
+                        >
+                            <span class="text-base">3 - Alisados</span>
+                            <svg
+                                class="custom-angle w-5 h-5 stroke-yellow-500 stroke-[2.5] flex-shrink-0 transition-transform duration-300"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                            >
+                                <path
+                                    d="M8 5l8 7-8 7"
+                                    stroke="currentColor"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                            </svg>
+                        </div>
+                        <ul
+                            class="custom-list my-2 ml-6 pl-0  list-none text-slate-600 text-base leading-7 border-l-2 border-slate-200"
+                            style="display: none;"
+                        >
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#tipos-de-activos"
+                                    >Tipos de activos alisantes</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#productos-cotidianos"
+                                    >Productos de uso cotidiano para el alisado</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#herramientas-necesarias"
+                                    >Herramientas necesarias</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#paso-a-paso"
+                                    >Paso a paso de un alisado</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#cuidados-posteriores"
+                                    >Cuidados posteriores</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#ficha-tecnica"
+                                    >Ficha técnica del cliente</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#conoce-nuestros-productos"
+                                    >Conoce nuestros productos</a
+                                >
+                            </li>
+                            <li class="mb-4">
+                                <a
+                                    class="block px-2 py-1 rounded-md no-underline text-slate-500 transition-colors duration-200 hover:bg-[#fefaf3] hover:text-yellow-600 focus:bg-[#fefaf3] focus:text-yellow-600"
+                                    href="#precio-recomendado"
+                                    >Precio recomendado</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 <script>
-    // Selección de todos los dropdowns de los subíndices (no el principal)
-    const dropdowns = document.querySelectorAll(".dropdown");
+    // Dropdown minimalista JS
+    document.addEventListener("DOMContentLoaded", () => {
+        // Dropdown principal
+        const mainDropdown = document.querySelector(
+            "#custom-indice > .custom-dropdown",
+        );
+        const mainSummary = mainDropdown?.querySelector(
+            ".custom-summary",
+        ) as HTMLElement;
+        const mainList = mainDropdown?.querySelector(
+            ".custom-list",
+        ) as HTMLElement;
+        const mainAngle = mainDropdown?.querySelector(
+            ".custom-angle",
+        ) as HTMLElement;
 
-    // Iteramos sobre cada dropdown
-    dropdowns.forEach((dropdown) => {
-        const summary = dropdown.querySelector("summary");
-        const angle = dropdown.querySelector("svg");
+        mainSummary?.addEventListener("click", () => {
+            const isOpen = mainList.style.display === "block";
+            mainList.style.display = isOpen ? "none" : "block";
+            mainAngle.style.transform = isOpen
+                ? "rotate(0deg)"
+                : "rotate(90deg)";
+        });
 
-        // Añadimos el listener al click sobre el summary
-        summary.addEventListener("click", () => {
-            // Cerrar otros dropdowns de subíndices (pero no el principal)
-            dropdowns.forEach((d) => {
-                if (
-                    d !== dropdown &&
-                    d !== document.getElementById("main-dropdown") &&
-                    d.hasAttribute("open")
-                ) {
-                    d.removeAttribute("open");
-                    d.querySelector("svg").style.transform = "rotate(0deg)";
+        mainSummary?.addEventListener("keydown", (e) => {
+            const event = e as KeyboardEvent;
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                mainSummary.click();
+            }
+        });
+
+        // Dropdowns hijos (solo los 4 internos)
+        const childDropdowns =
+            mainList?.querySelectorAll("div.custom-dropdown") || [];
+
+        childDropdowns.forEach((dropdown) => {
+            const summary = dropdown.querySelector(
+                ".custom-summary",
+            ) as HTMLElement;
+            const list = dropdown.querySelector(".custom-list") as HTMLElement;
+            const angle = dropdown.querySelector(
+                ".custom-angle",
+            ) as HTMLElement;
+
+            summary.addEventListener("click", () => {
+                const isOpen = list.style.display === "block";
+
+                // Cerrar solo los hijos
+                childDropdowns.forEach((d) => {
+                    (
+                        d.querySelector(".custom-list") as HTMLElement
+                    ).style.display = "none";
+                    (
+                        d.querySelector(".custom-angle") as HTMLElement
+                    ).style.transform = "rotate(0deg)";
+                });
+
+                // Si no estaba abierto, abrirlo
+                if (!isOpen) {
+                    list.style.display = "block";
+                    angle.style.transform = "rotate(90deg)";
                 }
             });
 
-            // Toggle para el estado abierto/cerrado del dropdown actual
-            const isOpen = dropdown.hasAttribute("open");
-
-            // Controlar la rotación de la flecha
-            angle.style.transform = isOpen ? "rotate(0deg)" : "rotate(180deg)";
+            summary.addEventListener("keydown", (e) => {
+                const event = e as KeyboardEvent;
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    summary.click();
+                }
+            });
         });
     });
 </script>
