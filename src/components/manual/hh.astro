@@ -1,0 +1,165 @@
+---
+import phImage from "../../images/ebook/ph-image.png";
+---
+
+<section class="py-5">
+    <!--PH -->
+    <div class="md:flex relative py-3 lg:py-5" id="potencial-hidrogeno">
+        <div class="basis-1/2 space-y-4">
+            <!-- Título principal -->
+            <h2 class="text-2xl font-bold text-gray-800">
+                Potencial Hidrógeno (pH) del Cabello
+            </h2>
+
+            <!-- Párrafo introductorio -->
+            <p class="text-gray-600">
+                El pH del cabello es un concepto que se refiere a la acidez o
+                alcalinidad del cabello y el cuero cabelludo. Para entenderlo
+                mejor, veamos qué significa esto y por qué es tan importante:
+            </p>
+
+            <img class="px-5 block md:hidden" src={phImage.src} alt="" />
+            <!-- Dropdowns personalizados -->
+            <div id="custom-dropdowns-ph" class="space-y-4">
+                <div class="custom-dropdown">
+                    <div
+                        class="px-4 custom-summary flex items-center justify-between cursor-pointer text-[1.15rem] font-semibold py-3 text-[#222] transition-colors duration-200 outline-none rounded-lg select-none focus:text-yellow-600 focus:bg-[#fefaf3] hover:text-yellow-600 hover:bg-[#fefaf3]"
+                        tabindex="0"
+                        data-dropdown="que-es-ph"
+                    >
+                        <span class="text-base">¿Qué es el pH?</span>
+                        <svg
+                            class="custom-angle w-5 h-5 stroke-yellow-500 stroke-[2.5] flex-shrink-0 transition-transform duration-300"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                        >
+                            <path
+                                d="M8 5l8 7-8 7"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            ></path>
+                        </svg>
+                    </div>
+                    <div
+                        class="custom-list my-2 ml-6 pl-4 pr-4 text-slate-600 text-base leading-7 border-l-2 border-slate-200"
+                        style="display: none;"
+                        data-content="que-es-ph"
+                    >
+                        <p>
+                            El pH es una medida que indica cuán ácido o alcalino es un compuesto. Se mide en una escala de 0 a 14:
+                        </p>
+                        <ul class="list-disc pl-5">
+                            <li>0 a 6: Ácido</li>
+                            <li>7: Neutro</li>
+                            <li>8 a 14: Alcalino</li>
+                        </ul>
+                        <p class="mt-2">
+                            Un pH equilibrado es muy importante para la salud de tu cabello.
+                        </p>
+                    </div>
+                </div>
+                <div class="custom-dropdown">
+                    <div
+                        class="px-4 custom-summary flex items-center justify-between cursor-pointer text-[1.15rem] font-semibold py-3 text-[#222] transition-colors duration-200 outline-none rounded-lg select-none focus:text-yellow-600 focus:bg-[#fefaf3] hover:text-yellow-600 hover:bg-[#fefaf3]"
+                        tabindex="0"
+                        data-dropdown="ph-natural"
+                    >
+                        <span class="text-base">El pH Natural del Cabello</span>
+                        <svg
+                            class="custom-angle w-5 h-5 stroke-yellow-500 stroke-[2.5] flex-shrink-0 transition-transform duration-300"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                        >
+                            <path
+                                d="M8 5l8 7-8 7"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            ></path>
+                        </svg>
+                    </div>
+                    <div
+                        class="custom-list my-2 ml-6 pl-4 pr-4 text-slate-600 text-base leading-7 border-l-2 border-slate-200"
+                        style="display: none;"
+                        data-content="ph-natural"
+                    >
+                        <div class="space-y-4">
+                            <p>
+                                El pH natural del cabello y el cuero cabelludo está entre 4.5 y 5.5, lo que significa que es ligeramente ácido. Este pH ácido tiene varias funciones importantes para mantener el cabello saludable:
+                            </p>
+                            <ul class="list-disc pl-5">
+                                <li>
+                                    <strong>Cierra la cutícula:</strong> La cutícula es la capa externa del cabello, formada por pequeñas escamas. Cuando el pH es ácido, estas escamas se mantienen cerradas, lo que hace que el cabello sea más suave, brillante y menos propenso a la rotura.
+                                </li>
+                                <li>
+                                    <strong>Mantiene el equilibrio de humedad:</strong> Un pH ácido ayuda a mantener la hidratación dentro del cabello, evitando que se seque y se vuelva quebradizo.
+                                </li>
+                            </ul>
+                            <p>
+                                Si los productos cosméticos para el cabello tienen un pH incorrecto (ya sea muy ácido o muy alcalino), pueden alterar este equilibrio, afectando la salud y apariencia del cabello.
+                            </p>
+                            <p>
+                                <strong>Productos con pH alto (alcalinos):</strong> Los productos con un pH por encima de 7, como algunos shampoos y tintes, son alcalinos. Los productos alcalinos abren la cutícula del cabello, lo que facilita que los productos penetren, pero también puede dejar el cabello más poroso y vulnerable. Por ejemplo, los tintes y tratamientos de alisado permanentes abren la cutícula para que el color o el tratamiento puedan ingresar al cabello, pero si no se equilibra el pH después, el cabello puede quedar seco y dañado.
+                            </p>
+                            <p>
+                                <strong>Productos con pH bajo (ácidos):</strong> Los productos con un pH ácido, como algunos acondicionadores y mascarillas, son útiles para mantener el cabello suave y brillante, ya que contraen la cutícula.
+                            </p>
+                            <p>
+                                Además, los productos ácidos ayudan a restaurar el pH natural del cabello después de que ha sido alterado por un tratamiento químico o por el uso de un shampoo fuerte.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="module">
+                // @ts-nocheck
+                document.addEventListener("DOMContentLoaded", () => {
+                    const phDropdowns = document.querySelectorAll(
+                        "#custom-dropdowns-ph .custom-summary"
+                    );
+                    phDropdowns.forEach((summary) => {
+                        summary.addEventListener("click", function () {
+                            const key = summary.getAttribute("data-dropdown");
+                            const content = document.querySelector(
+                                `#custom-dropdowns-ph [data-content="${key}"]`
+                            );
+                            const angle = summary.querySelector(".custom-angle");
+                            // Cerrar otros
+                            document
+                                .querySelectorAll("#custom-dropdowns-ph .custom-list")
+                                .forEach((el) => {
+                                    if (el !== content)
+                                        (el).style.display = "none";
+                                });
+                            document
+                                .querySelectorAll("#custom-dropdowns-ph .custom-angle")
+                                .forEach((el) => {
+                                    if (el !== angle)
+                                        (el).style.transform = "";
+                                });
+                            // Toggle actual
+                            const contentEl = content;
+                            if (!contentEl.style.display || contentEl.style.display === "none") {
+                                contentEl.style.display = "block";
+                                angle.style.transform = "rotate(90deg)";
+                            } else {
+                                contentEl.style.display = "none";
+                                angle.style.transform = "";
+                            }
+                        });
+                        summary.addEventListener("keydown", function (e) {
+                            if (e.key === "Enter" || e.key === " ") {
+                                e.preventDefault();
+                                summary.click();
+                            }
+                        });
+                    });
+                });
+            </script>
+        </div>
+        <div class="basis-1/2 md:sticky md:top-40 hidden md:block self-start">
+            <img class="px-5" src={phImage.src} alt="" />
+        </div>
+    </div>
+</section>

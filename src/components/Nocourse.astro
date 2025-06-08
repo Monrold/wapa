@@ -1,0 +1,35 @@
+---
+import hotmart from "../images/ebook/hotmart-logo-black.svg"
+---
+<section
+  class="flex items-center justify-center h-[90vh] bg-cover bg-center px-4 text-center"
+  style="background-image: url('https://media.wapastudio.com/fondo-nocompro-hotmart.webp');"
+>
+  <div class="max-w-md mx-auto bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-md space-y-4">
+   <p class="text-lg font-medium text-center">
+  Este contenido está disponible únicamente para quienes han adquirido el curso a través
+  <span class="inline-flex items-start gap-1 ml-1 align-baseline">
+    <span>de</span>
+    <img src={hotmart.src} alt="Hotmart" class="w-20 " />
+  </span>.
+</p>
+
+
+    <a
+      href="https://hotmart.com/"
+      class="inline-block mt-4 px-6 py-2 text-yellow-800 bg-gradient-to-r from-[#ffe082] to-[#fff8e1] hover:from-[#ffd54f] hover:to-[#fff3c0] font-semibold rounded-lg transition"
+    >
+      Da clic aquí para comprar el curso
+    </a>
+
+    <p class="text-sm text-gray-700 mt-4">
+      ¿Ya lo compraste y no tienes acceso?
+      <a
+        href="https://wa.me/5215524418067"
+        class="text-orange-600 underline hover:text-orange-800"
+      >
+        Contáctanos por WhatsApp
+      </a>
+    </p>
+  </div>
+</section>

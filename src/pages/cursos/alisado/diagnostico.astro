@@ -1,0 +1,127 @@
+---
+import Layout from "../../../layouts/Layout-manual.astro";
+import Diag from "../../../components/manual/diagnostico.astro";
+import Nocourse from "../../../components/Nocourse.astro";
+import Indice from "../../../components/indice.astro";
+import { supabase } from "../../../lib/supabase";
+
+const { cookies, redirect } = Astro;
+
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (!accessToken || !refreshToken) {
+    return redirect("/signin");
+}
+
+const { data, error } = await supabase.auth.setSession({
+    refresh_token: refreshToken.value,
+    access_token: accessToken.value,
+});
+
+if (error) {
+    cookies.delete("sb-access-token", {
+        path: "/",
+    });
+    cookies.delete("sb-refresh-token", {
+        path: "/",
+    });
+
+    return redirect("/signin");
+}
+
+const email = data?.user?.email;
+const name = data?.user?.user_metadata?.full_name;
+
+// Verificar si el usuario tiene cursos vinculados
+let cursosVinculados = [];
+
+const { data: cursosIds, error: cursosError } = await supabase
+    .from("usuarios_cursos")
+    .select("curso_id")
+    .eq("usuario_id", data?.user?.id);
+
+if (cursosError) {
+    console.error(
+        "Error al verificar los cursos del usuario:",
+        cursosError.message,
+    );
+} else if (cursosIds && cursosIds.length > 0) {
+    const ids = cursosIds.map((curso) => curso.curso_id);
+
+    const { data: cursos, error: detallesError } = await supabase
+        .from("cursos")
+        .select("*")
+        .in("id", ids);
+
+    if (detallesError) {
+        console.error(
+            "Error al obtener los detalles de los cursos:",
+            detallesError.message,
+        );
+    } else {
+        cursosVinculados = cursos;
+    }
+}
+
+// Nuevo: verificar si el usuario tiene el curso "Alaciado"
+const tieneCursoAlaciado = cursosVinculados.some(
+    (curso) => curso.title && curso.title.toLowerCase().includes("alaciado"),
+);
+---
+
+<Layout title="" description="" lightColor={true}>
+    {tieneCursoAlaciado && 
+    <div
+        class="sticky top-2 z-10 rounded-xl mb-5 mt-10 max-w-screen-lg px-8 mx-auto"
+    >
+        <Indice />
+    </div>
+    <Diag />
+    
+    <div class="flex justify-between items-center mx-auto mb-10 max-w-xs gap-4">
+        <a
+            href="/cursos/alisado/tricologia"
+            class="inline-flex items-center px-6 py-3 rounded-lg font-semibold text-lg transition-all duration-200
+           text-yellow-800 bg-gradient-to-r from-[#ffe082] to-[#fff8e1]
+           hover:from-[#ffd54f] hover:to-[#fff3c0]"
+        >
+            <svg
+                class="mr-2 w-6 h-6 text-yellow-700"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15 19l-7-7 7-7"></path>
+            </svg>
+            Anterior
+        </a>
+        <a
+            href="/cursos/alisado/diagnostico"
+            class="inline-flex items-center px-6 py-3 rounded-lg font-semibold text-lg transition-all duration-200
+           text-yellow-800 bg-gradient-to-r from-[#ffe082] to-[#fff8e1]
+           hover:from-[#ffd54f] hover:to-[#fff3c0]"
+        >
+            Siguiente
+            <svg
+                class="ml-2 w-6 h-6 text-yellow-700"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 5l7 7-7 7"></path>
+            </svg>
+        </a>
+    </div>
+    
+    }
+    {!tieneCursoAlaciado && <Nocourse />}
+</Layout>

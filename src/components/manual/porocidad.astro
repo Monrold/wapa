@@ -1,0 +1,325 @@
+---
+import porocidad from "../../images/ebook/porocidad-1.jpg";
+import porocidadBaja from "../../images/ebook/porocidad-baja.jpg";
+import porocidadMedia from "../../images/ebook/porocidad-media.jpg";
+import porocidadAlta from "../../images/ebook/porocidad-alta.jpg";
+---
+ 
+<!--Porocidad -->
+        <div class="md:flex relative py-5 sm:py-10" id="porosidad-del-cabello">
+          <div
+            class="basis-1/2 md:sticky md:top-40 hidden md:block self-start rounded-lg px-5"
+          >
+            <img
+              class="rounded-xl"
+              src={porocidad.src}
+              alt="Imagen de la porosidad del cabello"
+            />
+          </div>
+          <div class="basis-1/2 space-y-4">
+            <!-- Título principal -->
+            <h2 class="text-2xl font-bold text-gray-800">
+              Conozcamos la porosidad del cabello
+            </h2>
+            <!-- Párrafo introductorio -->
+            <p class="text-gray-600">
+              La porosidad del cabello se refiere a la capacidad que tiene la
+              fibra capilar para absorber y retener humedad o productos. Está
+              determinada por el estado de la cutícula, la capa más externa del
+              cabello, que funciona como una barrera protectora. Esta
+              característica puede influir en cómo el cabello responde a los
+              tratamientos, productos y al medio ambiente.
+            </p>
+            <p class="text-gray-600">
+              Piensa en tu cabello como una esponja: algunas esponjas absorben
+              rápido y sueltan el agua igual de rápido, mientras que otras
+              tardan más en absorber y retener el agua. Así funciona el cabello
+              con la humedad y los productos.
+            </p>
+            <img
+              class="rounded-md block md:hidden"
+              src={porocidad.src}
+              alt="Imagen de la porosidad del cabello"
+            />
+            <!-- Dropdowns personalizados -->
+            <div id="custom-dropdowns-porosidad" class="space-y-4">
+              <div class="custom-dropdown">
+                <div
+                  class="px-4 custom-summary flex items-center justify-between cursor-pointer text-[1.15rem] font-semibold py-3 text-[#222] transition-colores duration-200 outline-none rounded-lg select-none focus:text-yellow-600 focus:bg-[#fefaf3] hover:text-yellow-600 hover:bg-[#fefaf3]"
+                  tabindex="0"
+                  data-dropdown="baja"
+                >
+                  <span class="text-base">Porosidad Baja</span>
+                  <svg
+                    class="custom-angle w-5 h-5 stroke-yellow-500 stroke-[2.5] flex-shrink-0 transition-transform duration-300"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M8 5l8 7-8 7"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </div>
+                <div
+                  class="custom-list my-2 ml-6 pl-4 pr-4 text-slate-600 text-base leading-7 border-l-2 border-slate-200"
+                  style="display: none;"
+                  data-content="baja"
+                >
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <p>
+                      La cutícula está compacta y bien cerrada. Imagina que tu
+                      cabello tiene una capa exterior muy apretada, como si fuera
+                      un impermeable.
+                    </p>
+                    <p>
+                      Por lo que el cabello es menos propenso a absorber productos
+                      o humedad, lo que puede hacer que se acumule producto en su
+                      superficie.
+                    </p>
+                    <p>
+                      Suelen ser necesarios productos livianos para ayudar a que
+                      la hidratación penetre.
+                    </p>
+                    <h3 class="font-semibold mt-4">
+                      Características visuales y táctiles:
+                    </h3>
+                    <ul class="list-disc pl-5">
+                      <li>
+                        <strong>Brillante y suave:</strong> La cutícula del cabello
+                        está cerrada y lisa, lo que refleja más luz.
+                      </li>
+                      <li>
+                        <strong>Pesado o rígido:</strong> Puede verse "pesado" porque
+                        la humedad no penetra fácilmente.
+                      </li>
+                      <li>
+                        <strong>Ralentiza el secado:</strong> Tarda más en secarse
+                        ya que el agua no penetra bien.
+                      </li>
+                      <li>
+                        <strong>Repele el agua:</strong> Al mojarlo, el agua resbala
+                        en lugar de absorberse rápidamente.
+                      </li>
+                    </ul>
+                    <h3 class="font-semibold mt-4">Cómo se siente:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>
+                        <strong>Suave al tacto:</strong> El cabello se siente liso
+                        y uniforme.
+                      </li>
+                      <li>
+                        <strong>Dificultad para absorber productos:</strong> Los productos
+                        tienden a quedarse en la superficie.
+                      </li>
+                    </ul>
+
+                    <h3 class="font-semibold mt-4">Ejemplo práctico:</h3>
+                    <p>
+                      Imagina una hoja de papel encerada. Si pones agua sobre
+                      ella, se desliza en lugar de empaparse. Eso es lo que pasa
+                      con el cabello de porosidad baja.
+                    </p>
+                    <img class="rounded-md" src={porocidadBaja.src} alt="" />
+                  </div>
+                </div>
+              </div>
+              <div class="custom-dropdown">
+                <div
+                  class="px-4 custom-summary flex items-center justify-between cursor-pointer text-[1.15rem] font-semibold py-3 text-[#222] transition-colores duration-200 outline-none rounded-lg select-none focus:text-yellow-600 focus:bg-[#fefaf3] hover:text-yellow-600 hover:bg-[#fefaf3]"
+                  tabindex="0"
+                  data-dropdown="media"
+                >
+                  <span class="text-base">Porosidad Media (Normal)</span>
+                  <svg
+                    class="custom-angle w-5 h-5 stroke-yellow-500 stroke-[2.5] flex-shrink-0 transition-transform duration-300"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M8 5l8 7-8 7"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </div>
+                <div
+                  class="custom-list my-2 ml-6 pl-4 pr-4 text-slate-600 text-base leading-7 border-l-2 border-slate-200"
+                  style="display: none;"
+                  data-content="media"
+                >
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <p>
+                      La cutícula está ligeramente abierta, permitiendo un
+                      equilibrio adecuado entre la absorción y la retención de
+                      humedad. Este tipo de cabello es saludable y manejable, y
+                      responde bien a los productos y tratamientos.
+                    </p>
+
+                    <h3 class="font-semibold mt-4">
+                      Características visuales y táctiles:
+                    </h3>
+                    <ul class="list-disc pl-5">
+                      <li>
+                        <strong>Brillo natural:</strong> Refleja la luz de manera uniforme.
+                      </li>
+                      <li>
+                        <strong>Buena definición:</strong> Los rizos o ondas mantienen
+                        su forma.
+                      </li>
+                      <li>
+                        <strong>Volumen moderado:</strong> No es ni demasiado plano
+                        ni esponjoso.
+                      </li>
+                      <li>
+                        <strong>Secado promedio:</strong> Se seca en un tiempo razonable.
+                      </li>
+                    </ul>
+
+                    <h3 class="font-semibold mt-4">Cómo se siente:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>
+                        <strong>Suave y flexible:</strong> Se siente hidratado y saludable.
+                      </li>
+                      <li>
+                        <strong>Absorbe productos equilibradamente:</strong> No se
+                        satura ni deja residuos.
+                      </li>
+                    </ul>
+
+                    <h3 class="font-semibold mt-4">Ejemplo práctico:</h3>
+                    <p>
+                      Pensando en una esponja de buena calidad: absorbe agua y
+                      productos equilibradamente y los retiene sin derramarlos.
+                    </p>
+                    <img class="rounded-md" src={porocidadMedia.src} alt="" />
+                  </div>
+                </div>
+              </div>
+              <div class="custom-dropdown">
+                <div
+                  class="px-4 custom-summary flex items-center justify-between cursor-pointer text-[1.15rem] font-semibold py-3 text-[#222] transition-colores duration-200 outline-none rounded-lg select-none focus:text-yellow-600 focus:bg-[#fefaf3] hover:text-yellow-600 hover:bg-[#fefaf3]"
+                  tabindex="0"
+                  data-dropdown="alta"
+                >
+                  <span class="text-base">Porosidad Alta</span>
+                  <svg
+                    class="custom-angle w-5 h-5 stroke-yellow-500 stroke-[2.5] flex-shrink-0 transition-transform duration-300"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M8 5l8 7-8 7"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </div>
+                <div
+                  class="custom-list my-2 ml-6 pl-4 pr-4 text-slate-600 text-base leading-7 border-l-2 border-slate-200"
+                  style="display: none;"
+                  data-content="alta"
+                >
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <p>
+                      Un cabello con porosidad alta tiene la cutícula muy abierta
+                      o dañada, lo que hace que el cabello sea más propenso al
+                      frizz, la sequedad y daños por tratamientos químicos o
+                      herramientas térmicas.
+                    </p>
+                    <h3 class="font-semibold mt-4">
+                      Características visuales y táctiles:
+                    </h3>
+                    <ul class="list-disc pl-5">
+                      <li>
+                        <strong>Seco o apagado:</strong> No refleja bien la luz.
+                      </li>
+                      <li>
+                        <strong>Frizz evidente:</strong> Más propenso al frizz debido
+                        a la absorción de humedad.
+                      </li>
+                      <li>
+                        <strong>Puntas abiertas y cabello quebradizo:</strong> Más
+                        frágil, con mayor riesgo de rotura.
+                      </li>
+                      <li>
+                        <strong>Secado rápido:</strong> Se seca rápido pero pierde
+                        humedad rápidamente.
+                      </li>
+                      <li>
+                        <strong>Rizos menos definidos:</strong> Los rizos pueden verse
+                        más sueltos y desordenados.
+                      </li>
+                    </ul>
+
+                    <h3 class="font-semibold mt-4">Cómo se siente:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>
+                        <strong>Áspero y seco al tacto:</strong> La cutícula abierta
+                        lo hace sentir rugoso.
+                      </li>
+                      <li>
+                        <strong>Frágil y propenso a romperse:</strong> Se puede romper
+                        o enredar fácilmente.
+                      </li>
+                    </ul>
+
+                    <h3 class="font-semibold mt-4">Ejemplo práctico:</h3>
+                    <p>
+                      Imagina una esponja vieja que pierde agua rápidamente por
+                      sus agujeros grandes. Así es el cabello con porosidad alta.
+                    </p>
+                    <img class="rounded-md" src={porocidadAlta.src} alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <script type="module">
+              // @ts-nocheck
+              document.addEventListener("DOMContentLoaded", () => {
+                const poroDropdowns = document.querySelectorAll(
+                  "#custom-dropdowns-porosidad .custom-summary"
+                );
+                poroDropdowns.forEach((summary) => {
+                  summary.addEventListener("click", function () {
+                    const key = summary.getAttribute("data-dropdown");
+                    const content = document.querySelector(
+                      `#custom-dropdowns-porosidad [data-content="${key}"]`
+                    );
+                    const angle = summary.querySelector(".custom-angle");
+                    // Cerrar otros
+                    document
+                      .querySelectorAll("#custom-dropdowns-porosidad .custom-list")
+                      .forEach((el) => {
+                        if (el !== content) (el).style.display = "none";
+                      });
+                    document
+                      .querySelectorAll("#custom-dropdowns-porosidad .custom-angle")
+                      .forEach((el) => {
+                        if (el !== angle) (el).style.transform = "";
+                      });
+                    // Toggle actual
+                    const contentEl = content;
+                    if (!contentEl.style.display || contentEl.style.display === "none") {
+                      contentEl.style.display = "block";
+                      angle.style.transform = "rotate(90deg)";
+                    } else {
+                      contentEl.style.display = "none";
+                      angle.style.transform = "";
+                    }
+                  });
+                  summary.addEventListener("keydown", function (e) {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      summary.click();
+                    }
+                  });
+                });
+              });
+            </script>
+          </div>
+        </div>

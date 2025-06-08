@@ -1,0 +1,351 @@
+---
+import tipoDeDano from "../../images/ebook/tipo-de-dano.jpg";
+import danoMecanico from "../../images/ebook/dano-mecanico.jpg";
+import danoTermico from "../../images/ebook/dano-termico.webp";
+import danoQuimico from "../../images/ebook/dano-quimico.jpg";
+import danoAmbiental from "../../images/ebook/dano-ambiental-final.jpg";
+import danoAcumulativo from "../../images/ebook/dano-acumulativo.jpg";
+---
+<!--Tipos de daño del cabello -->
+        <div class=" relative pt-8" id="tipo-de-dano">
+          <div class=" space-y-4">
+            <h2 class="text-2xl font-bold text-gray-800">
+              Tipos de daño en el cabello
+            </h2>
+            <p class="text-gray-600">
+              El cabello puede dañarse de muchas maneras debido a factores
+              internos (como la falta de nutrientes) y externos (como el uso de
+              herramientas de calor o productos químicos). A continuación, te
+              explico de manera sencilla los tipos más comunes de daño en el
+              cabello y cómo identificarlos con ejemplos cotidianos.
+            </p>
+            <img
+              class="rounded-md block md:hidden"
+              src={tipoDeDano.src}
+              alt="Tipos de daño en el cabello"
+            />
+
+            <div id="custom-dropdowns-tipo-dano" class="space-y-4">
+              <div class="custom-dropdown">
+                <div
+                  class="px-4 custom-summary flex items-center justify-between cursor-pointer text-[1.15rem] font-semibold py-3 text-[#222] transition-colors duration-200 outline-none rounded-lg select-none focus:text-yellow-600 focus:bg-[#fefaf3] hover:text-yellow-600 hover:bg-[#fefaf3]"
+                  tabindex="0"
+                  data-dropdown="mecanico"
+                >
+                  <span class="text-base">Daño mecánico</span>
+                  <svg
+                    class="custom-angle w-5 h-5 stroke-yellow-500 stroke-[2.5] flex-shrink-0 transition-transform duration-300"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M8 5l8 7-8 7"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </div>
+                <div
+                  class="custom-list my-2 ml-6 pl-4 pr-4 text-slate-600 text-base leading-7 border-l-2 border-slate-200"
+                  style="display: none;"
+                  data-content="mecanico"
+                >
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <h3 class="font-semibold">Causas:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>Cepillar el cabello con demasiada fuerza.</li>
+                      <li>Usar peines o cepillos inadecuados.</li>
+                      <li>Peinados muy apretados como trenzas o coletas.</li>
+                    </ul>
+                    <h3 class="font-semibold">Cómo se ve:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>Puntas abiertas o cabello quebradizo.</li>
+                      <li>
+                        Cabello que se enreda con facilidad y se rompe al
+                        desenredarlo.
+                      </li>
+                    </ul>
+                    <h3 class="font-semibold">Ejemplo:</h3>
+                    <p>
+                      Imagina que desenredas el cabello mojado con un cepillo de
+                      dientes gruesos y jalas demasiado. Esto puede hacer que el
+                      cabello se quiebre.
+                    </p>
+                    <img
+                      class="rounded-md"
+                      src={danoMecanico.src}
+                      alt="Tipos de daño en el cabello"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="custom-dropdown">
+                <div
+                  class="px-4 custom-summary flex items-center justify-between cursor-pointer text-[1.15rem] font-semibold py-3 text-[#222] transition-colors duration-200 outline-none rounded-lg select-none focus:text-yellow-600 focus:bg-[#fefaf3] hover:text-yellow-600 hover:bg-[#fefaf3]"
+                  tabindex="0"
+                  data-dropdown="termico"
+                >
+                  <span class="text-base">Daño térmico</span>
+                  <svg
+                    class="custom-angle w-5 h-5 stroke-yellow-500 stroke-[2.5] flex-shrink-0 transition-transform duration-300"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M8 5l8 7-8 7"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </div>
+                <div
+                  class="custom-list my-2 ml-6 pl-4 pr-4 text-slate-600 text-base leading-7 border-l-2 border-slate-200"
+                  style="display: none;"
+                  data-content="termico"
+                >
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <h3 class="font-semibold">Causas:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>Planchar el cabello sin usar protectores de calor.</li>
+                      <li>
+                        Secar el cabello con una secadora a alta temperatura
+                        constantemente.
+                      </li>
+                      <li>Usar tenazas o rizadores de manera frecuente.</li>
+                    </ul>
+                    <h3 class="font-semibold">Cómo se ve:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>Cabello seco, sin brillo y con textura áspera.</li>
+                      <li>Puntas abiertas y apariencia "quemada".</li>
+                    </ul>
+                    <h3 class="font-semibold">Ejemplo:</h3>
+                    <p>
+                      Es como cuando tocas una plancha de ropa caliente y sientes
+                      que quema. Si no proteges tu cabello al plancharlo, el calor
+                      lo daña de manera similar.
+                    </p>
+                    <img
+                      class="rounded-md"
+                      src={danoTermico.src}
+                      alt="Tipos de daño en el cabello"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="custom-dropdown">
+                <div
+                  class="px-4 custom-summary flex items-center justify-between cursor-pointer text-[1.15rem] font-semibold py-3 text-[#222] transition-colors duration-200 outline-none rounded-lg select-none focus:text-yellow-600 focus:bg-[#fefaf3] hover:text-yellow-600 hover:bg-[#fefaf3]"
+                  tabindex="0"
+                  data-dropdown="quimico"
+                >
+                  <span class="text-base">Daño químico</span>
+                  <svg
+                    class="custom-angle w-5 h-5 stroke-yellow-500 stroke-[2.5] flex-shrink-0 transition-transform duration-300"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M8 5l8 7-8 7"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </div>
+                <div
+                  class="custom-list my-2 ml-6 pl-4 pr-4 text-slate-600 text-base leading-7 border-l-2 border-slate-200"
+                  style="display: none;"
+                  data-content="quimico"
+                >
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <h3 class="font-semibold">Causas:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>Tintes, decoloraciones y permanentes.</li>
+                      <li>Alisados químicos o progresivos mal realizados.</li>
+                      <li>
+                        Uso excesivo de productos con alcohol o sulfatos fuertes.
+                      </li>
+                    </ul>
+                    <h3 class="font-semibold">Cómo se ve:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>Cabello quebradizo y que pierde elasticidad.</li>
+                      <li>Pérdida de color o un aspecto opaco y frágil.</li>
+                    </ul>
+                    <h3 class="font-semibold">Ejemplo:</h3>
+                    <p>
+                      Piensa en cómo una tela puede desgastarse si la tiñes
+                      repetidamente con químicos fuertes; algo similar le ocurre
+                      al cabello al teñirlo o decolorarlo demasiado.
+                    </p>
+                    <img
+                      class="rounded-md"
+                      src={danoQuimico.src}
+                      alt="Tipos de daño en el cabello"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="custom-dropdown">
+                <div
+                  class="px-4 custom-summary flex items-center justify-between cursor-pointer text-[1.15rem] font-semibold py-3 text-[#222] transition-colors duration-200 outline-none rounded-lg select-none focus:text-yellow-600 focus:bg-[#fefaf3] hover:text-yellow-600 hover:bg-[#fefaf3]"
+                  tabindex="0"
+                  data-dropdown="ambiental"
+                >
+                  <span class="text-base">Daño ambiental</span>
+                  <svg
+                    class="custom-angle w-5 h-5 stroke-yellow-500 stroke-[2.5] flex-shrink-0 transition-transform duration-300"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M8 5l8 7-8 7"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </div>
+                <div
+                  class="custom-list my-2 ml-6 pl-4 pr-4 text-slate-600 text-base leading-7 border-l-2 border-slate-200"
+                  style="display: none;"
+                  data-content="ambiental"
+                >
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <h3 class="font-semibold">Causas:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>Exposición prolongada al sol.</li>
+                      <li>Agua salada del mar o cloro en piscinas.</li>
+                      <li>Contaminación o cambios extremos de temperatura.</li>
+                    </ul>
+                    <h3 class="font-semibold">Cómo se ve:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>Cabello reseco, frizz constante y puntas abiertas.</li>
+                      <li>
+                        Cambios de textura o color, como cuando el cabello se
+                        aclara por el sol.
+                      </li>
+                    </ul>
+                    <h3 class="font-semibold">Ejemplo:</h3>
+                    <p>
+                      Si pasas un día en la playa sin cubrir tu cabello, puede
+                      quedar seco y áspero debido al sol y al agua salada.
+                    </p>
+                    <img
+                      class="rounded-md"
+                      src={danoAmbiental.src}
+                      alt="Tipos de daño en el cabello"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="custom-dropdown">
+                <div
+                  class="px-4 custom-summary flex items-center justify-between cursor-pointer text-[1.15rem] font-semibold py-3 text-[#222] transition-colors duration-200 outline-none rounded-lg select-none focus:text-yellow-600 focus:bg-[#fefaf3] hover:text-yellow-600 hover:bg-[#fefaf3]"
+                  tabindex="0"
+                  data-dropdown="acumulativo"
+                >
+                  <span class="text-base">Daño acumulativo</span>
+                  <svg
+                    class="custom-angle w-5 h-5 stroke-yellow-500 stroke-[2.5] flex-shrink-0 transition-transform duration-300"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M8 5l8 7-8 7"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </div>
+                <div
+                  class="custom-list my-2 ml-6 pl-4 pr-4 text-slate-600 text-base leading-7 border-l-2 border-slate-200"
+                  style="display: none;"
+                  data-content="acumulativo"
+                >
+                  <div class="mt-2 text-gray-600 space-y-4">
+                    <h3 class="font-semibold">Causas:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>Usar productos inadecuados constantemente.</li>
+                      <li>Acumular residuos de productos en el cabello.</li>
+                      <li>No cuidar el cabello regularmente.</li>
+                    </ul>
+                    <h3 class="font-semibold">Cómo se ve:</h3>
+                    <ul class="list-disc pl-5">
+                      <li>Cabello que pierde vitalidad de forma progresiva.</li>
+                      <li>
+                        Es más difícil de peinar y parece menos manejable con el
+                        tiempo.
+                      </li>
+                    </ul>
+                    <h3 class="font-semibold">Ejemplo:</h3>
+                    <p>
+                      Es como usar una prenda de ropa favorita todos los días y no
+                      lavarla ni cuidarla bien; con el tiempo se desgasta, pierde
+                      color y se vuelve frágil.
+                    </p>
+                    <img
+                      class="rounded-md"
+                      src={danoAcumulativo.src}
+                      alt="Tipos de daño en el cabello"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <script type="module">
+              // @ts-nocheck
+              document.addEventListener("DOMContentLoaded", () => {
+                const tipoDropdowns = document.querySelectorAll(
+                  "#custom-dropdowns-tipo-dano .custom-summary"
+                );
+                tipoDropdowns.forEach((summary) => {
+                  summary.addEventListener("click", function () {
+                    const key = summary.getAttribute("data-dropdown");
+                    const content = document.querySelector(
+                      `#custom-dropdowns-tipo-dano [data-content="${key}"]`
+                    );
+                    const angle = summary.querySelector(".custom-angle");
+                    // Cerrar otros
+                    document
+                      .querySelectorAll("#custom-dropdowns-tipo-dano .custom-list")
+                      .forEach((el) => {
+                        if (el !== content) (el).style.display = "none";
+                      });
+                    document
+                      .querySelectorAll("#custom-dropdowns-tipo-dano .custom-angle")
+                      .forEach((el) => {
+                        if (el !== angle) (el).style.transform = "";
+                      });
+                    // Toggle actual
+                    const contentEl = content;
+                    if (!contentEl.style.display || contentEl.style.display === "none") {
+                      contentEl.style.display = "block";
+                      angle.style.transform = "rotate(90deg)";
+                    } else {
+                      contentEl.style.display = "none";
+                      angle.style.transform = "";
+                    }
+                  });
+                  summary.addEventListener("keydown", function (e) {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      summary.click();
+                    }
+                  });
+                });
+              });
+            </script>
+          </div>
+          <div
+            class=" hidden md:block self-start rounded-lg mt-5"
+          >
+            <img
+              class="object-cover w-full h-96 rounded-xl"
+              src={tipoDeDano.src}
+              alt="Tipos de daño en el cabello"
+            />
+          </div>
+        </div>
