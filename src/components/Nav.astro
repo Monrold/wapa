@@ -8,9 +8,35 @@ export interface Props {
 
 const homePages = ["/", "/lista-de-precios"];
 const isHomePage = homePages.includes(Astro.url.pathname);
-
 ---
 
+<style>
+    #closeButton {
+        display: none;
+    }
+
+    #contenedor {
+        height: 100vh;
+        min-height: 100dvh;
+        display: none;
+        opacity: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        background: rgba(254, 248, 242, 0.95);
+        transition: all ease-in-out 300ms !important;
+    }
+    #contenedor.view {
+        display: flex !important;
+        opacity: 1 !important;
+    }
+    .view {
+        opacity: 1 !important;
+    }
+</style>
 <script>
     window.addEventListener("DOMContentLoaded", function () {
         const burgerButton = document.getElementById("burgerButton");
@@ -21,47 +47,31 @@ const isHomePage = homePages.includes(Astro.url.pathname);
         function toggleMenu() {
             if (!contenedor.classList.contains("view")) {
                 contenedor.classList.add("view");
-                closeButton.classList.add("view");
-                burgerButton.classList.remove("view");
-                burgerButton.style.display = "none";
                 closeButton.style.display = "block";
+                burgerButton.style.display = "none";
             } else {
                 contenedor.classList.remove("view");
-                closeButton.classList.remove("view");
-                burgerButton.classList.add("view");
-                burgerButton.style.display = "block";
                 closeButton.style.display = "none";
+                burgerButton.style.display = "block";
             }
         }
 
         button.addEventListener("click", toggleMenu);
+        closeButton.addEventListener("click", toggleMenu);
+
+        // Elimina la lógica de supabase/logout, solo navega al link
+        const logoutLink = document.getElementById("logout-link");
+        logoutLink?.addEventListener("click", function (e) {
+            // Permite la navegación normal del enlace
+        });
     });
 </script>
-<style>
-    #closeButton {
-        display: none;
-    }
-
-    #contenedor {
-        height: 25vh;
-        display: none;
-        opacity: 0;
-        transition: all ease-in-out 300ms !important;
-    }
-    .view {
-        display: flex !important;
-        opacity: 1 !important;
-    }
-</style>
 
 <nav
-    class={`md:flex hidden md:justify-between md:items-center md:px-8 lg:px-20 w-full my-4 ${
-        isHomePage
-            ? "mx-auto absolute"
-            : "bg-transparent backdrop-blur-md"
+    class={`md:flex hidden md:justify-between md:items-center md:px-8 lg:px-20 w-full my-2 ${
+        isHomePage ? "mx-auto absolute" : "bg-transparent backdrop-blur-md"
     }`}
 >
-    
     <div>
         <a href="/">
             <img
@@ -71,52 +81,51 @@ const isHomePage = homePages.includes(Astro.url.pathname);
             />
         </a>
     </div>
-    <div
-        class:list={[
-            "flex space-x-8 my-4",
-            Astro.props.lightColor ? "text-black" : "text-white",
-        ]}
-    >
-        <a
+    <div class="flex w-full items-center">
+        <div
             class:list={[
-                Astro.props.lightColor
-                    ? "hover:text-slate-800"
-                    : "hover:text-slate-200",
+                "flex space-x-8 my-4 flex-1 justify-end",
+                Astro.props.lightColor ? "text-black" : "text-white",
             ]}
-            href="/lista-de-precios"
-            aria-label="Lista de precios"
         >
-            <h3>Lista de precios</h3>
-        </a>
-        <a
-            class:list={[
-                "hidden",
-                Astro.props.lightColor
-                    ? "hover:text-slate-800"
-                    : "hover:text-slate-200",
-            ]}
-            href=""
-        >
-            <h3>Blog</h3>
-        </a>
-        <a
-            class:list={[
-                Astro.props.lightColor
-                    ? "hover:text-slate-800"
-                    : "hover:text-slate-200",
-            ]}
-            id="Setmore_button_iframe"
-            aria-label="Agenda una cita"
-            href="https://booking.setmore.com/scheduleappointment/31f06619-faa8-4eab-9f6c-bf5421c51ca3"
-        >
-            <h3>Agendar cita</h3>
-        </a>
+            <a
+                class:list={[
+                    Astro.props.lightColor
+                        ? "hover:text-yellow-600 focus:text-yellow-600"
+                        : "hover:text-yellow-600 focus:text-yellow-600",
+                ]}
+                href="/blog"
+                aria-label="Blog"
+            >
+                <h3>Blog</h3>
+            </a>
+            <a
+                class:list={[
+                    Astro.props.lightColor
+                        ? "hover:text-yellow-600 focus:text-yellow-600"
+                        : "hover:text-yellow-600 focus:text-yellow-600",
+                ]}
+                href="/asesoria"
+                aria-label="Asesoria"
+            >
+                <h3>Asesoría</h3>
+            </a>
+            <div class="h-6 w-[2px] bg-gray-200"></div>
+            <a
+                href="/signin"
+                aria-label="Iniciar sesión"
+                class="font-medium hover:text-yellow-600 transition-colors duration-200 text-gray-700 bg-white"
+                style="margin-left:2rem;"
+            >
+                Iniciar sesión
+            </a>
+        </div>
     </div>
 </nav>
 
 <nav
-    class={`"flex justify-between px-4"
-    ${isHomePage ? "md:mx-auto absolute md:hidden w-full px-3 py-3":"reltive md:hidden bg-transparent px-3 py-3"}`}
+    class={`flex justify-between px-4
+    ${isHomePage ? "md:mx-auto absolute md:hidden w-full px-3 py-3" : "reltive md:hidden bg-transparent px-3 py-3"}`}
 >
     <div class="relative flex justify-between w-full">
         <div>
@@ -129,7 +138,11 @@ const isHomePage = homePages.includes(Astro.url.pathname);
             </a>
         </div>
         <div class="flex flex-col my-auto text-white">
-            <button class="flex flex-col items-end" id="buttonBurger">
+            <button
+                class="flex flex-col items-end"
+                id="buttonBurger"
+                type="button"
+            >
                 <svg
                     aria-label="Abrir menú"
                     class:list={[
@@ -139,70 +152,64 @@ const isHomePage = homePages.includes(Astro.url.pathname);
                     id="burgerButton"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 448 512"
-                    ><path
+                >
+                    <path
                         d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"
-                    ></path></svg
-                >
-                <svg
-                    aria-label="Cerrar menú"
-                    class:list={[
-                        "w-5",
-                        Astro.props.lightColor ? "fill-black" : "fill-white",
-                    ]}
-                    id="closeButton"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 384 512"
-                    ><path
-                        d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
-                    ></path></svg
-                >
+                    ></path>
+                </svg>
             </button>
             <div
-                class="absolute inset-0 top-16 flex items-center justify-center w-full bg-[#fef8f2]/30 backdrop-blur-sm"
+                class="absolute inset-0 top-16 flex items-center justify-center w-full bg-[#fef8f2]/95 backdrop-blur-sm"
                 id="contenedor"
             >
+                <button
+                    id="closeButton"
+                    aria-label="Cerrar menú"
+                    class="absolute top-4 right-4 z-50 bg-white/80 rounded-full p-2 shadow"
+                    style="display: none;"
+                >
+                    <svg
+                        class:list={[
+                            "w-6 h-6",
+                            Astro.props.lightColor
+                                ? "fill-black"
+                                : "fill-slate-700",
+                        ]}
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 384 512"
+                    >
+                        <path
+                            d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+                        ></path>
+                    </svg>
+                </button>
                 <div
                     class="wrapper flex flex-col justify-center space-y-6 items-center w-full p-4 text-black"
                     id="wrapper"
                 >
                     <a
-                        class="hover:text-slate-700 text-center text-xl"
-                        id="Setmore_button_iframe"
-                        aria-label="Agenda una cita"
-                        href="https://booking.setmore.com/scheduleappointment/31f06619-faa8-4eab-9f6c-bf5421c51ca3"
+                        class="hover:text-yellow-600 focus:text-yellow-600 text-center text-xl"
+                        href="/signin"
+                        aria-label="Iniciar sesión"
                     >
-                        <div class="flex space-x-2">
-                            <svg
-                                class="fill-slate-900 w-3.5"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 448 512"
-                                ><path
-                                    d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z"
-                                ></path></svg
-                            >
-                            <h3>Agendar cita</h3>
-                        </div>
+                        Iniciar sesión
                     </a>
                     <a
-                        class="hover:text-slate-700 text-center text-xl"
-                        href="/lista-de-precios"
-                        aria-label="Lista de precios"
-                    >
-                        <h3>Lista de precios</h3>
-                    </a>
-                    <a
-                        class="hover:text-slate-700 text-center text-xl hidden"
-                        href=""
+                        class="hover:text-yellow-600 focus:text-yellow-600 text-center text-xl"
+                        href="/blog"
+                        aria-label="Blog"
                     >
                         <h3>Blog</h3>
+                    </a>
+                    <a
+                        class="hover:text-yellow-600 focus:text-yellow-600 text-center text-xl"
+                        href="/asesoria"
+                        aria-label="Asesoria"
+                    >
+                        <h3>Asesoría</h3>
                     </a>
                 </div>
             </div>
         </div>
     </div>
 </nav>
-<script
-    id="setmore_script"
-    type="text/javascript"
-    src="https://storage.googleapis.com/fullintegration-live/webComponentAppListing/Container/setmoreIframeLive.js"
-></script>

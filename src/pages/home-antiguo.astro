@@ -1,0 +1,223 @@
+---
+import Layout from "../layouts/Layout.astro";
+import photo from "../images/index/photo.webp";
+import "@fontsource/yeseva-one";
+import lifting from "../images/index/lifting.webp";
+import alaciado from "../images/index/alaciado.webp";
+import lamibrow from "../images/index/lamibrow.webp";
+import botox from "../images/index/botox.webp";
+import astethic from "../images/index/astethics.webp";
+---
+
+<style define:vars={{ photo: `url("${photo.src}")` }}>
+	html {
+		scroll-behavior: smooth;
+	}
+	body {
+		background-color: #fef8f2;
+	}
+	.photo {
+		background-image: var(--photo);
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		height: 100vh;
+	}
+	.principal {
+		font-family: "Yeseva One", system-ui;
+	}
+	.calendar {
+		fill: white;
+	}
+	.button:hover * {
+		color: rgb(0, 0, 0);
+		border-color: #fef8f2;
+		background-color: #fef8f2;
+		fill: rgb(0, 0, 0);
+		transition: all 300ms;
+	}
+	.flecha {
+		animation: flecha 1s infinite alternate;
+	}
+	@keyframes flecha {
+		0% {
+			transform: translateY(0);
+		}
+
+		100% {
+			transform: translateY(10px);
+		}
+	}
+	.felcha-servicios {
+		animation: flecha-two 1s infinite alternate;
+	}
+
+	@keyframes flecha-two {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(10px);
+		}
+	}
+</style>
+<Layout
+	title="Wapa studio"
+	description="La mejor calidad y el mejor estilo en Wapa Studio"
+>
+	<section class="photo flex items-end justify-center">
+		<div class="max-w-screen-xl mx-auto">
+			<div class="flex flex-col items-center py-10 justify-center">
+				<h2
+					class="principal lg:text-8xl text-4xl mx-4 text-white text-center lg:mx-20"
+				>
+					Convertimos tu belleza en una obra maestra
+				</h2>
+				<div
+					class="md:px-6 mt-5 md:mt-32 flex flex-col items-center justify-center text-white md:flex md:flex-row md:justify-between md:w-full md:items-start"
+				>
+					<div class="pt-6 md:pt-0">
+						<p>Sé valiente, sé WAPA</p>
+					</div>
+					<div class="pb-12 pt-1 md:pt-0 md:pb-0">
+						<a
+							href="#servicios"
+							aria-label="Da click para scrollear automáticamente hasta nuestros servicios"
+						>
+							<p>scroll</p>
+							<p class="text-center flecha">&darr;</p>
+						</a>
+					</div>
+					<a
+						class="button border-2 border-white rounded-lg flex p-3 px-8 space-x-4"
+						id="Setmore_button_iframe"
+						aria-label="Agenda una cita"
+						href="https://booking.setmore.com/scheduleappointment/31f06619-faa8-4eab-9f6c-bf5421c51ca3"
+					>
+						<svg
+							class="calendar w-4"
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 448 512"
+							><path
+								d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z"
+							></path></svg
+						>
+						<p class="text-lg text-white">Agenda tu cita</p>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="servicios" class="max-w-screen-xl px-4 mx-auto pt-10">
+		<div
+			class="flex flex-col justify-center items-center md:flex-row md:flex md:justify-between md:items-end"
+		>
+			<div>
+				<p class="font-bold text-center md:text-left">
+					Nuestros servicios
+				</p>
+				<a
+					href="/lista-de-precios"
+					aria-label="Ve a nuestra lista de precios"
+				>
+					<p class="text-center">Conoce nuestros precios</p>
+				</a>
+			</div>
+			<div class="flex space-x-2 my-4 md:my-0">
+				<p class="text-center">Desliza hacia la derecha</p>
+				<p class="felcha-servicios">&rarr;</p>
+			</div>
+		</div>
+		<div class="py-2 md:py-6">
+			<div class="overflow-x-scroll snap-mandatory snap-x">
+				<div class="w-[400vw] md:w-[150vw] flex">
+					<div class="px-1 snap-center w-[90vw] md:w-auto">
+						<img
+							class=""
+							src={lifting.src}
+							alt="Fotografía de un lifting con productos veganos"
+						/>
+						<p class="font-thin text-2xl mt-2">
+							Lifting de pestañas
+						</p>
+						<p class="text-xs font-thin">con productos veganos</p>
+					</div>
+					<div class="px-1 snap-center w-[90vw] md:w-auto">
+						<img
+							class=""
+							src={botox.src}
+							alt="Ftografia de un botox capilar"
+						/>
+						<p class="font-thin text-2xl mt-2">Botox capilar</p>
+						<p class="text-xs font-thin">
+							hidrata y nutre a profundidad
+						</p>
+					</div>
+					<div class="px-1 snap-center w-[90vw] md:w-auto">
+						<img
+							class=""
+							src={lamibrow.src}
+							alt="Fotografía de un lamibrow con productos veganos"
+						/>
+						<p class="font-thin text-2xl mt-2">Lamibrow</p>
+						<p class="text-xs font-thin">
+							resalta la belleza natural de tus cejas
+						</p>
+					</div>
+					<div class="px-1 snap-center w-[90vw] md:w-auto">
+						<img
+							class=""
+							src={alaciado.src}
+							alt="Foto de un alaciado perfecto"
+						/>
+						<p class="font-thin text-2xl mt-2">Alaciado</p>
+						<p class="text-xs font-thin">
+							un cabello sin frizz y 100% lacio
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="h-0.5 bg-zinc-800 mt-10"></div>
+	</section>
+	<section>
+		<div
+			class="max-w-screen-xl mx-auto px-4 flex flex-col md:flex md:flex-row"
+		>
+			<div class="basis-1/2 mx-auto my-auto">
+				<img class="py-12" src={astethic.src} alt="" />
+			</div>
+			<div class="basis-1/2 bg-zinc-800 text-white">
+				<div class="flex flex-col">
+					<p class="px-4 md:px-8 font-thin text-9xl">Luce más Wapa</p>
+					<p
+						class="text-9xl px-4 md:px-8 font-thin opacity-70 hidden md:block"
+					>
+						Wapa
+					</p>
+					<p class="text-9xl px-4 md:px-8 font-thin opacity-40">
+						Wapa
+					</p>
+
+					<a
+						class="px-8 flex justify-start py-10"
+						id="Setmore_button_iframe"
+						aria-label="Agenda una cita"
+						href="https://booking.setmore.com/scheduleappointment/31f06619-faa8-4eab-9f6c-bf5421c51ca3"
+					>
+						<p
+							class="px-8 py-6 text-center w-full border border-white hover:border-amber-50 hover:transition-all hover:300ms hover:text-amber-50"
+						>
+							Agenda tu cita
+						</p>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script
+		id="setmore_script"
+		type="text/javascript"
+		src="https://storage.googleapis.com/fullintegration-live/webComponentAppListing/Container/setmoreIframeLive.js"
+	></script>
+</Layout>

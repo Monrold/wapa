@@ -1,0 +1,199 @@
+<div class="h-[1px] bg-gray-300 w-full mx-auto mt-5 mb-14"></div>
+<div class="space-y-6">
+    <!-- Título y descripción -->
+    <div class="text-center max-w-2xl mx-auto space-y-4 px-4 md:px-20">
+        <h1 class="text-4xl font-medium text-gray-900">
+            Curso Online de Alisados: Perfecciona tu técnica o aprende de cero
+        </h1>
+        <p class="text-lg   text-gray-600 leading-relaxed">
+            Este curso es para ti: aprende desde cero o actualízate con las
+            últimas novedades y técnicas, todo con una metodología práctica,
+            clara y 100% a tu ritmo. 🤩
+        </p>
+    </div>
+
+    <!-- Video de presentación -->
+    <div
+        class="w-full overflow-hidden rounded  border-gray-300"
+    >
+        <video
+            controls
+            class="w-[90vw] md:w-[80vw] h-full object-cover mx-auto rounded-md md:rounded-md "
+            poster="/images/poster-wapa.jpg"
+        >
+            <source
+                src="https://media.wapastudio.com/wapa-video-portada-manual-2.mov"
+                type="video/mp4"
+            />
+            Tu navegador no soporta el video.
+        </video>
+    </div>
+    <div class="rounded-2xl px-4 md:p-8">
+        <!-- Contenido -->
+        <div class="grid md:grid-cols-2 gap-8 items-start">
+            <!-- Temario -->
+            <div
+                class="bg-white rounded-2xl p-6 border border-gray-400 shadow-sm"
+            >
+                <h2
+                    class="text-2xl font-semibold text-gray-800 mb-4 flex items-center gap-2"
+                >
+                    📚 Temario del Curso
+                </h2>
+
+                <ul class="space-y-4 text-base text-gray-700">
+                    <!-- Temario estático -->
+                    {
+                        [
+                            "¿Qué son los alisados?",
+                            "Origen de los alaciados",
+                            "Estructura del cabello",
+                            "Puentes estructurales y cómo se modifican",
+                            "Daño a la cutícula y porosidad",
+                            "Tipos de daño en el cabello",
+                        ].map((item) => (
+                            <li class="flex items-start gap-3">
+                                <svg
+                                    class="w-5 h-5 text-orange-500 mt-1 flex-shrink-0"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 448 512"
+                                    fill="currentColor"
+                                >
+                                    <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                                </svg>
+                                <span>{item}</span>
+                            </li>
+                        ))
+                    }
+
+                    <!-- Dropdown: Diagnóstico Capilar -->
+                    <li class="flex flex-col gap-2">
+                        <button
+                            class="flex items-center gap-3 text-left font-medium text-gray-800 group"
+                            onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.arrow').classList.toggle('rotate-180')"
+                        >
+                            <svg
+                                class="w-5 h-5 text-orange-500 flex-shrink-0"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 448 512"
+                                fill="currentColor"
+                            >
+                                <path
+                                    d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+                                ></path>
+                            </svg>
+                            Diagnóstico Capilar
+                            <svg
+                                class="arrow w-4 h-4 text-orange-500 transition-transform duration-300 ml-auto"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 448 512"
+                                fill="currentColor"
+                            >
+                                <path
+                                    d="M207.029 381.476L12.686 187.132C-4.229 170.217-4.229 142.486 12.686 125.571s44.646-16.914 61.561 0L224 275.323l149.753-149.752c16.915-16.915 44.646-16.915 61.561 0s16.915 44.646 0 61.561L240.971 381.476c-16.915 16.915-44.646 16.915-61.561 0z"
+                                ></path>
+                            </svg>
+                        </button>
+
+                        <ul
+                            class="hidden ml-8 mt-2 space-y-2 text-sm text-gray-600 list-disc list-inside"
+                        >
+                            <li>Estado del cabello</li>
+                            <li>Porosidad</li>
+                            <li>Elasticidad del cabello</li>
+                            <li>Grosor y textura</li>
+                            <li>Tipos de Cabello y subcategorías</li>
+                            <li>Procesos químicos</li>
+                        </ul>
+                    </li>
+
+                    <!-- Temario estático parte 2 -->
+                    {
+                        [
+                            "Tipos de activos alisantes",
+                            "Productos y herramientas necesarias",
+                            "Paso a paso de un alisado",
+                            "Cuidados posteriores",
+                            "Ficha técnica del cliente",
+                            "Conoce nuestros productos",
+                            "Precio recomendado",
+                        ].map((item) => (
+                            <li class="flex items-start gap-3">
+                                <svg
+                                    class="w-5 h-5 text-orange-500 mt-1 flex-shrink-0"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 448 512"
+                                    fill="currentColor"
+                                >
+                                    <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                                </svg>
+                                <span>{item}</span>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+            <!-- Beneficios y precio -->
+            <div
+                class="bg-gradient-to-br from-black via-orange-700 to-orange-400 rounded-2xl p-6 border border-orange-200 shadow-inner"
+            >
+                <h2 class="text-2xl font-semibold text-orange-100 mb-4">
+                    ✨ Lo que obtienes
+                </h2>
+                <ul class="space-y-3 text-base leading-relaxed text-orange-50">
+                    <li>
+                        ✨ Acceso <strong class="text-orange-200"
+                            >100% online</strong
+                        >, sin límite de tiempo
+                    </li>
+                    <li>📒 Manual digital con acceso ilimitado</li>
+                    <li>
+                        🧡 Descuentos exclusivos en tu primera compra en <strong
+                            class="text-orange-200">Keratinas</strong
+                        >
+                    </li>
+                    <li>
+                        📽️ Descuento especial para <strong
+                            class="text-orange-200"
+                            >asesorías en vivo vía meet o zoom</strong
+                        >
+                    </li>
+                    <li>
+                        📲 Asesoría <strong class="text-orange-200"
+                            >ilimitada</strong
+                        > vía WhatsApp
+                    </li>
+                    <li>
+                        📁 Plantilla de consentimiento <strong
+                            class="text-orange-200">GRATUITA</strong
+                        > (sin logotipos)
+                    </li>
+                    <li>
+                        📃 Diploma <strong class="text-orange-200"
+                            >digital</strong
+                        >
+                    </li>
+                </ul>
+
+                <div class="mt-8 text-center">
+                    <p class="text-xl font-bold text-orange-200">
+                        Costo del curso:
+                    </p>
+                    <p class="text-3xl font-extrabold text-white mt-1">
+                        $2000 MXN
+                    </p>
+                    <p class="text-sm text-orange-100 mt-1 italic">
+                        * No incluye materiales
+                    </p>
+
+                    <a
+                        href="/comprar"
+                        class="inline-block w-full mt-6 px-6 py-3 bg-orange-600 text-white font-semibold rounded-xl shadow hover:bg-black hover:text-orange-400 transition"
+                    >
+                        Inscribirme ahora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
