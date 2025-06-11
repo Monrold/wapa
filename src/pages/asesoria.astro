@@ -1,0 +1,280 @@
+---
+import Layout from "../layouts/Layout.astro";
+import money from "../images/asesoria/meta/money.webp";
+---
+
+<Layout
+    title=""
+    description="Aprende a vender en Instagram y Facebook con anuncios"
+    lightColor={true}
+>
+    <section
+        class="relative h-screen bg-white text-black flex items-center justify-center px-4 pt-20 overflow-hidden"
+    >
+        <!-- Íconos decorativos -->
+        <div class="absolute z-10 w-full h-full pointer-events-none">
+            <!-- Facebook arriba izquierda -->
+            <div
+                class="absolute left-4 top-12 md:left-96 md:top-20 -rotate-12 opacity-90"
+            >
+                <img
+                    src="https://pub-c6f56a3478ba4de7a25f81a088d063ba.r2.dev/facebook-icon.svg"
+                    alt="Logotipo de Facebook"
+                    class="w-10 h-10 md:w-14 md:h-14"
+                />
+            </div>
+
+            <!-- Instagram arriba derecha -->
+            <div
+                class="absolute right-4 top-8 md:right-64 md:top-20 rotate-6 opacity-90"
+            >
+                <img
+                    src="https://pub-c6f56a3478ba4de7a25f81a088d063ba.r2.dev/Instagram-icone.svg"
+                    alt="Logotipo de Instagram"
+                    class="w-10 h-10 md:w-14 md:h-14"
+                />
+            </div>
+
+            <!-- WhatsApp abajo izquierda -->
+            <div
+                class="absolute z-40 left-6 bottom-12 md:left-72 md:bottom-44 -rotate-6 opacity-90"
+            >
+                <img
+                    src="https://pub-c6f56a3478ba4de7a25f81a088d063ba.r2.dev/whatsapp-icon.svg"
+                    alt="Logotipo de Whatsapp"
+                    class="w-10 h-10 md:w-14 md:h-14"
+                />
+            </div>
+
+            <!-- Meta abajo derecha -->
+            <div
+                class="absolute right-6 bottom-12 md:right-72 md:bottom-32 rotate-12 opacity-90"
+            >
+                <img
+                    src="https://pub-c6f56a3478ba4de7a25f81a088d063ba.r2.dev/meta-icon.svg"
+                    alt="Logotipo de Meta"
+                    class="w-10 h-10 md:w-14 md:h-14"
+                />
+            </div>
+        </div>
+
+        <!-- Contenido -->
+        <div
+            class="max-w-3xl relative z-20 flex flex-col items-start md:items-center"
+        >
+            <h1
+                class="text-4xl md:text-6xl font-semibold mb-6 text-left md:text-center"
+            >
+                Más clientas para tu salón con anuncios en
+                <span
+                    class="bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 bg-clip-text text-transparent font-bold"
+                    >Instagram</span
+                >,
+                <span class="text-[#1877F2] font-bold">Facebook</span> y
+                <span class="text-[#25D366] font-bold">WhatsApp</span>.
+            </h1>
+
+            <p class="text-lg md:text-xl mb-2 text-left md:text-center">
+                Asesorías diseñadas 1 a 1 con nuestro experto en META ADS para
+                dueñas de salones o estudios de alisado que quieren aprender a
+                usar Meta Ads para atraer citas todos los días.
+            </p>
+            <a
+                href="https://tu-link-de-agenda.com"
+                target="_blank"
+                class="inline-block bg-black text-white px-6 p-3 rounded-full text-lg hover:bg-neutral-800 transition md:self-center"
+                >Agendar mi asesoría</a
+            >
+        </div>
+    </section>
+
+    <section class="bg-white px-4 py-16 max-w-screen-lg mx-auto">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+            <!-- Contenido de texto -->
+            <div>
+                <h2 class="text-3xl md:text-4xl font-semibold mb-6 text-left">
+                    ¿Por qué necesitas esta asesoría?
+                </h2>
+
+                <div class="text-lg space-y-4 max-w-xl mx-auto">
+                    <p class="text-left">
+                        No necesitas tomar un curso complicado ni aprender
+                        teoría innecesaria. En esta asesoría 1 a 1 vas a
+                        descubrir cómo publicar tu primera campaña de anuncios y
+                        entender los conceptos básicos que necesitas.
+                    </p>
+
+                    <!-- Dropdown -->
+                    <details
+                        class="bg-white rounded-xl shadow-md p-4 cursor-pointer group"
+                    >
+                        <summary
+                            class="font-medium text-base flex items-center justify-between"
+                        >
+                            <span>Beneficios de la asesoría</span>
+                            <svg
+                                class="w-5 h-5 transform group-open:rotate-180 transition-transform duration-300"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                viewBox="0 0 24 24"
+                            >
+                                <path d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </summary>
+                        <div class="mt-4 space-y-2 pl-2 text-sm text-left">
+                            <p>✅ Aprende a generar citas con anuncios.</p>
+                            <p>
+                                ✅ Atrae a mujeres interesadas en alisarse el
+                                cabello en tu ciudad.
+                            </p>
+                            <p>
+                                ✅ Deja de depender solo de contenido orgánico o
+                                referidos.
+                            </p>
+                            <p>
+                                ✅ Empieza a escalar tu negocio de belleza como
+                                una verdadera marca.
+                            </p>
+                        </div>
+                    </details>
+
+                    <p class="font-semibold text-black text-left">
+                        Empieza a tener nuevas clientas todas las semanas sin
+                        salir a buscarlas.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Imagen (aparece a la derecha en desktop, abajo en mobile) -->
+            <div class="order-first md:order-none">
+                <img
+                    src={money.src}
+                    alt="Asesoría para dueñas de salón de belleza"
+                    class="rounded-md object-cover h-72 w-full"
+                />
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-[#f0f0f0] px-4 py-20">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-semibold mb-4">
+                ¿Qué incluye la asesoría?
+            </h2>
+            <p class="text-lg mb-10">
+                Una videollamada 1 a 1 con nuestro experto en Meta Ads donde
+                vemos juntas tus objetivos, revisamos tu cuenta publicitaria y
+                diseñamos una estrategia lista para atraer clientas interesadas
+                en alisados.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-6 text-left">
+                <div class="bg-white rounded-xl p-6 shadow">
+                    <h3 class="font-bold text-xl mb-2">1. Diagnóstico</h3>
+                    <p>
+                        Analizamos tu salón, redes sociales y los servicios que
+                        ofreces para entender tu situación actual y cómo podemos
+                        mejorarla con anuncios.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow">
+                    <h3 class="font-bold text-xl mb-2">2. Fundamentos</h3>
+                    <p>
+                        Te explico lo esencial sobre Meta Ads para que entiendas
+                        qué tipo de campaña necesitas, cómo configurarla y por
+                        qué funcionará para ti.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow">
+                    <h3 class="font-bold text-xl mb-2">3. Campañas</h3>
+                    <p>
+                        Te enseño cómo crear anuncios que lleguen a mujeres
+                        interesadas en alisado en tu zona.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow">
+                    <h3 class="font-bold text-xl mb-2">4. Citas</h3>
+                    <p>
+                        Aprenderás a convertir mensajes de WhatsApp, Instagram y
+                        Messenger en citas confirmadas para tu agenda.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <section class="bg-white px-4 pt-10">
+  <div class="max-w-3xl mx-auto text-center">
+    <h2 class="text-3xl font-semibold mb-2">Resultados reales</h2>
+    <p class="text-lg mb-10">
+      Más de 50 profesionales han aprendido a usar los anuncios de
+      Meta para llenar su agenda.
+    </p>
+
+    <div
+      class="overflow-x-auto pb-4 scroll-smooth scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-200"
+      style="scrollbar-width: thin; scroll-behavior: smooth;"
+    >
+      <div class="flex space-x-6 w-max">
+        <img
+          src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80"
+          alt="Cliente 1"
+          class="w-48 h-48 object-cover rounded-lg shadow"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80"
+          alt="Cliente 2"
+          class="w-48 h-48 object-cover rounded-lg shadow"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80"
+          alt="Cliente 3"
+          class="w-48 h-48 object-cover rounded-lg shadow"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80"
+          alt="Cliente 4"
+          class="w-48 h-48 object-cover rounded-lg shadow"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+    <section class="px-4 pb-5">
+        <div class="max-w-3xl mx-auto text-center">
+            <div
+                class="bg-zinc-800 text-white px-10 py-10 rounded-3xl shadow-2xl border border-white/20"
+            >
+                <p
+                    class="text-sm uppercase tracking-wider font-medium mb-2 opacity-90"
+                >
+                    Asesoría personalizada 1 a 1
+                </p>
+                <h3
+                    class="text-5xl font-extrabold mb-3 drop-shadow-md bg-gradient-to-r from-blue-300 via-blue-500 to-green-400 bg-clip-text text-transparent"
+                >
+                    $499 MXN
+                </h3>
+
+                <p class="text-lg font-medium opacity-95 mb-8 leading-relaxed">
+                    Videollamada con nuestro experto en Meta Ads vía meet para
+                    ayudarte a lanzar tu primera campaña que atraiga clientas
+                    interesadas en alisados.
+                </p>
+                <a
+                    href="#formulario"
+                    class="bg-gradient-to-r from-blue-300 to-blue-500  text-white font-bold px-8 py-3 rounded-full shadow-md hover:bg-gray-100 transition duration-300"
+                >
+                    Agendar mi asesoría
+                </a>
+            </div>
+        </div>
+    </section>
+</Layout>
