@@ -32,14 +32,35 @@ const { title, description } = Astro.props;
         <title>{title}</title>
     </head>
     <body class="relative">
+        <style>
+            html,
+            body {
+                -webkit-user-select: none; /* Safari/iOS */
+                -moz-user-select: none; /* Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; /* Estándar */
+                touch-action: manipulation; /* Mejora compatibilidad móvil sin bloquear scroll */
+            }
+        </style>
+
         <Navmanual lightColor={Astro.props.lightColor} />
         <slot />
         <Footer />
         <!-- Script no copiar texto -->
         <script>
             document.addEventListener("DOMContentLoaded", () => {
-                document.body.style.userSelect = "none";
-                document.body.addEventListener("copy", (e) => {
+                // Bloquea copiar
+                document.addEventListener("copy", (e) => {
+                    e.preventDefault();
+                });
+
+                // Bloquea cortar
+                document.addEventListener("cut", (e) => {
+                    e.preventDefault();
+                });
+
+                // Bloquea clic derecho (menú contextual)
+                document.addEventListener("contextmenu", (e) => {
                     e.preventDefault();
                 });
             });
