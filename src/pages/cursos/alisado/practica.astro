@@ -1,0 +1,197 @@
+---
+import Layout from "../../../layouts/Layout-manual.astro";
+import Tiposdeactivos from "../../../components/manual/tipos-de-activos.astro";
+import Usocotidiano from "../../../components/manual/uso-cotidiano.astro";
+import Herramientas from "../../../components/manual/herramientas.astro";
+import Pasoapaso from "../../../components/manual/paso-a-paso.astro";
+import Indice from "../../../components/indice.astro";
+import Nocourse from "../../../components/Nocourse.astro";
+import Productos from "../../../components/manual/productos.astro";
+import { supabase } from "../../../lib/supabase";
+
+const { cookies, redirect } = Astro;
+
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (!accessToken || !refreshToken) {
+  return redirect("/signin");
+}
+
+const { data, error } = await supabase.auth.setSession({
+  refresh_token: refreshToken.value,
+  access_token: accessToken.value,
+});
+ 
+if (error) {
+  cookies.delete("sb-access-token", {
+    path: "/",
+  });
+  cookies.delete("sb-refresh-token", {
+    path: "/",
+  });
+
+  return redirect("/signin");
+}
+
+const email = data?.user?.email;
+const name = data?.user?.user_metadata?.full_name;
+
+// Verificar si el usuario tiene cursos vinculados
+let cursosVinculados = [];
+
+const { data: cursosIds, error: cursosError } = await supabase
+  .from("usuarios_cursos")
+  .select("curso_id")
+  .eq("usuario_id", data?.user?.id);
+
+if (cursosError) {
+  console.error(
+    "Error al verificar los cursos del usuario:",
+    cursosError.message,
+  );
+} else if (cursosIds && cursosIds.length > 0) {
+  const ids = cursosIds.map((curso) => curso.curso_id);
+
+  const { data: cursos, error: detallesError } = await supabase
+    .from("cursos")
+    .select("*")
+    .in("id", ids);
+
+  if (detallesError) {
+    console.error(
+      "Error al obtener los detalles de los cursos:",
+      detallesError.message,
+    );
+  } else {
+    cursosVinculados = cursos;
+  }
+}
+
+// Nuevo: verificar si el usuario tiene el curso "Alaciado"
+const tieneCursoAlaciado = cursosVinculados.some(
+  (curso) => curso.title && curso.title.toLowerCase().includes("alaciado")
+);
+---
+
+<Layout title="" description="" lightColor={true}>
+  {tieneCursoAlaciado &&
+  <div
+        class="sticky top-2 z-20 rounded-xl mb-5 mt-10 max-w-screen-lg px-8 mx-auto"
+    >
+        <Indice />
+    </div>
+  <div class="max-w-screen-sm mx-auto px-4">
+    <!--Tipos de activos alisantes -->
+    <Tiposdeactivos />
+    <Usocotidiano />
+    <Herramientas />
+    <Pasoapaso />
+    <div class="mt-10">
+      <div id="felicidades-msg" class="text-center text-yellow-800 font-bold text-xl mb-4 flex flex-col justify items-center px-2 md:px-10" style="position:relative; min-height:220px;">
+        <span class="text-3xl mb-2">🎉🥳🎊</span>
+        <span class="text-4xl">¡Felicidades! Has llegado al final del manual.</span>
+      </div>
+    </div>
+    <Productos />
+  </div>
+  
+  <div class="flex flex-col justify-center items-center mx-auto mb-10 max-w-xs gap-4 relative">
+    
+    <a
+      href="/cursos/alisado/diagnostico"
+      class="inline-flex items-center px-6 py-3 rounded-lg font-semibold text-lg transition-all duration-200
+         text-yellow-800 bg-gradient-to-r from-[#ffe082] to-[#fff8e1]
+         hover:from-[#ffd54f] hover:to-[#fff3c0]"
+    >
+      <svg
+        class="mr-2 w-6 h-6 text-yellow-700"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15 19l-7-7 7-7"></path>
+      </svg>
+      Anterior
+    </a>
+    <script>
+      // Confeti clásico tipo explosión (papelitos en todas direcciones, más cantidad y distancia)
+      function lanzarConfetiExplosionClasico() {
+        const colors = [
+          "#fde047", "#fbbf24", "#f59e42", "#fff8e1", "#facc15", "#fef08a",
+          "#ffb4d4", "#a5b4fc", "#6ee7b7", "#fca5a5", "#60a5fa", "#f472b6"
+        ];
+        const container = document.getElementById("felicidades-msg");
+        if (!container) return;
+        container.style.position = "relative";
+        const rect = container.getBoundingClientRect();
+        const centerY = 80; // más abajo para que se vea mejor
+
+        for (let i = 0; i < 120; i++) { // más confeti
+          const confetti = document.createElement("span");
+          const angle = (Math.PI * 2 * i) / 120 + (Math.random() * 0.5 - 0.25);
+          const distance = Math.random() * 260 + 120; // más distancia
+          const size = Math.random() * 10 + 8;
+          confetti.style.position = "absolute";
+          confetti.style.left = `calc(50% - ${size / 2}px)`;
+          confetti.style.top = `${centerY}px`;
+          confetti.style.width = `${size}px`;
+          confetti.style.height = `${size * (Math.random() > 0.5 ? 0.4 : 1)}px`;
+          confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.opacity = "0.85";
+          confetti.style.borderRadius = Math.random() > 0.5 ? "50%" : "2px";
+          confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+          confetti.style.pointerEvents = "none";
+          confetti.style.transition = "transform 1.5s cubic-bezier(.23,1.01,.32,1), opacity 1.5s";
+          confetti.style.zIndex = "50";
+          container.appendChild(confetti);
+
+          setTimeout(() => {
+            confetti.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) rotate(${Math.random() * 720}deg)`;
+            confetti.style.opacity = "0";
+          }, 30);
+
+          setTimeout(() => {
+            confetti.remove();
+          }, 1600);
+        }
+      }
+      function lanzarConfetiSiVisible() {
+        const felicidades = document.getElementById("felicidades-msg");
+        if (!felicidades) return;
+        function checkAndLaunch() {
+          const rect = felicidades.getBoundingClientRect();
+          if (
+            rect.top < window.innerHeight &&
+            rect.bottom > 0
+          ) {
+            lanzarConfetiExplosionClasico();
+            return true;
+          }
+          return false;
+        }
+        if (checkAndLaunch()) return;
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              lanzarConfetiExplosionClasico();
+              obs.disconnect();
+            }
+          });
+        }, { threshold: 0.5 });
+        observer.observe(felicidades);
+      }
+      window.addEventListener("DOMContentLoaded", () => {
+        lanzarConfetiSiVisible();
+      });
+    </script>
+  </div>
+  }
+  {!tieneCursoAlaciado &&
+  <Nocourse />
+  }
+</Layout>

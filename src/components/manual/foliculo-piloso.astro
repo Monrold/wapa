@@ -1,0 +1,216 @@
+---
+
+---
+
+<section class="py-8">
+    <!--el foliculo piloso -->
+    <div class="space-y-6 py-3 lg:py-5">
+        <div class="basis-1/2 space-y-4">
+            <!-- Título principal -->
+            <h1 class="text-2xl font-bold text-gray-800">
+                1. El Folículo Piloso (Raíz del Cabello)
+            </h1>
+
+            <!-- Párrafo introductorio -->
+            <p class="text-gray-600">
+                El folículo piloso es la estructura en la piel donde el cabello
+                comienza a crecer. Está ubicado dentro de la dermis, la capa
+                intermedia de la piel, y es responsable de la formación del
+                cabello. El folículo piloso también contiene células
+                especializadas que producen queratina, la proteína principal del
+                cabello.
+            </p>
+            <img
+                class=""
+                src="https://media.wapastudio.com/estructura-manual.webp"
+                alt=""
+            />
+
+            <div id="custom-dropdowns" class="space-y-4">
+                <div class="custom-dropdown">
+                    <div
+                        class="px-4 custom-summary flex items-center justify-between cursor-pointer text-[1.15rem] font-semibold py-3 text-[#222] transition-colors duration-200 outline-none rounded-lg select-none focus:text-yellow-600 focus:bg-[#fefaf3] hover:text-yellow-600 hover:bg-[#fefaf3]"
+                        tabindex="0"
+                        data-dropdown="bulbo"
+                    >
+                        <span class="text-base">Bulbo piloso</span>
+                        <svg
+                            class="custom-angle w-5 h-5 stroke-yellow-500 stroke-[2.5] flex-shrink-0 transition-transform duration-300"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                        >
+                            <path
+                                d="M8 5l8 7-8 7"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    <div
+                        class="custom-list my-2 ml-6 pl-4 pr-4 text-slate-600 text-base leading-7 border-l-2 border-slate-200"
+                        data-content="bulbo"
+                        style="display: none;"
+                    >
+                        <p>
+                            En la base del folículo se encuentra el bulbo
+                            piloso, que es donde se forma el cabello.
+                        </p>
+                    </div>
+                </div>
+                <div class="custom-dropdown">
+                    <div
+                        class="px-4 custom-summary flex items-center justify-between cursor-pointer text-[1.15rem] font-semibold py-3 text-[#222] transition-colors duration-200 outline-none rounded-lg select-none focus:text-yellow-600 focus:bg-[#fefaf3] hover:text-yellow-600 hover:bg-[#fefaf3]"
+                        tabindex="0"
+                        data-dropdown="papila"
+                    >
+                        <span class="text-base">Papila dérmica</span>
+                        <svg
+                            class="custom-angle w-5 h-5 stroke-yellow-500 stroke-[2.5] flex-shrink-0 transition-transform duration-300"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                        >
+                            <path
+                                d="M8 5l8 7-8 7"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    <div
+                        class="custom-list my-2 ml-6 pl-4 pr-4 text-slate-600 text-base leading-7 border-l-2 border-slate-200"
+                        data-content="papila"
+                        style="display: none;"
+                    >
+                        <p>
+                            Es una pequeña estructura en la base del folículo
+                            que está formada por tejido conectivo y vasos
+                            sanguíneos. La papila dérmica nutre el cabello en
+                            crecimiento al proporcionar nutrientes y oxígeno.
+                        </p>
+                    </div>
+                </div>
+                <div class="custom-dropdown">
+                    <div
+                        class="px-4 custom-summary flex items-center justify-between cursor-pointer text-[1.15rem] font-semibold py-3 text-[#222] transition-colors duration-200 outline-none rounded-lg select-none focus:text-yellow-600 focus:bg-[#fefaf3] hover:text-yellow-600 hover:bg-[#fefaf3]"
+                        tabindex="0"
+                        data-dropdown="glandulas"
+                    >
+                        <span class="text-base">Glándulas sebáceas</span>
+                        <svg
+                            class="custom-angle w-5 h-5 stroke-yellow-500 stroke-[2.5] flex-shrink-0 transition-transform duration-300"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                        >
+                            <path
+                                d="M8 5l8 7-8 7"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    <div
+                        class="custom-list my-2 ml-6 pl-4 pr-4 text-slate-600 text-base leading-7 border-l-2 border-slate-200"
+                        data-content="glandulas"
+                        style="display: none;"
+                    >
+                        <p>
+                            Estas glándulas están ubicadas cerca de los
+                            folículos y secretan sebo, una sustancia oleosa que
+                            lubrica y protege el cabello.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    const initDropdowns = (container) => {
+                        const dropdowns =
+                            container.querySelectorAll(".custom-dropdown");
+
+                        dropdowns.forEach((summaryWrapper) => {
+                            const summary =
+                                summaryWrapper.querySelector(".custom-summary");
+
+                            summary.addEventListener("click", () => {
+                                const dropdownKey =
+                                    summary.getAttribute("data-dropdown");
+                                const dropdownList =
+                                    summaryWrapper.querySelector(
+                                        `[data-content="${dropdownKey}"]`,
+                                    );
+                                const angle =
+                                    summary.querySelector(".custom-angle");
+
+                                // Cierra otros dropdowns en el mismo nivel (hermanos)
+                                dropdowns.forEach((dropdown) => {
+                                    if (dropdown !== summaryWrapper) {
+                                        const otherSummary =
+                                            dropdown.querySelector(
+                                                ".custom-summary",
+                                            );
+                                        const otherKey =
+                                            otherSummary.getAttribute(
+                                                "data-dropdown",
+                                            );
+                                        const otherContent =
+                                            dropdown.querySelector(
+                                                `[data-content="${otherKey}"]`,
+                                            );
+                                        const otherAngle =
+                                            dropdown.querySelector(
+                                                ".custom-angle",
+                                            );
+
+                                        if (otherContent)
+                                            otherContent.style.display = "none";
+                                        if (otherAngle)
+                                            otherAngle.style.transform = "";
+                                    }
+                                });
+
+                                // Alternar dropdown actual
+                                const isOpen =
+                                    dropdownList.style.display === "block";
+                                dropdownList.style.display = isOpen
+                                    ? "none"
+                                    : "block";
+                                angle.style.transform = isOpen
+                                    ? ""
+                                    : "rotate(90deg)";
+                            });
+
+                            summary.addEventListener("keydown", (e) => {
+                                if (e.key === "Enter" || e.key === " ") {
+                                    e.preventDefault();
+                                    summary.click();
+                                }
+                            });
+
+                            // Inicializar recursivamente si hay dropdowns internos
+                            const nestedContainer =
+                                summaryWrapper.querySelector(
+                                    "#custom-dropdowns",
+                                );
+                            if (nestedContainer) {
+                                initDropdowns(nestedContainer);
+                            }
+                        });
+                    };
+
+                    // Inicializar todos los dropdowns del contenedor principal
+                    const mainContainer =
+                        document.querySelector("#custom-dropdowns");
+                    if (mainContainer) initDropdowns(mainContainer);
+                });
+            </script>
+
+            <!-- Nota final -->
+            <p class="text-sm text-gray-500 italic">
+                El folículo piloso es la única parte con vida, el tallo del
+                cabello no tiene terminaciones nerviosas, por lo que el daño que
+                se genera en este no desaparece; todo es acumulativo.
+            </p>
+        </div>
+    </div>
+</section>
