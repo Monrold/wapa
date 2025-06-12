@@ -5,7 +5,11 @@ import Curso from "../components/home/curso.astro";
 import Faq from "../components/home/faq.astro";
 ---
 
-<Layout title="encuentras los mejores alisados" description="" lightColor={true}>
+<Layout
+    title="encuentras los mejores alisados"
+    description=""
+    lightColor={true}
+>
     <section>
         <div>
             <section class="relative w-full h-screen overflow-hidden">
@@ -15,8 +19,8 @@ import Faq from "../components/home/faq.astro";
                     src="https://media.wapastudio.com/portada-home-wapa-web.mp4"
                     autoplay
                     muted
-                    loop
-                    playsinline></video>
+                    playsinline
+                    loop></video>
 
                 <!-- Video para sm en adelante -->
                 <video
@@ -24,14 +28,13 @@ import Faq from "../components/home/faq.astro";
                     src="https://media.wapastudio.com/portada-home-wapa-web.mp4"
                     autoplay
                     muted
-                    loop
-                    playsinline></video>
+                    playsinline
+                    loop></video>
 
                 <!-- Degradado blanco a transparente en la parte inferior -->
-               
 
                 <div
-                    class="absolute inset-0 z-20 flex flex-col items-center justify-center text-center"
+                    class="absolute inset-0 z-20 flex flex-col items-center justify-center text-center pointer-events-none"
                 >
                     <h1
                         class="text-5xl md:text-6xl max-w-screen-md text-white drop-shadow-md px-4"
@@ -42,155 +45,169 @@ import Faq from "../components/home/faq.astro";
             </section>
         </div>
     </section>
-   <div class="max-w-screen-lg mx-auto">
-    <section class="max-w-7xl mx-auto px-4 py-12">
-        <!-- Línea gris y título -->
-        <div class="md:text-center mb-10">
-            
-            <h2 class="text-3xl md:text-4xl text-gray-800">
-                Conoce la keratina ideal para tus Alisados
-            </h2>
-        </div>
+    <div class="max-w-screen-lg mx-auto">
+        <section class="max-w-7xl mx-auto px-4 py-12">
+            <!-- Línea gris y título -->
+            <div class="md:text-center mb-10">
+                <h2 class="text-3xl md:text-4xl text-gray-800">
+                    Conoce la keratina ideal para tus Alisados
+                </h2>
+            </div>
 
-        <!-- Grid de imágenes -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Tarjeta de producto -->
-            <a
-                href="/tienda/nanobotox"
-                class="relative group overflow-hidden rounded-lg shadow-md block"
-            >
-                <img
-                    src="https://media.wapastudio.com/keratina-dashboard-tienda.webp"
-                    alt="Nanobotox"
-                    class="w-full h-[400px] object-cover"
-                />
-                <!-- Degradado -->
-                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
-
-                <!-- Esquina superior derecha -->
-                <div
-                    class="absolute top-4 right-4 bg-white px-3 py-1 text-xs font-medium text-gray-800 rounded shadow"
+            <!-- Grid de imágenes -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Tarjeta de producto -->
+                <a
+                    href="/tienda/nanobotox"
+                    class="relative group overflow-hidden rounded-lg shadow-md block"
                 >
-                    Cabello procesado
-                </div>
+                    <img
+                        src="https://media.wapastudio.com/keratina-dashboard-tienda.webp"
+                        alt="Nanobotox"
+                        class="w-full h-[400px] object-cover"
+                    />
+                    <!-- Degradado -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"
+                    >
+                    </div>
 
-                <!-- Contenido inferior -->
-                <div
-                    class="absolute bottom-4 left-4 right-4 flex justify-between items-end text-white z-10"
-                >
-                    <h3 class="text-lg font-semibold drop-shadow">Nanobotox</h3>
-                    <span class="text-sm font-medium hover:underline flex items-center gap-1">
-                        Conoce más
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-4 w-4"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            stroke-width="2"
+                    <!-- Esquina superior derecha -->
+                    <div
+                        class="absolute top-4 right-4 bg-white px-3 py-1 text-xs font-medium text-gray-800 rounded shadow"
+                    >
+                        Cabello procesado
+                    </div>
+
+                    <!-- Contenido inferior -->
+                    <div
+                        class="absolute bottom-4 left-4 right-4 flex justify-between items-end text-white z-10"
+                    >
+                        <h3 class="text-lg font-semibold drop-shadow">
+                            Nanobotox
+                        </h3>
+                        <span
+                            class="text-sm font-medium hover:underline flex items-center gap-1"
                         >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M9 5l7 7-7 7"
-                            />
-                        </svg>
-                    </span>
-                </div>
-            </a>
+                            Conoce más
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-4 w-4"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
 
-            <!-- Segunda tarjeta -->
-            <a
-                href="#"
-                class="relative group overflow-hidden rounded-lg shadow-md block"
-            >
-                <img
-                    src="https://media.wapastudio.com/keratina-dashboard-tienda.webp"
-                    alt="Bioplastia"
-                    class="w-full h-[400px] object-cover"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
-                <div
-                    class="absolute top-4 right-4 bg-white px-3 py-1 text-xs font-medium text-gray-800 rounded shadow"
+                <!-- Segunda tarjeta -->
+                <a
+                    href="#"
+                    class="relative group overflow-hidden rounded-lg shadow-md block"
                 >
-                    Todo tipo de cabello sano
-                </div>
-                <div
-                    class="absolute bottom-4 left-4 right-4 flex justify-between items-end text-white z-10"
-                >
-                    <h3 class="text-lg font-semibold drop-shadow">Bioplastia</h3>
-                    <span class="text-sm font-medium hover:underline flex items-center gap-1">
-                        Conoce más
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-4 w-4"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            stroke-width="2"
+                    <img
+                        src="https://media.wapastudio.com/keratina-dashboard-tienda.webp"
+                        alt="Bioplastia"
+                        class="w-full h-[400px] object-cover"
+                    />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"
+                    >
+                    </div>
+                    <div
+                        class="absolute top-4 right-4 bg-white px-3 py-1 text-xs font-medium text-gray-800 rounded shadow"
+                    >
+                        Todo tipo de cabello sano
+                    </div>
+                    <div
+                        class="absolute bottom-4 left-4 right-4 flex justify-between items-end text-white z-10"
+                    >
+                        <h3 class="text-lg font-semibold drop-shadow">
+                            Bioplastia
+                        </h3>
+                        <span
+                            class="text-sm font-medium hover:underline flex items-center gap-1"
                         >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M9 5l7 7-7 7"
-                            />
-                        </svg>
-                    </span>
-                </div>
-            </a>
+                            Conoce más
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-4 w-4"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
 
-            <!-- Tercera tarjeta -->
-            <a
-                href="#"
-                class="relative group overflow-hidden rounded-lg shadow-md block"
-            >
-                <img
-                    src="https://media.wapastudio.com/keratina-dashboard-tienda.webp"
-                    alt="Ultra Gold"
-                    class="w-full h-[400px] object-cover"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
-                <div
-                    class="absolute top-4 right-4 bg-white px-3 py-1 text-xs font-medium text-gray-800 rounded shadow"
+                <!-- Tercera tarjeta -->
+                <a
+                    href="#"
+                    class="relative group overflow-hidden rounded-lg shadow-md block"
                 >
-                    Cabello ondulado
-                </div>
-                <div
-                    class="absolute bottom-4 left-4 right-4 flex justify-between items-end text-white z-10"
-                >
-                    <h3 class="text-lg font-semibold drop-shadow">Ultra Gold</h3>
-                    <span class="text-sm font-medium hover:underline flex items-center gap-1">
-                        Conoce más sobre
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-4 w-4"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            stroke-width="2"
+                    <img
+                        src="https://media.wapastudio.com/keratina-dashboard-tienda.webp"
+                        alt="Ultra Gold"
+                        class="w-full h-[400px] object-cover"
+                    />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"
+                    >
+                    </div>
+                    <div
+                        class="absolute top-4 right-4 bg-white px-3 py-1 text-xs font-medium text-gray-800 rounded shadow"
+                    >
+                        Cabello ondulado
+                    </div>
+                    <div
+                        class="absolute bottom-4 left-4 right-4 flex justify-between items-end text-white z-10"
+                    >
+                        <h3 class="text-lg font-semibold drop-shadow">
+                            Ultra Gold
+                        </h3>
+                        <span
+                            class="text-sm font-medium hover:underline flex items-center gap-1"
                         >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M9 5l7 7-7 7"
-                            />
-                        </svg>
-                    </span>
-                </div>
-            </a>
-        </div>
-    </section>
-    <section>
-        <Social />
-    </section>
-    <section>
-        <Curso />
-    </section>
-    <section>
-        <Faq />
-    </section>
-</div>
-
+                            Conoce más sobre
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-4 w-4"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </section>
+        <section>
+            <Social />
+        </section>
+        <section>
+            <Curso />
+        </section>
+        <section>
+            <Faq />
+        </section>
+    </div>
 </Layout>
-
-
