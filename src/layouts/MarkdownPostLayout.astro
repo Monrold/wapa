@@ -1,12 +1,30 @@
 ---
 import BaseLayout from "./Layout.astro";
+import Promocurso from "../components/blog/promocionalcurso.astro"
+
+
 const { frontmatter } = Astro.props;
+const showCourseCta = frontmatter.showCourseCta === true;
+
+const tags = frontmatter.tags || [];
+const bgColors = [
+  "bg-yellow-600",
+  "bg-yellow-500",
+  "bg-yellow-400",
+  "bg-yellow-300",
+  "bg-yellow-200",
+];
 ---
 
-<BaseLayout title={frontmatter.title} description="" lightColor={true}>
+<BaseLayout
+  title={frontmatter.title}
+  description={frontmatter.description}
+  lightColor={true}
+  isIndexable={true}
+>
   <div class="lg:max-w-screen-md m-auto px-2 lg:my-10">
     <a class="flex flex-wrap items-center" href="../../blog">
-      <p class="text-[#929191] hover:text-[#2AA0D9]">
+      <p class="text-[#929191] hover:text-yellow-600">
         <span>&larr;</span> ir atrás
       </p>
     </a>
@@ -17,24 +35,38 @@ const { frontmatter } = Astro.props;
       class="w-full rounded-xl"
       alt={frontmatter.image.alt}
     />
-    <div class="my-5 ml-2 flex flex-wrap gap-4">
-      <p class="py-2">Escrito por: {frontmatter.author}</p>
-      <p class="py-2">
-        Publicado el: {
-          new Date(frontmatter.pubDate).toLocaleDateString("es-ES", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })
+    <div class="mt-5 ml-2 space-y-2">
+      <div class="flex flex-wrap">
+        <p class="">Escrito por: {frontmatter.author}</p>
+        <p class="md:pl-4">
+          Publicado el: {
+            new Date(frontmatter.pubDate).toLocaleDateString("es-ES", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })
+          }
+        </p>
+      </div>
+      <div class="flex gap-2 mb-20">
+        {
+          tags.map((tag, i) => (
+            <span
+              class={`${bgColors[i % bgColors.length]} text-white px-3 py-1 rounded-lg text-sm`}
+            >
+              {tag}
+            </span>
+          ))
         }
-      </p>
-      <p class="bg-[#2AA0D9] text-white p-2 rounded-lg">{frontmatter.tags.join(", ")}</p>
+      </div>
     </div>
-    
 
     <!-- Aquí se renderiza el contenido del Markdown -->
-    <article class="prose prose-lg my-5">
+    <article class="prose prose-lg my-14">
       <slot />
+      { showCourseCta &&
+      <Promocurso />
+      }
     </article>
   </div>
 </BaseLayout>

@@ -9,49 +9,59 @@ const refreshToken = cookies.get("sb-refresh-token");
 if (accessToken && refreshToken) {
   return redirect("/dashboard");
 }
-
-
 ---
 
-<Layout title="Lista de precios"
-description="Descubre los mejores servicios en wapa studio"
-lightColor={true}>
-<main class="py-20 bg-white md:bg-[#eeefeb] min-h-screen flex justify-center items-center">
-  <div class="bg-white mt-10 md:mt-0 p-8 rounded-lg md:shadow-md w-full max-w-md">
-    <h1 class="text-2xl font-semibold text-center mb-4">Iniciar sesión</h1>
-    <p class="text-center text-sm mb-6">
-      ¿Nuevo aquí? <a href="/register" class="text-[#917763] hover:underline">Crea una cuenta</a>
-    </p>
-    <form action="/api/auth/signin" method="post" class="space-y-6">
-      <div>
-        <label for="email" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          class="w-full p-2 border border-gray-300 rounded-md focus:ring-[#6A5341]"
-          required
-        />
-      </div>
-      <div>
-        <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          class="w-full p-2 border border-gray-300 rounded-md  focus:ring-[#6A5341]"
-          required
-        />
-      </div>
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAAA1qFrAJc99AgS9n"></div>
-      <button
-        type="submit"
-        class="w-full bg-[#917763] text-white py-2 rounded-md hover:bg-[#6A5341] focus:outline-none"
-      >
-        Iniciar sesión
-      </button>
-    </form>
-  </div>
-</main>
-
+<Layout
+  title="Lista de precios"
+  description="Descubre los mejores servicios en wapa studio"
+  lightColor={true}
+  isIndexable={true}
+>
+  <main
+    class="py-20 bg-white md:bg-[#eeefeb] min-h-screen flex justify-center items-center"
+  >
+    <div
+      class="bg-white mt-10 md:mt-0 p-8 rounded-lg md:shadow-md w-full max-w-md"
+    >
+      <h1 class="text-2xl font-semibold text-center mb-4">Iniciar sesión</h1>
+      <p class="text-center text-sm mb-6">
+        ¿Nuevo aquí? <a href="/register" class="text-[#917763] hover:underline"
+          >Crea una cuenta</a
+        >
+      </p>
+      <form action="/api/auth/signin" method="post" class="space-y-6">
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700"
+            >Correo electrónico</label
+          >
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="w-full p-2 border border-gray-300 rounded-md focus:ring-[#6A5341]"
+            required
+          />
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700"
+            >Contraseña</label
+          >
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="w-full p-2 border border-gray-300 rounded-md focus:ring-[#6A5341]"
+            required
+          />
+        </div>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAA1qFrAJc99AgS9n"></div>
+        <button
+          type="submit"
+          class="w-full bg-[#917763] text-white py-2 rounded-md hover:bg-[#6A5341] focus:outline-none"
+        >
+          Iniciar sesión
+        </button>
+      </form>
+    </div>
+  </main>
 </Layout>
