@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import money from "../images/asesoria/meta/money.webp";
+import ads from "../images/asesoria/meta/ads.png";
 ---
 
 <Layout
@@ -207,74 +208,107 @@ import money from "../images/asesoria/meta/money.webp";
         </div>
     </section>
 
-  <section class="bg-white px-4 pt-10">
-  <div class="max-w-3xl mx-auto text-center">
-    <h2 class="text-3xl font-semibold mb-2">Resultados reales</h2>
-    <p class="text-lg mb-10">
-      Más de 50 profesionales han aprendido a usar los anuncios de
-      Meta para llenar su agenda.
-    </p>
-
-    <div
-      class="overflow-x-auto pb-4 scroll-smooth scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-200"
-      style="scrollbar-width: thin; scroll-behavior: smooth;"
-    >
-      <div class="flex space-x-6 w-max">
-        <img
-          src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80"
-          alt="Cliente 1"
-          class="w-48 h-48 object-cover rounded-lg shadow"
-        />
-        <img
-          src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80"
-          alt="Cliente 2"
-          class="w-48 h-48 object-cover rounded-lg shadow"
-        />
-        <img
-          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80"
-          alt="Cliente 3"
-          class="w-48 h-48 object-cover rounded-lg shadow"
-        />
-        <img
-          src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80"
-          alt="Cliente 4"
-          class="w-48 h-48 object-cover rounded-lg shadow"
-        />
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-    <section class="px-4 pb-5">
+    <section class="bg-white px-4 pt-10 pb-10">
         <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-semibold mb-4">Te atenderá un experto</h2>
+            <img src={ads.src} alt="" />
+            <p class="text-lg text-gray-700">
+                Serás asesorada personalmente por un experto en Meta Ads que
+                gestiona campañas publicitarias para empresas locales,
+                regionales y nacionales, generando resultados superiores a 7
+                cifras al mes en ventas.
+            </p>
+        </div>
+    </section>
+    <section
+        class="px-4 pb-5 relative overflow-hidden"
+        style="background-image: url('https://media.wapastudio.com/arrows-texture-meta-asesoria.webp'); background-repeat: no-repeat; background-position: bottom; background-size: cover;"
+    >
+        <div class="max-w-sm mx-auto">
             <div
-                class="bg-zinc-800 text-white px-10 py-10 rounded-3xl shadow-2xl border border-white/20"
+                class="bg-zinc-800 text-white px-8 py-10 rounded-3xl border border-white/20 relative z-10"
             >
-                <p
-                    class="text-sm uppercase tracking-wider font-medium mb-2 opacity-90"
-                >
-                    Asesoría personalizada 1 a 1
-                </p>
-                <h3
-                    class="text-5xl font-extrabold mb-3 drop-shadow-md bg-gradient-to-r from-blue-300 via-blue-500 to-green-400 bg-clip-text text-transparent"
-                >
-                    $499 MXN
-                </h3>
+                <div class="text-left mb-8">
+                    <p
+                        class="text-base uppercase tracking-wide font-semibold text-blue-300 mb-1"
+                    >
+                        Un costo accesible
+                    </p>
+                    <h2 class="text-2xl font-bold text-white opacity-90">
+                        Asesoría personalizada para lanzar tu primera campaña en
+                        Meta Ads
+                    </h2>
+                </div>
 
-                <p class="text-lg font-medium opacity-95 mb-8 leading-relaxed">
-                    Videollamada con nuestro experto en Meta Ads vía meet para
-                    ayudarte a lanzar tu primera campaña que atraiga clientas
-                    interesadas en alisados.
-                </p>
-                <a
-                    href="#formulario"
-                    class="bg-gradient-to-r from-blue-300 to-blue-500  text-white font-bold px-8 py-3 rounded-full shadow-md hover:bg-gray-100 transition duration-300"
+                <ul
+                    class="flex flex-col text-sm font-medium gap-4 text-white/90 mb-10 text-left"
                 >
-                    Agendar mi asesoría
-                </a>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-400 text-lg">✔️</span>
+                        <span>Llamada 1 a 1</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-400 text-lg">✔️</span>
+                        <span>Por Google Meet</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-400 text-lg">✔️</span>
+                        <span>Duración de una hora</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-400 text-lg">✔️</span>
+                        <span>Lanzarás tu primera campaña</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-400 text-lg">✔️</span>
+                        <span>Aprenderás los conceptos clave</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-400 text-lg">✔️</span>
+                        <span>Mejorarás tu contenido</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-400 text-lg">✔️</span>
+                        <span
+                            >Obtendrás mensajes en WhatsApp, Messenger e
+                            Instagram</span
+                        >
+                    </li>
+                </ul>
+
+                <div class="text-left">
+                    <h3
+                        class="text-4xl font-extrabold mb-4 drop-shadow-md bg-gradient-to-r from-blue-300 via-blue-500 to-green-400 bg-clip-text text-transparent"
+                    >
+                        $499 MXN
+                    </h3>
+                    <a
+                        href="#formulario"
+                        class="inline-block bg-gradient-to-r from-blue-300 to-blue-500 text-white font-bold px-8 py-3 rounded-full shadow-md hover:bg-gray-100 transition duration-300"
+                    >
+                        Agendar mi asesoría
+                    </a>
+                </div>
             </div>
+        </div>
+    </section>
+    <section class="bg-white text-black py-16 px-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-semibold mb-6 flex items-center justify-center gap-4 text-left md:text-center">
+                <img src="https://pub-c6f56a3478ba4de7a25f81a088d063ba.r2.dev/facebook-icon.svg" alt="Meta Ads" class="w-10 h-10 md:w-12 md:h-12 inline-block" />
+                Asesoria publicitaria
+            </h2>
+            <p class="text-lg mb-8">
+                Obtén resultados reales con nuestra asesoría en Meta Ads. Aprende
+                a crear campañas efectivas que llenen tu agenda de clientas
+                interesadas en alisados.
+            </p>
+
+            <a
+                href="#formulario"
+                class="inline-block bg-black text-white px-8 py-4 rounded-full text-lg hover:bg-neutral-800 transition"
+                >Agenda tu asesoría ahora</a
+            >
         </div>
     </section>
 </Layout>
