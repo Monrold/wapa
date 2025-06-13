@@ -2,6 +2,7 @@
 import Navmanual from "../components/Nav-manual.astro";
 import Footer from "../components/Footer-manual.astro";
 import og from "../images/og-image.jpg";
+import PostHog from "../components/posthog.astro";
 
 interface Props {
     title: string;
@@ -31,6 +32,7 @@ const { title, description } = Astro.props;
             async
             defer></script>
         <title>{title}</title>
+        <PostHog />
     </head>
     <body class="relative">
         <style>
