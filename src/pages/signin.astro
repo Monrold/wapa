@@ -1,13 +1,39 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { supabase } from "../lib/supabase";
 
-const { cookies, redirect } = Astro;
+const { cookies, redirect, request } = Astro;
 
 const accessToken = cookies.get("sb-access-token");
 const refreshToken = cookies.get("sb-refresh-token");
 
 if (accessToken && refreshToken) {
   return redirect("/dashboard");
+}
+
+let errorMessage = "";
+
+if (request.method === "POST") {
+  const formData = await request.formData();
+  const email = formData.get("email")?.toString();
+  const password = formData.get("password")?.toString();
+
+  if (!email || !password) {
+    errorMessage = "Correo electrónico y contraseña obligatorios";
+  } else {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      errorMessage = error.message;
+    } else if (data.session) {
+      cookies.set("sb-access-token", data.session.access_token, { path: "/" });
+      cookies.set("sb-refresh-token", data.session.refresh_token, { path: "/" });
+      return redirect("/dashboard");
+    }
+  }
 }
 ---
 
@@ -29,7 +55,7 @@ if (accessToken && refreshToken) {
           >Crea una cuenta</a
         >
       </p>
-      <form action="/api/auth/signin" method="post" class="space-y-6">
+      <form method="post" class="space-y-6">
         <div>
           <label for="email" class="block text-sm font-medium text-gray-700"
             >Correo electrónico</label
@@ -55,6 +81,9 @@ if (accessToken && refreshToken) {
           />
         </div>
         <div class="cf-turnstile" data-sitekey="0x4AAAAAAA1qFrAJc99AgS9n"></div>
+        {errorMessage && (
+          <p class="text-red-600 text-sm mt-2 italic">{errorMessage}</p>
+        )}
         <button
           type="submit"
           class="w-full bg-[#917763] text-white py-2 rounded-md hover:bg-[#6A5341] focus:outline-none"
