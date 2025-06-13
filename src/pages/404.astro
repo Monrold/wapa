@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Página no encontrada | Wapa Studio"
+  description="La página que buscas no existe"
+  lightColor={true}
+  isIndexable={true}
+>
+  <div class="h-[80vh] flex items-center justify-center">
+    <div class="text-center max-w-md">
+      <p class="mb-4 font-semibold">404</p>
+      <h1 class="text-3xl md:text-3xl font-semibold mb-2">
+        Oops... Página no encontrada
+      </h1>
+      <p class="mb-6 text-gray-600">
+        Parece que esta ruta no existe o fue movida.
+      </p>
+      <a
+        href="/"
+        class="inline-block bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800 transition"
+      >
+        Volver al inicio
+      </a>
+    </div>
+  </div>
+</Layout>
