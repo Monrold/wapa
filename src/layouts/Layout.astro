@@ -2,6 +2,7 @@
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import og from "../images/og-image.jpg";
+import PostHog from '../components/posthog.astro'
 
 interface Props {
 	title: string;
@@ -36,6 +37,7 @@ const { title, description, ogimage, isIndexable } = Astro.props;
 			async
 			defer></script>
 		<title>{title}</title>
+		 <PostHog />
 	</head>
 	<body class="relative">
 		<Nav lightColor={Astro.props.lightColor} />
