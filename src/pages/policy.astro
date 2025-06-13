@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro'
+
+const title = "Política de Privacidad - Wapa Studio"
+const description = "Conoce nuestra Política de Privacidad, cómo recopilamos y protegemos tus datos personales en Wapa Studio."
+---
+
+<Layout {title} {description} lightColor={true} isIndexable={true}>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "PrivacyPolicy",
+    "name": "Política de Privacidad de Wapa Studio",
+    "url": "https://wapastudio.com/policy"
+  }
+  </script>
+
+  <main class=" text-gray-800 font-sans p-8 max-w-4xl mx-auto my-20">
+    <h1 class="text-4xl font-bold mb-6">Política de Privacidad</h1>
+    <p class="mb-4">
+      En <strong>Wapa Studio</strong> nos comprometemos a proteger tu privacidad y garantizar que tus datos personales sean tratados con cuidado y responsabilidad.
+    </p>
+
+    <section class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">Información que recopilamos</h2>
+      <p>
+        Recopilamos información personal que tú nos proporcionas directamente, como nombre, correo electrónico, y datos de contacto cuando te registras o realizas una compra.
+      </p>
+    </section>
+
+    <section class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">Uso de la información</h2>
+      <p>
+        Utilizamos tus datos para procesar pedidos, enviar información importante sobre nuestros servicios, y mejorar tu experiencia en nuestra plataforma.
+      </p>
+    </section>
+
+    <section class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">Cookies y tecnologías similares</h2>
+      <p>
+        Usamos cookies para mejorar la funcionalidad del sitio y personalizar el contenido. Puedes administrar tus preferencias de cookies desde tu navegador.
+      </p>
+    </section>
+
+    <section class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">Compartir información</h2>
+      <p>
+        No vendemos ni compartimos tus datos personales con terceros sin tu consentimiento, excepto cuando sea necesario para cumplir con la ley o proteger nuestros derechos.
+      </p>
+    </section>
+
+    <section class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">Tus derechos</h2>
+      <p>
+        Puedes solicitar acceso, corrección o eliminación de tus datos personales en cualquier momento contactándonos a través de nuestro correo de soporte.
+      </p>
+    </section>
+
+    <section class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">Contacto</h2>
+      <p>
+        Si tienes dudas sobre nuestra política de privacidad, por favor contáctanos en <a href="mailto:contacto@wapastudio.com" class="text-blue-600 underline">contacto@wapastudio.com</a>.
+      </p>
+    </section>
+
+    <footer class="mt-12 text-sm text-gray-600">
+      <p>Última actualización: 13 de junio de 2025</p>
+    </footer>
+  </main>
+</Layout>
