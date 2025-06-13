@@ -84,7 +84,7 @@ const isHomePage = homePages.includes(Astro.url.pathname);
     <div class="flex w-full items-center">
         <div
             class:list={[
-                "flex space-x-8 my-4 flex-1 justify-end",
+                "flex space-x-10 my-4 flex-1 justify-end",
                 Astro.props.lightColor ? "text-black" : "text-white",
             ]}
         >
@@ -107,8 +107,14 @@ const isHomePage = homePages.includes(Astro.url.pathname);
                 ]}
                 href="/asesoria"
                 aria-label="Asesoria"
+                class="flex items-center space-x-2"
             >
-                <h3>Asesoría</h3>
+                <img
+                    class="h-5"
+                    src="https://pub-c6f56a3478ba4de7a25f81a088d063ba.r2.dev/facebook-icon.svg"
+                    alt="Logotipo de Facebook"
+                />
+                <h3>Asesoría publicitaria</h3>
             </a>
             <div class="h-6 w-[2px] bg-gray-200"></div>
             <a
@@ -158,8 +164,10 @@ const isHomePage = homePages.includes(Astro.url.pathname);
                     ></path>
                 </svg>
             </button>
+            <!-- Logotipo al abrir el menú -->
+
             <div
-                class="absolute inset-0 top-16 flex items-center justify-center w-full bg-[#fef8f2]/95 backdrop-blur-sm"
+                class="absolute inset-0 top-16 flex w-full bg-[#fef8f2]/95 backdrop-blur-sm"
                 id="contenedor"
             >
                 <button
@@ -183,8 +191,10 @@ const isHomePage = homePages.includes(Astro.url.pathname);
                         ></path>
                     </svg>
                 </button>
+                
+               
                 <div
-                    class="wrapper flex flex-col justify-center space-y-6 items-center w-full p-4 text-black"
+                    class="wrapper flex flex-col space-y-6 w-full text-left p-4 text-black"
                     id="wrapper"
                 >
                     <a
@@ -194,19 +204,27 @@ const isHomePage = homePages.includes(Astro.url.pathname);
                     >
                         Iniciar sesión
                     </a>
+
+                    <a
+                        class="hover:text-yellow-600 focus:text-yellow-600 text-center text-xl"
+                        href="/asesoria"
+                        aria-label="Asesoria"
+                    >
+                        <div class="flex items-center space-x-2 justify-center">
+                            <img
+                                class="h-5"
+                                src="https://pub-c6f56a3478ba4de7a25f81a088d063ba.r2.dev/facebook-icon.svg"
+                                alt=""
+                            />
+                            <h3>Asesoría publicitaria</h3>
+                        </div>
+                    </a>
                     <a
                         class="hover:text-yellow-600 focus:text-yellow-600 text-center text-xl"
                         href="/blog"
                         aria-label="Blog"
                     >
                         <h3>Blog</h3>
-                    </a>
-                    <a
-                        class="hover:text-yellow-600 focus:text-yellow-600 text-center text-xl"
-                        href="/asesoria"
-                        aria-label="Asesoria"
-                    >
-                        <h3>Asesoría</h3>
                     </a>
                 </div>
             </div>
