@@ -12,40 +12,39 @@ import Faq from "../components/home/faq.astro";
     isIndexable={true}
 >
     <section>
-        <div>
-            <section class="relative w-full h-screen overflow-hidden">
-                <!-- Video para mobile -->
-                <video
-                    class="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-full object-cover block sm:hidden"
-                    src="https://media.wapastudio.com/portada-home-wapa-web-comprimido-2.mp4"
-                    autoplay
-                    muted
-                    playsinline
-                    loop></video>
+        <div class="relative w-full h-screen overflow-hidden bg-black">
+            <!-- Imagen base para todos -->
+            <img
+                src="https://media.wapastudio.com/img-portada-wapa.webp"
+                alt="Foto de alisado perfecto"
+                class="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-full object-cover z-0"
+                loading="eager"
+            />
 
-                <!-- Video para sm en adelante -->
-                <video
-                    class="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-full object-cover hidden sm:block"
-                    src="https://media.wapastudio.com/portada-home-wapa-web-comprimido-2.mp4"
-                    autoplay
-                    muted
-                    playsinline
-                    loop></video>
+            <!-- Video para desktop y mobile -->
+            <video
+                class="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-full object-cover opacity-0 transition-opacity duration-700 z-10"
+                src="https://media.wapastudio.com/portada-home-wapa-web-comprimido-2.mp4"
+                autoplay
+                muted
+                playsinline
+                loop
+                preload="none"
+                onloadeddata="this.style.opacity='1'"></video>
 
-                <!-- Degradado blanco a transparente en la parte inferior -->
-
-                <div
-                    class="absolute inset-0 z-20 flex flex-col items-center justify-center text-center pointer-events-none"
+            <!-- Texto -->
+            <div
+                class="absolute inset-0 z-20 flex flex-col items-center justify-center text-center pointer-events-none"
+            >
+                <h1
+                    class="text-5xl md:text-6xl max-w-screen-md text-white px-4"
                 >
-                    <h1
-                        class="text-5xl md:text-6xl max-w-screen-md text-white drop-shadow-md px-4"
-                    >
-                        Lo mejor para transformar tus alisados y tu técnica
-                    </h1>
-                </div>
-            </section>
+                    Lo mejor para transformar tus alisados y tu técnica
+                </h1>
+            </div>
         </div>
     </section>
+
     <div class="max-w-screen-lg mx-auto">
         <section class="max-w-7xl mx-auto px-4 py-12">
             <!-- Línea gris y título -->
