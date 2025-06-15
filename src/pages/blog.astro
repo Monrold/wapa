@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 
 const allPosts = await Astro.glob("../pages/posts/*.md");
 const pageTitle =
-    "Wapa studio blog | Encuentra consejos, técnicas y recomendaciones.";
+    "Wapa academy blog | Encuentra consejos, técnicas y recomendaciones.";
 
 const sortedPosts = allPosts.sort(
     (a, b) =>
@@ -14,7 +14,7 @@ const sortedPosts = allPosts.sort(
 
 <Layout
     title={pageTitle}
-    description="Descubre técnicas avanzadas y consejos profesionales para lograr alisados perfectos, lifting de pestañas impecable y diseños de cejas personalizados."
+    description="Descubre técnicas avanzadas y consejos profesionales para lograr alisados perfectos."
     lightColor={true}
     isIndexable={true}
 >

@@ -11,9 +11,10 @@ interface Props {
 	lightColor?: boolean;
 	ogimage?: string;
 	isIndexable?: boolean;
+	canonical?: string;
 }
 
-const { title, description, ogimage, isIndexable } = Astro.props;
+const { title, description, ogimage, isIndexable, canonical } = Astro.props;
 ---
 
 <!doctype html>
@@ -23,15 +24,24 @@ const { title, description, ogimage, isIndexable } = Astro.props;
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link
+			rel="icon"
+			href="/favicon-32x32.png"
+			sizes="32x32"
+			type="image/png"
+		/>
+		<link
+			rel="icon"
+			href="/favicon-16x16.png"
+			sizes="16x16"
+			type="image/png"
+		/>
 		<meta property="og:image" content={ogimage ? ogimage : og.src} />
 		<meta name="generator" content={Astro.generator} />
+		{canonical && <link rel="canonical" href={canonical} />}
 		<meta
 			name="robots"
 			content={isIndexable ? "index, follow" : "noindex, nofollow"}
-		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&display=swap"
-			rel="stylesheet"
 		/>
 		<script
 			src="https://challenges.cloudflare.com/turnstile/v0/api.js"

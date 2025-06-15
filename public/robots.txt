@@ -2,7 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /cursos/
 Disallow: /dashboard/
-Disallow: /register/
 Disallow: /confirm/
 
 Sitemap: https://wapastudio.com/sitemap.xml
