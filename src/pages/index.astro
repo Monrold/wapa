@@ -11,6 +11,15 @@ import Faq from "../components/home/faq.astro";
     lightColor={true}
     isIndexable={true}
 >
+    <Fragment slot="head">
+        <link
+            rel="preload"
+            as="image"
+            href="https://media.wapastudio.com/img-portada-wapa.webp"
+            type="image/webp"
+            fetchpriority="high"
+        />
+    </Fragment>
     <section>
         <div class="relative w-full h-screen overflow-hidden bg-black">
             <!-- Imagen base optimizada para LCP -->
