@@ -39,6 +39,7 @@ const { title, description, ogimage, isIndexable, canonical } = Astro.props;
 		<meta property="og:image" content={ogimage ? ogimage : og.src} />
 		<meta name="generator" content={Astro.generator} />
 		{canonical && <link rel="canonical" href={canonical} />}
+		<slot name="head" />
 		<meta
 			name="robots"
 			content={isIndexable ? "index, follow" : "noindex, nofollow"}
