@@ -21,38 +21,60 @@ import Faq from "../components/home/faq.astro";
         />
     </Fragment>
     <section>
-        <div class="relative w-full h-screen overflow-hidden bg-black">
+        <div
+            id="hero-container"
+            class="relative w-full h-screen overflow-hidden bg-white transition-colors duration-700"
+        >
             <!-- Imagen base optimizada para LCP -->
             <img
+                id="hero-img"
                 src="https://media.wapastudio.com/img-portada-wapa.webp"
                 alt="Foto de alisado perfecto"
-                class="absolute inset-0 w-full h-full object-cover z-20"
+                class="absolute inset-0 w-full h-full object-cover z-20 opacity-0 transition-opacity duration-700"
                 loading="eager"
                 fetchpriority="high"
             />
 
             <!-- Video: visible solo cuando carga -->
             <video
+                id="hero-video"
                 class="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-full object-cover opacity-0 transition-opacity duration-700 z-30"
                 src="https://media.wapastudio.com/portada-home-wapa-web-comprimido-2.mp4"
                 autoplay
                 muted
                 playsinline
                 loop
-                preload="none"
-                onloadeddata="this.style.opacity='1'"></video>
+                preload="none"></video>
 
             <!-- Texto centrado -->
             <div
-                class="absolute inset-0 z-40 flex flex-col items-center justify-center text-center pointer-events-none"
+                id="hero-text"
+                class="absolute inset-0 z-40 flex flex-col items-center justify-center text-center pointer-events-none px-4 text-black transition-colors duration-700"
             >
-                <h1
-                    class="text-5xl md:text-6xl max-w-screen-md text-white px-4"
-                >
+                <h1 class="text-5xl md:text-6xl max-w-screen-md">
                     Lo mejor para transformar tus alisados y tu técnica
                 </h1>
             </div>
         </div>
+
+        <script>
+            const img = document.getElementById("hero-img");
+            const video = document.getElementById("hero-video");
+            const container = document.getElementById("hero-container");
+            const text = document.getElementById("hero-text");
+
+            // Mostrar imagen cuando carga
+            img.addEventListener("load", () => {
+                img.style.opacity = "1";
+            });
+
+            // Cuando el video está listo, mostrarlo y cambiar texto a blanco, fondo negro
+            video.addEventListener("loadeddata", () => {
+                video.style.opacity = "1";
+                container.style.backgroundColor = "black";
+                text.style.color = "white";
+            });
+        </script>
     </section>
 
     <div class="max-w-screen-lg mx-auto">
