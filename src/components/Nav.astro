@@ -11,58 +11,62 @@ const isHomePage = homePages.includes(Astro.url.pathname);
 ---
 
 <style>
-    #closeButton {
-        display: none;
+    .menuItems {
+        position: absolute;
+        top: 100%; /* justo debajo del contenedor padre */
+        left: 0;
+        right: 0;
+
+        background: white;
+        z-index: 60;
+
+        display: flex;
+        flex-direction: column;
+        padding: 1rem 1.5rem;
+
+        width: 100vw; /* ancho total del viewport */
+        margin-left: calc(
+            -1 * (100vw - 100%) / 2
+        ); /* compensa padding para que quede alineado */
+
+        box-sizing: border-box;
+
+        transform: translateX(-100%);
+        opacity: 0;
+        pointer-events: none;
+
+        transition:
+            transform 0.3s ease,
+            opacity 0.3s ease;
     }
 
-    #contenedor {
-        height: 100vh;
-        min-height: 100dvh;
-        display: none;
-        opacity: 0;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        position: fixed;
-        inset: 0;
-        z-index: 50;
-        background: rgba(254, 248, 242, 0.95);
-        transition: all ease-in-out 300ms !important;
-    }
-    #contenedor.view {
-        display: flex !important;
-        opacity: 1 !important;
-    }
-    .view {
-        opacity: 1 !important;
+    .showMenu {
+        transform: translateX(0);
+        opacity: 1;
+        pointer-events: auto;
     }
 </style>
 <script>
-    window.addEventListener("DOMContentLoaded", function () {
-        const burgerButton = document.getElementById("burgerButton");
-        const closeButton = document.getElementById("closeButton");
-        const button = document.getElementById("buttonBurger");
-        const contenedor = document.getElementById("contenedor");
+    window.addEventListener("DOMContentLoaded", () => {
+        const burgerBtn = document.getElementById("hamburgerButton");
+        const menu = document.getElementById("menuItems");
+        const burgerIcon = document.getElementById("burgerIcon");
+        const closeIcon = document.getElementById("closeIcon");
 
-        function toggleMenu() {
-            if (!contenedor.classList.contains("view")) {
-                contenedor.classList.add("view");
-                closeButton.style.display = "block";
-                burgerButton.style.display = "none";
+        let menuOpen = false;
+
+        burgerBtn.addEventListener("click", () => {
+            menuOpen = !menuOpen;
+
+            if (menuOpen) {
+                menu.classList.add("showMenu");
+                burgerIcon.style.display = "none";
+                closeIcon.style.display = "inline";
             } else {
-                contenedor.classList.remove("view");
-                closeButton.style.display = "none";
-                burgerButton.style.display = "block";
+                menu.classList.remove("showMenu");
+                burgerIcon.style.display = "inline";
+                closeIcon.style.display = "none";
             }
-        }
-
-        button.addEventListener("click", toggleMenu);
-        closeButton.addEventListener("click", toggleMenu);
-
-        // Elimina la lógica de supabase/logout, solo navega al link
-        const logoutLink = document.getElementById("logout-link");
-        logoutLink?.addEventListener("click", function (e) {
-            // Permite la navegación normal del enlace
         });
     });
 </script>
@@ -129,105 +133,78 @@ const isHomePage = homePages.includes(Astro.url.pathname);
     </div>
 </nav>
 
-<nav
-    class={`flex justify-between px-4 relative z-40
-    ${isHomePage ? "md:mx-auto absolute md:hidden w-full px-3 py-3" : "reltive md:hidden bg-transparent px-3 py-3"}`}
->
-    <div class="relative flex justify-between w-full">
+<nav class="bgblack lg:hidden bg-white py-6 px-4 z-10">
+    <div class="mx-auto flex justify-between items-center relative">
         <div>
-            <a href="/">
+            <a aria-label="Regresa al Home" href="/">
                 <img
-                    class="w-24"
-                    src={Astro.props.lightColor ? wapablack.src : wapa.src}
-                    alt="Logotipo de wapa"
+                    class="w-32"
+                    src={wapablack.src}
+                    alt="logotipo stroit surfaces"
                 />
             </a>
         </div>
-        <div class="flex flex-col my-auto text-white">
+
+        <div>
             <button
-                class="flex flex-col items-end"
-                id="buttonBurger"
+                id="hamburgerButton"
+                aria-label="Abrir menú"
                 type="button"
+                class="relative z-50"
             >
+                <!-- Ícono hamburguesa visible al inicio -->
                 <svg
-                    aria-label="Abrir menú"
-                    class:list={[
-                        "w-5",
-                        Astro.props.lightColor ? "fill-black" : "fill-white",
-                    ]}
-                    id="burgerButton"
+                    id="burgerIcon"
                     xmlns="http://www.w3.org/2000/svg"
+                    height="24"
+                    width="24"
                     viewBox="0 0 448 512"
+                    fill="black"
+                    aria-hidden="true"
                 >
                     <path
-                        d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"
+                        d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32
+                C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32
+                32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32
+                32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"
+                    ></path>
+                </svg>
+
+                <!-- Ícono cerrar oculto al inicio -->
+                <svg
+                    id="closeIcon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24"
+                    width="24"
+                    viewBox="0 0 384 512"
+                    fill="black"
+                    aria-hidden="true"
+                    style="display:none"
+                >
+                    <path
+                        d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3
+                0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3
+                0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5
+                32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5
+                12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
                     ></path>
                 </svg>
             </button>
-            <!-- Logotipo al abrir el menú -->
-
-            <div
-                class="absolute inset-0 top-16 flex w-full bg-[#fef8f2]/95 backdrop-blur-sm"
-                id="contenedor"
-            >
-                <button
-                    id="closeButton"
-                    aria-label="Cerrar menú"
-                    class="absolute top-4 right-4 z-50 bg-white/80 rounded-full p-2 shadow"
-                    style="display: none;"
-                >
-                    <svg
-                        class:list={[
-                            "w-6 h-6",
-                            Astro.props.lightColor
-                                ? "fill-black"
-                                : "fill-slate-700",
-                        ]}
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 384 512"
-                    >
-                        <path
-                            d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
-                        ></path>
-                    </svg>
-                </button>
-                
-               
-                <div
-                    class="wrapper flex flex-col space-y-6 w-full text-left p-4 text-black"
-                    id="wrapper"
-                >
-                    <a
-                        class="hover:text-yellow-600 focus:text-yellow-600 text-center text-xl"
-                        href="/signin"
-                        aria-label="Iniciar sesión"
-                    >
-                        Iniciar sesión
-                    </a>
-
-                    <a
-                        class="hover:text-yellow-600 focus:text-yellow-600 text-center text-xl"
-                        href="/asesoria"
-                        aria-label="Asesoria"
-                    >
-                        <div class="flex items-center space-x-2 justify-center">
-                            <img
-                                class="h-5"
-                                src="https://pub-c6f56a3478ba4de7a25f81a088d063ba.r2.dev/facebook-icon.svg"
-                                alt=""
-                            />
-                            <h3>Asesoría publicitaria</h3>
-                        </div>
-                    </a>
-                    <a
-                        class="hover:text-yellow-600 focus:text-yellow-600 text-center text-xl"
-                        href="/blog"
-                        aria-label="Blog"
-                    >
-                        <h3>Blog</h3>
-                    </a>
-                </div>
-            </div>
         </div>
+        <ul id="menuItems" class="menuItems">
+            <li class="principalli">
+                <a href="/curso-alisados" class="block py-4 mb-2 border-b ">Curso de alisados</a>
+            </li>
+            <li class="principalli">
+                <a href="/blog" class="block py-4 mb-2 border-b">Blog</a>
+            </li>
+            <li class="principalli">
+                <a href="/asesoria" class="block py-4 mb-4  border-b">Asesoría publicitaria</a>
+            </li>
+
+            <li class="principalli">
+                <a href="/signin" class="block py-4 bg-gray-200 text-center rounded-sm">Iniciar sesión</a>
+            </li>
+        </ul>
     </div>
 </nav>
