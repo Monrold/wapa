@@ -3,11 +3,11 @@ import Layout from "../../layouts/Layout.astro";
 import alaciado from "../../images/index/alaciado.webp";
 import botox from "../../images/index/botox.webp";
 import encerado from "../../images/encerado.jpg";
-import Otrosproductos from "../../components/tienda/otrosproductos.astro"
+import Otrosproductos from "../../components/tienda/otrosproductos.astro";
 ---
 
 <Layout
-    title="Keratina Capilar para Todo Tipo de Cabello, Incluso Decolorados | Alisado y Nutrición"
+    title="Keratina para el cabello, Incluso Decolorados | Alisado y Nutrición"
     description="Bioplastia capilar, tratamiento de keratina diseñado para todo tipo de cabello sano y decolorado. Ayuda a eliminar el frizz, mejora el brillo, la suavidad del cabello."
     lightColor={true}
     isIndexable={true}
@@ -25,285 +25,291 @@ import Otrosproductos from "../../components/tienda/otrosproductos.astro"
         >
             <!-- Carrusel de imágenes -->
             <div class="relative">
-                <div class="carousel lg:h-[60vh]">
+                <div class="carousel lg:h-[70vh]">
                     <img
                         src={encerado.src}
                         alt="Producto imagen 1"
-                        class="w-full h-80 md:h-full object-cover rounded-lg shadow-md"
+                        class="w-full h-84 md:h-full object-cover rounded-lg shadow-md"
                     />
                     <!-- Agrega más imágenes al carrusel aquí -->
                 </div>
             </div>
 
             <!-- Información del producto -->
-            <div class="space-y-6">
-                <h1 class="text-3xl font-bold">Bioplastia</h1>
-                <div class="">
-                    <p class="text-gray-700 mb-4">
-                        Para todo tipo de cabello sano. Incluso decolorado.
-                    </p>
-                    <p></p>
-                    <div id="accordion-collapse" data-accordion="collapse">
-                        <h2 id="accordion-collapse-heading-1">
-                            <button
-                                type="button"
-                                class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-700 border border-b-0 border-gray-300 rounded-t-xl focus:ring-4 focus:ring-gray-100 hover:bg-gray-50 gap-3"
-                                data-accordion-target="#accordion-collapse-body-1"
-                                aria-expanded="true"
-                                aria-controls="accordion-collapse-body-1"
-                            >
-                                <span>¿Qué beneficios tiene?</span>
-                                <svg
-                                    data-accordion-icon
-                                    class="w-3 h-3 rotate-180 shrink-0"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 10 6"
+            <div >
+                <h1 class="text-xs  text-yellow-500">Keratina para cabello</h1>
+                <h2 class="text-3xl font-bold">Bioplastia</h2>
+                <p class="text-gray-700 mt-2 mb-8">
+                    Para todo tipo de cabello sano. Incluso decolorado.
+                </p>
+                <div class="space-y-6">
+                    <div class="">
+                        <p></p>
+                        <div id="accordion-collapse" data-accordion="collapse">
+                            <h2 id="accordion-collapse-heading-1">
+                                <button
+                                    type="button"
+                                    class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-700 border border-b-0 border-gray-300 rounded-t-xl focus:ring-4 focus:ring-gray-100 hover:bg-gray-50 gap-3"
+                                    data-accordion-target="#accordion-collapse-body-1"
+                                    aria-expanded="true"
+                                    aria-controls="accordion-collapse-body-1"
                                 >
-                                    <path
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M9 5 5 1 1 5"></path>
-                                </svg>
-                            </button>
-                        </h2>
-                        <div
-                            id="accordion-collapse-body-1"
-                            class="hidden"
-                            aria-labelledby="accordion-collapse-heading-1"
-                        >
+                                    <span>¿Qué beneficios tiene?</span>
+                                    <svg
+                                        data-accordion-icon
+                                        class="w-3 h-3 rotate-180 shrink-0"
+                                        aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 10 6"
+                                    >
+                                        <path
+                                            stroke="currentColor"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M9 5 5 1 1 5"></path>
+                                    </svg>
+                                </button>
+                            </h2>
                             <div
-                                class="p-5 border border-b-0 border-gray-300 bg-gray-50"
+                                id="accordion-collapse-body-1"
+                                class="hidden"
+                                aria-labelledby="accordion-collapse-heading-1"
                             >
-                                <ul class="list-disc pl-5 text-gray-700">
-                                    <li>Alisa 95%</li>
-                                    <li>Hidrata</li>
-                                    <li>Elimina el Frizz</li>
-                                    <li>Aumenta el brillo</li>
-                                    <li>Aumenta sedosidad</li>
-                                    <li>
-                                        Fomenta el crecimiento
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <h2 id="accordion-collapse-heading-2">
-                            <button
-                                type="button"
-                                class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-700 border border-b-0 border-gray-300 focus:ring-4 focus:ring-gray-100 hover:bg-gray-50 gap-3"
-                                data-accordion-target="#accordion-collapse-body-2"
-                                aria-expanded="false"
-                                aria-controls="accordion-collapse-body-2"
-                            >
-                                <span>Duración y rendimiento</span>
-                                <svg
-                                    data-accordion-icon
-                                    class="w-3 h-3 rotate-180 shrink-0"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 10 6"
+                                <div
+                                    class="p-5 border border-b-0 border-gray-300 bg-gray-50"
                                 >
-                                    <path
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M9 5 5 1 1 5"></path>
-                                </svg>
-                            </button>
-                        </h2>
-                        <div
-                            id="accordion-collapse-body-2"
-                            class="hidden"
-                            aria-labelledby="accordion-collapse-heading-2"
-                        >
-                            <div
-                                class="p-5 border border-b-0 border-gray-300 bg-gray-50"
-                            >
-                                <div class="flex items-center pl-1">
-                                    <svg
-                                        class="w-4 fill-gray-500"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 512 512"
-                                        ><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
-                                        <path
-                                            d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"
-                                        ></path></svg
-                                    >
-                                    <p class="pl-2 text-gray-600">
-                                        | Tiene una duración: 4 a 6 meses
-                                    </p>
-                                </div>
-                                <div class="flex items-center pl-1 mt-4">
-                                    <svg
-                                        class="w-4 fill-gray-600"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 512 512"
-                                        ><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
-                                        <path
-                                            d="M336 16l0 64c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64c0-8.8 7.2-16 16-16s16 7.2 16 16zm-98.7 7.1l32 48c4.9 7.4 2.9 17.3-4.4 22.2s-17.3 2.9-22.2-4.4l-32-48c-4.9-7.4-2.9-17.3 4.4-22.2s17.3-2.9 22.2 4.4zM135 119c9.4-9.4 24.6-9.4 33.9 0L292.7 242.7c10.1 10.1 27.3 2.9 27.3-11.3l0-39.4c0-17.7 14.3-32 32-32s32 14.3 32 32l0 153.6c0 57.1-30 110-78.9 139.4c-64 38.4-145.8 28.3-198.5-24.4L7 361c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l53 53c6.1 6.1 16 6.1 22.1 0s6.1-16 0-22.1L23 265c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l93 93c6.1 6.1 16 6.1 22.1 0s6.1-16 0-22.1L55 185c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l117 117c6.1 6.1 16 6.1 22.1 0s6.1-16 0-22.1l-93-93c-9.4-9.4-9.4-24.6 0-33.9zM433.1 484.9c-24.2 14.5-50.9 22.1-77.7 23.1c48.1-39.6 76.6-99 76.6-162.4l0-98.1c8.2-.1 16-6.4 16-16l0-39.4c0-17.7 14.3-32 32-32s32 14.3 32 32l0 153.6c0 57.1-30 110-78.9 139.4zM424.9 18.7c7.4 4.9 9.3 14.8 4.4 22.2l-32 48c-4.9 7.4-14.8 9.3-22.2 4.4s-9.3-14.8-4.4-22.2l32-48c4.9-7.4 14.8-9.3 22.2-4.4z"
-                                        ></path></svg
-                                    >
-                                    <p class="pl-2 text-gray-600">
-                                        | Rinde de 18 a 20 aplicaciones
-                                    </p>
+                                    <ul class="list-disc pl-5 text-gray-700">
+                                        <li>Alisa 95%</li>
+                                        <li>Hidrata</li>
+                                        <li>Elimina el Frizz</li>
+                                        <li>Aumenta el brillo</li>
+                                        <li>Aumenta sedosidad</li>
+                                        <li>Fomenta el crecimiento</li>
+                                    </ul>
                                 </div>
                             </div>
-                        </div>
-                        <h2 id="accordion-collapse-heading-3">
-                            <button
-                                type="button"
-                                class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-700 border border-gray-300 rounded-b-xl focus:ring-4 focus:ring-gray-100 hover:bg-gray-50 gap-3"
-                                data-accordion-target="#accordion-collapse-body-3"
-                                aria-expanded="false"
-                                aria-controls="accordion-collapse-body-3"
-                            >
-                                <span>Extras</span>
-                                <svg
-                                    data-accordion-icon
-                                    class="w-3 h-3 rotate-180 shrink-0"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 10 6"
+                            <h2 id="accordion-collapse-heading-2">
+                                <button
+                                    type="button"
+                                    class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-700 border border-b-0 border-gray-300 focus:ring-4 focus:ring-gray-100 hover:bg-gray-50 gap-3"
+                                    data-accordion-target="#accordion-collapse-body-2"
+                                    aria-expanded="false"
+                                    aria-controls="accordion-collapse-body-2"
                                 >
-                                    <path
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M9 5 5 1 1 5"></path>
-                                </svg>
-                            </button>
-                        </h2>
-                        <div
-                            id="accordion-collapse-body-3"
-                            class="hidden"
-                            aria-labelledby="accordion-collapse-heading-3"
-                        >
+                                    <span>Duración y rendimiento</span>
+                                    <svg
+                                        data-accordion-icon
+                                        class="w-3 h-3 rotate-180 shrink-0"
+                                        aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 10 6"
+                                    >
+                                        <path
+                                            stroke="currentColor"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M9 5 5 1 1 5"></path>
+                                    </svg>
+                                </button>
+                            </h2>
                             <div
-                                class="p-5 border border-t-0 rounded-b-xl border-gray-300 bg-gray-50"
+                                id="accordion-collapse-body-2"
+                                class="hidden"
+                                aria-labelledby="accordion-collapse-heading-2"
                             >
-                                <ul class="list-disc pl-5 text-gray-700">
-                                    <li>Lavado en 8 hrs</li>
-                                    <li>No apto para cabello sobreprocesado</li>
-                                    <li>
-                                        Incluye 1/4 de neutralizador (Rinde para
-                                        1 litro)
-                                    </li>
-                                </ul>
+                                <div
+                                    class="p-5 border border-b-0 border-gray-300 bg-gray-50"
+                                >
+                                    <div class="flex items-center pl-1">
+                                        <svg
+                                            class="w-4 fill-gray-500"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 512 512"
+                                            ><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                                            <path
+                                                d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"
+                                            ></path></svg
+                                        >
+                                        <p class="pl-2 text-gray-600">
+                                            | Tiene una duración: 4 a 6 meses
+                                        </p>
+                                    </div>
+                                    <div class="flex items-center pl-1 mt-4">
+                                        <svg
+                                            class="w-4 fill-gray-600"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 512 512"
+                                            ><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                                            <path
+                                                d="M336 16l0 64c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64c0-8.8 7.2-16 16-16s16 7.2 16 16zm-98.7 7.1l32 48c4.9 7.4 2.9 17.3-4.4 22.2s-17.3 2.9-22.2-4.4l-32-48c-4.9-7.4-2.9-17.3 4.4-22.2s17.3-2.9 22.2 4.4zM135 119c9.4-9.4 24.6-9.4 33.9 0L292.7 242.7c10.1 10.1 27.3 2.9 27.3-11.3l0-39.4c0-17.7 14.3-32 32-32s32 14.3 32 32l0 153.6c0 57.1-30 110-78.9 139.4c-64 38.4-145.8 28.3-198.5-24.4L7 361c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l53 53c6.1 6.1 16 6.1 22.1 0s6.1-16 0-22.1L23 265c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l93 93c6.1 6.1 16 6.1 22.1 0s6.1-16 0-22.1L55 185c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l117 117c6.1 6.1 16 6.1 22.1 0s6.1-16 0-22.1l-93-93c-9.4-9.4-9.4-24.6 0-33.9zM433.1 484.9c-24.2 14.5-50.9 22.1-77.7 23.1c48.1-39.6 76.6-99 76.6-162.4l0-98.1c8.2-.1 16-6.4 16-16l0-39.4c0-17.7 14.3-32 32-32s32 14.3 32 32l0 153.6c0 57.1-30 110-78.9 139.4zM424.9 18.7c7.4 4.9 9.3 14.8 4.4 22.2l-32 48c-4.9 7.4-14.8 9.3-22.2 4.4s-9.3-14.8-4.4-22.2l32-48c4.9-7.4 14.8-9.3 22.2-4.4z"
+                                            ></path></svg
+                                        >
+                                        <p class="pl-2 text-gray-600">
+                                            | Rinde de 18 a 20 aplicaciones
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2 id="accordion-collapse-heading-3">
+                                <button
+                                    type="button"
+                                    class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-700 border border-gray-300 rounded-b-xl focus:ring-4 focus:ring-gray-100 hover:bg-gray-50 gap-3"
+                                    data-accordion-target="#accordion-collapse-body-3"
+                                    aria-expanded="false"
+                                    aria-controls="accordion-collapse-body-3"
+                                >
+                                    <span>Extras</span>
+                                    <svg
+                                        data-accordion-icon
+                                        class="w-3 h-3 rotate-180 shrink-0"
+                                        aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 10 6"
+                                    >
+                                        <path
+                                            stroke="currentColor"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M9 5 5 1 1 5"></path>
+                                    </svg>
+                                </button>
+                            </h2>
+                            <div
+                                id="accordion-collapse-body-3"
+                                class="hidden"
+                                aria-labelledby="accordion-collapse-heading-3"
+                            >
+                                <div
+                                    class="p-5 border border-t-0 rounded-b-xl border-gray-300 bg-gray-50"
+                                >
+                                    <ul class="list-disc pl-5 text-gray-700">
+                                        <li>Lavado en 8 hrs</li>
+                                        <li>
+                                            No apto para cabello sobreprocesado
+                                        </li>
+                                        <li>
+                                            Incluye 1/4 de neutralizador (Rinde
+                                            para 1 litro)
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <script>
-                        document
-                            .querySelectorAll("[data-accordion-target]")
-                            .forEach((button) => {
-                                button.addEventListener("click", () => {
-                                    const target = document.querySelector(
-                                        button.getAttribute(
-                                            "data-accordion-target",
-                                        ),
-                                    );
-                                    const allPanels = document.querySelectorAll(
-                                        '[id^="accordion-collapse-body-"]',
-                                    );
-                                    const allButtons =
-                                        document.querySelectorAll(
-                                            "[data-accordion-target]",
+                        <script>
+                            document
+                                .querySelectorAll("[data-accordion-target]")
+                                .forEach((button) => {
+                                    button.addEventListener("click", () => {
+                                        const target = document.querySelector(
+                                            button.getAttribute(
+                                                "data-accordion-target",
+                                            ),
                                         );
-
-                                    allPanels.forEach((panel) => {
-                                        if (panel !== target) {
-                                            panel.classList.add("hidden");
-                                            panel.classList.remove("block");
-                                        }
-                                    });
-
-                                    allButtons.forEach((btn) => {
-                                        if (btn !== button) {
-                                            const icon = btn.querySelector(
-                                                "[data-accordion-icon]",
+                                        const allPanels =
+                                            document.querySelectorAll(
+                                                '[id^="accordion-collapse-body-"]',
                                             );
-                                            if (icon)
-                                                icon.classList.remove(
-                                                    "rotate-180",
+                                        const allButtons =
+                                            document.querySelectorAll(
+                                                "[data-accordion-target]",
+                                            );
+
+                                        allPanels.forEach((panel) => {
+                                            if (panel !== target) {
+                                                panel.classList.add("hidden");
+                                                panel.classList.remove("block");
+                                            }
+                                        });
+
+                                        allButtons.forEach((btn) => {
+                                            if (btn !== button) {
+                                                const icon = btn.querySelector(
+                                                    "[data-accordion-icon]",
                                                 );
+                                                if (icon)
+                                                    icon.classList.remove(
+                                                        "rotate-180",
+                                                    );
+                                            }
+                                        });
+
+                                        if (
+                                            target.classList.contains("hidden")
+                                        ) {
+                                            target.classList.remove("hidden");
+                                            target.classList.add("block");
+                                            button
+                                                .querySelector(
+                                                    "[data-accordion-icon]",
+                                                )
+                                                .classList.add("rotate-180");
+                                        } else {
+                                            target.classList.remove("block");
+                                            target.classList.add("hidden");
+                                            button
+                                                .querySelector(
+                                                    "[data-accordion-icon]",
+                                                )
+                                                .classList.remove("rotate-180");
                                         }
                                     });
-
-                                    if (target.classList.contains("hidden")) {
-                                        target.classList.remove("hidden");
-                                        target.classList.add("block");
-                                        button
-                                            .querySelector(
-                                                "[data-accordion-icon]",
-                                            )
-                                            .classList.add("rotate-180");
-                                    } else {
-                                        target.classList.remove("block");
-                                        target.classList.add("hidden");
-                                        button
-                                            .querySelector(
-                                                "[data-accordion-icon]",
-                                            )
-                                            .classList.remove("rotate-180");
-                                    }
                                 });
-                            });
-                    </script>
-                </div>
-                <div class="text-2xl font-semibold text-gray-800">
-                    <p>
-                        Precio por litro:
-                        <span
-                            class="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent"
-                            >$1,399</span
-                        >
-                        <span
-                            class="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent"
-                        >
-                            mxn</span
-                        >
-                    </p>
-
-                    <div class="flex">
-                        <svg
-                            class="fill-gray-400 w-4 mr-2"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 640 512"
-                            ><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
-                            <path
-                                d="M58.9 42.1c3-6.1 9.6-9.6 16.3-8.7L320 64 564.8 33.4c6.7-.8 13.3 2.7 16.3 8.7l41.7 83.4c9 17.9-.6 39.6-19.8 45.1L439.6 217.3c-13.9 4-28.8-1.9-36.2-14.3L320 64 236.6 203c-7.4 12.4-22.3 18.3-36.2 14.3L37.1 170.6c-19.3-5.5-28.8-27.2-19.8-45.1L58.9 42.1zM321.1 128l54.9 91.4c14.9 24.8 44.6 36.6 72.5 28.6L576 211.6l0 167c0 22-15 41.2-36.4 46.6l-204.1 51c-10.2 2.6-20.9 2.6-31 0l-204.1-51C79 419.7 64 400.5 64 378.5l0-167L191.6 248c27.8 8 57.6-3.8 72.5-28.6L318.9 128l2.2 0z"
-                            ></path></svg
-                        >
-                        <p class="text-xs text-gray-600 font-light">
-                            Envíos a todo México desde $180 mxn
+                        </script>
+                    </div>
+                    <div class="text-2xl font-semibold text-gray-800">
+                        <p>
+                            Precio por litro:
+                            <span
+                                class="bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-900 bg-clip-text text-transparent"
+                                >$1,399</span
+                            >
+                            <span
+                                class="bg-gradient-to-r from-yellow-800 via-yellow-900 to-yellow-950 bg-clip-text text-transparent"
+                            >
+                                mxn</span
+                            >
                         </p>
+
+                        <div class="flex">
+                            <svg
+                                class="fill-gray-400 w-4 mr-2"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 640 512"
+                                ><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                                <path
+                                    d="M58.9 42.1c3-6.1 9.6-9.6 16.3-8.7L320 64 564.8 33.4c6.7-.8 13.3 2.7 16.3 8.7l41.7 83.4c9 17.9-.6 39.6-19.8 45.1L439.6 217.3c-13.9 4-28.8-1.9-36.2-14.3L320 64 236.6 203c-7.4 12.4-22.3 18.3-36.2 14.3L37.1 170.6c-19.3-5.5-28.8-27.2-19.8-45.1L58.9 42.1zM321.1 128l54.9 91.4c14.9 24.8 44.6 36.6 72.5 28.6L576 211.6l0 167c0 22-15 41.2-36.4 46.6l-204.1 51c-10.2 2.6-20.9 2.6-31 0l-204.1-51C79 419.7 64 400.5 64 378.5l0-167L191.6 248c27.8 8 57.6-3.8 72.5-28.6L318.9 128l2.2 0z"
+                                ></path></svg
+                            >
+                            <p class="text-xs text-gray-600 font-light">
+                                Envíos a todo México desde $180 mxn
+                            </p>
+                        </div>
                     </div>
+                    <a
+                        href="https://wa.me/5215524418067"
+                        class="inline-block px-6 py-3 bg-black text-white text-sm font-medium rounded shadow hover:bg-zinc-800"
+                    >
+                        <div class="flex items-center">
+                            <svg
+                                class="fill-white w-4 mr-2"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 448 512"
+                                ><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                                <path
+                                    d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"
+                                ></path></svg
+                            >
+                            <p>Comprar ahora</p>
+                        </div>
+                    </a>
                 </div>
-                <a
-                    href="https://wa.me/5215524418067"
-                    class="inline-block px-6 py-3 bg-black text-white text-sm font-medium rounded shadow hover:bg-zinc-800"
-                >
-                    <div class="flex items-center">
-                        <svg
-                            class="fill-white w-4 mr-2"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 448 512"
-                            ><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
-                            <path
-                                d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"
-                            ></path></svg
-                        >
-                        <p>Comprar ahora</p>
-                    </div>
-                </a>
             </div>
         </div>
 
