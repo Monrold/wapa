@@ -8,19 +8,19 @@ const productos = [
     nombre: "Bioplastia",
     slug: "bioplastia",
     descripcion: "Nuestro producto estrella te ayudará a obtener lacios increíbles, incluso en cabello con decoloración sana.",
-    imagen: "https://media.wapastudio.com/keratina-dashboard-tienda.webp",
+    imagen: "https://media.wapastudio.com/keratina-bioplastia-tienda-web.webp",
   },
   {
     nombre: "Ultra Gold",
     slug: "ultra-gold",
     descripcion: "Consigue un lacio increíble en cabello con ondas marcadas y rebeldes.",
-    imagen: "https://media.wapastudio.com/keratina-dashboard-tienda.webp",
+    imagen: "https://media.wapastudio.com/keratina-ultra-gold-tienda-web.webp",
   },
   {
     nombre: "Nanobotox",
     slug: "nanobotox",
     descripcion: "Para cabello muy maltratado, deshidratado y para relajar ondas.",
-    imagen: "https://media.wapastudio.com/keratina-dashboard-tienda.webp",
+    imagen: "https://media.wapastudio.com/keratina-nanobotox-tienda-web.webp",
   },
   
 ]
@@ -42,7 +42,7 @@ const otrosProductos = productos.filter(p => p.slug !== nombreActual)
         <img
           src={producto.imagen}
           alt={producto.nombre}
-          class="w-full h-40 object-cover rounded-t-xl"
+          class="w-full h-80 object-cover rounded-t-xl"
         />
         <div class="p-6">
           <h3 class="text-xl font-semibold text-gray-900 mb-2">
