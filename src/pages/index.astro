@@ -1,12 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Social from "../components/home/social.astro";
-
+import Faq from "../components/home/faq.astro";
 ---
 
 <Layout
-    title="Keratinas Profesionales para Alisado y Curso para principiantes o de actualización | Alisados profesionales "
-    description="Descubre nuestras keratinas profesionales: Nanobotox, Ultra Gold y Bioplastia. Fórmulas exclusivas según tipo de cabello. Aprende a aplicarlas con nuestro curso completo de alisado capilar. Ideal para personas que van empezando o quieren actualizarse."
+    title="Keratinas Profesionales para el Cabello | Obtén un Alisado Profesional con Productos de Calidad"
+    description="Descubre nuestras keratinas profesionales para alisados: Nanobotox, Ultra Gold y Bioplastia. Fórmulas exclusivas según el tipo de cabello. Aprende a aplicarlas con nuestro curso completo de alisado capilar. Ideal para personas que van empezando o quieren actualizarse."
     lightColor={true}
     isIndexable={true}
 >
@@ -46,13 +46,17 @@ import Social from "../components/home/social.astro";
                 loop
                 preload="none"></video>
 
-            <!-- Texto centrado, ya visible desde el inicio -->
+            <!-- Capa negra semitransparente -->
+            <div class="absolute inset-0 bg-black opacity-20 z-30"></div>
+
+            <!-- Texto centrado -->
             <div
                 id="hero-text"
                 class="absolute inset-0 z-40 flex flex-col items-center justify-center text-center pointer-events-none px-4 text-white"
             >
-                <h1 class="text-5xl md:text-6xl max-w-screen-md">
-                    Lo mejor para transformar tus alisados y tu técnica
+                <h1 class="text-5xl max-w-screen-sm px-2">
+                    Keratinas para el cabello que logran alisados profesionales
+                    y duraderos
                 </h1>
             </div>
         </div>
@@ -217,6 +221,54 @@ import Social from "../components/home/social.astro";
         <section>
             <Social />
         </section>
-        
+        <section class="max-w-7xl mx-auto px-4 mt-6 py-14 border-y">
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2">
+                    <video
+                        class="w-full h-full rounded-md"
+                        autoplay
+                        loop
+                        muted
+                        playsinline
+                    >
+                        <source
+                            src="https://media.wapastudio.com/keratina-video-home-cuadrado-web.webm"
+                            type="video/webm"
+                        />
+                        <source
+                            src="https://media.wapastudio.com/keratina-video-home-cuadrado-web.mp4"
+                            type="video/mp4"
+                        />
+                        Tu navegador no soporta este video.
+                    </video>
+                </div>
+                <div class="md:w-1/2 text-gray-800">
+                    <h2 class="text-3xl font-semibold mb-4">
+                        Nuestras keratinas para el cabello son de fácil
+                        aplicación
+                    </h2>
+                    <p class="mb-4">
+                        Gracias a su fórmula y técnica de aplicación, no es
+                        necesario realizar brushing intenso para un alisado
+                        perfecto. Esto protege la salud del cabello y evita
+                        daños innecesarios.
+                    </p>
+                    <p>El brushing puede maltratar el cabello por:</p>
+                    <ul class="list-disc list-inside space-y-2 mt-2">
+                        <li>
+                            <strong>La tensión mecánica:</strong> Estirar el cabello
+                            con el cepillo puede provocar quiebre y puntas abiertas.
+                        </li>
+                        <li>
+                            <strong>Repetición y acumulación:</strong> Si se hace
+                            brushing el daño acumulativo puede ser mayor.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <div class="md:px-10">
+        <Faq />
+        </div>
     </div>
 </Layout>
