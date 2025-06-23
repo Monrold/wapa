@@ -1,10 +1,11 @@
 ---
 import BaseLayout from "./Layout.astro";
-import Promocurso from "../components/blog/promocionalcurso.astro"
-
+import Promocurso from "../components/blog/promocionalcurso.astro";
+import Keratinas from "../components/home/banner-final.astro";
 
 const { frontmatter } = Astro.props;
 const showCourseCta = frontmatter.showCourseCta === true;
+const keratinas = frontmatter.keratinas === true;
 
 const tags = frontmatter.tags || [];
 const bgColors = [
@@ -64,9 +65,8 @@ const bgColors = [
     <!-- Aquí se renderiza el contenido del Markdown -->
     <article class="prose prose-lg my-14">
       <slot />
-      { showCourseCta &&
-      <Promocurso />
-      }
+      {showCourseCta && <Promocurso />}
     </article>
+    {keratinas && <Keratinas />}
   </div>
 </BaseLayout>

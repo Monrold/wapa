@@ -7,8 +7,9 @@ image:
   url: "https://media.wapastudio.com/wapa-image-articulo-one.jpg"
   alt: "Mujer con cabello liso y brillante tras un alisado progresivo"
 pubDate: 2025-06-13
-tags: ["alisados", "tratamientos capilares", "keratina"]
-showCourseCta: true
+tags: ["alisados", "keratina"]
+showCourseCta: false
+keratinas: true
 ---
 
 
@@ -54,3 +55,14 @@ Para mantener el alisado progresivo por más tiempo es importante usar shampoos 
 ## Conclusión
 
 El alisado progresivo es una excelente opción para quienes desean un cabello más liso, suave y sin frizz, sin comprometer la salud capilar. Al elegir este tratamiento, asegúrate de acudir a un profesional calificado y usar productos de calidad que se adapten a las necesidades de tu cabello.
+
+
+## Descubre las mejores keratinas para alisados progresivos
+
+Descubre nuestras fórmulas más vendidas:
+
+- 🔬 [**Nanobotox**](/tienda/nanobotox): Para cabellos procesados sanos.
+- 💧 [**Bioplastia**](/tienda/bioplastia): Para todo tipo de cabello sano, incluso decolorado.
+- ✨ [**Ultra Gold**](/tienda/ultra-gold): Alisado potente sin brushing, ideal para cabello ondulado.
+
+
