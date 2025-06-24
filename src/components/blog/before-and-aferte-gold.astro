@@ -1,0 +1,96 @@
+<!-- slash before and after  -->
+            <div class="md:w-[60vw] mx-auto">
+                <div class="relative w-full max-w-4xl mx-auto h-[70vh]">
+                    <!-- Contenedor principal -->
+                    <div
+                        class="relative w-full h-full overflow-hidden rounded-lg"
+                    >
+                        <!-- Imagen del "Después" -->
+                        <img
+                            src="https://media.wapastudio.com/ultragold-before-after-product.webp"
+                            alt="Después"
+                            class="absolute top-0 left-0 w-full h-full object-cover"
+                        />
+
+                        <!-- Imagen del "Antes" -->
+                        <img
+                            src="https://media.wapastudio.com/ultragold-before-after-product-2.webp"
+                            alt="Antes"
+                            id="beforeImage"
+                            class="absolute top-0 left-0 w-full h-full object-cover"
+                            style="clip-path: inset(0 50% 0 0);"
+                        />
+
+                        <!-- Línea divisoria -->
+                        <div
+                            id="slider"
+                            class="absolute top-0 left-1/2 transform -translate-x-1/2 w-1 h-full bg-white cursor-ew-resize"
+                            style="z-index: 10;"
+                        >
+                            <!-- Botón circular para mejor control -->
+                            <div
+                                id="sliderButton"
+                                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-white border-2 border-white-500 rounded-full"
+                            >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                const slider = document.getElementById("slider");
+                const sliderButton = document.getElementById("sliderButton");
+                const beforeImage = document.getElementById("beforeImage");
+                const container = slider.parentElement;
+
+                let isDragging = false;
+
+                // Iniciar el arrastre
+                const startDrag = (e) => {
+                    isDragging = true;
+                    moveSlider(e);
+                    document.body.style.userSelect = "none"; // Evitar selección de texto accidental
+                };
+
+                // Terminar el arrastre
+                const endDrag = () => {
+                    isDragging = false;
+                    document.body.style.userSelect = "auto"; // Restaurar selección de texto
+                };
+
+                // Mover el slider
+                const moveSlider = (e) => {
+                    if (!isDragging) return;
+
+                    const rect = container.getBoundingClientRect();
+                    let offsetX = e.touches
+                        ? e.touches[0].clientX - rect.left
+                        : e.clientX - rect.left;
+
+                    // Limitar el movimiento dentro del contenedor
+                    offsetX = Math.max(0, Math.min(offsetX, rect.width));
+
+                    // Mover el slider y la imagen
+                    slider.style.left = `${offsetX}px`;
+                    beforeImage.style.clipPath = `inset(0 ${rect.width - offsetX}px 0 0)`;
+                };
+
+                // Eventos para mouse
+                slider.addEventListener("mousedown", startDrag);
+                sliderButton.addEventListener("mousedown", startDrag);
+                window.addEventListener("mouseup", endDrag);
+                window.addEventListener("mousemove", moveSlider);
+
+                // Eventos para touch
+                slider.addEventListener("touchstart", startDrag, {
+                    passive: true,
+                });
+                sliderButton.addEventListener("touchstart", startDrag, {
+                    passive: true,
+                });
+                window.addEventListener("touchend", endDrag);
+                window.addEventListener("touchmove", moveSlider, {
+                    passive: false,
+                });
+            </script>
