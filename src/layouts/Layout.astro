@@ -4,6 +4,7 @@ import Footer from "../components/Footer.astro";
 import og from "../images/og-image.jpg";
 import PostHog from "../components/posthog.astro";
 import Google from "../components/google.astro";
+import Pixel from "../components/pixel.astro";
 
 interface Props {
 	title: string;
@@ -51,6 +52,7 @@ const { title, description, ogimage, isIndexable, canonical } = Astro.props;
 		<title>{title}</title>
 		<Google />
 		<PostHog />
+		<Pixel />
 	</head>
 	<body class="relative">
 		<Nav lightColor={Astro.props.lightColor} />
