@@ -1,0 +1,87 @@
+---
+const { name } = Astro.props;
+---
+
+<section class="max-w-screen-md mx-auto px-6 py-16 space-y-14">
+    <!-- Encabezado de bienvenida -->
+    <div class="text-left border-b border-gray-200 pb-14">
+        <h1 class="text-4xl font-extrabold text-black mb-2">
+            👋 ¡Bienvenidx {name}!
+        </h1>
+        <p class="text-lg text-gray-700">
+            Comienza tu clase gratuita y aprende a dominar nuestras fórmulas
+            profesionales.
+        </p>
+    </div>
+
+    <!-- Video 1: Clase gratuita -->
+    <div class="flex flex-col items-start text-left">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+            Aprende a aplicar nuestras keratinas
+        </h2>
+        <video
+            class="w-full rounded-md shadow-lg max-h-[500px] object-cover mb-4"
+            src="https://media.wapastudio.com/clase-wapa-aplicacion-wapaacdemy.mp4"
+            controls
+            preload="metadata"></video>
+        <p class="text-gray-700 text-base max-w-xl mb-4">
+            En esta clase gratuita te enseñamos cómo utilizar correctamente
+            nuestras fórmulas:
+            <strong>Nanobotox, Bioplastia y Ultra Gold</strong>. Descubre tips
+            prácticos y recomendaciones para lograr mejores resultados en cada
+            aplicación.
+        </p>
+    </div>
+
+    <!-- Video 2: Neutralizador -->
+    <div class="flex flex-col items-start text-left">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+            Neutraliza el olor de la keratina
+        </h2>
+        <video
+            class="w-full rounded-md shadow-lg max-h-[500px] object-cover mb-4"
+            src="https://media.wapastudio.com/clase-neutralziador-wapa-wapaacdemy.mp4"
+            controls
+            preload="metadata"></video>
+        <p class="text-gray-700 text-base max-w-xl mb-4">
+            Te mostramos paso a paso cómo usar nuestro <strong
+                >neutralizador exclusivo</strong
+            >, ideal para eliminar el olor característico de las keratinas sin
+            comprometer el alisado. Una experiencia más cómoda para ti y tus
+            clientas.
+        </p>
+    </div>
+
+    <!-- Banner final -->
+    <div
+        class="bg-gradient-to-r from-black via-orange-700 to-orange-500 rounded-xl p-8 shadow-lg text-left"
+    >
+        <h3 class="text-2xl font-semibold text-white mb-2">
+            🔥 Lleva tu técnica al siguiente nivel
+        </h3>
+        <p class="text-orange-200 mb-4">
+            Toma el <strong>curso de actualización en alisados</strong> más completo
+            y profesional. Aprende desde cero o perfecciona tu técnica con contenido
+            avanzado, materiales exclusivos y acompañamiento personalizado.
+        </p>
+        <a
+            href="/cursos/alisado"
+            class="inline-block px-6 py-3 bg-black text-orange-400 font-semibold rounded-lg shadow-md hover:bg-gray-900 hover:text-orange-300 transition"
+        >
+            Comprar curso completo
+        </a>
+    </div>
+
+    <!-- Nota final con WhatsApp -->
+    <div class="text-center  text-sm text-gray-600">
+        ¿Tienes dudas? 💬
+        <a
+            href="https://wa.me/5215524418067"
+            target="_blank"
+            rel="noopener"
+            class="text-green-600 font-medium hover:underline"
+        >
+            Escríbenos por WhatsApp
+        </a>
+    </div>
+</section>

@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout-manual.astro";
 import egipcias from "../images/ebook/que-es/egipcias.webp";
 import Nocourse from "../components/Nocourse.astro";
 import Indice from "../components/indice.astro";
+import Clasegratis from "../components/clase-gratis/clase-gratis.astro";
 
 import { supabase } from "../lib/supabase";
 
@@ -69,10 +70,15 @@ if (cursosError) {
 const tieneCursoAlaciado = cursosVinculados.some(
   (curso) => curso.title && curso.title.toLowerCase().includes("alaciado")
 );
+const tieneCursoGratis = cursosVinculados.some(
+  (curso) => curso.title && curso.title.toLowerCase().includes("clase-gratis")
+);
 ---
 
 <Layout title="" description="" lightColor={true}>
-  {tieneCursoAlaciado &&
+   
+  {tieneCursoAlaciado ? (
+      <>
   <section>
     <div class="relative">
       <video
@@ -106,7 +112,7 @@ const tieneCursoAlaciado = cursosVinculados.some(
             Hola 👋 {name}
           </h2>
           <p class="text-base text-gray-600 text-center">
-            Bienvenid@ a tu manual de alisados progresivos
+            Bienvenidx a tu manual de alisados progresivos
           </p>
         </div>
       </div>
@@ -195,9 +201,12 @@ const tieneCursoAlaciado = cursosVinculados.some(
       </svg>
     </a>
   </button>
-  }
-  {
-    !tieneCursoAlaciado && 
-  <Nocourse />
+  </>
+  ) : tieneCursoGratis ? (
+    <Clasegratis name={name} />
+    )
+    : (
+ <Nocourse />
+  )
   }
 </Layout>

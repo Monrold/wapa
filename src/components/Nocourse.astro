@@ -2,34 +2,25 @@
 import hotmart from "../images/ebook/hotmart-logo-black.svg"
 ---
 <section
-  class="flex items-center justify-center h-[90vh] bg-cover bg-center px-4 text-center"
+  class="flex items-center justify-center min-h-[90vh] bg-cover bg-center px-4 text-center"
   style="background-image: url('https://media.wapastudio.com/fondo-nocompro-hotmart.webp');"
 >
-  <div class="max-w-md mx-auto bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-md space-y-4">
-   <p class="text-lg font-medium text-center">
-  Este contenido está disponible únicamente para quienes han adquirido el curso a través
-  <span class="inline-flex items-start gap-1 ml-1 align-baseline">
-    <span>de</span>
-    <img src={hotmart.src} alt="Hotmart" class="w-20 " />
-  </span>.
-</p>
-
+  <div class="max-w-sm mx-auto bg-white/90 backdrop-blur-sm p-8 py-7 rounded-xl shadow-md space-y-4 text-gray-800">
+    <p class="text-base">
+      Si ya compraste el curso en <span class="text-orange-600">Hotmart</span>
+     
+      o nuestras keratinas y no ves tu contenido...
+    </p>
 
     <a
-      href="https://hotmart.com/"
-      class="inline-block mt-4 px-6 py-2 text-yellow-800 bg-gradient-to-r from-[#ffe082] to-[#fff8e1] hover:from-[#ffd54f] hover:to-[#fff3c0] font-semibold rounded-lg transition"
+      href="https://wa.me/5215524418067"
+      class="inline-block px-5 py-2 bg-[#25D366] text-white rounded-md text-sm font-semibold hover:bg-[#2b9b54] transition"
     >
-      Da clic aquí para comprar el curso
+      Escríbenos por WhatsApp
     </a>
 
-    <p class="text-sm text-gray-700 mt-4">
-      ¿Ya lo compraste y no tienes acceso?
-      <a
-        href="https://wa.me/5215524418067"
-        class="text-orange-600 underline hover:text-orange-800"
-      >
-        Contáctanos por WhatsApp
-      </a>
+    <p class="text-xs text-gray-600 leading-snug">
+      📨 Recuerda enviarnos el <strong>correo con el que te registraste</strong>.
     </p>
   </div>
 </section>
