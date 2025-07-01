@@ -129,6 +129,14 @@ const isHomePage = homePages.includes(Astro.url.pathname);
             >
                 Iniciar sesión
             </a>
+             <a
+                href="/register"
+                aria-label="Registrate"
+                class="font-medium hover:text-yellow-600 transition-colors duration-200 text-gray-700 bg-white"
+                style="margin-left:2rem;"
+            >
+                Registrate
+            </a>
         </div>
     </div>
 </nav>
@@ -204,6 +212,9 @@ const isHomePage = homePages.includes(Astro.url.pathname);
 
             <li class="principalli">
                 <a href="/signin" class="block py-4 bg-gray-200 text-center rounded-sm">Iniciar sesión</a>
+            </li>
+            <li class="principalli">
+                <a href="/register" class="block py-4 mt-2 bg-gray-100 text-center rounded-sm">Registrate</a>
             </li>
         </ul>
     </div>
