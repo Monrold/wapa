@@ -52,11 +52,10 @@ const { title, description, ogimage, isIndexable, canonical } = Astro.props;
 		<title>{title}</title>
 		<Google />
 		<PostHog />
-		<Fragment slot="head">
-			<!-- Meta Pixel Code -->
-			<script is:inline>
-				{
-					`
+		<!-- Meta Pixel Code -->
+		<script is:inline>
+			{
+				`
       !function(f,b,e,v,n,t,s){
         if(f.fbq)return;n=f.fbq=function(){
           n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)
@@ -68,24 +67,22 @@ const { title, description, ogimage, isIndexable, canonical } = Astro.props;
         s.parentNode.insertBefore(t,s)
       }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
 
-      // Espera a que cargue todo antes de inicializar y trackear
       window.addEventListener("load", function(){
         window.fbq('init', '1773971123502906');
         window.fbq('track', 'PageView');
       });
     `;
-				}
-			</script>
-			<noscript>
-				<img
-					height="1"
-					width="1"
-					style="display:none"
-					src="https://www.facebook.com/tr?id=1773971123502906&ev=PageView&noscript=1"
-				/>
-			</noscript>
-			<!-- End Meta Pixel Code -->
-		</Fragment>
+			}
+		</script>
+		<noscript>
+			<img
+				height="1"
+				width="1"
+				style="display:none"
+				src="https://www.facebook.com/tr?id=1773971123502906&ev=PageView&noscript=1"
+			/>
+		</noscript>
+		<!-- End Meta Pixel Code -->
 	</head>
 	<body class="relative">
 		<Nav lightColor={Astro.props.lightColor} />
