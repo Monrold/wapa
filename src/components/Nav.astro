@@ -120,6 +120,18 @@ const isHomePage = homePages.includes(Astro.url.pathname);
                 />
                 <h3>Asesoría publicitaria</h3>
             </a>
+            <a
+                class:list={[
+                    Astro.props.lightColor
+                        ? "text-yellow-600 focus:text-yellow-600"
+                        : "text-yellow-600 focus:text-yellow-600",
+                ]}
+                href="/keratinas"
+                aria-label="Asesoria"
+                class="flex items-center space-x-2"
+            >
+                <h3>Keratinas</h3>
+            </a>
             <div class="h-6 w-[2px] bg-gray-200"></div>
             <a
                 href="/signin"
@@ -208,6 +220,9 @@ const isHomePage = homePages.includes(Astro.url.pathname);
             </li>
             <li class="principalli">
                 <a href="/asesoria" class="block py-4 mb-4  border-b">Asesoría publicitaria</a>
+            </li>
+            <li class="principalli">
+                <a href="/keratinas" class="block py-4 mb-2 border-b">Keratinas</a>
             </li>
 
             <li class="principalli">
