@@ -23,7 +23,13 @@ import Layout from "../layouts/Layout.astro";
             >Iniciar sesión</a
           >
         </p>
-        <form action="/api/auth/register" method="post" class="space-y-6">
+
+        <!-- Contenedor de errores -->
+        <div id="error-message" class="hidden p-3 mb-4 rounded-md text-[#917763] bg-[#f5ebe6] text-sm transition-opacity duration-300"></div>
+        <!-- Contenedor de error de contraseña -->
+        <p id="password-error" class="hidden p-2 mb-4 rounded-md text-[#917763] bg-[#f5ebe6] text-sm transition-opacity duration-300"></p>
+
+        <form action="/api/auth/register" method="post" class="space-y-6" id="register-form">
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700"
               >Correo electrónico</label
@@ -67,8 +73,9 @@ import Layout from "../layouts/Layout.astro";
               y carácter especial.
             </p>
           </div>
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAAA1qFrAJc99AgS9n">
-          </div>
+
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAA1qFrAJc99AgS9n"></div>
+
           <button
             type="submit"
             class="w-full bg-[#917763] text-white py-2 rounded-md hover:bg-[#6A5341] focus:outline-none"
@@ -77,6 +84,7 @@ import Layout from "../layouts/Layout.astro";
           </button>
         </form>
       </div>
+
       <!-- Imagen -->
       <div
         class="hidden lg:block w-full lg:w-1/2 bg-cover bg-center rounded-t-lg lg:rounded-l-lg lg:rounded-t-none"
@@ -85,4 +93,28 @@ import Layout from "../layouts/Layout.astro";
       </div>
     </div>
   </main>
+
+  <!-- Script para validaciones de contraseña -->
+  <script type="module">
+    const form = document.getElementById("register-form");
+    const passwordInput = document.getElementById("password");
+    const passwordError = document.getElementById("password-error");
+
+    // Validación de contraseña antes de enviar
+    form.addEventListener("submit", (e) => {
+      const password = passwordInput.value;
+      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+      if (!regex.test(password)) {
+        e.preventDefault(); // bloquea el envío
+        passwordError.textContent = "Tu contraseña no cumple con los caracteres requeridos: mínimo 8, mayúscula, minúscula, número y carácter especial #$%&!";
+        passwordError.classList.remove("hidden");
+
+        // Ocultar después de 8 segundos
+        setTimeout(() => {
+          passwordError.classList.add("hidden");
+        }, 8000);
+      }
+    });
+  </script>
 </Layout>
