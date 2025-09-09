@@ -53,40 +53,42 @@ const { title, description, ogimage, isIndexable, canonical } = Astro.props;
 		<Google />
 		<PostHog />
 		<!-- Meta Pixel Code -->
+		<!-- Meta Pixel Code -->
 		<script is:inline>
-			{
-				`
-    !function(f,b,e,v,n,t,s){
-      if(f.fbq)return;n=f.fbq=function(){
-        n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)
-      };
-      if(!f._fbq)f._fbq=n;
-      n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)
-    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-
-    function initFBPixel(){
-      if(window.fbq){
-        window.fbq('init', '1773971123502906');
-        window.fbq('track', 'PageView');
-      } else {
-        setTimeout(initFBPixel, 200); // reintenta hasta que fbq exista
-      }
-    }
-    window.addEventListener("load", initFBPixel);
-  `;
-			}
+			!(function (f, b, e, v, n, t, s) {
+				if (f.fbq) return;
+				n = f.fbq = function () {
+					n.callMethod
+						? n.callMethod.apply(n, arguments)
+						: n.queue.push(arguments);
+				};
+				if (!f._fbq) f._fbq = n;
+				n.push = n;
+				n.loaded = !0;
+				n.version = "2.0";
+				n.queue = [];
+				t = b.createElement(e);
+				t.async = !0;
+				t.src = v;
+				s = b.getElementsByTagName(e)[0];
+				s.parentNode.insertBefore(t, s);
+			})(
+				window,
+				document,
+				"script",
+				"https://connect.facebook.net/en_US/fbevents.js",
+			);
+			fbq("init", "1773971123502906");
+			fbq("track", "PageView");
 		</script>
-		<noscript>
-			<img
+		<noscript
+			><img
 				height="1"
 				width="1"
 				style="display:none"
 				src="https://www.facebook.com/tr?id=1773971123502906&ev=PageView&noscript=1"
-			/>
-		</noscript>
+			/></noscript
+		>
 		<!-- End Meta Pixel Code -->
 	</head>
 	<body class="relative">
