@@ -3,7 +3,7 @@ type = "javascript"
 
 [build]
 command = "npm run build"   
-functions = "src/functions"  
+functions = "functions"  
 pages_build_output_dir = "dist"
 
 [vars]
