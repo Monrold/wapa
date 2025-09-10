@@ -2,9 +2,11 @@
 import Layout from "../layouts/Layout.astro";
 import Curso from "../components/home/curso.astro";
 import Faq from "../components/curso-home/faq.astro";
+
+const pageviewData = { landing: "curso_alisados" };
 ---
 
-<Layout title="Curso Integral de Alisados Progresivos | Domina la técnica capilar" description="Aprende alisados progresivos de manera completa: teoría, práctica y técnica profesional. Perfecciona tus resultados, domina todo el proceso y comienza a generar hasta $40,000 MXN al mes." lightColor={true}>
+<Layout title="Curso Integral de Alisados Progresivos | Domina la técnica capilar" description="Aprende alisados progresivos de manera completa: teoría, práctica y técnica profesional. Perfecciona tus resultados, domina todo el proceso y comienza a generar hasta $40,000 MXN al mes." lightColor={true} pageviewData={pageviewData} isIndexable={true}>
     <section>
         <Curso />
     </section>

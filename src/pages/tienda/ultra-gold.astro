@@ -4,6 +4,8 @@ import alaciado from "../../images/index/alaciado.webp";
 import botox from "../../images/index/botox.webp";
 import encerado from "../../images/encerado.jpg";
 import Otrosproductos from "../../components/tienda/otrosproductos.astro";
+
+const pageviewData = { landing: "keratinas_ultragold" };
 ---
 
 <Layout
@@ -11,6 +13,7 @@ import Otrosproductos from "../../components/tienda/otrosproductos.astro";
     description="Keratina para alisado de cabello ondulado compatible con decoloraciones sanas. Mejora el brillo, suavidad y elimina el frizz."
     lightColor={true}
     isIndexable={true}
+     pageviewData={pageviewData}
 >
     <section class="bg-white">
         <!-- Detalle del producto -->

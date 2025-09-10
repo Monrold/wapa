@@ -1,0 +1,67 @@
+---
+// ContactButton.astro
+const {
+  href,
+  text = "Contactar",
+  eventName = "Contact",
+  eventData = {},
+} = Astro.props;
+
+// ID único no es necesario si usamos dataset
+---
+
+<a
+  href={href}
+  target="_blank"
+  class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300"
+  data-event-name={eventName}
+  data-event-data={JSON.stringify(eventData)}
+>
+  {text}
+</a>
+
+<script is:inline>
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.querySelector('a[data-event-name]');
+  if (!btn) {
+    console.error("No se encontró el botón de contacto");
+    return;
+  }
+
+  const eventName = btn.dataset.eventName;
+  const eventData = JSON.parse(btn.dataset.eventData);
+
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log("Click detectado en ContactButton");
+
+    // Pixel del navegador
+    if (window.fbq) {
+      fbq("track", eventName, eventData);
+      console.log("Evento " + eventName + " disparado");
+    }
+
+    // API del servidor (CAPI)
+    fetch("/fb-events", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        event_name: eventName,
+        event_time: Math.floor(Date.now() / 1000),
+        action_source: "website",
+        event_source_url: window.location.href,
+        user_data: {
+          client_ip_address: "NO_HASH_IP",
+          client_user_agent: navigator.userAgent
+        },
+        custom_data: eventData
+      })
+    }).catch(err => console.error("Error CAPI:", err));
+
+    // Abrir WhatsApp después de 200ms
+    setTimeout(() => {
+      window.open(btn.href, "_blank");
+    }, 200);
+  });
+});
+</script>

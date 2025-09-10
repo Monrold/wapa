@@ -5,6 +5,7 @@ import og from "../images/og-image.jpg";
 import PostHog from "../components/posthog.astro";
 import Google from "../components/google.astro";
 import Pixel from "../components/pixel.astro";
+import Pageview from "../components/events-meta/pageview.astro";
 
 interface Props {
 	title: string;
@@ -13,9 +14,10 @@ interface Props {
 	ogimage?: string;
 	isIndexable?: boolean;
 	canonical?: string;
+	pageviewData?: Record<string, any>;
 }
 
-const { title, description, ogimage, isIndexable, canonical } = Astro.props;
+const { title, description, ogimage, isIndexable, canonical, pageviewData } = Astro.props;
 ---
 
 <!doctype html>
@@ -52,6 +54,7 @@ const { title, description, ogimage, isIndexable, canonical } = Astro.props;
 		<title>{title}</title>
 		<Google />
 		<PostHog />
+		 <Pageview customData={pageviewData} />
 		<!-- Meta Pixel Code -->
 		<!-- Meta Pixel Code -->
 		<script  type="module">
@@ -89,6 +92,7 @@ const { title, description, ogimage, isIndexable, canonical } = Astro.props;
 				src="https://www.facebook.com/tr?id=1773971123502906&ev=PageView&noscript=1"
 			/></noscript
 		>
+		
 		<!-- End Meta Pixel Code -->
 	</head>
 	<body class="relative">

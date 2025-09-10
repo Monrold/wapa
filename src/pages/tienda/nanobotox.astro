@@ -4,6 +4,8 @@ import alaciado from "../../images/index/alaciado.webp";
 import botox from "../../images/index/botox.webp";
 import encerado from "../../images/encerado.jpg";
 import Otrosproductos from "../../components/tienda/otrosproductos.astro";
+
+const pageviewData = { landing: "keratinas_nanobotox" };
 ---
 
 <Layout
@@ -11,6 +13,7 @@ import Otrosproductos from "../../components/tienda/otrosproductos.astro";
     description="Tratamiento ideal para cabello muy maltratado y deshidratado. Relaja ondas y repara la fibra capilar, devolviendo salud, hidratación y suavidad al cabello dañado."
     lightColor={true}
     isIndexable={true}
+    pageviewData={pageviewData}
 >
     <section class="bg-white">
         <!-- Detalle del producto -->

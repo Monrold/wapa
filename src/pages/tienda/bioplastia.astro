@@ -4,6 +4,8 @@ import alaciado from "../../images/index/alaciado.webp";
 import botox from "../../images/index/botox.webp";
 import encerado from "../../images/encerado.jpg";
 import Otrosproductos from "../../components/tienda/otrosproductos.astro";
+
+const pageviewData = { landing: "keratinas_bioplastia" };
 ---
 
 <Layout
@@ -11,6 +13,7 @@ import Otrosproductos from "../../components/tienda/otrosproductos.astro";
     description="Bioplastia capilar, tratamiento de keratina diseñado para todo tipo de cabello sano y decolorado. Ayuda a eliminar el frizz, mejora el brillo, la suavidad del cabello."
     lightColor={true}
     isIndexable={true}
+    pageviewData={pageviewData}
 >
     <section class="bg-white">
         <!-- Detalle del producto -->

@@ -1,3 +1,7 @@
+---
+import TrackButton from "../../components/events-meta/btn.astro";
+---
+
 <!-- Hero -->
 <section
     class="relative h-[70vh] flex items-center justify-center text-center bg-cover bg-center"
@@ -12,33 +16,12 @@
             Aprende técnicas profesionales y actualizadas, desde el diagnóstico
             hasta el alisado perfecto, 100% online y a tu ritmo.
         </p>
-        <a
-            id="btnCompra"
+        <TrackButton
+            eventName="InitiateCheckout"
+            eventData={{ value: 1508, currency: "MXN" }}
             href="https://pay.hotmart.com/E101530791J"
-            class="mt-8 inline-block px-8 py-4
-         bg-gradient-to-r from-orange-500 to-black
-         text-white text-lg font-semibold rounded-xl shadow
-         transition hover:text-gray-200 hover:cursor-pointer hover:opacity-95"
-        >
-            ¡Inscríbete ahora!
-        </a>
-
-        <script is:inline>
-            const btn = document.getElementById("btnCompra");
-            btn.addEventListener("click", (e) => {
-                e.preventDefault(); // detiene la navegación temporalmente
-
-                if (window.fbq) {
-                    fbq("track", "InitiateCheckout");
-                    console.log("Evento InitiateCheckout disparado");
-                }
-
-                // esperar 200ms para que el evento llegue a Meta y luego navegar al link
-                setTimeout(() => {
-                    window.location.href = btn.href;
-                }, 200);
-            });
-        </script>
+            text="¡Inscríbete ahora!"
+        />
     </div>
 </section>
 

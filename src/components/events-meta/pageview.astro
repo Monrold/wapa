@@ -1,0 +1,42 @@
+---
+// Pageview.astro
+const { eventName = "PageView", customData = {} } = Astro.props;
+---
+
+<script is:inline>
+document.addEventListener("DOMContentLoaded", () => {
+  try {
+    // Valores literales directos
+    const eventNameLiteral = "PageView"; // si quieres, puedes reemplazar por eventName
+    const eventDataLiteral = {}; // si quieres, puedes reemplazar por customData
+
+    console.log("Disparando PageView", eventNameLiteral, eventDataLiteral);
+
+    // Pixel del navegador
+    if (window.fbq) {
+      fbq("track", eventNameLiteral, eventDataLiteral);
+      console.log("Evento " + eventNameLiteral + " disparado", eventDataLiteral);
+    }
+
+    // API del servidor (CAPI)
+    fetch("/fb-events", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        event_name: eventNameLiteral,
+        event_time: Math.floor(Date.now() / 1000),
+        action_source: "website",
+        event_source_url: window.location.href,
+        user_data: {
+          client_ip_address: "NO_HASH_IP",
+          client_user_agent: navigator.userAgent
+        },
+        custom_data: eventDataLiteral
+      }),
+    }).catch(err => console.error("Error CAPI PageView:", err));
+
+  } catch (err) {
+    console.error("Error al disparar PageView:", err);
+  }
+});
+</script>

@@ -1,0 +1,53 @@
+---
+const {
+  eventName = "InitiateCheckout",
+  eventData = {},
+  href,
+  text,
+} = Astro.props;
+---
+
+<div>
+  <a
+    href={href}
+    class="mt-8 inline-block px-8 py-4 bg-gradient-to-r from-orange-500 to-black text-white text-lg font-semibold rounded-xl shadow transition hover:text-gray-200 hover:cursor-pointer hover:opacity-95"
+    id="trackBtn"
+  >
+    {text}
+  </a>
+
+  <script is:inline>
+    const btn = document.getElementById("trackBtn");
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      // Pixel del navegador
+      if (window.fbq) {
+        fbq("track", "InitiateCheckout", { value: 1508, currency: "MXN" });
+        console.log("Evento InitiateCheckout disparado");
+      }
+
+      // API del servidor (CAPI)
+      fetch("/fb-events", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          event_name: "InitiateCheckout",
+          event_time: Math.floor(Date.now() / 1000),
+          action_source: "website",
+          event_source_url: window.location.href,
+          user_data: {
+            client_ip_address: "NO_HASH_IP",
+            client_user_agent: navigator.userAgent,
+          },
+          custom_data: { value: 1508, currency: "MXN" },
+        }),
+      });
+
+      // Esperar 200ms para que el evento llegue a Meta y luego navegar al link
+      setTimeout(() => {
+        window.location.href = btn.href;
+      }, 200);
+    });
+  </script>
+</div>

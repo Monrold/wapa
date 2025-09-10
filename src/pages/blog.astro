@@ -10,6 +10,8 @@ const sortedPosts = allPosts.sort(
         new Date(b.frontmatter.pubDate).getTime() -
         new Date(a.frontmatter.pubDate).getTime(),
 );
+
+const pageviewData = { landing: "blog" };
 ---
 
 <Layout
@@ -17,6 +19,7 @@ const sortedPosts = allPosts.sort(
     description="Descubre técnicas avanzadas y consejos profesionales para lograr alisados perfectos."
     lightColor={true}
     isIndexable={true}
+    pageviewData={pageviewData}
 >
     <section class="bg-white py-12">
         <div

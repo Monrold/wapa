@@ -2,6 +2,9 @@
 import Layout from "../layouts/Layout.astro";
 import Social from "../components/home/social.astro";
 import Faq from "../components/home/faq.astro";
+import Contacto from "../components/events-meta/contacto.astro";
+
+const pageviewData = { landing: "keratinas" };
 ---
 
 <Layout
@@ -9,6 +12,7 @@ import Faq from "../components/home/faq.astro";
     description="Descubre nuestras keratinas profesionales para alisados: Nanobotox, Ultra Gold y Bioplastia. Fórmulas exclusivas según el tipo de cabello. Aprende a aplicarlas con nuestro curso completo de alisado capilar. Ideal para personas que van empezando o quieren actualizarse."
     lightColor={true}
     isIndexable={true}
+    pageviewData={pageviewData}
 >
     <Fragment slot="head">
         <link
@@ -58,8 +62,8 @@ import Faq from "../components/home/faq.astro";
                 class="absolute inset-0 z-40 flex flex-col items-center justify-center text-center pointer-events-none px-4 text-white"
             >
                 <h1 class="text-5xl max-w-screen-sm px-2">
-                    Las mejores keratinas para el cabello para alisados profesionales
-                    y duraderos
+                    Las mejores keratinas para el cabello para alisados
+                    profesionales y duraderos
                 </h1>
             </div>
         </div>
@@ -273,7 +277,9 @@ import Faq from "../components/home/faq.astro";
         <div class="md:px-10">
             <Faq />
         </div>
-        <section class="bg-[#eeefeb]  rounded-lg text-center py-16 px-6 max-w-screen-lg mx-4">
+        <section
+            class="bg-[#eeefeb] rounded-lg text-center py-16 px-6 max-w-screen-lg mx-4"
+        >
             <h2 class="text-3xl md:text-4xl font-semibold">
                 Lleva tus alisados al siguiente nivel
             </h2>
@@ -281,14 +287,11 @@ import Faq from "../components/home/faq.astro";
                 Resultados profesionales, clientas felices y más ingresos con
                 nuestras keratinas.
             </p>
-            <a
+            <Contacto
                 href="https://wa.me/5215524418067"
-                target="_blank"
-                onclick="fbq('track', 'Contact');"
-                class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 "
-            >
-                Cotiza vía WhatsApp
-            </a>
+                text="Cotiza vía WhatsApp"
+                customData={{ landing: "keratinas" }}
+            />
         </section>
     </div>
 </Layout>

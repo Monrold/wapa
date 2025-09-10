@@ -2,6 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import money from "../images/asesoria/meta/money.webp";
 import ads from "../images/asesoria/meta/ads.png";
+
+const pageviewData = { landing: "asesoria_meta_ads" };
 ---
 
 <Layout
@@ -10,6 +12,7 @@ import ads from "../images/asesoria/meta/ads.png";
     lightColor={true}
     ogimage="https://media.wapastudio.com/wapa-ogimage-asesroia-meta.webp"
     isIndexable={true}
+    pageviewData={pageviewData}
 >
     <section
         class="relative h-screen bg-white text-black flex items-center justify-center px-4 pt-20 overflow-hidden"
