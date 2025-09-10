@@ -1,10 +1,9 @@
 name = "wapa"
-type = "javascript"          
 
 [build]
-command = "npm run build"   
-functions = "functions"  
-pages_build_output_dir = "dist"
+command = "npm run build"        # tu build de Astro
+upload = "dist"                  # carpeta de salida de Astro
+base_dir = "."
 
 [vars]
 META_PIXEL_ID = "1773971123502906"
