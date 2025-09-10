@@ -1,20 +1,10 @@
-
-async function sha256Hex(value) {
-  if (!value) return undefined;
-  const text = value.trim().toLowerCase();
-  const enc = new TextEncoder();
-  const data = enc.encode(text);
-  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-  return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, "0")).join("");
-}
-
-export async function POST(request) {
+export async function onRequestPost({ request, env, params }) {
   try {
     const body = await request.json();
 
-    const PIXEL_ID = process.env.META_PIXEL_ID;
-    const ACCESS_TOKEN = process.env.META_ACCESS_TOKEN;
-    const TEST_EVENT_CODE = process.env.META_TEST_EVENT_CODE || undefined;
+    const PIXEL_ID = env.META_PIXEL_ID;
+    const ACCESS_TOKEN = env.META_ACCESS_TOKEN;
+    const TEST_EVENT_CODE = env.META_TEST_EVENT_CODE || undefined;
 
     if (!PIXEL_ID || !ACCESS_TOKEN) {
       return new Response(JSON.stringify({ ok: false, error: "Missing PIXEL_ID or ACCESS_TOKEN env vars" }), { status: 500 });
@@ -56,11 +46,11 @@ export async function POST(request) {
     if (fbp) user_data.fbp = fbp;
     if (fbc) user_data.fbc = fbc;
 
-    // Construir el evento aceptando distintos nombres de campo
+    // Construir el evento
     const event = {
       event_name: body.event_name || body.eventName || "CustomEvent",
       event_time: body.event_time || Math.floor(Date.now() / 1000),
-      event_id: body.event_id || undefined,             // opcional para deduplicar
+      event_id: body.event_id || undefined,
       action_source: body.action_source || "website",
       event_source_url: body.event_source_url || body.eventSourceUrl || null,
       user_data: user_data,
@@ -91,5 +81,12 @@ export async function POST(request) {
   }
 }
 
-
-
+// SHA256 helper
+async function sha256Hex(value) {
+  if (!value) return undefined;
+  const text = value.trim().toLowerCase();
+  const enc = new TextEncoder();
+  const data = enc.encode(text);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+  return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
