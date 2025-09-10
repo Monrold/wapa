@@ -1,0 +1,3 @@
+name = "wapa"
+main = "src/functions"
+compatibility_date = "2025-09-09"
