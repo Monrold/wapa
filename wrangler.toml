@@ -5,6 +5,8 @@ command = "npm run build"        # tu build de Astro
 upload = "dist"                  # carpeta de salida de Astro
 base_dir = "."
 
+compatibility_flags = ["nodejs_compat"]
+
 [vars]
 META_PIXEL_ID = "1773971123502906"
 META_ACCESS_TOKEN = "EAA73lvajPNEBPVMdYj1n5f3ZAtU2QxC0PEM4kIouDXVOXI8x9l3nwhWi6YPZC1DMjtfzVsbxqhmmXZCCZAaFZCiPdIeJCfHAxNPBCtGU8dBHBlTAs34tBmxswudqDZBrogZB84VDvxT7ZBixuA7Ob9aWRMmCJ3p92quy1px1o9uNyO4yYeaJXy7wpBTVGLgZCYUZCnzwZDZD"
