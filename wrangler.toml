@@ -1,4 +1,4 @@
-name = "wapa-studio"
+name = "wapa"
 type = "javascript"          
 
 [build]
