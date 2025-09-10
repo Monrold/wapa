@@ -4,6 +4,7 @@ type = "javascript"
 [build]
 command = "npm run build"   
 functions = "src/functions"  
+pages_build_output_dir = "dist"
 
 [vars]
 META_PIXEL_ID = "1773971123502906"
