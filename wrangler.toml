@@ -10,6 +10,7 @@ pages_build_output_dir = "dist"
 [functions]
 directory = "./functions"
 
+compatibility_flags = ["nodejs_compat"]
 
 [vars]
 META_PIXEL_ID = "1773971123502906"
