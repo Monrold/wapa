@@ -21,47 +21,57 @@ const {
 </a>
 
 <script is:inline>
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.querySelector('a[data-event-name]');
-  if (!btn) {
-    console.error("No se encontró el botón de contacto");
-    return;
-  }
-
-  const eventName = btn.dataset.eventName;
-  const eventData = JSON.parse(btn.dataset.eventData);
-
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    console.log("Click detectado en ContactButton");
-
-    // Pixel del navegador
-    if (window.fbq) {
-      fbq("track", eventName, eventData);
-      console.log("Evento " + eventName + " disparado");
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.querySelector("a[data-event-name]");
+    if (!btn) {
+      console.error("No se encontró el botón de contacto");
+      return;
     }
 
-    // API del servidor (CAPI)
-    fetch("https://metaevents.soporte-draw.workers.dev", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        event_name: eventName,
-        event_time: Math.floor(Date.now() / 1000),
-        action_source: "website",
-        event_source_url: window.location.href,
-        user_data: {
-          client_ip_address: "NO_HASH_IP",
-          client_user_agent: navigator.userAgent
-        },
-        custom_data: eventData
-      })
-    }).catch(err => console.error("Error CAPI:", err));
+    const eventName = btn.dataset.eventName;
+    const eventData = JSON.parse(btn.dataset.eventData);
 
-    // Abrir WhatsApp después de 200ms
-    setTimeout(() => {
-      window.open(btn.href, "_blank");
-    }, 200);
+    // 🟢 Función para leer cookies en navegador
+    function getCookie(name) {
+      return document.cookie
+        .split("; ")
+        .find((row) => row.startsWith(name + "="))
+        ?.split("=")[1];
+    }
+
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      console.log("Click detectado en ContactButton");
+
+      // --- Pixel del navegador
+      if (window.fbq) {
+        fbq("track", eventName, eventData);
+        console.log("Evento " + eventName + " disparado");
+      }
+
+      // --- API del servidor (CAPI)
+      fetch("https://metaevents.soporte-draw.workers.dev", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          event_name: eventName,
+          event_time: Math.floor(Date.now() / 1000),
+          action_source: "website",
+          event_source_url: window.location.href,
+          user_data: {
+            client_ip_address: "NO_HASH_IP",
+            client_user_agent: navigator.userAgent,
+            fbc: getCookie("_fbc"), // 🟢 Agregamos FBC
+            fbp: getCookie("_fbp"), // 🟢 Agregamos FBP
+          },
+          custom_data: eventData,
+        }),
+      }).catch((err) => console.error("Error CAPI:", err));
+
+      // --- Abrir WhatsApp después de 200ms
+      setTimeout(() => {
+        window.open(btn.href, "_blank");
+      }, 200);
+    });
   });
-});
 </script>

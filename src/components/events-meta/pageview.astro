@@ -7,18 +7,21 @@ const { eventName = "PageView", customData = {} } = Astro.props;
   document.addEventListener("DOMContentLoaded", () => {
     try {
       // Valores literales directos
-      const eventNameLiteral = "PageView"; // si quieres, puedes reemplazar por eventName
-      const eventDataLiteral = {}; // si quieres, puedes reemplazar por customData
+      const eventNameLiteral = "PageView"; // o usa eventName si prefieres
+      const eventDataLiteral = {}; // o usa customData si prefieres
 
       console.log("Disparando PageView", eventNameLiteral, eventDataLiteral);
+
+      // Auxiliar para leer cookies
+      function getCookie(name) {
+        const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+        return match ? match[2] : null;
+      }
 
       // Pixel del navegador
       if (window.fbq) {
         fbq("track", eventNameLiteral, eventDataLiteral);
-        console.log(
-          "Evento " + eventNameLiteral + " disparado",
-          eventDataLiteral,
-        );
+        console.log("Evento " + eventNameLiteral + " disparado", eventDataLiteral);
       }
 
       // API del servidor (CAPI)
@@ -36,6 +39,8 @@ const { eventName = "PageView", customData = {} } = Astro.props;
           user_data: {
             client_ip_address: "NO_HASH_IP",
             client_user_agent: navigator.userAgent,
+            fbp: getCookie("_fbp"),
+            fbc: getCookie("_fbc"),
           },
           custom_data: eventDataLiteral,
         }),
