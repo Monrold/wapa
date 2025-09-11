@@ -11,4 +11,7 @@ export default defineConfig({
   integrations: [tailwind(), react(), mdx()],
   output: 'server',
   adapter: cloudflare(),
+  image: {
+    service: {},       // vacío para que no use sharp
+  }
 });
