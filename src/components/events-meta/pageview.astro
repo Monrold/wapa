@@ -4,43 +4,44 @@ const { eventName = "PageView", customData = {} } = Astro.props;
 ---
 
 <script is:inline>
-document.addEventListener("DOMContentLoaded", () => {
-  try {
-    const eventNameLiteral = eventName || "PageView";
-    const eventDataLiteral = customData || {};
+  document.addEventListener("DOMContentLoaded", () => {
+    try {
+      // Valores literales directos
+      const eventNameLiteral = "PageView"; // si quieres, puedes reemplazar por eventName
+      const eventDataLiteral = {}; // si quieres, puedes reemplazar por customData
 
-    console.log("Disparando PageView", eventNameLiteral, eventDataLiteral);
+      console.log("Disparando PageView", eventNameLiteral, eventDataLiteral);
 
-    // Pixel del navegador
-    if (window.fbq) {
-      fbq("track", eventNameLiteral, eventDataLiteral);
-      console.log("Evento " + eventNameLiteral + " disparado", eventDataLiteral);
+      // Pixel del navegador
+      if (window.fbq) {
+        fbq("track", eventNameLiteral, eventDataLiteral);
+        console.log(
+          "Evento " + eventNameLiteral + " disparado",
+          eventDataLiteral,
+        );
+      }
+
+      // API del servidor (CAPI)
+      fetch("https://metaevents.soporte-draw.workers.dev", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          event_name: eventNameLiteral,
+          event_time: Math.floor(Date.now() / 1000),
+          action_source: "website",
+          event_source_url: window.location.href,
+          user_data: {
+            client_ip_address: "NO_HASH_IP",
+            client_user_agent: navigator.userAgent,
+          },
+          custom_data: eventDataLiteral,
+        }),
+      }).catch((err) => console.error("Error CAPI PageView:", err));
+    } catch (err) {
+      console.error("Error al disparar PageView:", err);
     }
-
-    // API del servidor (CAPI)
-    const payload = {
-      event_name: eventNameLiteral,
-      event_time: Math.floor(Date.now() / 1000),
-      action_source: "website",
-      event_source_url: window.location.href,
-      user_data: {
-        client_ip_address: "NO_HASH_IP",
-        client_user_agent: navigator.userAgent
-      },
-      custom_data: eventDataLiteral
-    };
-
-    fetch("https://metaevents.soporte-draw.workers.dev", {
-      method: "POST",
-      headers: { 
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(payload)
-    }).catch(err => console.error("Error CAPI PageView:", err));
-
-  } catch (err) {
-    console.error("Error al disparar PageView:", err);
-  }
-});
+  });
 </script>
