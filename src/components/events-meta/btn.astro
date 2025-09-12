@@ -4,15 +4,12 @@ const {
   eventData = {},
   href,
   text,
+  className,
 } = Astro.props;
 ---
 
 <div>
-  <a
-    href={href}
-    class="mt-8 inline-block px-8 py-4 bg-gradient-to-r from-orange-500 to-black text-white text-lg font-semibold rounded-xl shadow transition hover:text-gray-200 hover:cursor-pointer hover:opacity-95"
-    id="trackBtn"
-  >
+  <a href={href} class={className} id="trackBtn">
     {text}
   </a>
 

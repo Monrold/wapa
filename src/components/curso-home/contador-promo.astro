@@ -1,0 +1,59 @@
+<!-- Componente de Descuento con Contador -->
+<div class=" text-white  py-2 rounded-full flex flex-col justify-center items-center gap-4 font-semibold ">
+  <span class="bg-red-600 px-4 rounded-lg text-sm py-2 font-thin">🎉 En la compra de nuestro curso. Descuento extra en nuestras keratinas. Hasta el 30 de septiembre</span>
+
+  <!-- Contador -->
+ <div id="countdown" class="flex items-center gap-4">
+  <span class="flex items-baseline font-mono text-lg">
+    <span id="days" class="font-bold">00</span><span class="ml-0.5">d</span>
+  </span>
+  <span class="font-bold">:</span>
+  <span class="flex items-baseline font-mono text-lg">
+    <span id="hours" class="font-bold">00</span><span class="ml-0.5">h</span>
+  </span>
+  <span class="font-bold">:</span>
+  <span class="flex items-baseline font-mono text-lg">
+    <span id="minutes" class="font-bold">00</span><span class="ml-0.5">m</span>
+  </span>
+  <span class="font-bold">:</span>
+  <span class="flex items-baseline font-mono text-lg">
+    <span id="seconds" class="font-bold">00</span><span class="ml-0.5">s</span>
+  </span>
+</div>
+
+</div>
+
+<script>
+  // Fecha límite del descuento (30 de septiembre, 23:59:59)
+  const countdownDate = new Date("2025-09-30T23:59:59").getTime();
+
+  const daysEl = document.getElementById("days");
+  const hoursEl = document.getElementById("hours");
+  const minutesEl = document.getElementById("minutes");
+  const secondsEl = document.getElementById("seconds");
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
+
+    if(distance < 0){
+      // Cuando se termine el tiempo
+      document.getElementById("countdown").innerHTML = "¡Oferta terminada!";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    daysEl.textContent = String(days).padStart(2, "0");
+    hoursEl.textContent = String(hours).padStart(2, "0");
+    minutesEl.textContent = String(minutes).padStart(2, "0");
+    secondsEl.textContent = String(seconds).padStart(2, "0");
+  }
+
+  // Actualizar cada segundo
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
