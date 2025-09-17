@@ -2,15 +2,38 @@
 import Layout from "../layouts/Layout.astro";
 import Curso from "../components/home/curso.astro";
 import Faq from "../components/curso-home/faq.astro";
+import Contacto from "../components/events-meta/contacto.astro";
 
 const pageviewData = { landing: "curso_alisados" };
 ---
 
-<Layout title="Curso Integral de Alisados Progresivos | Domina la técnica capilar" description="Aprende alisados progresivos de manera completa: teoría, práctica y técnica profesional. Perfecciona tus resultados, domina todo el proceso y comienza a generar hasta $40,000 MXN al mes." lightColor={true} pageviewData={pageviewData} isIndexable={true}>
+<Layout
+    title="Curso Integral de Alisados Progresivos | Domina la técnica capilar"
+    description="Aprende alisados progresivos de manera completa: teoría, práctica y técnica profesional. Perfecciona tus resultados, domina todo el proceso y comienza a generar hasta $40,000 MXN al mes."
+    lightColor={true}
+    pageviewData={pageviewData}
+    isIndexable={true}
+>
     <section>
         <Curso />
     </section>
     <section>
         <Faq />
+    </section>
+    <section
+        class="bg-[#eeefeb] rounded-lg text-center py-16 px-6 max-w-screen-lg mx-auto"
+    >
+        <h2 class="text-3xl md:text-4xl font-semibold">
+            ¿Aún no estás 100% segura?
+        </h2>
+        <p class="text-lg md:text-xl mb-8 max-w-screen-sm mx-auto">
+            Contáctanos vía WhatsApp y con gusto te aclaramos todas tus dudas antes de tu compra.
+        </p>
+        <Contacto
+            href="https://wa.me/5215524418067"
+            text="Contáctanos"
+            customData={{ landing: "keratinas" }}
+            className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300"
+        />
     </section>
 </Layout>
