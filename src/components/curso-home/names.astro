@@ -312,17 +312,23 @@
         notificacionEl.classList.remove("opacity-0");
         setTimeout(() => {
             notificacionEl.classList.add("opacity-0");
-        }, 3500); // se mantiene visible 2.5s antes de desaparecer
+        }, 3500); // se mantiene visible 3.5s antes de desaparecer
     }
 
     function iniciarRotacion() {
-        cambiarMensaje();
-        setInterval(
-            () => {
-                cambiarMensaje();
-            },
-            Math.floor(Math.random() * 10000) + 12000,
-        ); // cada 3-4s
+        // Retrasar la primera aparición entre 5 y 8 segundos
+        const primerDelay = Math.floor(Math.random() * 3000) + 5000; // 5000-8000ms
+        setTimeout(() => {
+            cambiarMensaje();
+
+            // Después de la primera aparición, iniciar la rotación normal
+            setInterval(
+                () => {
+                    cambiarMensaje();
+                },
+                Math.floor(Math.random() * 10000) + 12000,
+            ); // intervalo aleatorio entre 12-22s
+        }, primerDelay);
     }
 
     iniciarRotacion();
