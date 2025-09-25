@@ -1,7 +1,8 @@
 ---
 const {
   eventName = "InitiateCheckout",
-  eventData = {},
+  value = 0,
+  currency = "MXN",
   href,
   text,
   className,
@@ -17,23 +18,38 @@ const {
     // Función auxiliar para leer cookies
     function getCookie(name) {
       const match = document.cookie.match(
-        new RegExp("(^| )" + name + "=([^;]+)"),
+        new RegExp("(^| )" + name + "=([^;]+)")
       );
       return match ? match[2] : null;
     }
 
+    // Generar un event_id único para deduplicación
+    const eventId = `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+
     const btn = document.getElementById("trackBtn");
-    btn.addEventListener("click", (e) => {
+    btn.addEventListener("click", async (e) => {
       e.preventDefault();
 
-      // Generar un event_id único
-      const eventId = `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+      const user_data = {
+        client_ip_address: "NO_HASH_IP", // Aquí podrías reemplazar con servidor si tienes
+        client_user_agent: navigator.userAgent,
+        fbp: getCookie("_fbp"),
+        fbc: getCookie("_fbc"),
+        // nombre y apellido opcional, si los tienes en tu frontend
+        // fn: "Nombre",
+        // ln: "Apellido",
+        // em: "correo@example.com"
+      };
+
+      const custom_data = {
+        value: value,
+        currency: currency,
+      };
 
       // Pixel del navegador
       if (window.fbq) {
-        fbq("track", "InitiateCheckout", {
-          value: 1508,
-          currency: "MXN",
+        fbq("track", eventName, {
+          ...custom_data,
           event_id: eventId,
         });
       }
@@ -43,18 +59,13 @@ const {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          event_name: "InitiateCheckout",
-          event_id: eventId,
+          event_name: eventName,
+          event_id: eventId, // deduplicación
           event_time: Math.floor(Date.now() / 1000),
           action_source: "website",
           event_source_url: window.location.href,
-          user_data: {
-            client_ip_address: "NO_HASH_IP",
-            client_user_agent: navigator.userAgent,
-            fbp: getCookie("_fbp"),
-            fbc: getCookie("_fbc"),
-          },
-          custom_data: { value: 1508, currency: "MXN" },
+          user_data,
+          custom_data,
         }),
       });
 
