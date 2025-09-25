@@ -1,10 +1,13 @@
 ---
 const {
   eventName = "InitiateCheckout",
-  eventData = {},
+  eventData = { value: 1508, currency: "MXN" },
   href,
   text,
   className,
+  eventId,
+  clientCity = null,
+  clientState = null,
 } = Astro.props;
 ---
 
@@ -14,22 +17,23 @@ const {
   </a>
 
   <script is:inline>
-    // Función auxiliar para leer cookies
     function getCookie(name) {
-      const match = document.cookie.match(
-        new RegExp("(^| )" + name + "=([^;]+)"),
-      );
+      const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
       return match ? match[2] : null;
     }
 
     const btn = document.getElementById("trackBtn");
+
     btn.addEventListener("click", (e) => {
       e.preventDefault();
 
+      // Generar un event_id único si no se pasa
+      const dedupEventId = eventId || `ev_${Date.now()}_${Math.floor(Math.random() * 100000)}`;
+
       // Pixel del navegador
       if (window.fbq) {
-        fbq("track", "InitiateCheckout", { value: 1508, currency: "MXN" });
-        console.log("Evento InitiateCheckout disparado");
+        fbq("track", eventName, { ...eventData, event_id: dedupEventId });
+        console.log("Evento " + eventName + " disparado con Pixel", eventData);
       }
 
       // API del servidor (CAPI)
@@ -37,7 +41,8 @@ const {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          event_name: "InitiateCheckout",
+          event_name: eventName,
+          event_id: dedupEventId,
           event_time: Math.floor(Date.now() / 1000),
           action_source: "website",
           event_source_url: window.location.href,
@@ -46,12 +51,14 @@ const {
             client_user_agent: navigator.userAgent,
             fbp: getCookie("_fbp"),
             fbc: getCookie("_fbc"),
+            client_city: clientCity,
+            client_state: clientState
           },
-          custom_data: { value: 1508, currency: "MXN" },
+          custom_data: eventData,
         }),
-      });
+      }).catch((err) => console.error("Error CAPI InitiateCheckout:", err));
 
-      // Esperar 200ms para que el evento llegue a Meta y luego navegar al link
+      // Redirigir al link después de 200ms
       setTimeout(() => {
         window.location.href = btn.href;
       }, 200);

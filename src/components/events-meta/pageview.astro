@@ -1,22 +1,25 @@
 ---
 // Pageview.astro
-const { eventName = "PageView", customData = {} } = Astro.props;
+const { eventName = "PageView", customData = {}, eventId, clientCity = null, clientState = null } = Astro.props;
 ---
 
 <script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
     try {
-      // Valores literales directos
-      const eventNameLiteral = "PageView"; // o usa eventName si prefieres
-      const eventDataLiteral = {}; // o usa customData si prefieres
+      // Valores literales
+      const eventNameLiteral = eventName || "PageView";
+      const eventDataLiteral = customData || {};
 
       console.log("Disparando PageView", eventNameLiteral, eventDataLiteral);
 
-      // Auxiliar para leer cookies
+      // Función para leer cookies
       function getCookie(name) {
         const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
         return match ? match[2] : null;
       }
+
+      // Generar event_id único para deduplicación si no se pasa
+      const dedupEventId = eventId || "ev_" + Date.now() + "_" + Math.floor(Math.random() * 100000);
 
       // Pixel del navegador
       if (window.fbq) {
@@ -35,12 +38,15 @@ const { eventName = "PageView", customData = {} } = Astro.props;
           event_name: eventNameLiteral,
           event_time: Math.floor(Date.now() / 1000),
           action_source: "website",
+          event_id: dedupEventId,
           event_source_url: window.location.href,
           user_data: {
             client_ip_address: "NO_HASH_IP",
             client_user_agent: navigator.userAgent,
             fbp: getCookie("_fbp"),
             fbc: getCookie("_fbc"),
+            client_city: clientCity,
+            client_state: clientState
           },
           custom_data: eventDataLiteral,
         }),

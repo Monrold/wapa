@@ -6,9 +6,10 @@ const {
   eventName = "Contact",
   eventData = {},
   className,
+  eventId,
+  clientCity = null,
+  clientState = null,
 } = Astro.props;
-
-// ID único no es necesario si usamos dataset
 ---
 
 <a
@@ -32,7 +33,6 @@ const {
     const eventName = btn.dataset.eventName;
     const eventData = JSON.parse(btn.dataset.eventData);
 
-    // 🟢 Función para leer cookies en navegador
     function getCookie(name) {
       return document.cookie
         .split("; ")
@@ -44,13 +44,16 @@ const {
       e.preventDefault();
       console.log("Click detectado en ContactButton");
 
-      // --- Pixel del navegador
+      // Generar event_id único si no se pasa
+      const dedupEventId = eventId || "ev_" + Date.now() + "_" + Math.floor(Math.random() * 100000);
+
+      // Pixel del navegador
       if (window.fbq) {
         fbq("track", eventName, eventData);
         console.log("Evento " + eventName + " disparado");
       }
 
-      // --- API del servidor (CAPI)
+      // API del servidor (CAPI)
       fetch("https://metaevents.soporte-draw.workers.dev", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -58,18 +61,21 @@ const {
           event_name: eventName,
           event_time: Math.floor(Date.now() / 1000),
           action_source: "website",
+          event_id: dedupEventId,
           event_source_url: window.location.href,
           user_data: {
             client_ip_address: "NO_HASH_IP",
             client_user_agent: navigator.userAgent,
-            fbc: getCookie("_fbc"), // 🟢 Agregamos FBC
-            fbp: getCookie("_fbp"), // 🟢 Agregamos FBP
+            fbc: getCookie("_fbc"),
+            fbp: getCookie("_fbp"),
+            client_city: clientCity,
+            client_state: clientState
           },
           custom_data: eventData,
         }),
-      }).catch((err) => console.error("Error CAPI:", err));
+      }).catch((err) => console.error("Error CAPI ContactButton:", err));
 
-      // --- Abrir WhatsApp después de 200ms
+      // Abrir WhatsApp después de 200ms
       setTimeout(() => {
         window.open(btn.href, "_blank");
       }, 200);
