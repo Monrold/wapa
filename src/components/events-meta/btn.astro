@@ -10,69 +10,58 @@ const {
 ---
 
 <div>
-  <a href={href} class={className} id="trackBtn">
+  <a href={href} class={`trackBtn ${className}`}>
     {text}
   </a>
 
   <script is:inline>
-    // Función auxiliar para leer cookies
-    function getCookie(name) {
-      const match = document.cookie.match(
-        new RegExp("(^| )" + name + "=([^;]+)")
-      );
-      return match ? match[2] : null;
-    }
-
-    // Generar un event_id único para deduplicación
-    const eventId = `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
-
-    const btn = document.getElementById("trackBtn");
-    btn.addEventListener("click", async (e) => {
-      e.preventDefault();
-
-      const user_data = {
-        client_ip_address: "NO_HASH_IP", // Aquí podrías reemplazar con servidor si tienes
-        client_user_agent: navigator.userAgent,
-        fbp: getCookie("_fbp"),
-        fbc: getCookie("_fbc"),
-        // nombre y apellido opcional, si los tienes en tu frontend
-        // fn: "Nombre",
-        // ln: "Apellido",
-        // em: "correo@example.com"
-      };
-
-      const custom_data = {
-        value: value,
-        currency: currency,
-      };
-
-      // Pixel del navegador
-      if (window.fbq) {
-        fbq("track", eventName, {
-          ...custom_data,
-          event_id: eventId,
-        });
+    (function() {
+      function getCookie(name) {
+        const match = document.cookie.match(
+          new RegExp("(^| )" + name + "=([^;]+)")
+        );
+        return match ? match[2] : null;
       }
 
-      // API del servidor (CAPI)
-      fetch("https://metaevents.soporte-draw.workers.dev", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          event_name: eventName,
-          event_id: eventId, // deduplicación
-          event_time: Math.floor(Date.now() / 1000),
-          action_source: "website",
-          event_source_url: window.location.href,
-          user_data,
-          custom_data,
-        }),
-      });
+      const buttons = document.querySelectorAll(".trackBtn");
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          // Generar event_id único
+          const eventId = `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
 
-      // Esperar 200ms para que el evento llegue a Meta y luego navegar al link
-      setTimeout(() => {
-        window.location.href = btn.href;
-      }, 200);
-    });
+          const user_data = {
+            client_ip_address: "NO_HASH_IP",
+            client_user_agent: navigator.userAgent,
+            fbp: getCookie("_fbp"),
+            fbc: getCookie("_fbc"),
+          };
+
+          const custom_data = { value: value, currency: currency };
+
+          // Pixel del navegador
+          if (window.fbq) {
+            fbq("track", eventName, { ...custom_data, event_id: eventId });
+          }
+
+          // CAPI con sendBeacon, no bloquea la navegación
+          try {
+            const payload = JSON.stringify({
+              event_name: eventName,
+              event_id: eventId,
+              event_time: Math.floor(Date.now() / 1000),
+              action_source: "website",
+              event_source_url: window.location.href,
+              user_data,
+              custom_data,
+            });
+            navigator.sendBeacon("https://metaevents.soporte-draw.workers.dev", payload);
+          } catch (err) {
+            console.error(err);
+          }
+
+          // **No hacemos preventDefault**, el enlace navegará normalmente
+        });
+      });
+    })();
   </script>
 </div>
