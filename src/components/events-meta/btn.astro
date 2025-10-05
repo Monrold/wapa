@@ -8,86 +8,86 @@ const {
 } = Astro.props;
 ---
 
-<div>
-  <a 
-    href={href} 
-    data-event-name={eventName} 
-    data-event-data={JSON.stringify(eventData)}
-    class={`trackBtn ${className}`}
-  >
-    {text}
-  </a>
+<a 
+  href={href} 
+  data-event-name={eventName} 
+  data-event-data={JSON.stringify(eventData)}
+  class={`trackBtn ${className}`}
+>
+  {text}
+</a>
 
-  <script is:inline>
-    document.addEventListener("DOMContentLoaded", () => {
-      const btn = document.querySelector("a[data-event-name]");
-      if (!btn) return;
+<script is:inline>
+  (function () {
+    function getCookie(name) {
+      return document.cookie
+        .split("; ")
+        .find((row) => row.startsWith(name + "="))
+        ?.split("=")[1];
+    }
 
-      // Función para leer cookies
-      function getCookie(name) {
-        return document.cookie
-          .split("; ")
-          .find((row) => row.startsWith(name + "="))
-          ?.split("=")[1];
-      }
+    function sendEvent(eventName, customData, href) {
+      const eventId = `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+      const fbp = getCookie("_fbp");
+      const fbc = getCookie("_fbc");
 
-      function sendEvent(eventName, customData, href) {
-        const eventId = `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
-        const fbp = getCookie("_fbp");
-        const fbc = getCookie("_fbc");
+      const user_data = {
+        client_ip_address: "NO_HASH_IP",
+        client_user_agent: navigator.userAgent,
+        ...(fbp && { fbp }),
+        ...(fbc && { fbc }),
+      };
 
-        const user_data = {
-          client_ip_address: "NO_HASH_IP",
-          client_user_agent: navigator.userAgent,
-          ...(fbp && { fbp }),
-          ...(fbc && { fbc }),
-        };
+      console.log("🚀 Enviando evento:", {
+        eventName,
+        eventId,
+        customData,
+        user_data,
+      });
 
-        console.log("🚀 Enviando evento:", {
-          eventName,
-          eventId,
-          customData,
+      // Pixel navegador
+      if (window.fbq)
+        fbq("track", eventName, { ...customData, event_id: eventId });
+
+      // CAPI
+      try {
+        const payload = JSON.stringify({
+          event_name: eventName,
+          event_id: eventId,
+          event_time: Math.floor(Date.now() / 1000),
+          action_source: "website",
+          event_source_url: window.location.href,
           user_data,
+          custom_data: customData,
         });
-
-        // Pixel navegador
-        if (window.fbq) {
-          fbq("track", eventName, { ...customData, event_id: eventId });
-          console.log("Pixel: evento " + eventName + " disparado");
-        }
-
-        // CAPI usando fetch en lugar de sendBeacon
-        fetch("https://metaevents.soporte-draw.workers.dev", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            event_name: eventName,
-            event_id: eventId,
-            event_time: Math.floor(Date.now() / 1000),
-            action_source: "website",
-            event_source_url: window.location.href,
-            user_data,
-            custom_data: customData,
-          }),
-        }).catch((err) => console.error("Error CAPI:", err));
-
-        // Navegar después de enviar
-        setTimeout(() => {
-          window.location.href = href;
-        }, 150); // 300ms para asegurar que fetch/click se registre
+        navigator.sendBeacon(
+          "https://metaevents.soporte-draw.workers.dev",
+          payload
+        );
+      } catch (err) {
+        console.error(err);
       }
 
-      btn.addEventListener("click", (e) => {
-        e.preventDefault();
+      // Navegar después de enviar
+      setTimeout(() => {
+        window.location.href = href;
+      }, 150); // ⬅ ya reducido
+    }
 
-        // Leer desde data-attributes
-        const eventName = btn.dataset.eventName || "InitiateCheckout";
-        const customData = btn.dataset.eventData
-          ? JSON.parse(btn.dataset.eventData)
-          : { value: 0, currency: "MXN" };
+    document.addEventListener("DOMContentLoaded", () => {
+      const buttons = document.querySelectorAll("a[data-event-name]");
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
 
-        sendEvent(eventName, customData, btn.href);
+          const eventName = btn.dataset.eventName || "InitiateCheckout";
+          const customData = btn.dataset.eventData
+            ? JSON.parse(btn.dataset.eventData)
+            : { value: 0, currency: "MXN" };
+
+          sendEvent(eventName, customData, btn.href);
+        });
       });
     });
-  </script>
-</div>
+  })();
+</script>
