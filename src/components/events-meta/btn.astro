@@ -9,7 +9,12 @@ const {
 ---
 
 <div>
-  <a href={href} data-event-name={eventName} class={`trackBtn ${className}`} data-event-data={JSON.stringify(eventData)}>
+  <a 
+    href={href} 
+    data-event-name={eventName} 
+    data-event-data={JSON.stringify(eventData)}
+    class={`trackBtn ${className}`}
+  >
     {text}
   </a>
 
@@ -17,7 +22,7 @@ const {
     (function () {
       function getCookie(name) {
         const match = document.cookie.match(
-          new RegExp("(^| )" + name + "=([^;]+)"),
+          new RegExp("(^| )" + name + "=([^;]+)")
         );
         return match ? match[2] : null;
       }
@@ -39,7 +44,7 @@ const {
           eventId,
           customData,
           user_data,
-        }); // 👈 Aquí
+        });
 
         // Pixel navegador
         if (window.fbq)
@@ -58,7 +63,7 @@ const {
           });
           navigator.sendBeacon(
             "https://metaevents.soporte-draw.workers.dev",
-            payload,
+            payload
           );
         } catch (err) {
           console.error(err);
@@ -73,13 +78,17 @@ const {
       document.addEventListener("DOMContentLoaded", () => {
         const btn = document.currentScript.previousElementSibling;
         if (!btn) return;
+
         btn.addEventListener("click", (e) => {
           e.preventDefault();
-          sendEvent(
-            eventName,
-            { value: eventData.value, currency: eventData.currency },
-            btn.href,
-          );
+
+          // Leer desde data-attributes
+          const eventName = btn.dataset.eventName || "InitiateCheckout";
+          const customData = btn.dataset.eventData
+            ? JSON.parse(btn.dataset.eventData)
+            : { value: 0, currency: "MXN" };
+
+          sendEvent(eventName, customData, btn.href);
         });
       });
     })();
