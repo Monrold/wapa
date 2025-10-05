@@ -46,8 +46,7 @@ const {
       });
 
       // Pixel navegador
-      if (window.fbq)
-        fbq("track", eventName, { ...customData, event_id: eventId });
+      if (window.fbq) fbq("track", eventName, { ...customData, event_id: eventId });
 
       // CAPI
       try {
@@ -71,22 +70,29 @@ const {
       // Navegar después de enviar
       setTimeout(() => {
         window.location.href = href;
-      }, 150); // ⬅ ya reducido
+      }, 150);
     }
 
     document.addEventListener("DOMContentLoaded", () => {
       const buttons = document.querySelectorAll("a[data-event-name]");
       buttons.forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-          e.preventDefault();
+        // ✅ Verificamos que no tenga listener previo
+        if (btn.dataset.listenerAttached) return;
+        btn.dataset.listenerAttached = "true";
 
-          const eventName = btn.dataset.eventName || "InitiateCheckout";
-          const customData = btn.dataset.eventData
-            ? JSON.parse(btn.dataset.eventData)
-            : { value: 0, currency: "MXN" };
+        btn.addEventListener(
+          "click",
+          (e) => {
+            e.preventDefault();
+            const eventName = btn.dataset.eventName || "InitiateCheckout";
+            const customData = btn.dataset.eventData
+              ? JSON.parse(btn.dataset.eventData)
+              : { value: 0, currency: "MXN" };
 
-          sendEvent(eventName, customData, btn.href);
-        });
+            sendEvent(eventName, customData, btn.href);
+          },
+          { once: true } // ✅ solo se ejecuta una vez por click
+        );
       });
     });
   })();
