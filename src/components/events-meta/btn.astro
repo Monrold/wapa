@@ -1,15 +1,15 @@
 ---
 const {
-  eventName = "InitiateCheckout",
-  eventData = { value: 0, currency: "MXN" },
   href,
   text,
   className,
+  eventName = "InitiateCheckout",
+  eventData = { value: 0, currency: "MXN" },
 } = Astro.props;
 ---
 
 <div>
-  <a href={href} class={`trackBtn ${className}`}>
+  <a href={href} data-event-name={eventName} class={`trackBtn ${className}`} data-event-data={JSON.stringify(eventData)}>
     {text}
   </a>
 
