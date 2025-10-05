@@ -1,8 +1,7 @@
 ---
 const {
   eventName = "InitiateCheckout",
-  value = 0,
-  currency = "MXN",
+  eventData = { value: 0, currency: "MXN" },
   href,
   text,
   className,
@@ -15,51 +14,72 @@ const {
   </a>
 
   <script is:inline>
-    (function() {
+    (function () {
       function getCookie(name) {
         const match = document.cookie.match(
-          new RegExp("(^| )" + name + "=([^;]+)")
+          new RegExp("(^| )" + name + "=([^;]+)"),
         );
         return match ? match[2] : null;
       }
 
-      const buttons = document.querySelectorAll(".trackBtn");
-      buttons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          // Generar event_id único
-          const eventId = `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+      function sendEvent(eventName, customData, href) {
+        const eventId = `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+        const fbp = getCookie("_fbp");
+        const fbc = getCookie("_fbc");
 
-          const user_data = {
-            client_ip_address: "NO_HASH_IP",
-            client_user_agent: navigator.userAgent,
-            fbp: getCookie("_fbp"),
-            fbc: getCookie("_fbc"),
-          };
+        const user_data = {
+          client_ip_address: "NO_HASH_IP",
+          client_user_agent: navigator.userAgent,
+          ...(fbp && { fbp }),
+          ...(fbc && { fbc }),
+        };
 
-          const custom_data = { value: value, currency: currency };
+        console.log("🚀 Enviando evento:", {
+          eventName,
+          eventId,
+          customData,
+          user_data,
+        }); // 👈 Aquí
 
-          // Pixel del navegador
-          if (window.fbq) {
-            fbq("track", eventName, { ...custom_data, event_id: eventId });
-          }
+        // Pixel navegador
+        if (window.fbq)
+          fbq("track", eventName, { ...customData, event_id: eventId });
 
-          // CAPI con sendBeacon, no bloquea la navegación
-          try {
-            const payload = JSON.stringify({
-              event_name: eventName,
-              event_id: eventId,
-              event_time: Math.floor(Date.now() / 1000),
-              action_source: "website",
-              event_source_url: window.location.href,
-              user_data,
-              custom_data,
-            });
-            navigator.sendBeacon("https://metaevents.soporte-draw.workers.dev", payload);
-          } catch (err) {
-            console.error(err);
-          }
+        // CAPI
+        try {
+          const payload = JSON.stringify({
+            event_name: eventName,
+            event_id: eventId,
+            event_time: Math.floor(Date.now() / 1000),
+            action_source: "website",
+            event_source_url: window.location.href,
+            user_data,
+            custom_data: customData,
+          });
+          navigator.sendBeacon(
+            "https://metaevents.soporte-draw.workers.dev",
+            payload,
+          );
+        } catch (err) {
+          console.error(err);
+        }
 
-          // **No hacemos preventDefault**, el enlace navegará normalmente
+        // Navegar después de enviar
+        setTimeout(() => {
+          window.location.href = href;
+        }, 150);
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.currentScript.previousElementSibling;
+        if (!btn) return;
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          sendEvent(
+            eventName,
+            { value: eventData.value, currency: eventData.currency },
+            btn.href,
+          );
         });
       });
     })();
