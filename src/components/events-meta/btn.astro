@@ -26,7 +26,11 @@ const {
         ?.split("=")[1];
     }
 
-    function sendEvent(eventName, customData, href) {
+    function sendEvent(btn) {
+      // 🔹 Leemos siempre directamente del dataset
+      const eventName = btn.dataset.eventName;
+      const customData = JSON.parse(btn.dataset.eventData);
+
       const eventId = `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
       const fbp = getCookie("_fbp");
       const fbc = getCookie("_fbc");
@@ -38,12 +42,7 @@ const {
         ...(fbc && { fbc }),
       };
 
-      console.log("🚀 Enviando evento:", {
-        eventName,
-        eventId,
-        customData,
-        user_data,
-      });
+      console.log("🚀 Enviando evento:", { eventName, eventId, customData, user_data });
 
       // Pixel navegador
       if (window.fbq) fbq("track", eventName, { ...customData, event_id: eventId });
@@ -51,48 +50,32 @@ const {
       // CAPI
       try {
         const payload = JSON.stringify({
-          event_name: eventName,
+          event_name: eventName, // 🔹 obligatorio
           event_id: eventId,
           event_time: Math.floor(Date.now() / 1000),
           action_source: "website",
           event_source_url: window.location.href,
           user_data,
-          custom_data: customData,
+          custom_data: customData, // 🔹 obligatorio
         });
-        navigator.sendBeacon(
-          "https://metaevents.soporte-draw.workers.dev",
-          payload
-        );
+        navigator.sendBeacon("https://metaevents.soporte-draw.workers.dev", payload);
       } catch (err) {
         console.error(err);
       }
 
-      // Navegar después de enviar
-      setTimeout(() => {
-        window.location.href = href;
-      }, 150);
+      setTimeout(() => window.location.href = btn.href, 150);
     }
 
     document.addEventListener("DOMContentLoaded", () => {
       const buttons = document.querySelectorAll("a[data-event-name]");
       buttons.forEach((btn) => {
-        // ✅ Verificamos que no tenga listener previo
         if (btn.dataset.listenerAttached) return;
         btn.dataset.listenerAttached = "true";
 
-        btn.addEventListener(
-          "click",
-          (e) => {
-            e.preventDefault();
-            const eventName = btn.dataset.eventName || "InitiateCheckout";
-            const customData = btn.dataset.eventData
-              ? JSON.parse(btn.dataset.eventData)
-              : { value: 0, currency: "MXN" };
-
-            sendEvent(eventName, customData, btn.href);
-          },
-          { once: true } // ✅ solo se ejecuta una vez por click
-        );
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          sendEvent(btn);
+        });
       });
     });
   })();
