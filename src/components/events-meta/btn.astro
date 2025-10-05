@@ -27,9 +27,11 @@ const {
     }
 
     function sendEvent(btn) {
-      // 🔹 Leemos siempre directamente del dataset
+      // 🔹 Leer siempre desde data-attributes
       const eventName = btn.dataset.eventName;
-      const customData = JSON.parse(btn.dataset.eventData);
+      const customData = btn.dataset.eventData
+        ? JSON.parse(btn.dataset.eventData)
+        : { value: 0, currency: "MXN" };
 
       const eventId = `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
       const fbp = getCookie("_fbp");
@@ -50,26 +52,29 @@ const {
       // CAPI
       try {
         const payload = JSON.stringify({
-          event_name: eventName, // 🔹 obligatorio
+          event_name: eventName,
           event_id: eventId,
           event_time: Math.floor(Date.now() / 1000),
           action_source: "website",
           event_source_url: window.location.href,
           user_data,
-          custom_data: customData, // 🔹 obligatorio
+          custom_data: customData,
         });
         navigator.sendBeacon("https://metaevents.soporte-draw.workers.dev", payload);
       } catch (err) {
         console.error(err);
       }
 
+      // Navegar después de enviar (delay reducido)
       setTimeout(() => window.location.href = btn.href, 150);
     }
 
     document.addEventListener("DOMContentLoaded", () => {
+      // 🔹 Selecciona solo botones TrackButton
       const buttons = document.querySelectorAll("a[data-event-name]");
+
       buttons.forEach((btn) => {
-        if (btn.dataset.listenerAttached) return;
+        if (btn.dataset.listenerAttached === "true") return; // evitar duplicados
         btn.dataset.listenerAttached = "true";
 
         btn.addEventListener("click", (e) => {
