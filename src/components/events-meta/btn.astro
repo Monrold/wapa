@@ -19,12 +19,16 @@ const {
   </a>
 
   <script is:inline>
-    (function () {
+    document.addEventListener("DOMContentLoaded", () => {
+      const btn = document.querySelector("a[data-event-name]");
+      if (!btn) return;
+
+      // Función para leer cookies
       function getCookie(name) {
-        const match = document.cookie.match(
-          new RegExp("(^| )" + name + "=([^;]+)")
-        );
-        return match ? match[2] : null;
+        return document.cookie
+          .split("; ")
+          .find((row) => row.startsWith(name + "="))
+          ?.split("=")[1];
       }
 
       function sendEvent(eventName, customData, href) {
@@ -47,12 +51,16 @@ const {
         });
 
         // Pixel navegador
-        if (window.fbq)
+        if (window.fbq) {
           fbq("track", eventName, { ...customData, event_id: eventId });
+          console.log("Pixel: evento " + eventName + " disparado");
+        }
 
-        // CAPI
-        try {
-          const payload = JSON.stringify({
+        // CAPI usando fetch en lugar de sendBeacon
+        fetch("https://metaevents.soporte-draw.workers.dev", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
             event_name: eventName,
             event_id: eventId,
             event_time: Math.floor(Date.now() / 1000),
@@ -60,37 +68,26 @@ const {
             event_source_url: window.location.href,
             user_data,
             custom_data: customData,
-          });
-          navigator.sendBeacon(
-            "https://metaevents.soporte-draw.workers.dev",
-            payload
-          );
-        } catch (err) {
-          console.error(err);
-        }
+          }),
+        }).catch((err) => console.error("Error CAPI:", err));
 
         // Navegar después de enviar
         setTimeout(() => {
           window.location.href = href;
-        }, 150);
+        }, 150); // 300ms para asegurar que fetch/click se registre
       }
 
-      document.addEventListener("DOMContentLoaded", () => {
-        const btn = document.currentScript.previousElementSibling;
-        if (!btn) return;
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
 
-        btn.addEventListener("click", (e) => {
-          e.preventDefault();
+        // Leer desde data-attributes
+        const eventName = btn.dataset.eventName || "InitiateCheckout";
+        const customData = btn.dataset.eventData
+          ? JSON.parse(btn.dataset.eventData)
+          : { value: 0, currency: "MXN" };
 
-          // Leer desde data-attributes
-          const eventName = btn.dataset.eventName || "InitiateCheckout";
-          const customData = btn.dataset.eventData
-            ? JSON.parse(btn.dataset.eventData)
-            : { value: 0, currency: "MXN" };
-
-          sendEvent(eventName, customData, btn.href);
-        });
+        sendEvent(eventName, customData, btn.href);
       });
-    })();
+    });
   </script>
 </div>
