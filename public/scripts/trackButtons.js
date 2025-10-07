@@ -1,5 +1,5 @@
 document.querySelectorAll(".trackBtn").forEach((btn, index) => {
-  btn.addEventListener("click", (event) => {
+  btn.addEventListener("click", async (event) => {
     event.preventDefault();
 
     const eventName = btn.dataset.eventName || "InitiateCheckout";
@@ -13,16 +13,26 @@ document.querySelectorAll(".trackBtn").forEach((btn, index) => {
       fbq("track", eventName, eventData);
     }
 
-    // Worker backend
-    const payload = {
-      event_name: eventName,
-      event_time: Math.floor(Date.now() / 1000),
-      custom_data: eventData,
-      event_id: crypto.randomUUID(),
-    };
-    navigator.sendBeacon("https://metaevents.soporte-draw.workers.dev", JSON.stringify(payload));
+    // Worker backend usando fetch
+    try {
+      const payload = {
+        event_name: eventName,
+        event_time: Math.floor(Date.now() / 1000),
+        custom_data: eventData,
+        event_id: crypto.randomUUID(),
+      };
+      const res = await fetch("https://metaevents.soporte-draw.workers.dev", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const json = await res.json();
+      console.log("✅ Evento enviado al Worker:", json);
+    } catch (err) {
+      console.error("❌ Error enviando evento al Worker:", err);
+    }
 
-    // Abrir enlace
+    // Abrir enlace después de enviar el evento
     window.open(btn.href, "_blank", "noopener,noreferrer");
   });
 });
