@@ -95,6 +95,11 @@ const {
 
   // Inicial
   attachListeners();
-  new MutationObserver(attachListeners).observe(document.body, { childList: true, subtree: true });
+
+  // Observador por si se agregan botones dinámicamente
+  new MutationObserver(attachListeners).observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
 })();
 </script>
