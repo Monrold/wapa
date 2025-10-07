@@ -17,7 +17,8 @@ interface Props {
 	pageviewData?: Record<string, any>;
 }
 
-const { title, description, ogimage, isIndexable, canonical, pageviewData } = Astro.props;
+const { title, description, ogimage, isIndexable, canonical, pageviewData } =
+	Astro.props;
 ---
 
 <!doctype html>
@@ -54,10 +55,10 @@ const { title, description, ogimage, isIndexable, canonical, pageviewData } = As
 		<title>{title}</title>
 		<Google />
 		<PostHog />
-		 <Pageview customData={pageviewData} />
+		<Pageview customData={pageviewData} />
 		<!-- Meta Pixel Code -->
 		<!-- Meta Pixel Code -->
-		<script  type="module">
+		<script type="module">
 			!(function (f, b, e, v, n, t, s) {
 				if (f.fbq) return;
 				n = f.fbq = function () {
@@ -92,8 +93,9 @@ const { title, description, ogimage, isIndexable, canonical, pageviewData } = As
 				src="https://www.facebook.com/tr?id=1773971123502906&ev=PageView&noscript=1"
 			/></noscript
 		>
-		
+
 		<!-- End Meta Pixel Code -->
+		<script type="module" src="/scripts/trackButtons.js"></script>
 	</head>
 	<body class="relative">
 		<Nav lightColor={Astro.props.lightColor} />
