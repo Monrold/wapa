@@ -1,11 +1,5 @@
 ---
-const {
-  href,
-  text,
-  className,
-  eventName = "InitiateCheckout",
-  eventData = { value: 0, currency: "MXN" },
-} = Astro.props;
+const { href, text, className, eventName = "InitiateCheckout", eventData = { value: 0, currency: "MXN" } } = Astro.props;
 ---
 
 <a
@@ -20,13 +14,15 @@ const {
 </a>
 
 <script is:inline>
-(function () {
+(() => {
+  // Evita que se agregue más de un listener a este botón
+  const btn = document.currentScript.previousElementSibling;
+  if (!btn || btn.dataset.listenerAttached === "true") return;
+  btn.dataset.listenerAttached = "true";
+
   function getCookie(name) {
     return decodeURIComponent(
-      document.cookie
-        .split("; ")
-        .find((row) => row.startsWith(name + "="))
-        ?.split("=")[1] || ""
+      document.cookie.split("; ").find(row => row.startsWith(name + "="))?.split("=")[1] || ""
     );
   }
 
@@ -42,64 +38,43 @@ const {
       ...(fbc && { fbc }),
     };
 
-    // Pixel navegador
     if (window.fbq) {
       fbq("track", eventName, { ...customData, event_id: eventId });
     }
 
-    // CAPI (sendBeacon)
     try {
-      const payload = JSON.stringify({
-        event_name: eventName,
-        event_id: eventId,
-        event_time: Math.floor(Date.now() / 1000),
-        action_source: "website",
-        event_source_url: window.location.href,
-        user_data,
-        custom_data: customData,
-      });
       navigator.sendBeacon(
         "https://metaevents.soporte-draw.workers.dev",
-        payload
+        JSON.stringify({
+          event_name: eventName,
+          event_id: eventId,
+          event_time: Math.floor(Date.now() / 1000),
+          action_source: "website",
+          event_source_url: window.location.href,
+          user_data,
+          custom_data: customData,
+        })
       );
     } catch (err) {
       console.error("❌ Error al enviar evento CAPI:", err);
     }
   }
 
-  function attachListeners() {
-    document.querySelectorAll("a[data-event-name]").forEach((btn) => {
-      if (btn.dataset.listenerAttached === "true") return;
-      btn.dataset.listenerAttached = "true";
+  btn.addEventListener("click", e => {
+    e.preventDefault();
 
-      btn.addEventListener("click", (e) => {
-        e.preventDefault();
+    let customData = { value: 0, currency: "MXN" };
+    try {
+      customData = btn.dataset.eventData ? JSON.parse(btn.dataset.eventData) : customData;
+    } catch {}
 
-        let customData = { value: 0, currency: "MXN" };
-        try {
-          customData = btn.dataset.eventData
-            ? JSON.parse(btn.dataset.eventData)
-            : customData;
-        } catch {}
+    const eventName = btn.dataset.eventName;
 
-        const eventName = btn.dataset.eventName;
+    // Abrir nueva pestaña inmediatamente
+    window.open(btn.href, "_blank", "noopener,noreferrer");
 
-        // Abrir nueva pestaña inmediatamente
-        window.open(btn.href, "_blank", "noopener,noreferrer");
-
-        // Enviar evento de forma asíncrona sin bloquear
-        sendEventAsync(customData, eventName);
-      });
-    });
-  }
-
-  // Inicial
-  attachListeners();
-
-  // Observador por si se agregan botones dinámicamente
-  new MutationObserver(attachListeners).observe(document.body, {
-    childList: true,
-    subtree: true,
+    // Enviar evento asíncrono
+    sendEventAsync(customData, eventName);
   });
 })();
 </script>
