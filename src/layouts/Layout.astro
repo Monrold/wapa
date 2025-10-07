@@ -95,11 +95,12 @@ const { title, description, ogimage, isIndexable, canonical, pageviewData } =
 		>
 
 		<!-- End Meta Pixel Code -->
-		<script type="module" src="/scripts/trackButtons.js"></script>
+		
 	</head>
 	<body class="relative">
 		<Nav lightColor={Astro.props.lightColor} />
 		<slot />
 		<Footer />
+		 <script type="module" src="/scripts/trackButtons.js"></script>
 	</body>
 </html>
