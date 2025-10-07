@@ -1,6 +1,6 @@
 ---
 const { href, text, className, eventName = "InitiateCheckout", eventData = { value: 0, currency: "MXN" } } = Astro.props;
-const uid = crypto.randomUUID(); // ID único por botón
+const uid = crypto.randomUUID();
 ---
 
 <a
@@ -11,6 +11,7 @@ const uid = crypto.randomUUID(); // ID único por botón
   data-event-data={JSON.stringify(eventData)}
   data-uid={uid}
   class={`trackBtn ${className}`}
+  id={uid}
 >
   {text}
 </a>
@@ -18,8 +19,7 @@ const uid = crypto.randomUUID(); // ID único por botón
 <script is:inline>
 {`
 (() => {
-  const uid = "${uid}";
-  const btn = document.querySelector('a[data-uid="' + uid + '"]');
+  const btn = document.getElementById("${uid}");
   if (!btn) return;
 
   function getCookie(name) {
