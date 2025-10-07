@@ -10,6 +10,8 @@ const {
 
 <a
   href={href}
+  target="_blank"
+  rel="noopener noreferrer"
   data-event-name={eventName}
   data-event-data={JSON.stringify(eventData)}
   class={`trackBtn ${className}`}
@@ -18,88 +20,96 @@ const {
 </a>
 
 <script is:inline>
-  (function () {
-    function getCookie(name) {
-      return decodeURIComponent(
-        document.cookie
-          .split("; ")
-          .find((row) => row.startsWith(name + "="))
-          ?.split("=")[1] || ""
-      );
+(function () {
+  function getCookie(name) {
+    return decodeURIComponent(
+      document.cookie
+        .split("; ")
+        .find((row) => row.startsWith(name + "="))
+        ?.split("=")[1] || ""
+    );
+  }
+
+  async function sendEvent(btn) {
+    const eventName = btn.dataset.eventName;
+
+    // Parseo seguro del customData
+    let customData = { value: 0, currency: "MXN" };
+    try {
+      customData = btn.dataset.eventData
+        ? JSON.parse(btn.dataset.eventData)
+        : customData;
+    } catch {
+      console.warn("⚠️ Error al parsear data-event-data, usando valores por defecto.");
     }
 
-    function sendEvent(btn) {
-      const eventName = btn.dataset.eventName;
+    // Event ID único y seguro
+    const eventId = crypto.randomUUID();
 
-      // ✅ Parseo seguro
-      let customData = { value: 0, currency: "MXN" };
-      try {
-        customData = btn.dataset.eventData
-          ? JSON.parse(btn.dataset.eventData)
-          : customData;
-      } catch {
-        console.warn("⚠️ Error al parsear data-event-data, usando valores por defecto.");
-      }
+    const fbp = getCookie("_fbp");
+    const fbc = getCookie("_fbc");
 
-      // ✅ Nuevo event_id por cada clic
-      const eventId = `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
-      const fbp = getCookie("_fbp");
-      const fbc = getCookie("_fbc");
+    const user_data = {
+      client_ip_address: "NO_HASH_IP",
+      client_user_agent: navigator.userAgent,
+      ...(fbp && { fbp }),
+      ...(fbc && { fbc }),
+    };
 
-      const user_data = {
-        client_ip_address: "NO_HASH_IP",
-        client_user_agent: navigator.userAgent,
-        ...(fbp && { fbp }),
-        ...(fbc && { fbc }),
-      };
+    console.log("📤 Enviando evento CAPI + Pixel:", {
+      eventName,
+      eventId,
+      customData,
+      user_data,
+    });
 
-      console.log("📤 [TrackButton] Enviando evento CAPI+Pixel:", {
-        eventName,
-        eventId,
-        customData,
+    // Pixel navegador
+    if (window.fbq) {
+      fbq("track", eventName, { ...customData, event_id: eventId });
+    }
+
+    // CAPI (sendBeacon)
+    try {
+      const payload = JSON.stringify({
+        event_name: eventName,
+        event_id: eventId,
+        event_time: Math.floor(Date.now() / 1000),
+        action_source: "website",
+        event_source_url: window.location.href,
         user_data,
+        custom_data: customData,
       });
-
-      // 👉 Pixel navegador
-      if (window.fbq) {
-        fbq("track", eventName, { ...customData, event_id: eventId });
-      }
-
-      // 👉 CAPI (sendBeacon)
-      try {
-        const payload = JSON.stringify({
-          event_name: eventName,
-          event_id: eventId,
-          event_time: Math.floor(Date.now() / 1000),
-          action_source: "website",
-          event_source_url: window.location.href,
-          user_data,
-          custom_data: customData,
-        });
-        navigator.sendBeacon(
-          "https://metaevents.soporte-draw.workers.dev",
-          payload
-        );
-      } catch (err) {
-        console.error("❌ Error al enviar evento:", err);
-      }
-
-      // ⏳ Delay para garantizar envío
-      setTimeout(() => (window.location.href = btn.href), 250);
+      navigator.sendBeacon(
+        "https://metaevents.soporte-draw.workers.dev",
+        payload
+      );
+    } catch (err) {
+      console.error("❌ Error al enviar evento CAPI:", err);
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const buttons = document.querySelectorAll("a[data-event-name]");
+    // No hacemos redirección en la misma pestaña; el enlace abre en nueva pestaña
+  }
 
-      buttons.forEach((btn) => {
-        if (btn.dataset.listenerAttached === "true") return; // evitar duplicados
-        btn.dataset.listenerAttached = "true";
+  // Función para adjuntar listeners a todos los botones
+  function attachListeners() {
+    document.querySelectorAll("a[data-event-name]").forEach((btn) => {
+      if (btn.dataset.listenerAttached === "true") return;
+      btn.dataset.listenerAttached = "true";
 
-        btn.addEventListener("click", (e) => {
-          e.preventDefault();
-          sendEvent(btn);
-        });
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        sendEvent(btn);
+        // Abrimos el enlace en nueva pestaña inmediatamente
+        window.open(btn.href, "_blank", "noopener,noreferrer");
       });
     });
-  })();
+  }
+
+  // Ejecutar al cargar
+  attachListeners();
+
+  // Observador por si se agregan botones dinámicamente
+  const observer = new MutationObserver(attachListeners);
+  observer.observe(document.body, { childList: true, subtree: true });
+})();
 </script>
