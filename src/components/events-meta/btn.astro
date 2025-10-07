@@ -16,9 +16,10 @@ const uid = crypto.randomUUID(); // ID único por botón
 </a>
 
 <script is:inline>
+{`
 (() => {
-  const uid = '{{uid}}';
-  const btn = document.querySelector(`a[data-uid="${uid}"]`);
+  const uid = "${uid}";
+  const btn = document.querySelector('a[data-uid="' + uid + '"]');
   if (!btn) return;
 
   function getCookie(name) {
@@ -78,4 +79,5 @@ const uid = crypto.randomUUID(); // ID único por botón
     sendEventAsync(customData, eventName);
   });
 })();
+`}
 </script>
