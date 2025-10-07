@@ -1,5 +1,6 @@
 ---
 const { href, text, className, eventName = "InitiateCheckout", eventData = { value: 0, currency: "MXN" } } = Astro.props;
+const uid = crypto.randomUUID(); // ID único por botón
 ---
 
 <a
@@ -8,6 +9,7 @@ const { href, text, className, eventName = "InitiateCheckout", eventData = { val
   rel="noopener noreferrer"
   data-event-name={eventName}
   data-event-data={JSON.stringify(eventData)}
+  data-uid={uid}
   class={`trackBtn ${className}`}
 >
   {text}
@@ -15,10 +17,9 @@ const { href, text, className, eventName = "InitiateCheckout", eventData = { val
 
 <script is:inline>
 (() => {
-  // Evita que se agregue más de un listener a este botón
-  const btn = document.currentScript.previousElementSibling;
-  if (!btn || btn.dataset.listenerAttached === "true") return;
-  btn.dataset.listenerAttached = "true";
+  const uid = '{{uid}}';
+  const btn = document.querySelector(`a[data-uid="${uid}"]`);
+  if (!btn) return;
 
   function getCookie(name) {
     return decodeURIComponent(
@@ -70,10 +71,10 @@ const { href, text, className, eventName = "InitiateCheckout", eventData = { val
 
     const eventName = btn.dataset.eventName;
 
-    // Abrir nueva pestaña inmediatamente
+    // Abrir enlace en nueva pestaña
     window.open(btn.href, "_blank", "noopener,noreferrer");
 
-    // Enviar evento asíncrono
+    // Enviar evento
     sendEventAsync(customData, eventName);
   });
 })();
