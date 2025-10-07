@@ -8,8 +8,10 @@ const {
 } = Astro.props;
 ---
 
-<a 
-  href={href} 
+<a
+  href={href}
+  data-event-name={eventName}
+  data-event-data={JSON.stringify(eventData)}
   class={`trackBtn ${className}`}
 >
   {text}
@@ -18,19 +20,28 @@ const {
 <script is:inline>
   (function () {
     function getCookie(name) {
-      return document.cookie
-        .split("; ")
-        .find((row) => row.startsWith(name + "="))
-        ?.split("=")[1];
+      return decodeURIComponent(
+        document.cookie
+          .split("; ")
+          .find((row) => row.startsWith(name + "="))
+          ?.split("=")[1] || ""
+      );
     }
 
     function sendEvent(btn) {
-      // 🔹 Leer siempre desde data-attributes
       const eventName = btn.dataset.eventName;
-      const customData = btn.dataset.eventData
-        ? JSON.parse(btn.dataset.eventData)
-        : { value: 0, currency: "MXN" };
 
+      // ✅ Parseo seguro
+      let customData = { value: 0, currency: "MXN" };
+      try {
+        customData = btn.dataset.eventData
+          ? JSON.parse(btn.dataset.eventData)
+          : customData;
+      } catch {
+        console.warn("⚠️ Error al parsear data-event-data, usando valores por defecto.");
+      }
+
+      // ✅ Nuevo event_id por cada clic
       const eventId = `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
       const fbp = getCookie("_fbp");
       const fbc = getCookie("_fbc");
@@ -42,12 +53,19 @@ const {
         ...(fbc && { fbc }),
       };
 
-      console.log("🚀 Enviando evento:", { eventName, eventId, customData, user_data });
+      console.log("📤 [TrackButton] Enviando evento CAPI+Pixel:", {
+        eventName,
+        eventId,
+        customData,
+        user_data,
+      });
 
-      // Pixel navegador
-      if (window.fbq) fbq("track", eventName, { ...customData, event_id: eventId });
+      // 👉 Pixel navegador
+      if (window.fbq) {
+        fbq("track", eventName, { ...customData, event_id: eventId });
+      }
 
-      // CAPI
+      // 👉 CAPI (sendBeacon)
       try {
         const payload = JSON.stringify({
           event_name: eventName,
@@ -58,17 +76,19 @@ const {
           user_data,
           custom_data: customData,
         });
-        navigator.sendBeacon("https://metaevents.soporte-draw.workers.dev", payload);
+        navigator.sendBeacon(
+          "https://metaevents.soporte-draw.workers.dev",
+          payload
+        );
       } catch (err) {
-        console.error(err);
+        console.error("❌ Error al enviar evento:", err);
       }
 
-      // Navegar después de enviar (delay reducido)
-      setTimeout(() => window.location.href = btn.href, 150);
+      // ⏳ Delay para garantizar envío
+      setTimeout(() => (window.location.href = btn.href), 250);
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      // 🔹 Selecciona solo botones TrackButton
       const buttons = document.querySelectorAll("a[data-event-name]");
 
       buttons.forEach((btn) => {
