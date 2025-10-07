@@ -30,22 +30,8 @@ const {
     );
   }
 
-  async function sendEvent(btn) {
-    const eventName = btn.dataset.eventName;
-
-    // Parseo seguro del customData
-    let customData = { value: 0, currency: "MXN" };
-    try {
-      customData = btn.dataset.eventData
-        ? JSON.parse(btn.dataset.eventData)
-        : customData;
-    } catch {
-      console.warn("⚠️ Error al parsear data-event-data, usando valores por defecto.");
-    }
-
-    // Event ID único y seguro
+  function sendEventAsync(customData, eventName) {
     const eventId = crypto.randomUUID();
-
     const fbp = getCookie("_fbp");
     const fbc = getCookie("_fbc");
 
@@ -55,13 +41,6 @@ const {
       ...(fbp && { fbp }),
       ...(fbc && { fbc }),
     };
-
-    console.log("📤 Enviando evento CAPI + Pixel:", {
-      eventName,
-      eventId,
-      customData,
-      user_data,
-    });
 
     // Pixel navegador
     if (window.fbq) {
@@ -86,11 +65,8 @@ const {
     } catch (err) {
       console.error("❌ Error al enviar evento CAPI:", err);
     }
-
-    // No hacemos redirección en la misma pestaña; el enlace abre en nueva pestaña
   }
 
-  // Función para adjuntar listeners a todos los botones
   function attachListeners() {
     document.querySelectorAll("a[data-event-name]").forEach((btn) => {
       if (btn.dataset.listenerAttached === "true") return;
@@ -98,18 +74,27 @@ const {
 
       btn.addEventListener("click", (e) => {
         e.preventDefault();
-        sendEvent(btn);
-        // Abrimos el enlace en nueva pestaña inmediatamente
+
+        let customData = { value: 0, currency: "MXN" };
+        try {
+          customData = btn.dataset.eventData
+            ? JSON.parse(btn.dataset.eventData)
+            : customData;
+        } catch {}
+
+        const eventName = btn.dataset.eventName;
+
+        // Abrir nueva pestaña inmediatamente
         window.open(btn.href, "_blank", "noopener,noreferrer");
+
+        // Enviar evento de forma asíncrona sin bloquear
+        sendEventAsync(customData, eventName);
       });
     });
   }
 
-  // Ejecutar al cargar
+  // Inicial
   attachListeners();
-
-  // Observador por si se agregan botones dinámicamente
-  const observer = new MutationObserver(attachListeners);
-  observer.observe(document.body, { childList: true, subtree: true });
+  new MutationObserver(attachListeners).observe(document.body, { childList: true, subtree: true });
 })();
 </script>
