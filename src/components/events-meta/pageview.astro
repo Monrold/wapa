@@ -8,35 +8,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const eventNameLiteral = eventName || "PageView";
     const eventDataLiteral = customData || {};
 
-    // 🔑 Generar un event_id compatible con todos los navegadores
-    function generateEventId() {
-      if (crypto.randomUUID) return `pgvw-${crypto.randomUUID()}`;
-      // Fallback para navegadores antiguos
-      return 'pgvw-' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-    }
-    const eventId = generateEventId();
+    // 🔑 Generar event_id solo para CAPI
+    const eventId = `pgvw-${crypto.randomUUID()}`;
+    console.log("📤 Disparando PageView:", eventNameLiteral, eventDataLiteral, "ID CAPI:", eventId);
 
-    console.log("📤 Disparando PageView:", eventNameLiteral, eventDataLiteral, "ID:", eventId);
-
-    // Función para leer cookies
     function getCookie(name) {
       const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
       return match ? match[2] : null;
     }
 
-    // --- Pixel del navegador ---
+    // --- Pixel del navegador (NO event_id) ---
     if (window.fbq) {
-      try {
-        fbq("track", eventNameLiteral, {
-          ...eventDataLiteral,
-          event_id: eventId, // 🔑 Muy importante para deduplicación
-        });
-        console.log("✅ Pixel navegador enviado con ID:", eventId);
-      } catch (err) {
-        console.error("❌ Error enviando Pixel navegador:", err);
-      }
-    } else {
-      console.warn("⚠️ Pixel de Facebook no está definido (window.fbq)");
+      fbq("track", eventNameLiteral, eventDataLiteral);
+      console.log("✅ Pixel navegador enviado");
     }
 
     // --- API del servidor (CAPI) ---
@@ -55,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
           fbc: getCookie("_fbc"),
         },
         custom_data: eventDataLiteral,
-        event_id: eventId, // 🔑 Mandar el mismo ID al Worker
+        event_id: eventId, // 🔑 Solo para CAPI
       }),
     }).catch((err) => console.error("❌ Error CAPI PageView:", err));
 
