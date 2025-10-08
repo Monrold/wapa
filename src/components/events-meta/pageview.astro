@@ -5,22 +5,27 @@ const { eventName = "PageView", customData = {} } = Astro.props;
 <script is:inline>
 document.addEventListener("DOMContentLoaded", () => {
   try {
-    const eventNameLiteral = eventName || "PageView";
-    const eventDataLiteral = customData || {};
+    const eventNameLiteral = "PageView";
+    const eventDataLiteral = customData;
 
-    // 🔑 Generar event_id solo para CAPI
+    // 🔑 Generar un event_id único que se compartirá con CAPI
     const eventId = `pgvw-${crypto.randomUUID()}`;
-    console.log("📤 Disparando PageView:", eventNameLiteral, eventDataLiteral, "ID CAPI:", eventId);
 
+    console.log("📤 Disparando PageView:", eventNameLiteral, eventDataLiteral, "ID:", eventId);
+
+    // Función para leer cookies
     function getCookie(name) {
       const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
       return match ? match[2] : null;
     }
 
-    // --- Pixel del navegador (NO event_id) ---
+    // --- Pixel del navegador ---
     if (window.fbq) {
-      fbq("track", eventNameLiteral, eventDataLiteral);
-      console.log("✅ Pixel navegador enviado");
+      fbq("track", eventNameLiteral, {
+        ...eventDataLiteral,
+        event_id: eventId, // 🔑 Muy importante
+      });
+      console.log("✅ Pixel navegador enviado con ID:", eventId);
     }
 
     // --- API del servidor (CAPI) ---
@@ -39,10 +44,9 @@ document.addEventListener("DOMContentLoaded", () => {
           fbc: getCookie("_fbc"),
         },
         custom_data: eventDataLiteral,
-        event_id: eventId, // 🔑 Solo para CAPI
+        event_id: eventId, // 🔑 Mandar el mismo ID al Worker
       }),
     }).catch((err) => console.error("❌ Error CAPI PageView:", err));
-
   } catch (err) {
     console.error("❌ Error al disparar PageView:", err);
   }
