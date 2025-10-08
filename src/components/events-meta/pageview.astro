@@ -1,58 +1,55 @@
 ---
-// Pageview.astro
 const { eventName = "PageView", customData = {} } = Astro.props;
 ---
 
 <script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
-    try {
-      const eventNameLiteral = "PageView";
-      const eventDataLiteral = {};
-      
-      // 🔑 Generar un event_id único
-      const eventId = `pgvw-${crypto.randomUUID()}`;
+document.addEventListener("DOMContentLoaded", () => {
+  try {
+    const eventNameLiteral = "PageView";
+    const eventDataLiteral = customData;
 
-      console.log("📤 Disparando PageView:", eventNameLiteral, eventDataLiteral, "ID:", eventId);
+    // 🔑 Generar un event_id único que se compartirá con CAPI
+    const eventId = `pgvw-${crypto.randomUUID()}`;
 
-      // Leer cookies
-      function getCookie(name) {
-        const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
-        return match ? match[2] : null;
-      }
+    console.log("📤 Disparando PageView:", eventNameLiteral, eventDataLiteral, "ID:", eventId);
 
-      // --- Pixel del navegador ---
-      if (window.fbq) {
-        fbq("track", eventNameLiteral, {
-          ...eventDataLiteral,
-          event_id: eventId, // 🔑 Muy importante
-        });
-        console.log("✅ Pixel navegador enviado con ID:", eventId);
-      }
-
-      // --- API del servidor (CAPI) ---
-      fetch("https://metaevents.soporte-draw.workers.dev", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          event_name: eventNameLiteral,
-          event_time: Math.floor(Date.now() / 1000),
-          action_source: "website",
-          event_source_url: window.location.href,
-          user_data: {
-            client_ip_address: "NO_HASH_IP",
-            client_user_agent: navigator.userAgent,
-            fbp: getCookie("_fbp"),
-            fbc: getCookie("_fbc"),
-          },
-          custom_data: eventDataLiteral,
-          event_id: eventId, // 🔑 Mandar el mismo ID al Worker
-        }),
-      }).catch((err) => console.error("❌ Error CAPI PageView:", err));
-    } catch (err) {
-      console.error("❌ Error al disparar PageView:", err);
+    // Función para leer cookies
+    function getCookie(name) {
+      const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+      return match ? match[2] : null;
     }
-  });
+
+    // --- Pixel del navegador ---
+    if (window.fbq) {
+      fbq("track", eventNameLiteral, {
+        ...eventDataLiteral,
+        event_id: eventId, // 🔑 Muy importante
+      });
+      console.log("✅ Pixel navegador enviado con ID:", eventId);
+    }
+
+    // --- API del servidor (CAPI) ---
+    fetch("https://metaevents.soporte-draw.workers.dev", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        event_name: eventNameLiteral,
+        event_time: Math.floor(Date.now() / 1000),
+        action_source: "website",
+        event_source_url: window.location.href,
+        user_data: {
+          client_ip_address: "NO_HASH_IP",
+          client_user_agent: navigator.userAgent,
+          fbp: getCookie("_fbp"),
+          fbc: getCookie("_fbc"),
+        },
+        custom_data: eventDataLiteral,
+        event_id: eventId, // 🔑 Mandar el mismo ID al Worker
+      }),
+    }).catch((err) => console.error("❌ Error CAPI PageView:", err));
+
+  } catch (err) {
+    console.error("❌ Error al disparar PageView:", err);
+  }
+});
 </script>
