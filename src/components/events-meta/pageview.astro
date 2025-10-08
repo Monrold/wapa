@@ -1,39 +1,47 @@
 ---
 const { eventName = "PageView", customData = {} } = Astro.props;
+const eventNameJSON = JSON.stringify(eventName);
+const customDataJSON = JSON.stringify(customData);
 ---
+
+<div id="fb-events"
+     data-event-name={eventNameJSON}
+     data-custom-data={customDataJSON}></div>
 
 <script is:inline>
 document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("fb-events");
+
   try {
-    const eventNameLiteral = "PageView";
-    const eventDataLiteral = customData;
+    const eventName = JSON.parse(container.dataset.eventName);
+    const customData = JSON.parse(container.dataset.customData);
 
-    // 🔑 Generar un event_id único que se compartirá con CAPI
     const eventId = `pgvw-${crypto.randomUUID()}`;
+    console.log("📤 Disparando PageView:", eventName, customData, "ID:", eventId);
 
-    console.log("📤 Disparando PageView:", eventNameLiteral, eventDataLiteral, "ID:", eventId);
-
-    // Función para leer cookies
     function getCookie(name) {
       const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
       return match ? match[2] : null;
     }
 
-    // --- Pixel del navegador ---
     if (window.fbq) {
-      fbq("track", eventNameLiteral, {
-        ...eventDataLiteral,
-        event_id: eventId, // 🔑 Muy importante
+      fbq("track", eventName, {
+        ...customData,
+        event_id: eventId,
       });
       console.log("✅ Pixel navegador enviado con ID:", eventId);
+    } else {
+      console.warn("⚠️ Pixel no definido (window.fbq)");
     }
 
-    // --- API del servidor (CAPI) ---
     fetch("https://metaevents.soporte-draw.workers.dev", {
       method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      headers: { 
+        "Content-Type": "application/json", 
+        Accept: "application/json" 
+      },
       body: JSON.stringify({
-        event_name: eventNameLiteral,
+        event_name: eventName,
         event_time: Math.floor(Date.now() / 1000),
         action_source: "website",
         event_source_url: window.location.href,
@@ -43,8 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
           fbp: getCookie("_fbp"),
           fbc: getCookie("_fbc"),
         },
-        custom_data: eventDataLiteral,
-        event_id: eventId, // 🔑 Mandar el mismo ID al Worker
+        custom_data: customData,
+        event_id: eventId,
       }),
     }).catch((err) => console.error("❌ Error CAPI PageView:", err));
 
