@@ -6,25 +6,30 @@ const { eventName = "PageView", customData = {} } = Astro.props;
 <script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
     try {
-      // Valores literales directos
-      const eventNameLiteral = "PageView"; // o usa eventName si prefieres
-      const eventDataLiteral = {}; // o usa customData si prefieres
+      const eventNameLiteral = "PageView";
+      const eventDataLiteral = {};
+      
+      // 🔑 Generar un event_id único
+      const eventId = `pgvw-${crypto.randomUUID()}`;
 
-      console.log("Disparando PageView", eventNameLiteral, eventDataLiteral);
+      console.log("📤 Disparando PageView:", eventNameLiteral, eventDataLiteral, "ID:", eventId);
 
-      // Auxiliar para leer cookies
+      // Leer cookies
       function getCookie(name) {
         const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
         return match ? match[2] : null;
       }
 
-      // Pixel del navegador
+      // --- Pixel del navegador ---
       if (window.fbq) {
-        fbq("track", eventNameLiteral, eventDataLiteral);
-        console.log("Evento " + eventNameLiteral + " disparado", eventDataLiteral);
+        fbq("track", eventNameLiteral, {
+          ...eventDataLiteral,
+          event_id: eventId, // 🔑 Muy importante
+        });
+        console.log("✅ Pixel navegador enviado con ID:", eventId);
       }
 
-      // API del servidor (CAPI)
+      // --- API del servidor (CAPI) ---
       fetch("https://metaevents.soporte-draw.workers.dev", {
         method: "POST",
         headers: {
@@ -43,10 +48,11 @@ const { eventName = "PageView", customData = {} } = Astro.props;
             fbc: getCookie("_fbc"),
           },
           custom_data: eventDataLiteral,
+          event_id: eventId, // 🔑 Mandar el mismo ID al Worker
         }),
-      }).catch((err) => console.error("Error CAPI PageView:", err));
+      }).catch((err) => console.error("❌ Error CAPI PageView:", err));
     } catch (err) {
-      console.error("Error al disparar PageView:", err);
+      console.error("❌ Error al disparar PageView:", err);
     }
   });
 </script>

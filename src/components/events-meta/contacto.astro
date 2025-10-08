@@ -7,8 +7,6 @@ const {
   eventData = {},
   className,
 } = Astro.props;
-
-// ID único no es necesario si usamos dataset
 ---
 
 <a
@@ -23,14 +21,12 @@ const {
 
 <script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
-    const btn = document.querySelector("a[data-event-name]");
-    if (!btn) {
-      console.error("No se encontró el botón de contacto");
+    // 🔥 Seleccionar TODOS los botones con el atributo data-event-name
+    const buttons = document.querySelectorAll("a[data-event-name]");
+    if (!buttons.length) {
+      console.warn("No se encontraron botones de contacto");
       return;
     }
-
-    const eventName = btn.dataset.eventName;
-    const eventData = JSON.parse(btn.dataset.eventData);
 
     // 🟢 Función para leer cookies en navegador
     function getCookie(name) {
@@ -40,39 +36,54 @@ const {
         ?.split("=")[1];
     }
 
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      console.log("Click detectado en ContactButton");
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
 
-      // --- Pixel del navegador
-      if (window.fbq) {
-        fbq("track", eventName, eventData);
-        console.log("Evento " + eventName + " disparado");
-      }
+        const eventName = btn.dataset.eventName;
+        const eventData = JSON.parse(btn.dataset.eventData);
 
-      // --- API del servidor (CAPI)
-      fetch("https://metaevents.soporte-draw.workers.dev", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          event_name: eventName,
-          event_time: Math.floor(Date.now() / 1000),
-          action_source: "website",
-          event_source_url: window.location.href,
-          user_data: {
-            client_ip_address: "NO_HASH_IP",
-            client_user_agent: navigator.userAgent,
-            fbc: getCookie("_fbc"), // 🟢 Agregamos FBC
-            fbp: getCookie("_fbp"), // 🟢 Agregamos FBP
-          },
-          custom_data: eventData,
-        }),
-      }).catch((err) => console.error("Error CAPI:", err));
+        // 🔑 Generar un ID único por cada clic
+        const eventId = `wh-${crypto.randomUUID()}`;
 
-      // --- Abrir WhatsApp después de 200ms
-      setTimeout(() => {
-        window.open(btn.href, "_blank");
-      }, 200);
+        console.log(`📤 Click en ${eventName} con ID: ${eventId}`);
+
+        // --- Pixel del navegador ---
+        if (window.fbq) {
+          fbq("track", eventName, {
+            ...eventData,
+            event_id: eventId, // ✅ Pasar el ID al pixel
+          });
+          console.log(`✅ Pixel navegador enviado con ID: ${eventId}`);
+        }
+
+        // --- API del servidor (CAPI) ---
+        fetch("https://metaevents.soporte-draw.workers.dev", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            event_name: eventName,
+            event_time: Math.floor(Date.now() / 1000),
+            action_source: "website",
+            event_source_url: window.location.href,
+            user_data: {
+              client_ip_address: "NO_HASH_IP", // IP la inyectará el Worker
+              client_user_agent: navigator.userAgent,
+              fbp: getCookie("_fbp"),
+              fbc: getCookie("_fbc"),
+            },
+            custom_data: eventData,
+            event_id: eventId, // ✅ Mandar el mismo ID al Worker
+          }),
+        })
+          .then(() => console.log(`📡 Evento enviado a Worker con ID: ${eventId}`))
+          .catch((err) => console.error("❌ Error CAPI:", err));
+
+        // --- Abrir WhatsApp después de 200ms ---
+        setTimeout(() => {
+          window.open(btn.href, "_blank");
+        }, 200);
+      });
     });
   });
 </script>
