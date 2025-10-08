@@ -1,26 +1,4 @@
----
-// ContactButton.astro
-const {
-  href,
-  text = "Contactar",
-  eventName = "Contact",
-  eventData = {},
-  className,
-} = Astro.props;
----
 
-<a
-  href={href}
-  target="_blank"
-  class={className}
-  data-event-name={eventName}
-  data-event-data={JSON.stringify(eventData)}
->
-  {text}
-</a>
-
-
-<script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
     // 🔥 Seleccionar TODOS los botones con el atributo data-event-name
     const buttons = document.querySelectorAll("a[data-event-name]");
@@ -87,4 +65,3 @@ const {
       });
     });
   });
-</script>
