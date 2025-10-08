@@ -7,8 +7,8 @@ document.querySelectorAll(".trackBtn").forEach((btn, index) => {
 
     // Extraer cookies de Meta Pixel
     const cookieHeader = document.cookie;
-    const fbp = (cookieHeader.match(/_fbp=([^;]+)/) || [])[1];
-    const fbc = (cookieHeader.match(/_fbc=([^;]+)/) || [])[1];
+    const fbp = (cookieHeader.match(/_fbp=([^;]+)/) || [])[1] || null;
+    const fbc = (cookieHeader.match(/_fbc=([^;]+)/) || [])[1] || null;
 
     // ✅ Generar un solo event_id por click
     const eventId = crypto.randomUUID();
@@ -29,16 +29,18 @@ document.querySelectorAll(".trackBtn").forEach((btn, index) => {
         event_name: eventName,
         event_time: Math.floor(Date.now() / 1000),
         custom_data: eventData,
-        event_id: eventId, // usar el mismo ID
+        event_id: eventId, // usar el mismo ID que fbq
         fbp,
         fbc,
         client_user_agent: navigator.userAgent,
       };
+
       const res = await fetch("https://metaevents.soporte-draw.workers.dev", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+
       const json = await res.json();
       console.log("✅ Evento enviado al Worker:", json);
     } catch (err) {
