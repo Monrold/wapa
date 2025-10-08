@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.fbq) {
       fbq("track", eventNameLiteral, {
         ...eventDataLiteral,
-        event_id: eventId, // 🔑 Muy importante
+        event_id: eventId, // 🔑 Muy importante para deduplicación
       });
       console.log("✅ Pixel navegador enviado con ID:", eventId);
     }
@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
         event_id: eventId, // 🔑 Mandar el mismo ID al Worker
       }),
     }).catch((err) => console.error("❌ Error CAPI PageView:", err));
+
   } catch (err) {
     console.error("❌ Error al disparar PageView:", err);
   }
