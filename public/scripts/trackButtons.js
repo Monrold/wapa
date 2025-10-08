@@ -10,13 +10,17 @@ document.querySelectorAll(".trackBtn").forEach((btn, index) => {
     const fbp = (cookieHeader.match(/_fbp=([^;]+)/) || [])[1];
     const fbc = (cookieHeader.match(/_fbc=([^;]+)/) || [])[1];
 
+    // ✅ Generar un solo event_id por click
+    const eventId = crypto.randomUUID();
+
     console.log(`👉 Click en botón #${index + 1}`);
     console.log("📦 Datos del evento:", eventName, eventData);
     console.log("🧩 Cookies detectadas:", { fbp, fbc });
+    console.log("🔑 Event ID único:", eventId);
 
     // Pixel frontend
     if (typeof fbq === "function") {
-      fbq("track", eventName, eventData);
+      fbq("track", eventName, eventData, { eventID: eventId });
     }
 
     // Worker backend usando fetch
@@ -25,7 +29,7 @@ document.querySelectorAll(".trackBtn").forEach((btn, index) => {
         event_name: eventName,
         event_time: Math.floor(Date.now() / 1000),
         custom_data: eventData,
-        event_id: crypto.randomUUID(),
+        event_id: eventId, // usar el mismo ID
         fbp,
         fbc,
         client_user_agent: navigator.userAgent,
