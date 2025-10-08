@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.fbq) {
       fbq("track", eventNameLiteral, {
         ...eventDataLiteral,
-        event_id: eventId, // 🔑 Muy importante para deduplicación
+        event_id: eventId, // 🔑 Muy importante
       });
       console.log("✅ Pixel navegador enviado con ID:", eventId);
     }
